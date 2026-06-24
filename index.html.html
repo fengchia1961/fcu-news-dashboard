@@ -1,0 +1,1434 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>逢甲大學各系所新聞監測儀表板</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f0efe9;color:#1a1a18;font-size:17px;line-height:1.5;}
+.layout{display:flex;height:100vh;}
+
+/* ── Sidebar ── */
+.sb{width:256px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:1rem 1.1rem .75rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:9px;margin-bottom:.5rem;}
+.sb-logo i{font-size:22px;color:#534AB7;}
+.sb-t{font-size:16px;font-weight:700;color:#1a1a18;line-height:1.3;}
+.sb-m{font-size:12.5px;color:#888780;margin-top:4px;line-height:1.65;}
+.sb-btn{display:block;width:100%;margin-top:9px;padding:7px 0;font-size:13px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
+.col-h{padding:.6rem 1.1rem .2rem;font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.di{display:flex;align-items:center;gap:8px;padding:.4rem 1.1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
+.di.act{background:#fff;color:#185FA5;border-left-color:#185FA5;font-weight:700;}
+.di-n{font-size:15px;line-height:1.35;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+/* ── Main area ── */
+.mn{flex:1;overflow-y:auto;padding:1.25rem 1.6rem;background:#f0efe9;}
+.card{background:#fff;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;border:1px solid #e5e4dc;}
+.dn{font-size:22px;font-weight:700;color:#1a1a18;}
+.ds{font-size:13px;color:#888780;margin-top:4px;}
+.ds a{color:#185FA5;text-decoration:none;}
+.ds a:hover{text-decoration:underline;}
+.ubdg{display:inline-block;font-size:12.5px;padding:4px 13px;background:#EAF3DE;color:#3B6D11;border-radius:99px;margin-top:7px;font-weight:600;}
+
+/* ── Stat grid ── */
+.sg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:.9rem;}
+.sc{background:#fff;border-radius:10px;padding:.8rem .6rem;text-align:center;border:1px solid #e5e4dc;}
+.sv{font-size:28px;font-weight:700;line-height:1.1;}
+.sl{font-size:12.5px;color:#888780;margin-top:5px;line-height:1.4;}
+
+/* ── Progress bar ── */
+.pb-r{display:flex;justify-content:space-between;font-size:13.5px;color:#5F5E5A;margin-bottom:.45rem;}
+.pb-bg{height:15px;background:#ebe9e0;border-radius:8px;overflow:hidden;}
+.pb-f{height:100%;border-radius:8px;background:#E9A23B;transition:width .6s ease;}
+.pb-n{font-size:13px;color:#5F5E5A;margin-top:.4rem;}
+
+/* ── Table ── */
+.tbl-wrap{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e4dc;}
+.tbl-hdr{padding:.7rem 1.2rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:14px;font-weight:700;color:#1a1a18;display:flex;align-items:center;gap:8px;}
+table{width:100%;border-collapse:collapse;font-size:14.5px;}
+th{padding:.55rem 1rem;font-size:13px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;}
+td{padding:.6rem 1rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#faf9f6;}
+.ttl{color:#1a1a18;cursor:pointer;line-height:1.45;font-size:14.5px;}
+.ttl:hover{color:#185FA5;text-decoration:underline;}
+.gb{display:inline-block;font-size:12.5px;padding:3px 10px;border-radius:6px;font-weight:700;}
+.gg{background:#EAF3DE;color:#3B6D11;}
+.gn{background:#FAEEDA;color:#854F0B;}
+.gw{background:#FAECE7;color:#993C1D;}
+.gp{background:#FCEBEB;color:#A32D2D;}
+
+/* ── Score bars ── */
+.sbrs{display:flex;flex-direction:column;gap:4px;min-width:130px;}
+.sbr{display:flex;align-items:center;gap:5px;}
+.sbl{font-size:11.5px;color:#888780;width:60px;}
+.sbb{flex:1;height:8px;background:#ebe9e0;border-radius:4px;overflow:hidden;}
+.sbf{height:100%;border-radius:4px;}
+.sbv{font-size:11.5px;color:#5F5E5A;width:26px;text-align:right;}
+.stot{font-size:20px;font-weight:800;color:#854F0B;min-width:36px;text-align:right;}
+
+/* ── Misc ── */
+.empty{text-align:center;padding:4rem;color:#B4B2A9;font-size:15px;}
+.legend{display:flex;gap:14px;margin-bottom:.9rem;flex-wrap:wrap;}
+.leg-i{display:flex;align-items:center;gap:6px;font-size:13px;color:#5F5E5A;}
+.topbar{display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #dddcd4;padding:.7rem 1.6rem;flex-shrink:0;font-size:13px;color:#888780;}
+.topbar strong{color:#1a1a18;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- Sidebar -->
+<div class="sb">
+  <div class="sb-hdr">
+    <div class="sb-logo">
+      <i class="ti ti-building-community"></i>
+      <div class="sb-t">逢甲大學各系所<br>新聞監測儀表板</div>
+    </div>
+    <div class="sb-m">秘書處公共事務組<br>2026-06-16 更新｜新到期：2025.08.01</div>
+    <button class="sb-btn" onclick="sel('writer')">
+      <i class="ti ti-pencil"></i> 新聞撰寫小幫手
+    </button>
+  </div>
+  <div class="sb-body" id="sb-body"></div>
+</div>
+
+<!-- Main -->
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+  <div class="topbar">
+    <i class="ti ti-calendar-stats" style="font-size:14px;color:#1D9E75;"></i>
+    <span>統計起迄：<strong style="color:#1a1a18;">2025.08.01</strong> 起</span>
+    <span>｜</span>
+    <span>達標目標：<strong style="color:#1a1a18;">${TGT}</strong> 則 / 114學年度</span>
+    <span style="margin-left:auto;">資料更新：2026-06-16</span>
+  </div>
+  <div class="mn" id="mn">
+    <div class="empty">
+      <i class="ti ti-arrow-left" style="font-size:24px;display:block;margin-bottom:.5rem;"></i>
+      請從左側選擇系所
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const GA4_FCU = {
+  "summary": {
+    "pv": 150060,
+    "sessions": 51922,
+    "users": 27443,
+    "avgDur": 206
+  },
+  "topPages": [
+    {
+      "path": "/news/2026060903/",
+      "title": "逢甲大學115級畢典「未央 Beyond」首頒榮譽學生肯定多元表現 | 逢甲大學",
+      "pv": 7270
+    },
+    {
+      "path": "/news/2026061201/",
+      "title": "逢甲大學申請入學分發人數蟬聯全國冠軍 | 逢甲大學",
+      "pv": 5999
+    },
+    {
+      "path": "/news/2026022502/",
+      "title": "《遠見》2026企業最愛大學生揭曉 逢甲奪私校第一、躋身全台前十 | 逢甲大學",
+      "pv": 5974
+    },
+    {
+      "path": "/news/",
+      "title": "校園新聞 | 逢甲大學",
+      "pv": 5314
+    },
+    {
+      "path": "/news/2026040803/",
+      "title": "實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮 | 逢甲大學",
+      "pv": 4348
+    },
+    {
+      "path": "/news/20260502601/",
+      "title": "百組爭鋒、50強決戰！「2026逢甲大學共善創新競賽」決賽登場 產官學研高度肯定 | 逢甲大學",
+      "pv": 3743
+    },
+    {
+      "path": "/news/2026061701/",
+      "title": "讓善循環，讓愛傳承 首屆張保隆校長紀念獎助學金受獎學生返校捐款回饋 | 逢甲大學",
+      "pv": 3144
+    },
+    {
+      "path": "/news/2026060902/",
+      "title": "逢甲大學授予楊龍士名譽博士 表彰都市規劃與校務建設卓越貢獻 | 逢甲大學",
+      "pv": 3028
+    },
+    {
+      "path": "/news/2026060101/",
+      "title": "AI 科技新浪潮進校園！逢甲大學緊扣國際趨勢 師生同步參與黃仁勳主題演講直播同樂會 | 逢甲大學",
+      "pv": 2409
+    },
+    {
+      "path": "/news/2026052002/",
+      "title": "恭賀！本校10位老師榮獲升等 | 逢甲大學",
+      "pv": 1578
+    }
+  ],
+  "fetchedAt": "2026-06-22 09:25"
+};
+const CUT='2025.08.01', TGT=20, MONTHS=10.5;
+
+// ── 評分依據（標題推估，無法解析全文圖片，以 ★ 標記不確定維度）──
+// 參照「校園新聞評分標準 v3.0」：時效GEO 40 / 視覺版面 30 / 語氣真誠 30
+
+// 完整評分標準（供介面提示使用）
+const RUBRIC_TIP=`【資訊結構與事件即時性 /40】
+時效判斷：從標題提取「X月X日」事件日期，與發布日期比對差距。
+若差距 ≤7天（或無法提取事件日期）→ 即時；>7天 → 延遲。
+
+40：即時＋高密度GEO（具體數字/縮寫/排名等結構化實體）
+30：即時，但缺乏GEO結構
+20：延遲，但具備GEO結構
+10：延遲且無GEO結構
+
+【視覺品質與版面 /30】（★依標題類型推估）
+30：卓越－有活動現場生動畫面（競賽/典禮/展覽類）
+20：達標－標準合照＋基本分段（一般活動新聞）
+10：研究/論文/學術類（通常以文字為主）
+ 0：純公告/通知，無照片無分段
+
+【語氣與真誠度 /30】
+30：真誠直白，零公關套話
+20：平順，偶有老派詞彙
+10：過度形容詞堆疊或AI機器感
+ 0：官僚語氣或上對下指導語氣`;
+
+// 從「YYYY.MM.DD」格式日期字串建立 Date 物件
+function parseD(s){const[y,m,d]=s.split('.').map(Number);return new Date(y,m-1,d);}
+
+function autoSc(t,d){
+  // ── 維度 1：資訊結構與事件即時性（含 GEO 優化）40分 ──
+  // 【時效】：嘗試從標題提取 X月X日（事件日期），與發布日期(d)比對
+  let isRecent=true; // 預設即時（若標題無日期則跳過時效扣分）
+  if(d){
+    const em=t.match(/(\d{1,2})月(\d{1,2})日/);
+    if(em){
+      const pub=parseD(d);
+      const py=pub.getFullYear(), pm=pub.getMonth()+1;
+      const evM=parseInt(em[1]), evD=parseInt(em[2]);
+      // 事件年份：若事件月份 > 發布月份，視為上一年（跨年度邊界）
+      const evYear=evM>pm?py-1:py;
+      const ev=new Date(evYear,evM-1,evD);
+      const diff=Math.round((pub-ev)/86400000); // 差距天數
+      isRecent=diff>=0&&diff<=7;                 // 0~7天 = 即時；負值(未來) = 視為即時
+    }
+    // 標題無 X月X日 → 無法判斷事件日期 → 維持 isRecent=true（跳過時效扣分）
+  }
+  // 【GEO結構】：標題含量化數字+單位、具名縮寫、明確排名/屆次
+  const hasNum=/\d+[人組件萬%名屆強校所位項]/.test(t);
+  const hasAcronym=/AI|GEO|MOU|NVIDIA|IEET|EUR-ACE|WBC|ESG|SDG|USR|IEEE|ISO|RTX|AAIS|APT|AIA/.test(t);
+  const hasRank=/全國[冠亞季]軍|全國第[一二三1-3]|全球排名|世界前\d|四強|蟬聯|冠軍/.test(t);
+  const hasGEO=hasNum||hasAcronym||hasRank;
+  const g=isRecent?(hasGEO?40:30):(hasGEO?20:10);
+
+  // ── 維度 2：視覺品質與版面 30分（★標題推估，校園合照不扣分） ──
+  // 先判斷「純公告/通知」→ 0分（通常無照片、無分段）
+  const isNotice=/公告|甄選|作業|招生|通知|截止|規定|注意事項|辦理|開放申|月報/.test(t);
+  let v;
+  if(isNotice){
+    v=0;
+  } else if(/競賽|頒獎|典禮|畢典|成果展|發表會|音樂會|展覽|盛典|簽署|訪問|參訪|黑客松|馬拉松|錦標賽|授旗|授證/.test(t)){
+    // 卓越加分：儀式感/現場感強的活動，預期有生動照片
+    v=30;
+  } else if(/論文|研究|期刊|升等|入選|獲聘|學報|計畫通過/.test(t)){
+    // 降分：研究成就類，多為排版照或識別照，缺乏現場感
+    v=10;
+  } else {
+    // 一般新聞：預期至少 1 張標準合照＋基本分段
+    v=20;
+  }
+
+  // ── 維度 3：語氣與真誠度 30分 ──
+  // 0分：官僚語氣
+  const isBureau=/相關事項|作業規定|甄選公告|注意事項|依規辦理|敬請|依規定|填報/.test(t);
+  if(isBureau)return{g,v,a:0};
+  // 10分：PR 套話 / AI 機器感
+  const isPR=/展現.{0,5}量能|再創佳績|大放異彩|豐碩成果|矚目成就|精彩呈現|卓越表現|璀璨|耀眼|亮眼|深耕|締造|強強聯手/.test(t);
+  // 30分：真誠直白的人味語氣
+  const isGenuine=/引領|探索|思索|體驗|走進|漫談|分享|訪談|對談|翻轉|返校|守護|陪伴|聆聽|重塑|攜手|用心/.test(t);
+  const a=isPR?10:(isGenuine?30:20);
+
+  return{g,v,a};
+}
+
+function grd(tot){
+  if(tot>=80)return{l:'優良',c:'gg'};
+  if(tot>=60)return{l:'普通',c:'gn'};
+  if(tot>=40)return{l:'待改善',c:'gw'};
+  return{l:'不足',c:'gp'};
+}
+function dotC(n){
+  if(n>=15)return'#1D9E75';
+  if(n>=5)return'#EF9F27';
+  if(n>=1)return'#E24B4A';
+  return'#B4B2A9';
+}
+
+// ── 月發文趨勢圖 ──
+function buildMonthChart(af){
+  // 產生 CUT 起至今的所有月份
+  const months=[];
+  const [cy,cm]=CUT.split('.').map(Number);
+  let p=new Date(cy,cm-1,1);
+  const now=new Date();
+  while(p<=now){
+    months.push(`${p.getFullYear()}.${String(p.getMonth()+1).padStart(2,'0')}`);
+    p=new Date(p.getFullYear(),p.getMonth()+1,1);
+  }
+  // 各月計數
+  const cnt={};
+  months.forEach(m=>cnt[m]=0);
+  af.forEach(n=>{const m=n.d.slice(0,7);if(cnt[m]!==undefined)cnt[m]++;});
+  const max=Math.max(...Object.values(cnt),1);
+  const BW=13,GAP=2,BH=28;
+  const TW=months.length*(BW+GAP)-GAP;
+  const bars=months.map((m,i)=>{
+    const c=cnt[m];
+    const h=c?Math.max(4,Math.round(c/max*BH)):0;
+    const x=i*(BW+GAP);
+    const fill=c>=5?'#1D9E75':c>=1?'#5DCAA5':'#ebe9e0';
+    const numY=c>0?Math.max(8,BH-h-2):BH-2;
+    const numFill=c>0?'#5F5E5A':'#B4B2A9';
+    const fw=c>0?'600':'400';
+    const op=c?'1':'.6';
+    const lbl=m.slice(5)+'/'+"'"+m.slice(2,4);
+    return `<g>
+      <rect x="${x}" y="${BH-h}" width="${BW}" height="${Math.max(h,0)}" fill="${fill}" rx="2" opacity="${op}"/>
+      <text x="${x+BW/2}" y="${numY}" font-size="4" text-anchor="middle" fill="${numFill}" font-weight="${fw}">${c}</text>
+      <text x="${x+BW/2}" y="${BH+5}" font-size="2" text-anchor="middle" fill="#888780">${lbl}</text>
+    </g>`;
+  }).join('');
+  // 「無文章」提示線
+  const zeroline=`<line x1="0" y1="${BH}" x2="${TW}" y2="${BH}" stroke="#e5e4dc" stroke-width="1"/>`;
+  return `<svg width="70%" viewBox="0 0 ${TW} ${BH+16}" xmlns="http://www.w3.org/2000/svg" style="display:block;">${zeroline}${bars}</svg>`;
+}
+
+// ── 校級新聞（RSS 分頁抓取，200則，快取：fcu_school_news.json）──
+// 日期格式轉換：JSON 用 YYYY-MM-DD，本系統用 YYYY.MM.DD
+function jd(s){return s.replace(/-/g,'.');}
+const SCHOOL_RAW=[
+  {d:"2026-06-15",t:"逢甲商學院、金融學院聯手 2026商業數據分析與決策競賽登場",url:"https://www.fcu.edu.tw/news/2026061502/",cats:["金融學院","商學院"]},
+  {d:"2026-06-15",t:"逢甲建設學院探索課程黑客松登場 大一新生跨域共創未來城市藍圖",url:"https://www.fcu.edu.tw/news/2026061501/",cats:["建設學院","工程與科學學院","航太與系統工程學系"]},
+  {d:"2026-06-12",t:"逢甲大學申請入學分發人數蟬聯全國冠軍",url:"https://www.fcu.edu.tw/news/2026061201/",cats:["逢甲精選"]},
+  {d:"2026-06-11",t:"逢甲建設學院舉辦「AEC產業數位原型實作及地理資訊競賽」 學生以AI解決宿舍排隊難題",url:"https://www.fcu.edu.tw/news/2026061101/",cats:["建設學院","運輸與物流學系","水利工程與資源保育學系","土木工程學系"]},
+  {d:"2026-06-10",t:"2026第八屆逢甲大學英語簡報比賽「別有逢趣」創意簡報征服業界評審",url:"https://www.fcu.edu.tw/news/2026061004/",cats:["外語教學中心","校友聯絡處","人文社會學院"]},
+  {d:"2026-06-10",t:"逢甲大學和IEET參與 EUR-ACE® Connect 資電學院三系歐洲工程認證成果躍上國際舞台",url:"https://www.fcu.edu.tw/news/2026061003/",cats:["國際事務處","資訊電機學院","逢甲精選","自動控制工程學系","通訊工程學系","電子工程學系"]},
+  {d:"2026-06-10",t:"逢甲大學【後/工業傳說：2026臺灣國際民族誌影展巡演】導演座談，深度探討原住民族轉型正義",url:"https://www.fcu.edu.tw/news/2026061002/",cats:["人文社會學院","學生事務處","圖書館","南島暨文化永續研究中心","原住民族學生資源中心"]},
+  {d:"2026-06-10",t:"僑委會委託逢甲大學辦理「2026年僑臺商AI治理研習班」助攻海外僑胞掌握AI跨國商機",url:"https://www.fcu.edu.tw/news/2026061001/",cats:["產學營運與推廣處"]},
+  {d:"2026-06-09",t:"逢甲大學115級畢典「未央 Beyond」首頒榮譽學生肯定多元表現",url:"https://www.fcu.edu.tw/news/2026060903/",cats:["逢甲精選"]},
+  {d:"2026-06-09",t:"逢甲大學授予楊龍士名譽博士 表彰都市規劃與校務建設卓越貢獻",url:"https://www.fcu.edu.tw/news/2026060902/",cats:["逢甲精選"]},
+  {d:"2026-06-09",t:"端午話屈原 何寄澎教授引領師生思索核心價值與人格精神",url:"https://www.fcu.edu.tw/news/2026060901/",cats:["人文社會學院"]},
+  {d:"2026-06-04",t:"2026 WildBot機器人挑戰賽 逢甲跨校隊闖進全國四強",url:"https://www.fcu.edu.tw/news/2026060401/",cats:["資訊電機學院","資訊工程學系","自動控制工程學系"]},
+  {d:"2026-06-03",t:"產官學聯手留才 國科會「Work in Taiwan」就業媒合活動逢甲大學登場",url:"https://www.fcu.edu.tw/news/2026060301/",cats:["產學營運與推廣處","國際事務處","材料科學與工程學系"]},
+  {d:"2026-06-02",t:"台灣學術之光！逢甲大學張真誠講座教授榮膺國際人工智慧科學院(AAIS)會士",url:"https://www.fcu.edu.tw/news/2026060201/",cats:["資訊電機學院","資訊工程學系"]},
+  {d:"2026-06-01",t:"AI 科技新浪潮進校園！逢甲大學緊扣國際趨勢 師生同步參與黃仁勳主題演講直播同樂會",url:"https://www.fcu.edu.tw/news/2026060101/",cats:["創能學院","逢甲精選"]},
+  {d:"2026-06-01",t:"關注城鄉發展與高齡議題 逢甲都資系全國規劃聯展獲肯定",url:"https://www.fcu.edu.tw/news/2026060102/",cats:["建設學院","都市計畫與空間資訊學系"]},
+  {d:"2026-05-29",t:"逢甲大學4組新創團隊通過115年度 U-start 創新創業計畫第一階段",url:"https://www.fcu.edu.tw/news/2026052902/",cats:["產學營運與推廣處"]},
+  {d:"2026-05-29",t:"翻轉西大墩！逢甲都資系「大手牽小手」 攜西屯國小重塑百年老街與通學安全",url:"https://www.fcu.edu.tw/news/2026052901/",cats:["都市計畫與空間資訊學系","建設學院"]},
+  {d:"2026-05-28",t:"在逢甲遇見家！2026境外學生新春餐會溫馨登場 凝聚多國學子情誼",url:"https://www.fcu.edu.tw/news/2026052801/",cats:["國際事務處"]},
+  {d:"2026-05-27",t:"從課堂走進金融職場 逢甲大學攜手台灣金融研訓院打造實戰學習現場",url:"https://www.fcu.edu.tw/news/2026052702/",cats:[]},
+  {d:"2026-05-27",t:"當職涯遇上永續與AI 逢甲大學企管系舉辦SDGs職涯桌遊工作坊",url:"https://www.fcu.edu.tw/news/2026052701/",cats:["商學院","企業管理學系"]},
+  {d:"2026-05-26",t:"數位轉向×AI共學：第五屆建構/反思國文教學學術研討會圓滿結束",url:"https://www.fcu.edu.tw/news/2026052602/",cats:["國語文教學中心","人文社會學院"]},
+  {d:"2026-05-26",t:"2026逢甲大學匹克球錦標賽熱血開打 近700好手齊聚同樂",url:"https://www.fcu.edu.tw/news/2026052603/",cats:["通識教育中心","體育教學中心","學生事務處"]},
+  {d:"2026-05-26",t:"百組爭鋒、50強決戰！「2026逢甲大學共善創新競賽」決賽登場 產官學研高度肯定",url:"https://www.fcu.edu.tw/news/20260502601/",cats:["電子工程學系","通訊工程學系","電機工程學系","建築專業學院","通識教育中心","資訊電機學院","產學營運與推廣處"]},
+  {d:"2026-05-25",t:"國際生華語演說比賽大談AI和我 八國學生勁歌熱舞 在校友搭建的舞台自信發聲",url:"https://www.fcu.edu.tw/news/2026052504/",cats:["財務工程與精算學士學位學程","行銷學系","國際經營與貿易學系","通識教育中心","全校國際生大一不分系學士班","校友聯絡處","機械與電腦輔助工程學系"]},
+  {d:"2026-05-25",t:"走進城市驛站與鐵道人生 逢甲中文系台中車站策展正式登場",url:"https://www.fcu.edu.tw/news/2026052503/",cats:["中國文學系","人文社會學院"]},
+  {d:"2026-05-25",t:"逢甲華語文教學中心外籍生勇奪國際學生華語演講比賽冠、亞軍",url:"https://www.fcu.edu.tw/news/2026052502/",cats:["華語文教學中心","產學營運與推廣處"]},
+  {d:"2026-05-25",t:"展現跨域競爭力！逢甲中文系學生勇奪微軟MOS世界賽門票",url:"https://www.fcu.edu.tw/news/2026052501/",cats:["人文社會學院","中國文學系"]},
+  {d:"2026-05-21",t:"逢甲大學建設學院辦理孫運璿講堂 毛治國與張家祝講座教授分享治理思維與領導實務",url:"https://www.fcu.edu.tw/news/2026052101/",cats:["建設學院"]},
+  {d:"2026-05-20",t:"恭賀！本校10位老師榮獲升等",url:"https://www.fcu.edu.tw/news/2026052002/",cats:["工業工程與系統管理學系","商學院","經濟學系","水利工程與資源保育學系","會計學系","統計學系","建築專業學院","金融學院","材料科學與工程學系","工程與科學學院","人文社會學院","中國文學系","建設學院","財務金融學系"]},
+  {d:"2026-05-20",t:"跨海鏈結德國TU9理工名校 逢甲大學與布倫瑞克工業大學締結姊妹校",url:"https://www.fcu.edu.tw/news/2026052001/",cats:["國際事務處"]},
+  {d:"2026-05-18",t:"當 AI 改變世界：逢甲大學攜手美光 探討記憶體創新與未來職涯",url:"https://www.fcu.edu.tw/news/2026051801/",cats:["產學營運與推廣處","創能學院"]},
+  {d:"2026-05-18",t:"傳承24年的溫暖！高雄市逢甲歡喜人協會返校送暖，本學期共54位學子獲頒獎助學金",url:"https://www.fcu.edu.tw/news/2026051802/",cats:["校友聯絡處"]},
+  {d:"2026-05-14",t:"逢甲水利系攜手潭子區公所強化地方防災韌性 導入桌遊與實地演練，提升避難收容應變力",url:"https://www.fcu.edu.tw/news/2026051401/",cats:["產學營運與推廣處","建設學院","水利工程與資源保育學系"]},
+  {d:"2026-05-12",t:"跨文化音樂饗宴溫暖校園 逢甲師生在曼陀鈴樂音中療癒午後時光",url:"https://www.fcu.edu.tw/news/2026051205/",cats:["學生事務處","諮商輔導中心","通識教育中心"]},
+  {d:"2026-05-12",t:"用AI守護工業安全！逢甲通訊系研發5G無人機預警系統 抱回智慧創新大賞佳作",url:"https://www.fcu.edu.tw/news/2026051204/",cats:["資訊電機學院","通訊工程學系"]},
+  {d:"2026-05-12",t:"逢甲會計人的多元職涯：南區系友返校分享 傳承職場智慧與溫暖",url:"https://www.fcu.edu.tw/news/2026051203/",cats:["會計學系","商學院"]},
+  {d:"2026-05-12",t:"通識自主學習成效亮眼 六組學生團隊入選教育部青年署「Young飛全球行動計畫」",url:"https://www.fcu.edu.tw/news/2026051202/",cats:["通識教育中心"]},
+  {d:"2026-05-12",t:"逢甲國貿系參與2026中區管理個案競賽 奪團體亞軍與四項個人獎",url:"https://www.fcu.edu.tw/news/2026051201/",cats:["國際經營與貿易學系","商學院"]},
+  {d:"2026-05-08",t:"逢甲大學專題講座聚焦6G與AI 陽明交大院長王蒞君分享未來通訊關鍵技術",url:"https://www.fcu.edu.tw/news/2026050801/",cats:["資訊電機學院","產學營運與推廣處","科技發展辦公室"]},
+  {d:"2026-05-07",t:"逢甲資訊系學生奪技能競賽中區雲端運算職類銀牌 七月決戰最高殿堂",url:"https://www.fcu.edu.tw/news/2026050701/",cats:["資訊工程學系","資訊電機學院"]},
+  {d:"2026-05-05",t:"錄取率不到4%！ 逢甲育成「夆泩數位」獲國發會創業百強與300萬支持金",url:"https://www.fcu.edu.tw/news/2026050503/",cats:["逢甲精選","材料科學與工程學系","工程與科學學院","產學營運與推廣處"]},
+  {d:"2026-05-05",t:"逢甲都資系學生聚焦氣候變遷風險評估 榮獲中華空間資訊學會學術論文優等獎",url:"https://www.fcu.edu.tw/news/2026050502/",cats:["建設學院","都市計畫與空間資訊學系"]},
+  {d:"2026-05-05",t:"逢甲大學學生會表現亮眼！115年全國大專學生會成果展榮獲雙項大獎",url:"https://www.fcu.edu.tw/news/2026050501/",cats:["學生事務處","課外活動組"]},
+  {d:"2026-05-04",t:"逢甲大學「企業AI應用學院」助臺中製造業跨越數位鴻溝",url:"https://www.fcu.edu.tw/news/2026050405/",cats:["商學院","企業管理學系"]},
+  {d:"2026-05-04",t:"逢甲跨域學生團隊勇奪2026明緯智慧永續科技競賽全國銀獎",url:"https://www.fcu.edu.tw/news/2026050404/",cats:["資訊電機學院","人工智慧技術與應用學士學位學程","資訊工程學系","自動控制工程學系","創能學院"]},
+  {d:"2026-05-04",t:"改變城市的方式•看待世界的眼光：高美館主任曾芳玲漫談博物館的經營與策展",url:"https://www.fcu.edu.tw/news/2026050403/",cats:["國語文教學中心"]},
+  {d:"2026-05-04",t:"深耕量子科技教研量能 逢甲大學邀屏大歐家和院長解析量子計算實務應用",url:"https://www.fcu.edu.tw/news/2026050402/",cats:["科技發展辦公室"]},
+  {d:"2026-05-04",t:"解鎖你的AI技能樹！逢甲大學舉辦AWS雲端技能培訓日University AWSome Day 2026",url:"https://www.fcu.edu.tw/news/2026050401/",cats:["雲創學院","資訊總處"]},
+  {d:"2026-04-30",t:"逢甲大學攜手渢妙離岸風場簽署MOU 產官學齊聚助攻綠能人才培育",url:"https://www.fcu.edu.tw/news/2026043002/",cats:["都市計畫與空間資訊學系","建設學院","逢甲精選"]},
+  {d:"2026-04-30",t:"走進日常的伊斯蘭：臺北清真寺鄭平教長以現代視角詮釋生活哲學",url:"https://www.fcu.edu.tw/news/2026043001/",cats:["通識教育中心"]},
+  {d:"2026-04-29",t:"逢甲連兩年獲經濟部補助 國家會展培訓班鏈結臺中國際會展中心",url:"https://www.fcu.edu.tw/news/2026042902/",cats:["國際經營與貿易學系","商學院"]},
+  {d:"2026-04-29",t:"逢甲自控系50+週年系慶盛大登場！逾300系友回娘家",url:"https://www.fcu.edu.tw/news/2026042901/",cats:["資訊電機學院","自動控制工程學系"]},
+  {d:"2026-04-27",t:"自控系林子傑、林煜豪榮獲上緯智聯「機器狗競技挑戰賽」全能亞軍",url:"https://www.fcu.edu.tw/news/2026042704/",cats:["資訊電機學院","自動控制工程學系"]},
+  {d:"2026-04-27",t:"逢甲財法校友齊聚展現強大凝聚力！創會理事長劉鈞豪交棒林碧珍",url:"https://www.fcu.edu.tw/news/2026042703/",cats:["商學院","校友聯絡處"]},
+  {d:"2026-04-27",t:"逢甲都資系徐詠晶榮獲IGCT 2026「優秀論文獎」優等 探討綠能與地方正義獲肯定",url:"https://www.fcu.edu.tw/news/2026042702/",cats:["建設學院","都市計畫與空間資訊學系"]},
+  {d:"2026-04-27",t:"第13屆逢甲大學都市計畫與空間資訊研討會 聚焦綠能轉型與地方治理新趨勢",url:"https://www.fcu.edu.tw/news/2026042701/",cats:["都市計畫與空間資訊學系","建設學院"]},
+  {d:"2026-04-24",t:"逢甲營建及防災研究中心與全球工程顧問ARUP 共辦「氣候變遷與環境永續微型工作坊」",url:"https://www.fcu.edu.tw/news/2026042401/",cats:["建設學院"]},
+  {d:"2026-04-22",t:"WBC國手宋晟睿現身逢甲大學 分享《悸動！我的野球人生》",url:"https://www.fcu.edu.tw/news/2026042202/",cats:["圖書館"]},
+  {d:"2026-04-22",t:"逢甲室內設計學程攜手德廚精品廚電 挑戰百坪高端智慧廚居設計",url:"https://www.fcu.edu.tw/news/2026042201/",cats:["建築專業學院"]},
+  {d:"2026-04-20",t:"全國社團優秀獎出爐！逢甲大學師生雙雙獲獎 展現跨域領導力",url:"https://www.fcu.edu.tw/news/2026042002/",cats:["課外活動組","學生事務處"]},
+  {d:"2026-04-20",t:"逢甲大學副校長黎淑婷榮獲2026台灣建築學會會士殊榮",url:"https://www.fcu.edu.tw/news/2026042001/",cats:["建築專業學院","逢甲精選"]},
+  {d:"2026-04-16",t:"AIA「中部產業AI轉型與落地應用論壇」逢甲登場 簡立峰指路台灣企業「艦隊式出海」",url:"https://www.fcu.edu.tw/news/2026041602/",cats:["產學營運與推廣處"]},
+  {d:"2026-04-16",t:"展現堅實辦學續航力！逢甲大學連12年蟬聯《Cheers》辦學績效私校榜首",url:"https://www.fcu.edu.tw/news/2026041601/",cats:["逢甲精選"]},
+  {d:"2026-04-15",t:"大甲媽祖遶境進香結合AI與ESG 逢甲大學第21年公益支援科技護航",url:"https://www.fcu.edu.tw/news/2026041501/",cats:["產學營運與推廣處","地理資訊系統研究中心","建設學院"]},
+  {d:"2026-04-14",t:"用AI解決真實社會問題！逢甲資訊系於「毫米波雷達創意賽」奪亞、季軍",url:"https://www.fcu.edu.tw/news/2026041401/",cats:["資訊電機學院","資訊工程學系"]},
+  {d:"2026-04-13",t:"逢甲男籃UBA大專聯賽勇奪全國第三 展現團隊堅強韌性",url:"https://www.fcu.edu.tw/news/2026041302/",cats:["體育教學中心","通識教育中心"]},
+  {d:"2026-04-13",t:"2026預見逢甲吸引逾4千人，溫馨應援祝考生「得正取」",url:"https://www.fcu.edu.tw/news/2026041301/",cats:["招生事務處","逢甲精選"]},
+  {d:"2026-04-10",t:"逢甲大學114學年度師生運動會熱血登場 師生田徑賽道締造多項「雙料冠軍」佳績",url:"https://www.fcu.edu.tw/news/2026041002/",cats:["通識教育中心","體育教學中心"]},
+  {d:"2026-04-10",t:"研發心臟影像AI辨識技術！逢甲大學團隊獲教育部AI CUP優等",url:"https://www.fcu.edu.tw/news/2026041001/",cats:["資訊工程學系","資訊電機學院"]},
+  {d:"2026-04-09",t:"以《共生》榮獲2026 TITAN創新設計銀獎！逢甲工工系丘紀堇老師展現跨域實力",url:"https://www.fcu.edu.tw/news/2026040904/",cats:["工程與科學學院","工業工程與系統管理學系"]},
+  {d:"2026-04-09",t:"生成式 AI 助力科研！逢甲大學攜手鈦思科技舉辦 2026 MATLAB® Day 研討會",url:"https://www.fcu.edu.tw/news/2026040902/",cats:["自動控制工程學系","資訊電機學院"]},
+  {d:"2026-04-09",t:"逢甲大學學生奪下2026國際大數據與ERP研討會最佳論文獎首獎",url:"https://www.fcu.edu.tw/news/2026040901/",cats:["企業管理學系","商學院","創能學院","人工智慧技術與應用學士學位學程"]},
+  {d:"2026-04-08",t:"實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮",url:"https://www.fcu.edu.tw/news/2026040803/",cats:["逢甲精選","資訊工程學系","資訊電機學院"]},
+  {d:"2026-04-08",t:"逢甲大學於全國電子設計創意競賽大放異彩 APP類包辦前三、勇奪雙冠",url:"https://www.fcu.edu.tw/news/2026040801/",cats:["自動控制工程學系","通訊工程學系","資訊電機學院","資訊工程學系"]},
+  {d:"2026-04-02",t:"逢甲大學商學院推動AI專案管理師資培訓 25位師長全數通過AIPA-A證照",url:"https://www.fcu.edu.tw/news/2026040201/",cats:["商學院"]},
+  {d:"2026-04-01",t:"首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力",url:"https://www.fcu.edu.tw/news/2026040101/",cats:["建設學院","水利工程與資源保育學系","資訊工程學系","光電科學與工程學系","化學工程學系","材料科學與工程學系","工程與科學學院","商學院","資訊電機學院","自動控制工程學系","航太與系統工程學系"]},
+  {d:"2026-03-30",t:"文科生逆襲百萬訂閱！鄭國威開講：AI時代，知識要會「被看見」",url:"https://www.fcu.edu.tw/news/2026033001/",cats:["人文社會學院","國語文教學中心"]},
+  {d:"2026-03-25",t:"逢甲跨國學生組隊「四源共耕」勇奪「探索台灣120h」三項肯定",url:"https://www.fcu.edu.tw/news/2026032501/",cats:["商學院","國際經營與貿易學系","行銷學系"]},
+  {d:"2026-03-24",t:"全台唯一！逢甲資工團隊挑戰瑞士 ETH Zürich 國際黑客松，勇奪 Honorable mentions 殊榮",url:"https://www.fcu.edu.tw/news/2026032402/",cats:["資訊工程學系","資訊電機學院"]},
+  {d:"2026-03-24",t:"AI浪潮來襲！逢甲大學導讀NVIDIA GTC 2026 關鍵技術 跨院系熱烈參與",url:"https://www.fcu.edu.tw/news/2026032401/",cats:["創能學院","逢甲精選"]},
+  {d:"2026-03-23",t:"逢甲大學辦理智慧製造計畫實地訪視 展現人才培育與跨校合作量能",url:"https://www.fcu.edu.tw/news/2026032304/",cats:["科技發展辦公室","工程與科學學院","建築專業學院","機械與電腦輔助工程學系"]},
+  {d:"2026-03-20",t:"逢甲建設學院參與教育部「跨域共創成果展」 展現新工程計畫實踐力",url:"https://www.fcu.edu.tw/news/2026032001/",cats:["建設學院"]},
+  {d:"2026-03-16",t:"逢甲大學商學院與金融學院攜手產學精英 凝聚115學年度使命與學習目標共識",url:"https://www.fcu.edu.tw/news/2026031602/",cats:["商學院","經濟學系","金融學院"]},
+  {d:"2026-03-16",t:"逢甲工工系丘紀堇老師繼英國FADA雙白金 勇奪2026美國MUSE設計大獎",url:"https://www.fcu.edu.tw/news/2026031601/",cats:["工業工程與系統管理學系","工程與科學學院"]},
+  {d:"2026-02-25",t:"台灣首批！逢甲電子、自控、通訊獲 ENAEE 歐洲工程認證",url:"https://www.fcu.edu.tw/news/2026022501/",cats:["自動控制工程學系","通訊工程學系","逢甲精選","電子工程學系","資訊電機學院"]},
+  {d:"2026-01-27",t:"教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二",url:"https://www.fcu.edu.tw/news/2026012701/",cats:["都市計畫與空間資訊學系","外國語文學系","財務金融學系","環境工程與科學學系","創能學院","建設學院","人文社會學院"]},
+  {d:"2026-01-12",t:"恭賀！本校18位老師榮獲升等",url:"https://www.fcu.edu.tw/news/2026011202/",cats:["合作經濟暨社會事業經營學系","商學院","經濟學系","土地管理學系","企業管理學系","環境工程與科學學系","國際經營與貿易學系","會計學系","資訊工程學系","化學工程學系","工程與科學學院","人文社會學院","建設學院","電子工程學系","資訊電機學院"]},
+  {d:"2026-01-07",t:"逢甲大學土木系與興亞營造簽署 MOU 成立「興亞學堂」深化產學合作",url:"https://www.fcu.edu.tw/news/2026010701/",cats:["土木工程學系","建設學院","產學營運與推廣處"]},
+  {d:"2026-01-06",t:"逢甲材料系黃浚瑋團隊研發「液態金屬合成技術」榮登國際頂尖期刊《Nature Communications》",url:"https://www.fcu.edu.tw/news/2026010601/",cats:["材料科學與工程學系","工程與科學學院","產學營運與推廣處"]},
+  {d:"2025-12-30",t:"113國科會大專生研究創作獎 逢甲3位學生獲獎",url:"https://www.fcu.edu.tw/news/2025123003/",cats:["建設學院","工業工程與系統管理學系","合作經濟暨社會事業經營學系","土地管理學系","商學院"]},
+  {d:"2025-12-30",t:"逢甲工工系丘紀堇老師榮獲英國FADA冬季賽雙白金",url:"https://www.fcu.edu.tw/news/2025123001/",cats:["工程與科學學院","工業工程與系統管理學系"]},
+  {d:"2025-12-23",t:"逢甲大學舉辦臺日防災交流講座 強化城市防災韌性",url:"https://www.fcu.edu.tw/news/2025122301/",cats:["建設學院","水利工程與資源保育學系"]},
+  {d:"2025-12-22",t:"綠色生活創意設計決賽 逢甲大學團隊獲大專校院組銀獎",url:"https://www.fcu.edu.tw/news/2025122201/",cats:["人工智慧技術與應用學士學位學程","創能學院","自動控制工程學系","資訊工程學系","資訊電機學院"]},
+  {d:"2025-12-18",t:"新加坡社會科學大學師生訪逢甲大學 聚焦運輸物流與智慧國土",url:"https://www.fcu.edu.tw/news/2025121801/",cats:["都市計畫與空間資訊學系","建設學院","運輸與物流學系"]},
+  {d:"2025-12-17",t:"逢甲大學、臺東大學攜手日本防災士 深化日本防災士民間團體與臺東交流",url:"https://www.fcu.edu.tw/news/2025121702/",cats:["水利工程與資源保育學系"]},
+  {d:"2025-12-16",t:"全國之冠！逢甲大學在2025智慧創新暨跨域整合創作競賽勇奪12獎",url:"https://www.fcu.edu.tw/news/2025121601/",cats:["自動控制工程學系","通訊工程學系","資訊工程學系","電子工程學系","資訊電機學院"]},
+  {d:"2025-12-12",t:"七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡",url:"https://www.fcu.edu.tw/news/2025121202/",cats:["風險管理與保險學系","自動控制工程學系","商學院","土木工程學系","國際經營與貿易學系","電機工程學系","資訊工程學系","人文社會學院","建設學院","資訊電機學院","校友聯絡處"]},
+  {d:"2025-12-11",t:"逢甲學生榮獲APICTA Awards優勝 AI智慧檢測展現跨域研發實力",url:"https://www.fcu.edu.tw/news/2025121105/",cats:["創能學院","人工智慧技術與應用學士學位學程","資訊電機學院","資訊工程學系","自動控制工程學系"]},
+  {d:"2025-12-08",t:"副總統蕭美琴接見崇越論文大賞得主 逢甲師生獲「AI技術開發」特優",url:"https://www.fcu.edu.tw/news/2025120804/",cats:["自動控制工程學系","逢甲精選","資訊電機學院"]},
+  {d:"2025-12-03",t:"2025-2026年台義雙邊交流研討會 逢甲赴義發表跨域環境科研成果",url:"https://www.fcu.edu.tw/news/2025120301/",cats:["資訊電機學院","建設學院","資訊工程學系","都市計畫與空間資訊學系"]},
+  {d:"2025-11-28",t:"逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊",url:"https://www.fcu.edu.tw/news/2025112802/",cats:["航太與系統工程學系","自動控制工程學系","通訊工程學系","資訊工程學系","產學營運與推廣處","資訊電機學院","工程與科學學院","電機工程學系"]},
+  {d:"2025-11-27",t:"國健署攜手逢甲大學推全齡營養 跨界對話為全民健康找解方",url:"https://www.fcu.edu.tw/news/2025112701/",cats:["創能學院","工程與科學學院","應用數學學系"]},
+  {d:"2025-11-26",t:"逢甲傑出校友台達執行副總裁尹鏇博返校演講 分享全球供應鏈管理實務智慧",url:"https://www.fcu.edu.tw/news/2025112603/",cats:["商學院","企業管理學系","運輸與物流學系","建設學院","校友聯絡處"]},
+  {d:"2025-11-26",t:"逢甲金融創新場域學生團隊「財智迷宮」 AI實境解謎作品奪首獎",url:"https://www.fcu.edu.tw/news/2025112602/",cats:["財務金融學系","資訊工程學系"]},
+  {d:"2025-11-25",t:"全國唯一 逢甲自控陳宇柔勇奪自動控制學會碩士論文獎「特優」",url:"https://www.fcu.edu.tw/news/2025112502/",cats:["資訊電機學院","自動控制工程學系"]},
+  {d:"2025-11-25",t:"第一屆逢甲日常節熱力落幕 跨年級合作點亮逢甲青春日常",url:"https://www.fcu.edu.tw/news/2025112501/",cats:["國際經營與貿易學系","學生事務處","外國語文學系","經濟學系"]},
+  {d:"2025-11-21",t:"義大利五大名校「聯合訪臺創紀錄」 逢甲大學簽署四校MOU",url:"https://www.fcu.edu.tw/news/2025112101/",cats:["資訊電機學院","建築專業學院","逢甲精選","商學院"]},
+  {d:"2025-11-20",t:"世界頂尖建築學府合作！逢甲×AA 開啟「海洋都市學」跨國設計研究",url:"https://www.fcu.edu.tw/news/2025112001/",cats:["建築專業學院"]}
+];
+// 建立校網新聞標題 Set 及 url Map（用於學系比對）
+const SCH_TITLES=new Set(SCHOOL_RAW.map(x=>x.t));
+const SCH_BY_TITLE=new Map(SCHOOL_RAW.map(x=>[x.t,x]));
+const SCHOOL={
+  id:'fcu', name:'逢甲大學官方網站（校級）',
+  url:'https://www.fcu.edu.tw/news/',
+  src:'RSS feed（pages 1-20，共 200 則，快取：fcu_school_news.json）',
+  news:SCHOOL_RAW.filter(x=>x.d>=CUT.replace(/\./g,'-')).map(x=>({d:jd(x.d),t:x.t,url:x.url,cats:x.cats}))
+};
+(()=>{
+  const af=SCHOOL.news.slice().sort((a,b)=>b.d.localeCompare(a.d));
+  af.forEach(n=>{const s=autoSc(n.t,n.d);n.g=s.g;n.v=s.v;n.a=s.a;n.tot=s.g+s.v+s.a;});
+  SCHOOL.af=af;
+  SCHOOL.cnt=af.length;
+  SCHOOL.last=af[0]?.d||'—';
+  SCHOOL.avgSc=af.length?Math.round(af.reduce((s,n)=>s+n.tot,0)/af.length):0;
+  SCHOOL.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
+})();
+
+const cols=[
+  {name:'工程與科學學院',k:'eng'},
+  {name:'商學院',k:'biz'},
+  {name:'金融學院',k:'fin'},
+  {name:'人文社會學院',k:'hum'},
+  {name:'資訊電機學院',k:'ece'},
+  {name:'建設學院',k:'con'},
+  {name:'通識教育中心',k:'gen'},
+  {name:'創能學院',k:'cre'},
+];
+
+const D=[
+  {id:'aero',col:'eng',name:'航太與系統工程學系',url:'https://aero.fcu.edu.tw/news/',news:[
+    {d:'2026.06.15',t:'逢甲建設學院探索課程黑客松登場 大一新生跨域共創未來城市藍圖'},
+    {d:'2026.04.27',t:'AIT台中特別講座：俯瞰地球天際－NASA太空人的視野'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.03.09',t:'114-2系友會助學金與急難救助金，開始申請'},
+    {d:'2026.03.06',t:'LCIA 2026 AI應用落地輔導計畫成果發表會'},
+    {d:'2026.03.03',t:'115學年度「學士生先修碩士班課程」甄選作業'},
+    {d:'2026.02.26',t:'115學年度航太與系統工程學系轉系甄選公告'},
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊'},
+    {d:'2025.10.29',t:'逢甲航太系以「星際能源網路」勇奪2025 Run Space創新組優勝'},
+    {d:'2025.10.21',t:'2025台灣無人飛機創意設計競賽 逢甲航太系學生奪競技飛行雙獎'},
+    {d:'2025.10.20',t:'黃柏文老師榮獲終身優良導師殊榮'},
+    {d:'2025.10.13',t:'114-1系友會助學金與急難救助金，開始申請'},
+    {d:'2025.10.09',t:'114學年度長榮航太專業實習'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.18',t:'逢甲大學航太研發亮相國際航太暨國防工業展 展示科研火箭'},
+    {d:'2025.09.16',t:'航太系特聘教授群'},
+    {d:'2025.08.28',t:'逢甲航太系勇奪國防競賽優勝 智慧無人機突破GPS限制'},
+    {d:'2025.08.25',t:'114學年度第1學期課程加退選時程與注意事項'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'mse',col:'eng',name:'材料科學與工程學系',url:'https://mse.fcu.edu.tw/news/',news:[
+    {d:'2026.06.10',t:'本系黃浚瑋老師研究團隊於世界粉體工程會議展現卓越研發量能'},
+    {d:'2026.06.03',t:'產官學聯手留才 國科會「Work in Taiwan」就業媒合活動逢甲大學登場'},
+    {d:'2026.06.02',t:'材料系學生勇奪共善創新競賽佳績 展現跨域創新與永續實力'},
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.05.08',t:'逢甲大學材料系男籃勇奪2026年大材盃冠軍 攻守兼備展現團隊實力與榮耀精神'},
+    {d:'2026.05.08',t:'碩士班許少祺同學出席國際研討會 發表鋁合金抗電漿蝕刻研究成果'},
+    {d:'2026.05.05',t:'錄取率不到4%！逢甲育成「夆泩數位」獲國發會創業百強與300萬支持金'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.02.03',t:'碩士生陳亞歆與歐宏禹同學 赴日九州大學參與「學海築夢」海外實習 成果豐碩'},
+    {d:'2026.01.26',t:'以世界為教室、以初心為志業─羅明和學長與鄒錫凱醫師的善行，為逢甲科研注入長遠力量'},
+    {d:'2026.01.06',t:'逢甲材料系黃浚瑋團隊研發「液態金屬合成技術」榮登國際頂尖期刊《Nature Communications》'},
+    {d:'2025.12.19',t:'碩士班張文宜同學赴日參加Asian APC 展現優異研究成果'},
+    {d:'2025.12.02',t:'逢甲RAGtimAIze從逾250組脫穎而出 勇闖U-Start創新創業第二階段'},
+    {d:'2025.10.20',t:'2025創新技術博覽會逢甲3金2銀1銅 前方車輛盲區預警獲鴻海特別獎'},
+    {d:'2025.10.07',t:'逢甲大學學生團隊勇奪教育部「職涯輔導心得競賽」全國第三名與人氣獎'},
+    {d:'2025.10.07',t:'國科會大專學生研究計畫全國第六！大魚帶小魚 逢甲老師陪伴學生把研究變成最有價值的打工'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.01',t:'逢甲材料系師生赴日九州大學移地教學 跨域體驗電漿、核融合與半導體新技術'},
+    {d:'2025.08.19',t:'逢甲大學三大智慧醫療技術亮相2025 BIO Asia 積極鏈結臨床與產業推動創新技術商品化'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'mcae',col:'eng',name:'機械與電腦輔助工程學系',url:'https://mcae.fcu.edu.tw/news/',news:[
+    {d:'2026.05.25',t:'國際生華語演說比賽大談AI和我 八國學生勁歌熱舞'},
+    {d:'2026.03.23',t:'逢甲大學辦理智慧製造計畫實地訪視 展現人才培育與跨校合作量能'},
+    {d:'2025.09.30',t:'留台不迷路！校友分享留台求職實戰經驗'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.18',t:'2025亞太永續博覽會 逢甲USR計畫獲銅獎、師生共創沉浸式「與綠為鄰」展場吸睛'},
+    {d:'2025.09.01',t:'材料系師生赴日九州大學移地教學 跨域體驗電漿核融合與半導體新技術'},
+  ]},
+  {id:'fcm',col:'eng',name:'纖維與複合材料學系',url:'https://fcm.fcu.edu.tw/news/',news:[
+    {d:'2026.06.10',t:'紡織產業名人講堂'},
+    {d:'2025.08.01',t:'高靜電科技防霾紗窗研究成果'},
+    {d:'2025.08.01',t:'碳碳複合火箭噴嘴預型體研究'},
+  ]},
+  {id:'inde',col:'eng',name:'工業工程與系統管理學系',url:'https://inde.fcu.edu.tw/news/',news:[
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.04.09',t:'丘紀堇老師以《共生》榮獲2026 TITAN創新設計銀獎'},
+    {d:'2026.03.16',t:'丘紀堇老師繼英國FADA雙白金 勇奪2026美國MUSE設計大獎'},
+    {d:'2025.12.30',t:'113國科會大專生研究創作獎 逢甲3位學生獲獎'},
+    {d:'2025.11.15',t:'恭喜張登凱學長榮獲逢甲第26屆傑出系友'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.16',t:'千篇論文僅12篇特優！逢甲企研所黃偉翔ESG研究榮獲2025富邦人壽管理博碩士特優'},
+  ]},
+  {id:'che',col:'eng',name:'化學工程學系',url:'https://che.fcu.edu.tw/news/',news:[
+    {d:'2026.05.23',t:'逢甲化工系執行TEEP計畫案 接待全球優秀青年來臺交流研究'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.03.27',t:'逢甲化工系大一定錨課程成果亮眼 化工一乙勇奪全校銀獎'},
+    {d:'2026.01.13',t:'恭賀簡彰胤老師與陳志賢老師榮升教授'},
+    {d:'2026.01.13',t:'程序設計終端課程專題競賽展現量產思維與工程實作力'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.29',t:'2025化工年會 多位學生競賽獲獎表現亮眼'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+    {d:'2025.10.21',t:'施志欣教授帶領化工系團隊榮獲2025台灣創新技術博覽會金牌獎'},
+    {d:'2025.10.20',t:'2025創新技術博覽會逢甲3金2銀1銅 前方車輛盲區預警獲鴻海特別獎'},
+    {d:'2025.10.03',t:'張棋榕特聘教授榮登Elsevier世界排名前2%科學家'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.05',t:'化四甲葉慈婷、詹芯菱榮獲2025明基材料創意競賽銅牌獎'},
+    {d:'2025.09.01',t:'逢甲材料系師生赴日九州大學移地教學 跨域體驗電漿、核融合與半導體新技術'},
+    {d:'2025.08.19',t:'逢甲大學三大智慧醫療技術亮相2025 BIO Asia 積極鏈結臨床與產業推動創新技術商品化'},
+    {d:'2025.08.19',t:'逢甲綠能與化工師資赴泰授課 跨國攜手推動低碳技術 持續深化國際合作'},
+  ]},
+  {id:'apmath',col:'eng',name:'應用數學系',url:'https://apmath.fcu.edu.tw/news/',news:[
+    {d:'2025.12.11',t:'應用數學系學生勇奪2025全國智慧製造大數據分析競賽優等獎'},
+    {d:'2025.11.06',t:'游承書老師榮獲114學年度教學績優教師獎'},
+    {d:'2025.10.05',t:'逢甲應數出品 品質保證 學生考照率名列前茅'},
+  ]},
+  {id:'ees',col:'eng',name:'環境工程與科學學系',url:'https://ees.fcu.edu.tw/news/',news:[
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.19',t:'逢甲棒球隊成功衛冕大專盃中區預賽冠軍 勇奪二連霸 目標全國賽重返四強'},
+    {d:'2025.10.07',t:'逢甲助攻2050淨零轉型 兩期綠領課程成果亮眼 學員獲行政院頒證'},
+    {d:'2025.10.03',t:'逢甲大學社區發展服務隊走進大安 關懷弱勢傳遞中秋祝福'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'photonics',col:'eng',name:'光電科學與工程學系',url:'https://photonics.fcu.edu.tw/news/',news:[
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2025.12.19',t:'逢甲棒球隊成功衛冕大專盃中區預賽冠軍 勇奪二連霸 目標全國賽重返四強'},
+    {d:'2025.12.11',t:'林忠勇同學榮獲OPTIC2025學生論文海報獎'},
+    {d:'2025.11.07',t:'鴻準精密工業CTT事業群助攻實務教學 百萬級光學量測設備進駐'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家'},
+    {d:'2025.08.11',t:'鴻準精密攜手逢甲大學成立聯合研究實驗室'},
+  ]},
+  {id:'psd',col:'eng',name:'精密系統設計學士學位學程',url:'https://psd.fcu.edu.tw/news/',news:[
+    {d:'2025.10.20',t:'2025創新技術博覽會逢甲3金2銀1銅 前方車輛盲區預警獲鴻海特別獎'},
+  ]},
+  {id:'acct',col:'biz',name:'會計學系',url:'https://acct.fcu.edu.tw/news/',news:[
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.05.12',t:'逢甲會計人的多元職涯：南區系友返校分享 傳承職場智慧'},
+    {d:'2026.03.17',t:'115學年度會計學系學士生先修碩士班課程申請作業'},
+    {d:'2026.03.05',t:'115學年度會計學系轉系申請'},
+    {d:'2026.01.30',t:'逢甲會計勇奪2026資誠國際租稅盃個案分析競賽優選佳績'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.17',t:'刷新紀錄！2025黑客松最大贏家 逢甲商學院領軍攻佔25獎'},
+    {d:'2025.10.20',t:'應屆畢業即考取會計師 逢甲大學會計學系李俊霖創佳績'},
+    {d:'2025.09.24',t:'會計系碩士班學位考試申請相關作業'},
+  ]},
+  {id:'itra',col:'biz',name:'國際經營與貿易學系',url:'https://itra.fcu.edu.tw/news/',news:[
+    {d:'2026.06.17',t:'2026台灣中區跨境電商實作競賽 逢甲大學「國際睡客」奪冠'},
+    {d:'2026.05.25',t:'國際生華語演說暨歌唱比賽決賽'},
+    {d:'2026.05.12',t:'逢甲國貿系參與2026中區管理個案競賽 奪團體亞軍與四項個人獎'},
+    {d:'2026.04.29',t:'逢甲連兩年獲經濟部補助 國家會展培訓班鏈結臺中國際會展中心'},
+    {d:'2026.03.25',t:'逢甲跨國學生組隊「四源共耕」勇奪探索台灣120h三項肯定'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.12.05',t:'商學院推動永續教育 帶領學生走入兩家B型企業實地學習'},
+    {d:'2025.12.01',t:'逢甲大學榮獲2025台灣永續大學四項肯定 共創幸福永續校園'},
+    {d:'2025.11.25',t:'第一屆逢甲日常節熱力落幕 跨年級合作點亮逢甲青春日常'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.09.15',t:'逢甲國貿系勇奪2025 CEPT跨境電商競賽 全國團體、個人雙冠軍'},
+    {d:'2025.08.14',t:'Go for it！逢甲大學勇奪2025 EIA最大獎與Top Team雙料佳績'},
+  ]},
+  {id:'biba',col:'biz',name:'國際企業管理全英語學士班',url:'https://biba.fcu.edu.tw/news/',news:[
+    {d:'2026.04.22',t:'「產業巡禮」課程企業參訪-萬年清環境工程'},
+    {d:'2026.04.22',t:'阿德萊德大學Q&A說明會'},
+    {d:'2026.04.17',t:'ECCT執行長Freddie Höglund親授企業演講'},
+    {d:'2026.01.09',t:'114學年度國際交流體驗課程合作學校介紹'},
+    {d:'2026.01.08',t:'2025 BIBA聖誕派對'},
+    {d:'2025.12.22',t:'Michal Fliegel副主任參與國立中興大學研討會'},
+    {d:'2025.12.22',t:'BIBA 萬聖節派對'},
+    {d:'2025.12.22',t:'BIBA 睡衣派對活動'},
+    {d:'2025.09.24',t:'2025年新鮮人成長營《Hello, World!》圓滿落幕'},
+    {d:'2025.09.24',t:'2025《韓國中央大學》暑期短期交流BIBA學生分享'},
+    {d:'2025.09.24',t:'恭賀BIBA學程吳宜玲同學榮獲教育部學海飛颺獎學金！'},
+    {d:'2025.08.14',t:'Go for it！逢甲大學勇奪2025 EIA最大獎與Top Team雙料佳績'},
+  ]},
+  {id:'pf',col:'biz',name:'財稅學系',url:'https://pf.fcu.edu.tw/news/',news:[
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.10.07',t:'逢甲大學學生勇奪教育部職涯輔導心得競賽全國第三名與人氣獎'},
+  ]},
+  {id:'coop',col:'biz',name:'合作經濟暨社會事業經營學系',url:'https://coop.fcu.edu.tw/news/',news:[
+    {d:'2026.02.23',t:'大王盃全國短影音競賽千件作品參賽 逢甲合經系學生奪金'},
+    {d:'2026.02.23',t:'日本筑波大學國際團隊訪台 參訪逢甲綠能與USR成果'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2026.01.09',t:'逢甲商學院攜手唐氏症基金會，用鏡頭記錄別出心裁的生命故事'},
+    {d:'2025.12.30',t:'113國科會大專生研究創作獎 逢甲3位學生獲獎'},
+    {d:'2025.12.17',t:'刷新紀錄！2025黑客松最大贏家 逢甲商學院攻佔25獎'},
+    {d:'2025.12.05',t:'商學院推動永續教育 帶領學生走入兩家B型企業實地學習'},
+    {d:'2025.12.01',t:'逢甲大學榮獲2025台灣永續大學四項肯定 共創幸福永續校園'},
+    {d:'2025.11.18',t:'華碩i-Taiwan數位志工攜手逢甲大學，縮短原住民小學資訊落差'},
+    {d:'2025.11.07',t:'亞洲儲蓄互助社聯盟會訪逢甲大學 強化合作經濟與社會創新國際鏈結'},
+    {d:'2025.09.18',t:'2025亞太永續博覽會 逢甲USR計畫獲銅獎、師生共創沉浸式「與綠為鄰」展場吸睛'},
+    {d:'2025.08.21',t:'逢甲大學啟動「AI前瞻人文示範基地」教育部委辦推動 iLink 計畫 開創AI人文教育新模式'},
+  ]},
+  {id:'stat',col:'biz',name:'統計學系',url:'https://stat.fcu.edu.tw/news/',news:[
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家'},
+  ]},
+  {id:'econ',col:'biz',name:'經濟學系',url:'https://econ.fcu.edu.tw/news/',news:[
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.03.30',t:'逢甲大學學生社團表現亮眼 教育部全國社團評鑑勇奪雙特優'},
+    {d:'2026.03.16',t:'逢甲大學商學院與金融學院攜手產學精英 凝聚115學年度使命與學習目標共識'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2026.01.08',t:'逢甲大學經濟學系學生在財富管理規劃競賽中大放異彩'},
+    {d:'2025.12.19',t:'逢甲棒球隊成功衛冕大專盃中區預賽冠軍 勇奪二連霸 目標全國賽重返四強'},
+    {d:'2025.12.17',t:'走進台積電中科生態園區：經濟教育中的永續實踐現場'},
+    {d:'2025.11.25',t:'經濟學系專題海報競賽'},
+    {d:'2025.11.25',t:'第一屆逢甲日常節熱力落幕 跨年級合作點亮逢甲青春日常'},
+    {d:'2025.11.17',t:'經濟系解鎖「業界思維」：裕隆集團資料分析師分享經濟腦如何接軌數據科學'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+    {d:'2025.09.01',t:'龍谷大學師生來訪逢甲 共同探討永續林業與CLT建築發展'},
+  ]},
+  {id:'ba',col:'biz',name:'企業管理學系',url:'https://ba.fcu.edu.tw/news/',news:[
+    {d:'2026.05.27',t:'當職涯遇上永續與AI 逢甲大學企管系舉辦SDGs職涯桌遊工作坊'},
+    {d:'2026.05.04',t:'逢甲大學企業AI應用學院助臺中製造業跨越數位鴻溝'},
+    {d:'2026.04.09',t:'逢甲大學學生奪下2026國際大數據與ERP研討會最佳論文獎首獎'},
+    {d:'2026.03.11',t:'114學年度企業管理學系專業證照獎勵申請作業'},
+    {d:'2026.03.11',t:'檢送114學年度商學院「專業證照獎勵」及「學生參與學術競賽獲獎獎勵」申請及審核作業公告'},
+    {d:'2026.02.25',t:'115學年度大學部二、三年級學生轉系相關作業事項'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2026.01.06',t:'UBA中區預賽逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.31',t:'逢甲4位教師獲教育部113教學實踐研究績優計畫 寫下歷年最佳紀錄'},
+    {d:'2025.12.17',t:'Young飛全球行動計畫 2組逢甲學生團隊獲夢想實踐家獎'},
+    {d:'2025.12.09',t:'企管系研究生簡英軒榮獲國科會補助研究生出席國際學術會議'},
+    {d:'2025.11.26',t:'逢甲傑出校友台達執行副總裁尹鏇博返校演講 分享全球供應鏈管理實務智慧'},
+    {d:'2025.10.21',t:'逢甲林宸毅摘下雲端運算國手資格 代表台灣出征2025亞洲技能競賽'},
+    {d:'2025.09.16',t:'千篇論文僅12篇特優！逢甲企研所黃偉翔ESG研究榮獲2025富邦人壽管理博碩士特優'},
+    {d:'2025.09.03',t:'近千篇論文競逐 逢甲大學三組師生榮獲台灣管理學會AI論文競賽特優與佳作'},
+    {d:'2025.08.12',t:'企管系師生在「2025臺灣文博會」展現CDIO教學成果'},
+  ]},
+  {id:'mkt',col:'biz',name:'行銷學系',url:'https://marketing.fcu.edu.tw/news/',news:[
+    {d:'2026.05.25',t:'國際生華語演說比賽大談AI和我 八國學生勁歌熱舞'},
+    {d:'2026.05.04',t:'服務設計實務與應用 北美高端運動品牌-全體通路研究 (行銷管理統籌講座)'},
+    {d:'2026.04.29',t:'別再辦沒人來的活動！從0到1打造爆滿活動的關鍵思維'},
+    {d:'2026.03.31',t:'行銷學系一年級繞場競賽勇奪全校第二名'},
+    {d:'2026.03.30',t:'布施帆海~勇闖2026第12屆探索台灣120h競賽'},
+    {d:'2026.03.25',t:'逢甲跨國學生組隊「四源共耕」勇奪探索台灣120h三項肯定'},
+    {d:'2026.01.02',t:'逢甲行銷系第16屆20歲成年禮革新祝福：戶外攝影棚'},
+    {d:'2025.12.30',t:'永續中的日常，日常中的永續：第十六屆行銷系影展從共感走向行動'},
+    {d:'2025.12.17',t:'Young飛全球行動計畫 2組逢甲學生團隊獲夢想實踐家獎'},
+    {d:'2025.12.09',t:'逢甲行銷系畢業專題《拼映成行》16 組實戰策展亮點帶你一次看！'},
+    {d:'2025.12.01',t:'第16屆行銷影展即將登場！年輕視角詮釋永續日常'},
+    {d:'2025.12.01',t:'逢甲大學學生連兩年榮獲教育部青年發展署「感動地圖」金獎'},
+    {d:'2025.11.25',t:'美學與產品創意課堂以「煖」為題　在湯席中品味素樸侘寂之美'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+    {d:'2025.10.27',t:'奧美廣告 x 松菸文創 全球行銷碩士班實地探索廣告與文創產業脈動'},
+    {d:'2025.09.30',t:'大學生畢業專題做什麼？逢甲行銷系第14屆「拼映成行」成果展帶你揭曉！'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.09.04',t:'行銷系在幹嘛？逢甲行銷新鮮人成長營帶你來看 4 年課程縮影'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'bce',col:'biz',name:'商學學士學位學程',url:'https://bce.fcu.edu.tw/news/',news:[
+    {d:'2026.01.13',t:'從影像出發走入真實社會 商進學生跨域實作回應永續與共融議題'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2026.01.09',t:'逢甲商學院攜手唐氏症基金會，用鏡頭記錄「別出心裁」的生命故事'},
+    {d:'2025.12.29',t:'逢甲商進學生奪2025全球品牌策劃大賽金質佳作 明年挺進新加坡'},
+    {d:'2025.12.17',t:'逢甲商進勇奪2025永續智慧創新黑客松11項大獎'},
+    {d:'2025.12.17',t:'逢甲商進勇奪 2025 永續智慧創新黑客松 11 項大獎 展現跨域永續創新實力'},
+    {d:'2025.11.05',t:'114學年度商進新生滿月暨萬聖節活動'},
+    {d:'2025.09.19',t:'逢甲大學商學學士學位學程114年度新鮮人成長營活動'},
+    {d:'2025.08.14',t:'Go for it！逢甲大學勇奪2025 EIA最大獎與Top Team雙料佳績'},
+  ]},
+  {id:'id',col:'biz',name:'室內設計學士學位學程',url:'https://id.fcu.edu.tw/news/',news:[
+    {d:'2026.06.13',t:'逢甲建築主辦38屆建築研討會 Mecanoo助室設生接軌國際'},
+    {d:'2026.06.06',t:'逢甲室設引領永續AI，學生趙辰慈成最年輕LEED GA'},
+    {d:'2026.06.04',t:'逢甲室內設計：競賽驅動專業，櫻花廚具助實習'},
+    {d:'2026.06.04',t:'逢甲室設進修部畢設：築夢學子綻放設計光芒'},
+    {d:'2026.06.02',t:'半畝塘江文淵逢甲演講：建築之道與定位'},
+    {d:'2026.06.02',t:'逢甲室設參訪大燁照明，學用合一提升學生競爭力'},
+    {d:'2026.04.23',t:'逢甲大學室內設計學程攜手德廚精品廚電 深化智慧廚居設計教育 產學合作成果亮眼並接軌國際競賽'},
+    {d:'2026.04.02',t:'教育部認可國際競賽肯定 學生作品登上國際舞台'},
+    {d:'2026.03.10',t:'逢甲大學建築專業學院傑出校友日 以「AI書屋」競賽展現建築跨域創新能量'},
+    {d:'2026.03.10',t:'逢甲大學室內設計學程與德廚集團攜手合作 在大坪數高端住宅設計中導入頂級廚具實務教學'},
+    {d:'2026.01.21',t:'捷報｜逢甲大學建築專業學院室內設計學程兼任教師劉守書榮獲國家建築金獎雙項大獎'},
+    {d:'2025.12.01',t:'鄭月妹教授「尚水」獲國際A\' Design Award銅牌，為台中捷運增添藝術光彩'},
+    {d:'2025.12.01',t:'隈研吾領銜國際建築大師 齊聚逢甲共善樓 激盪設計新思維'},
+    {d:'2025.11.19',t:'113年度建築/室內設計新鮮人成長營「一建忠勤」'},
+    {d:'2025.11.19',t:'逢甲大學室內設計進修學士班申請入學'},
+  ]},
+  {id:'rmi',col:'fin',name:'風險管理與保險學系',url:'https://rmi.fcu.edu.tw/news/',news:[
+    {d:'2026.01.06',t:'UBA中區預賽逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.12.10',t:'以多品牌及數位轉型成為最具影響力的餐飲集團'},
+    {d:'2025.12.01',t:'災防型保險介紹—住宅火災及地震基本保險'},
+    {d:'2025.11.13',t:'本系師生至安聯人壽台中分公司進行企業參訪活動'},
+    {d:'2025.11.07',t:'首屆風險管理博碩士論文獎揭曉 逢甲風保系三篇作品獲選'},
+    {d:'2025.11.05',t:'國泰永續金融影響力之實踐'},
+    {d:'2025.10.30',t:'汽車保險與理賠實務'},
+    {d:'2025.10.08',t:'被低估的產險業-責任、機會與挑戰'},
+    {d:'2025.10.01',t:'30歲前快速累積百萬桶金的鍊金術'},
+    {d:'2025.09.24',t:'金融學院攜手台灣人壽、彰檢 跨界推動校園金融防詐教育'},
+    {d:'2025.08.11',t:'逢甲風保系連三年奪「最佳校園菁英獎」 吳涵萱實現目標站上保險信望愛舞台'},
+    {d:'2025.08.06',t:'逢甲金融學院學生以「文化資產評級系統」拿下兩岸金融創新創意賽二等獎'},
+  ]},
+  {id:'fina',col:'fin',name:'財務金融學系',url:'https://fina.fcu.edu.tw/news/',news:[
+    {d:'2026.06.16',t:'產學共授新典範！逢甲金融學院乘統一投信培育學子全球投資前瞻思維'},
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2026.01.06',t:'UBA中區預賽逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.31',t:'逢甲4位教師獲教育部113教學實踐研究績優計畫 歷年最佳紀錄'},
+    {d:'2025.12.19',t:'逢甲棒球隊成功衛冕大專盃中區預賽冠軍 勇奪二連霸'},
+    {d:'2025.12.17',t:'新鮮人期末專題暨金融科技創新服務提案競賽'},
+    {d:'2025.11.26',t:'逢甲金融創新場域學生團隊「財智迷宮」 AI實境解謎作品奪首獎'},
+    {d:'2025.11.17',t:'逢甲大學財金系企業參訪 走進產業現場深化金融專業視野'},
+    {d:'2025.10.28',t:'金融實習導論系列說明會登場 連結產業資源強化學生實務競爭力'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.01',t:'龍谷大學師生來訪逢甲 共同探討永續林業與CLT建築發展'},
+    {d:'2025.08.06',t:'逢甲金融學院學生以「文化資產評級系統」拿下兩岸金融創新創意賽二等獎'},
+    {d:'2025.08.04',t:'金融創新跨域融合 「喔~三萬」團隊勇奪海峽兩岸大賽二等獎'},
+  ]},
+  {id:'bpfeas',col:'fin',name:'財務工程與精算學士學位學程',url:'https://bpfeas.fcu.edu.tw/news/',news:[
+    {d:'2026.06.09',t:'吳奇螢系友分享精算職涯經驗 協助學生掌握產業實務與發展方向'},
+    {d:'2026.06.04',t:'財務工程深碗專題成果發表圓滿落幕 展現金融工程實務應用能力'},
+    {d:'2026.06.01',t:'逢甲大學與馬來西亞國立大學攜手 舉辦跨國精算文化交流'},
+    {d:'2025.12.22',t:'財算學程感謝獲頒第三十二屆吳家錄保險教育獎學金'},
+    {d:'2025.12.22',t:'財算學程畢業專題發表會 展現四年專業實力'},
+    {d:'2025.12.18',t:'系友林育葳返校分享大學生活與精算職涯經驗'},
+    {d:'2025.11.25',t:'群益投信呂鴻德副總經理演講:聰明理財從現在開始-用ETF累積第一桶金'},
+    {d:'2025.11.11',t:'財算學程與金融學士班企業參訪 深度探索金融科技與產業趨勢'},
+    {d:'2025.11.11',t:'恭賀 陳彥志教授榮獲114學年度教學傑出獎'},
+    {d:'2025.11.05',t:'李郁系友回娘家分享「從校園到職場」'},
+    {d:'2025.09.24',t:'金融學院攜手台灣人壽、彰檢 跨界推動校園金融防詐教育'},
+  ]},
+  {id:'upfc',col:'fin',name:'金融學院學士班',url:'https://upfc.fcu.edu.tw/news/',news:[
+    {d:'2026.06.15',t:'逢甲商學院、金融學院聯手 2026商業數據分析與決策競賽登場'},
+    {d:'2026.06.09',t:'第一屆金融知識挑戰賽 擴展大學生多元領域學習'},
+    {d:'2026.06.09',t:'金融學院學士班企業參訪 深入了解證券交易實務'},
+    {d:'2026.05.25',t:'國際生華語演說比賽大談AI和我 八國學生勁歌熱舞'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2026.01.06',t:'UBA中區預賽火力全開 逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.31',t:'逢甲4位教師獲教育部113教學實踐研究績優計畫 寫下歷年最佳紀錄'},
+    {d:'2025.12.19',t:'逢甲棒球隊成功衛冕大專盃中區預賽冠軍 勇奪二連霸 目標全國賽重返四強'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.11.26',t:'逢甲金融創新場域學生團隊「財智迷宮」 AI實境解謎作品奪首獎'},
+    {d:'2025.11.11',t:'逢甲大學金融學院學士班與財務工程與精算學士學位學程企業參訪 深度探索金融科技與產業趨勢'},
+    {d:'2025.11.07',t:'首屆風險管理博碩士論文獎揭曉 逢甲風保系三篇作品獲選'},
+    {d:'2025.10.09',t:'【新鮮人成長營暨專題活動】引領新生以創意與科技探索普惠金融'},
+    {d:'2025.09.24',t:'金融學院攜手台灣人壽、彰檢 跨界推動校園金融防詐教育'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前2%頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.01',t:'龍谷大學師生來訪逢甲 共同探討永續林業與CLT建築發展'},
+    {d:'2025.08.11',t:'逢甲風保系連三年奪「最佳校園菁英獎」 吳涵萱實現目標站上保險信望愛舞台'},
+    {d:'2025.08.06',t:'逢甲金融學院學生以「文化資產評級系統」拿下兩岸金融創新創意賽二等獎'},
+  ]},
+  {id:'cl',col:'hum',name:'中國文學系',url:'https://cl.fcu.edu.tw/news/',news:[
+    {d:'2026.05.25',t:'走進城市驛站與鐵道人生 逢甲中文系台中車站策展正式登場'},
+    {d:'2026.05.25',t:'展現跨域競爭力！逢甲中文系學生勇奪微軟MOS世界賽門票'},
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.03.05',t:'逢甲人文社會學報連獲國科會評級肯定 持續深耕學術能量'},
+    {d:'2026.02.23',t:'打破文理藩籬！人文生也能駕馭AI與程式碼'},
+    {d:'2025.12.31',t:'逢甲4位教師獲教育部113教學實踐研究績優計畫 寫下歷年最佳紀錄'},
+    {d:'2025.10.28',t:'逢甲中文系「印．字 Stamp the City」策展 以漢字行旅開啟台中舊城新故事'},
+    {d:'2025.10.28',t:'「行走的教室」：逢甲中文系學生浴衣體驗鈴蘭通納涼會'},
+    {d:'2025.10.16',t:'國光劇團逢甲開講：戲曲舞台對話「帝王盛世」與「紅樓夢境」'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.09.22',t:'教育部iLink計畫支持 逢甲中文系於全國古蹟日舉辦「營林所臺中出張所宿泊所」特別企畫'},
+    {d:'2025.08.21',t:'逢甲大學啟動「AI前瞻人文示範基地」教育部委辦推動 iLink 計畫 開創AI人文教育新模式'},
+  ]},
+  {id:'fll',col:'hum',name:'外國語文學系',url:'https://fll.fcu.edu.tw/news/',news:[
+    {d:'2026.05.11',t:'閱讀空氣：語用學教你好好聽說話 探索語言背後的人際智慧'},
+    {d:'2026.05.08',t:'AI時代的語料驅動學習——探索AI與語言教學的新可能'},
+    {d:'2026.05.04',t:'逢甲大學外國語文學系114學年度第2學期申請輔系、雙主修名單'},
+    {d:'2026.04.08',t:'外文系系週會「從零開始我可以嗎？」啟發學生勇於跨域挑戰'},
+    {d:'2026.03.26',t:'Freedom250巡迴展逢甲揭幕 AIT處長谷立言、美光董座齊聚'},
+    {d:'2026.03.23',t:'逢甲外文系精準對接產業脈動 逾百名學子參與星宇航空校園徵才說明會'},
+    {d:'2026.03.20',t:'【校園活動直擊】星宇航空徵才說明會熱烈登場 逢甲學子圓夢藍天'},
+    {d:'2026.03.17',t:'實習訊息:福華大飯店'},
+    {d:'2026.03.17',t:'實習訊息:佳音事業股份有限公司'},
+    {d:'2026.03.17',t:'實習訊息:涵碧樓大飯店股份有限公司'},
+    {d:'2026.03.13',t:'逢甲大學人文社會學院外國語文學系轉系甄試辦法'},
+    {d:'2026.03.05',t:'免南北奔波！逢甲大學外文系首辦國際語奧中區初賽'},
+    {d:'2026.03.05',t:'跨域交匯，人文化成──《逢甲人文社會學報》連獲國科會評級肯定 持續深耕學術能量'},
+    {d:'2026.03.04',t:'國際語言學奧林匹亞選拔賽盛大登場 逢甲大學首度承辦中區初賽'},
+    {d:'2026.02.26',t:'外文系課程須知及修業須知'},
+    {d:'2026.02.23',t:'【深度專訪】打破文理藩籬！人文生也能駕馭 AI 與程式碼 —— 探究「雙金牌」背後的教學心法'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2026.01.16',t:'逢甲大學外國語文學系舉辦 AI 主題工作坊 從「被觀看」的時代出發，重新思考教育、文學與人的價值'},
+    {d:'2026.01.16',t:'逢甲大學外國語文學系特邀請知名國際學者 Prof. Elly McCausland 跨界解析 Taylor Swift 歌詞中的當代文學與文化政治'},
+    {d:'2026.01.14',t:'114學年度沈薇薇教授紀念獎學金申請公告和申請表'},
+    {d:'2026.01.12',t:'逢甲人社院與路竹慧賢宮產學合作 推動宮廟文史資料庫與多語轉譯'},
+    {d:'2025.12.17',t:'Young飛全球行動計畫 2組逢甲學生團隊獲夢想實踐家獎'},
+    {d:'2025.12.10',t:'2025 外國語文學系英語演說競賽圓滿落幕'},
+    {d:'2025.12.05',t:'逢甲大學外國語文學系 114 學年度第 1 學期申請輔系、雙主修名單'},
+    {d:'2025.11.25',t:'第一屆逢甲日常節熱力落幕 跨年級合作點亮逢甲青春日常'},
+    {d:'2025.11.19',t:'恭賀 蔡明秀老師 榮獲114學年度教學績優教師'},
+    {d:'2025.11.19',t:'In Defence of Literature, the Humanities and Pop Culture —— Elly McCausland 教授以當代觀點重新詮釋文學的重要性'},
+    {d:'2025.11.19',t:'Taylor Swift 與文學的跨界對話——Prof. Elly McCausland 將於逢甲大學分享當代流行文化中的文學意涵'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+    {d:'2025.10.15',t:'實習公告:台中市私立第五大道美語會話短期補習班'},
+    {d:'2025.10.09',t:'114學年度第二學期校外實習相關注意事項'},
+    {d:'2025.10.08',t:'實習公告:福華大飯店'},
+    {d:'2025.10.08',t:'實習公告:四季藝術幼兒園'},
+    {d:'2025.10.02',t:'實習公告:2026年中華航空公司專業實習申請'},
+    {d:'2025.10.02',t:'實習公告:星宇航空'},
+    {d:'2025.09.25',t:'外文系114學年度第一學期系週會圓滿舉行'},
+    {d:'2025.09.23',t:'實習公告:涵碧樓大飯店股份有限公司'},
+    {d:'2025.09.23',t:'實習公告:佳音事業股份有限公司'},
+    {d:'2025.09.23',t:'2026年立榮航空專業實習申請'},
+    {d:'2025.09.12',t:'長榮航空115學年度實習生甄選申請說明'},
+    {d:'2025.09.12',t:'逢甲大學外國語文學系專業實習申請相關注意事項'},
+    {d:'2025.08.20',t:'外文系課程地圖　專業課程分組一覽表'},
+  ]},
+  {id:'ee',col:'ece',name:'電機工程學系',url:'https://ee.fcu.edu.tw/news/',news:[
+    {d:'2026.05.26',t:'2026逢甲大學共善創新競賽決賽登場 產官學研高度肯定'},
+    {d:'2026.01.06',t:'UBA中區預賽逢甲大學男籃五戰全勝奪分組第一'},
+    {d:'2025.12.16',t:'2025全國大專院校產學創新實作競賽 逢甲大學勇奪雙料冠軍'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金'},
+  ]},
+  {id:'fcuece',col:'ece',name:'電子工程學系',url:'https://fcuece.fcu.edu.tw/news/',news:[
+    {d:'2026.06.10',t:'逢甲大學和IEET參與EUR-ACE Connect資電學院三系歐洲工程認證成果躍上國際舞台'},
+    {d:'2026.05.26',t:'百組爭鋒、50強決戰！2026逢甲大學共善創新競賽決賽登場'},
+    {d:'2026.02.25',t:'台灣首批！逢甲電子、自控、通訊獲ENAEE歐洲工程認證'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.16',t:'全國之冠！逢甲大學在2025智慧創新暨跨域整合創作競賽勇奪12獎'},
+    {d:'2025.11.26',t:'逢甲資電學院攜手杜林理工 推動1+1雙碩士深化半導體與資安合作'},
+    {d:'2025.11.18',t:'華碩i-Taiwan數位志工攜手逢甲大學，縮短原住民小學資訊落差'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前 2% 頂尖科學家 名列雙榜師長再增'},
+  ]},
+  {id:'auto',col:'ece',name:'自動控制工程學系',url:'https://auto.fcu.edu.tw/news/',news:[
+    {d:'2026.06.10',t:'逢甲大學和IEET參與EUR-ACE Connect資電學院三系成果躍上國際舞台'},
+    {d:'2026.06.04',t:'2026 WildBot機器人挑戰賽 逢甲跨校隊闖進全國四強'},
+    {d:'2026.05.04',t:'逢甲跨域學生團隊勇奪2026明緯智慧永續科技競賽全國銀獎'},
+    {d:'2026.04.29',t:'逢甲自控系50+週年系慶盛大登場！逾300系友回娘家'},
+    {d:'2026.04.27',t:'自控系林子傑、林煜豪榮獲機器狗競技挑戰賽全能亞軍'},
+    {d:'2026.04.09',t:'生成式 AI 助力科研！逢甲大學攜手鈦思科技舉辦 2026 MATLAB® Day 研討會'},
+    {d:'2026.04.08',t:'逢甲大學於全國電子設計創意競賽大放異彩 APP類包辦前三、勇奪雙冠'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.02.25',t:'台灣首批！逢甲電子、自控、通訊獲 ENAEE 歐洲工程認證'},
+    {d:'2025.12.22',t:'綠色生活創意設計決賽 逢甲大學團隊獲大專校院組銀獎'},
+    {d:'2025.12.16',t:'全國之冠！逢甲大學在2025智慧創新暨跨域整合創作競賽勇奪12獎'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.12.11',t:'逢甲學生榮獲APICTA Awards優勝 AI智慧檢測展現跨域研發實力'},
+    {d:'2025.12.08',t:'副總統蕭美琴接見崇越論文大賞得主 逢甲師生獲「AI技術開發」特優'},
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊'},
+    {d:'2025.11.25',t:'全國唯一 逢甲自控陳宇柔勇奪自動控制學會碩士論文獎「特優」'},
+    {d:'2025.11.04',t:'逢甲勇奪全國資訊應用創新賽13獎項 兩隊入選APICTA台灣代表隊進軍亞太'},
+    {d:'2025.11.03',t:'逢甲大學學生團隊以智慧道路檢測系統榮獲萬潤2025電機資訊類最佳潛力獎'},
+    {d:'2025.10.07',t:'逢甲大學學生團隊勇奪教育部「職涯輔導心得競賽」全國第三名與人氣獎'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前 2% 頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.12',t:'逢甲大學AI Club跨域團隊勇奪上銀智慧機器手實作競賽「智慧撞球組」評審特別獎'},
+    {d:'2025.09.12',t:'逢甲自控系師生參與2025台北自動化工業大展 智慧製造成果獲業界關注'},
+    {d:'2025.08.19',t:'逢甲大學三大智慧醫療技術亮相2025 BIO Asia 積極鏈結臨床與產業推動創新技術商品化'},
+  ]},
+  {id:'ce',col:'ece',name:'通訊工程學系',url:'https://ce.fcu.edu.tw/news/',news:[
+    {d:'2026.06.10',t:'逢甲大學和IEET參與EUR-ACE Connect歐洲工程認證成果躍上國際舞台'},
+    {d:'2026.05.26',t:'2026逢甲大學共善創新競賽決賽登場 產官學研高度肯定'},
+    {d:'2026.05.12',t:'用AI守護工業安全！逢甲通訊系研發5G無人機預警系統 抱回智慧創新大賞佳作'},
+    {d:'2026.04.08',t:'逢甲大學於全國電子設計創意競賽大放異彩 APP類包辦前三'},
+    {d:'2026.02.25',t:'台灣首批！逢甲電子、自控、通訊獲ENAEE歐洲工程認證'},
+    {d:'2026.01.08',t:'逢甲資工系郭崇韋老師榮獲國科會「優良計畫執行成果獎」'},
+    {d:'2025.12.16',t:'全國之冠！逢甲大學在2025智慧創新暨跨域整合創作競賽勇奪12獎'},
+    {d:'2025.12.12',t:'通訊工程學系於全國智慧創新競賽表現亮眼 勇奪雙項第三名佳績'},
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊'},
+    {d:'2025.11.14',t:'逢甲大學攜手智捷科技 打造5G × AIoT創新應用與人才培育基地'},
+    {d:'2025.11.04',t:'逢甲勇奪全國資訊應用創新賽13獎項 兩隊入選APICTA台灣代表隊進軍亞太'},
+    {d:'2025.11.03',t:'2025大專校院資訊應用服務創新競賽，通訊系榮獲三項獎項肯定'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'upiee',col:'ece',name:'資訊電機學院學士班',url:'https://upiee.fcu.edu.tw/news/',news:[
+    {d:'2024.06.08',t:'系學會獲全校學生社團評鑑自治性社團最佳組織經營獎第一名'},
+  ]},
+  {id:'civil',col:'con',name:'土木工程學系',url:'https://civil.fcu.edu.tw/news/',news:[
+    {d:'2026.06.11',t:'逢甲建設學院舉辦AEC產業數位原型實作及地理資訊競賽 學生以AI解決宿舍排隊難題'},
+    {d:'2026.01.07',t:'逢甲大學土木系與興亞營造簽署MOU成立興亞學堂深化產學合作'},
+    {d:'2026.01.06',t:'UBA中區預賽逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡'},
+    {d:'2025.10.15',t:'2025抗震盃 逢甲土木系拿下結構設計與創意獎與耐震獎'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前 2% 頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.10',t:'逢甲攜手同濟研討水利土木永續發展 深化二十餘年交流情誼'},
+  ]},
+  {id:'he',col:'con',name:'水利工程與資源保育學系',url:'https://he.fcu.edu.tw/news/',news:[
+    {d:'2026.06.11',t:'逢甲建設學院舉辦AEC產業數位原型實作及地理資訊競賽'},
+    {d:'2026.05.20',t:'恭賀！本校10位老師榮獲升等'},
+    {d:'2026.05.14',t:'逢甲大學水利系參與潭子區防災訓練 強化地方防災韌性'},
+    {d:'2026.05.14',t:'逢甲水利系攜手潭子區公所強化地方防災韌性 導入桌遊與實地演練，提升避難收容應變力'},
+    {d:'2026.05.08',t:'逢甲大學水利系職涯分享'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力'},
+    {d:'2026.03.27',t:'逢甲大學水利系學生團隊勇奪金獎與創新獎展現智慧防災教育成果'},
+    {d:'2026.01.06',t:'UBA中區預賽火力全開 逢甲大學男籃五戰全勝奪分組第一、挺進複賽'},
+    {d:'2025.12.23',t:'逢甲大學舉辦臺日防災交流講座 強化城市防災韌性'},
+    {d:'2025.12.22',t:'職涯發展講座─水利工程職涯新戰場 引領學子探索藍色工程新視野'},
+    {d:'2025.12.22',t:'臺日跨國共築災害韌性：逢甲大學落實社會責任 結合科技模擬與實務整備守護城市安全'},
+    {d:'2025.12.17',t:'逢甲大學、臺東大學攜手日本防災士 深化日本防災士民間團體與臺東交流'},
+    {d:'2025.12.16',t:'逢甲大學與臺東大學攜手日本防災士以出版行動回饋社會共築地方韌性'},
+    {d:'2025.12.08',t:'逢甲大學水利系師生參訪石岡壩、大甲溪電力設施 深度結合水資源與潔淨能源教育'},
+    {d:'2025.12.04',t:'逢甲大學攜手和潤企業推動「綠電走讀」陪孩子從遊戲中認識再生能源'},
+    {d:'2025.10.27',t:'合奏和鳴 繁花自開'},
+    {d:'2025.10.20',t:'逢甲大學水利系攜手臺中市教育局 推動韌性防災調適策略向下扎根'},
+    {d:'2025.10.03',t:'115學年碩士班甄試'},
+    {d:'2025.09.26',t:'「酷工程×潮未來」講座──侯凱文總經理勉勵水利新生勇敢逐夢、擁抱專業'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前 2% 頂尖科學家 名列雙榜師長再增'},
+    {d:'2025.09.12',t:'逢甲大學AI Club跨域團隊勇奪上銀智慧機器手實作競賽「智慧撞球組」評審特別獎'},
+    {d:'2025.09.10',t:'逢甲大學水利系領航兩岸交流 攜手同濟共探水利土木新未來'},
+    {d:'2025.09.10',t:'逢甲攜手同濟研討水利土木永續發展 深化二十餘年交流情誼'},
+    {d:'2025.08.18',t:'國際交流，厚植專業實力'},
+    {d:'2025.08.18',t:'逢甲大學水利系校外參訪 深化小水力發電與水工實務學習'},
+  ]},
+  {id:'up',col:'con',name:'都市計畫與空間資訊學系',url:'https://up.fcu.edu.tw/news/',news:[
+    {d:'2026.06.01',t:'關注城鄉發展與高齡議題 逢甲都資系全國規劃聯展獲肯定'},
+    {d:'2026.05.29',t:'翻轉西大墩！逢甲都資系大手牽小手攜西屯國小重塑百年老街'},
+    {d:'2026.05.05',t:'逢甲都資系學生聚焦氣候變遷風險評估 榮獲中華空間資訊學會學術論文優等獎'},
+    {d:'2026.04.30',t:'逢甲大學攜手渢妙離岸風場簽署MOU 助攻綠能人才培育'},
+    {d:'2026.04.27',t:'逢甲都資系徐詠晶榮獲IGCT 2026優秀論文獎優等 探討綠能與地方正義獲肯定'},
+    {d:'2026.04.27',t:'第13屆逢甲大學都市計畫與空間資訊研討會 聚焦綠能轉型與地方治理新趨勢'},
+    {d:'2026.04.25',t:'從地方視角探討能源轉型議題 本系碩士班學生獲臺灣地理國際學術研討會優秀論文獎'},
+    {d:'2026.04.24',t:'探討氣候變遷風險評估議題 本系學生獲中華空間資訊學會論文優等獎'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2025.12.18',t:'新加坡社會科學大學師生訪逢甲大學 聚焦運輸物流與智慧國土'},
+    {d:'2025.12.03',t:'2025-2026年台義雙邊交流研討會 逢甲赴義發表跨域環境科研成果'},
+    {d:'2025.12.01',t:'逢甲大學學生連兩年榮獲教育部青年發展署「感動地圖」金獎'},
+    {d:'2025.10.17',t:'113學年度都市更新學分學程獎勵'},
+    {d:'2025.10.13',t:'逢甲都資系攜手彰化縣大村鄉 以「做中學」打造幸福宜居新鄉村'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'tl',col:'con',name:'運輸與物流學系',url:'https://tl.fcu.edu.tw/news/',news:[
+    {d:'2026.06.12',t:'直擊航空產業心臟！運物系師生參訪長榮航空與航太 揭秘飛安與維修關鍵'},
+    {d:'2026.06.11',t:'逢甲建設學院舉辦AEC產業數位原型實作及地理資訊競賽'},
+    {d:'2026.05.21',t:'台灣港務公司周永暉董事長返母校逢甲大學開講'},
+    {d:'2025.12.09',t:'新加坡社科大學師生訪逢甲大學 洞察智慧交通與物流產業'},
+    {d:'2025.11.26',t:'逢甲傑出校友台達執行副總裁尹鏇博返校演講 分享全球供應鏈管理實務'},
+    {d:'2025.11.25',t:'開拓物流新視野，深耕永續經營理念'},
+    {d:'2025.10.27',t:'合奏和鳴 繁花自開'},
+    {d:'2025.10.09',t:'逢甲大學運輸與物流學系與同濟大學交通學院舉行學術交流，拓展交通運輸研究新視野'},
+    {d:'2025.08.21',t:'逢甲大學林良泰教授榮獲「智慧城市卓越貢獻獎」唯一學界代表領航智慧交通與城市創新'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+  {id:'lm',col:'con',name:'土地管理學系',url:'https://lm.fcu.edu.tw/news/',news:[
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等'},
+    {d:'2025.12.30',t:'113國科會大專生研究創作獎 逢甲3位學生獲獎'},
+    {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票'},
+  ]},
+  {id:'pmp',col:'gen',name:'全校國際生大一不分系學士班',url:'https://pmp.fcu.edu.tw/news/',news:[
+    {d:'2026.05.25',t:'國際生華語演說比賽大談AI和我 八國學生勁歌熱舞'},
+    {d:'2025.08.21',t:'逢甲華語教師學分學程海外拓點成功 持續深耕泰國、印尼並開展新據點'},
+  ]},
+  {id:'aita',col:'cre',name:'人工智慧技術與應用學士學位學程',url:'https://aita.fcu.edu.tw/news/',news:[
+    {d:'2026.06.01',t:'AI科技新浪潮進校園！師生同步參與黃仁勳主題演講直播同樂會'},
+    {d:'2026.05.18',t:'當AI改變世界：逢甲大學攜手美光 探討記憶體創新與未來職涯'},
+    {d:'2026.05.04',t:'逢甲跨域學生團隊勇奪2026明緯智慧永續科技競賽全國銀獎'},
+    {d:'2026.04.09',t:'逢甲大學學生奪下2026國際大數據與ERP研討會最佳論文獎首獎'},
+    {d:'2026.03.24',t:'AI浪潮來襲！逢甲大學導讀NVIDIA GTC 2026關鍵技術 跨院系熱烈參與'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二'},
+    {d:'2026.01.09',t:'AI應用安全新思維！逢甲大學「資安週」深化師生數位防護力'},
+    {d:'2026.01.09',t:'逢甲商學院攜手唐氏症基金會，用鏡頭記錄「別出心裁」的生命故事'},
+    {d:'2026.01.05',t:'逢甲大學攜手華碩打造AI人才培育基地GeForce RTX 5080'},
+    {d:'2025.12.31',t:'2025年教育大數據微學程六校聯合成果展 數據分析實作走進教學現場'},
+    {d:'2025.12.22',t:'綠色生活創意設計決賽 逢甲大學團隊獲大專校院組銀獎'},
+    {d:'2025.12.11',t:'逢甲學生榮獲APICTA Awards優勝 AI智慧檢測展現跨域研發實力'},
+    {d:'2025.11.27',t:'國健署攜手逢甲大學推全齡營養 跨界對話為全民健康找解方'},
+    {d:'2025.11.04',t:'逢甲勇奪全國資訊應用創新賽13獎項 兩隊入選APICTA台灣代表隊進軍亞太'},
+    {d:'2025.11.03',t:'逢甲大學學生團隊以智慧道路檢測系統榮獲萬潤2025電機資訊類最佳潛力獎'},
+    {d:'2025.10.09',t:'2025總統科學獎 逢甲大學春雨講座教授梁賡義榮獲我國科學研究最高榮譽獎'},
+    {d:'2025.10.07',t:'國科會大專學生研究計畫全國第六！大魚帶小魚 逢甲老師陪伴學生把研究變成最有價值的打工'},
+    {d:'2025.09.30',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行'},
+  ]},
+];
+
+// Pre-compute
+// 新聞數量＝校網以#學系名稱串接的校網新聞 ＋ 學系自行建置（不重複計算）
+D.forEach(d=>{
+  // 1. 學系網站自有新聞（CUT 後），逐篇評分並標記是否已出現於校網
+  const deptAf=d.news.filter(n=>n.d>=CUT).sort((a,b)=>b.d.localeCompare(a.d));
+  const deptTitles=new Set(deptAf.map(n=>n.t));
+  deptAf.forEach(n=>{
+    const s=autoSc(n.t,n.d);n.g=s.g;n.v=s.v;n.a=s.a;n.tot=s.g+s.v+s.a;
+    n.fromSch=SCH_TITLES.has(n.t);
+    if(n.fromSch){const sr=SCH_BY_TITLE.get(n.t);n.schUrl=sr?.url;}
+  });
+
+  // 2. 校網有標記此系（cats 含 d.name）但學系尚未轉貼的新聞（校網獨家）
+  const schOnly=SCHOOL_RAW
+    .filter(s=>jd(s.d)>=CUT&&(s.cats||[]).includes(d.name)&&!deptTitles.has(s.t))
+    .map(s=>{
+      const sd=jd(s.d);
+      const sc=autoSc(s.t,sd);
+      return{d:sd,t:s.t,url:s.url,fromSch:true,schUrl:s.url,
+             g:sc.g,v:sc.v,a:sc.a,tot:sc.g+sc.v+sc.a};
+    });
+
+  // 3. 合併：學系自有 ＋ 校網獨家串接，按日期降序
+  const af=[...deptAf,...schOnly].sort((a,b)=>b.d.localeCompare(a.d));
+
+  d.af=af;
+  d.cnt=af.length;
+  d.last=af[0]?.d||'—';
+  d.avgSc=af.length?Math.round(af.reduce((s,n)=>s+n.tot,0)/af.length):0;
+  d.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
+  d.fromSch=af.filter(n=>n.fromSch).length;  // 校網介接（含轉貼＋獨家）
+  d.self=af.filter(n=>!n.fromSch).length;     // 學系純自建
+});
+
+let cur=null;
+
+// Build sidebar
+function buildSB(){
+  let h=`<div class="di" id="di-overview" onclick="sel('overview')" style="border-bottom:1px solid #dddcd4;margin-bottom:4px;padding-bottom:.55rem;">
+    <span class="dot" style="background:#185FA5;width:9px;height:9px;"></span><span class="di-n" style="font-weight:700;color:#185FA5;"><i class="ti ti-list-numbers" style="font-size:13px;"></i> 各學系新聞數量總覽</span>
+  </div>
+  <div class="col-h" style="color:#534AB7;margin-top:6px;">校級</div>
+  <div class="di" id="di-fcu" onclick="sel('fcu')"><span class="dot" style="background:#534AB7;width:9px;height:9px;"></span><span class="di-n" style="font-weight:600;">逢甲大學官方網站</span></div>`;
+  cols.forEach(c=>{
+    h+=`<div class="col-h">${c.name}</div>`;
+    D.filter(d=>d.col===c.k).forEach(d=>{
+      h+=`<div class="di" id="di-${d.id}" onclick="sel('${d.id}')"><span class="dot" style="background:${dotC(d.cnt)}"></span><span class="di-n">${d.name}</span></div>`;
+    });
+  });
+  document.getElementById('sb-body').innerHTML=h;
+}
+
+// Legend HTML
+const legendHTML=`<div class="legend">
+  <span class="leg-i"><span class="dot" style="background:#1D9E75;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> ≥15則（達標）</span>
+  <span class="leg-i"><span class="dot" style="background:#EF9F27;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 5–14則（進行中）</span>
+  <span class="leg-i"><span class="dot" style="background:#E24B4A;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 1–4則（需加強）</span>
+  <span class="leg-i"><span class="dot" style="background:#B4B2A9;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 0則（無記錄）</span>
+</div>`;
+
+function sel(id){
+  if(cur)document.getElementById('di-'+cur)?.classList.remove('act');
+  cur=id;
+  document.getElementById('di-'+id)?.classList.add('act');
+
+  // ── 新聞撰寫小幫手 ──
+  if(id==='writer'){
+    const deptOpts=D.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
+    let h=`
+    <div class="card">
+      <div style="font-size:17px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-pencil" style="color:#534AB7;"></i> 新聞撰寫小幫手</div>
+      <div style="font-size:12.5px;color:#888780;line-height:1.6;">填寫活動資訊 → 產生提示詞 → 複製貼到免費的 AI 聊天室（Gemini 或 Claude）→ 把回覆的新聞稿複製回來使用。完全免費，不需要任何帳號設定。</div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：填寫活動資訊</div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">學系／單位</label>
+        <select id="wDept" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;">
+          <option value="">（請選擇，或自行於下方描述中註明）</option>
+          ${deptOpts}
+        </select>
+      </div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動標題（選填，可留空讓 AI 自行擬定）</label>
+        <input id="wTitle" type="text" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;" placeholder="例如：資工系黑客松活動">
+      </div>
+      <div>
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動描述（請盡量詳細：時間、地點、人數、特色、成果等）</label>
+        <textarea id="wContent" rows="6" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="例如：資訊工程系於6月20日舉辦24小時黑客松，共15組學生參加，由AI守護者團隊以智慧防災系統獲得冠軍，活動現場氣氛熱烈..."></textarea>
+      </div>
+      <button onclick="buildWriterPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;">
+        <i class="ti ti-wand"></i> 產生提示詞
+      </button>
+    </div>
+    <div class="card" id="wOutputCard" style="display:none;">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
+      <textarea id="wOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:12.5px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button onclick="copyWriterPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
+          <i class="ti ti-copy"></i> 複製提示詞
+        </button>
+        <a href="https://gemini.google.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Gemini
+        </a>
+        <a href="https://claude.ai" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Claude
+        </a>
+      </div>
+      <div id="wCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
+    </div>`;
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
+
+  // ── 各學系新聞數量總覽 ──
+  if(id==='overview'){
+    const sorted=[...D].sort((a,b)=>b.cnt-a.cnt);
+    const reach=sorted.filter(d=>d.cnt>=TGT).length;
+    const notReach=D.length-reach;
+    let h=legendHTML+`
+    <div class="sg" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sc"><div class="sv" style="color:#185FA5;">${D.length}</div><div class="sl"><i class="ti ti-building-community" style="font-size:13px;"></i><br>系所總數</div></div>
+      <div class="sc"><div class="sv" style="color:#1D9E75;">${reach}</div><div class="sl"><i class="ti ti-circle-check" style="font-size:13px;"></i><br>已達標系所數</div></div>
+      <div class="sc"><div class="sv" style="color:#E24B4A;">${notReach}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>未達標系所數</div></div>
+    </div>
+    <div class="tbl-wrap">
+      <div class="tbl-hdr"><i class="ti ti-list-numbers"></i><span>各學系新聞數量總覽（共 ${D.length} 個單位｜114學年度累計，點列可進入該系詳情）</span></div>
+      <table><thead><tr>
+        <th style="width:36px;text-align:center;">#</th>
+        <th>學系／單位</th>
+        <th style="width:130px;">所屬學院</th>
+        <th style="width:75px;text-align:center;">新聞數量</th>
+        <th style="width:110px;">達標進度</th>
+        <th style="width:60px;text-align:center;">狀態</th>
+      </tr></thead><tbody>
+        ${sorted.map((d,i)=>{
+          const col=cols.find(c=>c.k===d.col);
+          const pct=Math.min(100,Math.round((d.cnt/TGT)*100));
+          const dc=dotC(d.cnt);
+          return `<tr style="cursor:pointer;" onclick="sel('${d.id}')">
+            <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+            <td><span class="ttl">${d.name}</span></td>
+            <td style="font-size:12.5px;color:#888780;">${col?.name||''}</td>
+            <td style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
+            <td><div class="pb-bg" style="height:8px;"><div class="pb-f" style="width:${pct}%;background:${dc};"></div></div></td>
+            <td style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
+          </tr>`;
+        }).join('')}
+      </tbody></table>
+    </div>`;
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
+
+  // ── 校級檢視 ──
+  if(id==='fcu'){
+    const s=SCHOOL;
+    const pct=Math.min(100,Math.round((s.cnt/TGT)*100));
+    let h=`
+    <div class="card" style="background:#1C1C2E;border-color:#1C1C2E;color:#fff;padding:1rem 1.25rem;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">
+        <div>
+          <div style="font-size:17px;font-weight:700;">${s.name}</div>
+          <div style="font-size:11px;color:#9E9DBF;margin-top:4px;">資料來源：${s.src}</div>
+          <div style="font-size:10px;color:#7A79A0;margin-top:3px;">⚠ 官網使用 JavaScript 動態載入，靜態抓取限制為最新 ${s.cnt} 則</div>
+        </div>
+        <a href="${s.url}" target="_blank" style="font-size:11px;padding:5px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;text-decoration:none;color:#fff;white-space:nowrap;">
+          <i class="ti ti-external-link"></i> 前往校官網
+        </a>
+      </div>
+    </div>
+    <div class="sg" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sc"><div class="sv" style="color:#534AB7;">${s.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>擷取新聞則數</div></div>
+      <div class="sc"><div class="sv" style="color:#BA7517;">${s.avgSc}</div><div class="sl"><i class="ti ti-star" style="font-size:13px;"></i><br>AI平均分數</div></div>
+      <div class="sc"><div class="sv" style="color:#185FA5;">${s.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
+    </div>
+    <div class="card" style="padding:.85rem 1.2rem .7rem;">
+      <div style="font-size:11px;font-weight:700;color:#5F5E5A;margin-bottom:10px;">
+        <i class="ti ti-chart-line" style="font-size:11px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（近 30 天｜/news/ 區段）
+        <span style="float:right;font-size:10px;font-weight:400;color:#B4B2A9;">更新：${GA4_FCU.fetchedAt}</span>
+      </div>
+      <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
+        <div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">${GA4_FCU.summary.pv.toLocaleString()}</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>
+        <div class="sc"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
+        <div class="sc"><div class="sv" style="color:#534AB7;font-size:22px;">${GA4_FCU.summary.sessions.toLocaleString()}</div><div class="sl"><i class="ti ti-device-analytics" style="font-size:12px;"></i><br>工作階段</div></div>
+        <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
+      </div>
+    </div>
+    <div class="tbl-wrap" style="margin-bottom:.9rem;">
+      <div class="tbl-hdr"><i class="ti ti-trending-up"></i><span>熱門新聞頁面 Top ${GA4_FCU.topPages.length}（依瀏覽次數）</span></div>
+      <table><thead><tr>
+        <th style="width:28px;text-align:center;">#</th>
+        <th>標題</th>
+        <th style="width:100px;text-align:right;">瀏覽次數</th>
+      </tr></thead><tbody>
+        ${GA4_FCU.topPages.map((p,i)=>`<tr>
+          <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+          <td><a href="${s.url.replace(/\/news\/?$/,'')}${p.path}" target="_blank" class="ttl" style="text-decoration:none;color:#1a1a18;">${p.title}</a></td>
+          <td style="text-align:right;font-weight:700;color:#185FA5;">${p.pv.toLocaleString()}</td>
+        </tr>`).join('')}
+      </tbody></table>
+    </div>`;
+    if(s.af.length){
+      // 學系名稱 → dept id 對照（用於校級面板點擊跳轉）
+      const DEPT_CLICK=new Map(D.map(x=>[x.name,x.id]));
+      h+=`<div class="tbl-wrap">
+      <div class="tbl-hdr" style="justify-content:space-between;">
+        <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，共 ${s.af.length} 則｜AI 品質評分｜串接學系）</span>
+        <span style="font-size:12px;color:#888780;font-weight:400;cursor:help;" title="${RUBRIC_TIP}">ⓘ 評分說明</span>
+      </div>
+      <table><thead><tr>
+        <th style="width:28px;text-align:center;">#</th>
+        <th>標題</th>
+        <th style="width:90px;">發布日期</th>
+        <th style="width:160px;">串接學系／單位</th>
+        <th style="width:68px;">等級</th>
+        <th style="width:140px;text-align:right;cursor:help;" title="${RUBRIC_TIP}">AI評分 /100 ⓘ</th>
+      </tr></thead><tbody>`;
+      s.af.forEach((n,i)=>{
+        const gr=grd(n.tot);
+        // 產生串接學系標籤（僅顯示在 D 中有的系所）
+        const deptTags=(n.cats||[]).map(c=>{
+          const did=DEPT_CLICK.get(c);
+          return did
+            ?`<span onclick="sel('${did}')" style="cursor:pointer;display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#EAF0FB;color:#185FA5;margin:2px;line-height:1.5;" title="點擊查看 ${c}">${c}</span>`
+            :`<span style="display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#f0efe8;color:#888780;margin:2px;line-height:1.5;">${c}</span>`;
+        }).join('');
+        h+=`<tr>
+          <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+          <td><span class="ttl" title="點擊前往校網原文" onclick="window.open('${n.url}','_blank')">${n.t}</span></td>
+          <td style="font-size:11px;color:#888780;white-space:nowrap;">${n.d}</td>
+          <td style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
+          <td><span class="gb ${gr.c}">${gr.l}</span></td>
+          <td>
+            <div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
+              <div class="sbrs">
+                <div class="sbr"><span class="sbl">GEO(40)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/40*100)}%;background:#888780;"></div></div><span class="sbv">${n.g}</span></div>
+                <div class="sbr"><span class="sbl">視覺(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/30*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
+                <div class="sbr"><span class="sbl">語氣(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/30*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+              </div>
+              <span class="stot">${n.tot}</span>
+            </div>
+          </td>
+        </tr>`;
+      });
+      h+=`</tbody></table></div>`;
+    }
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
+
+  const d=D.find(x=>x.id===id);
+  const col=cols.find(c=>c.k===d.col);
+  const pct=Math.min(100,Math.round((d.cnt/TGT)*100));
+  const rem=Math.max(0,TGT-d.cnt);
+
+  let h=legendHTML+`
+  <div class="card" style="padding:.8rem 1.4rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
+      <div>
+        <div class="dn">${d.name}</div>
+        <div class="ds" style="margin-top:3px;">${col?.name}｜<a href="${d.url}" target="_blank">${d.url.replace('https://','').replace('/news/','')}</a>｜<i class="ti ti-refresh" style="font-size:10px;"></i> 最後更新：${d.last}</div>
+      </div>
+      <a href="${d.url}" target="_blank" style="font-size:11px;padding:5px 12px;background:#f7f6f2;border:1px solid #d3d1c7;border-radius:6px;text-decoration:none;color:#5F5E5A;white-space:nowrap;flex-shrink:0;">
+        <i class="ti ti-external-link"></i> 前往系所官網
+      </a>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="sc"><div class="sv" style="color:#1D9E75;">${d.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>新聞數量</div></div>
+    <div class="sc"><div class="sv" style="color:#185FA5;">${d.fromSch}</div><div class="sl"><i class="ti ti-school" style="font-size:13px;"></i><br>來自校網</div></div>
+    <div class="sc"><div class="sv" style="color:#534AB7;">${d.self}</div><div class="sl"><i class="ti ti-building" style="font-size:13px;"></i><br>學系自行建置</div></div>
+    <div class="sc"><div class="sv" style="color:#BA7517;">${d.avgSc}</div><div class="sl"><i class="ti ti-star" style="font-size:13px;"></i><br>自建平均分</div></div>
+    <div class="sc"><div class="sv" style="color:#BA7517;">${d.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
+  </div>
+  <div class="card" style="padding:.85rem 1.2rem .7rem;">
+    <div style="font-size:16px;font-weight:700;color:#5F5E5A;margin-bottom:7px;">
+      <i class="ti ti-chart-bar" style="font-size:10px;color:#1D9E75;margin-right:3px;"></i>月發文趨勢（114學年度）
+      <span style="float:right;font-size:9px;font-weight:400;color:#B4B2A9;">
+        <span style="display:inline-block;width:6px;height:6px;background:#1D9E75;border-radius:2px;margin-right:2px;"></span>≥5則
+        <span style="display:inline-block;width:6px;height:6px;background:#5DCAA5;border-radius:2px;margin:0 2px 0 6px;"></span>1–4則
+        <span style="display:inline-block;width:6px;height:6px;background:#ebe9e0;border-radius:2px;margin:0 2px 0 6px;"></span>無
+      </span>
+    </div>
+    ${buildMonthChart(d.af)}
+  </div>
+  <div class="card">
+    <div class="pb-r">
+      <span><i class="ti ti-flag" style="font-size:12px;"></i> 114學年度累計：${d.cnt}則（${MONTHS}個月 / 平均${d.mavg}則/月）</span>
+      <span>目標 ${TGT} 則</span>
+    </div>
+    <div class="pb-bg"><div class="pb-f" style="width:${pct}%"></div></div>
+    <div class="pb-n">${pct}%&nbsp;&nbsp;${rem>0?`✓ 再發布 <strong>${rem}</strong> 則即可達標`:'🎉 已達標！'}</div>
+  </div>`;
+
+  if(d.af.length){
+    const schPct=d.cnt?Math.round(d.fromSch/d.cnt*100):0;
+    const selfPct=100-schPct;
+    h+=`<div class="tbl-wrap">
+    <div class="tbl-hdr" style="flex-direction:column;align-items:flex-start;gap:6px;">
+      <div style="display:flex;align-items:center;gap:6px;width:100%;">
+        <i class="ti ti-sparkles"></i>
+        <span>114學年度新聞（${CUT} 起，共 ${d.cnt} 則｜AI品質評分）</span>
+        <span style="margin-left:auto;font-size:10px;color:#888780;">
+          <span style="color:#185FA5;font-weight:600;">校網介接 ${d.fromSch} 則</span>
+          ｜
+          <span style="color:#3B6D11;font-weight:600;">學系自建 ${d.self} 則</span>
+        </span>
+      </div>
+      <div style="width:100%;height:5px;background:#f0efe8;border-radius:3px;overflow:hidden;">
+        <div style="height:100%;width:${schPct}%;background:#185FA5;border-radius:3px;float:left;"></div>
+        <div style="height:100%;width:${selfPct}%;background:#3B6D11;border-radius:3px;float:left;"></div>
+      </div>
+    </div>
+    <table><thead><tr>
+      <th style="width:30px;text-align:center;">#</th>
+      <th>標題</th>
+      <th style="width:60px;text-align:center;">來源</th>
+      <th style="width:90px;">發佈日期</th>
+      <th style="width:68px;">等級</th>
+      <th style="width:140px;text-align:right;cursor:help;" title="${RUBRIC_TIP}">AI評分 /100 ⓘ</th>
+    </tr></thead><tbody>`;
+    d.af.forEach((n,i)=>{
+      const gr=grd(n.tot);
+      const srcBdg=n.fromSch
+        ?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#185FA5;color:#fff;font-weight:700;letter-spacing:.03em;" title="此則新聞來自逢甲大學校官網介接">校網</span>`
+        :`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#F0F9EC;color:#3B6D11;font-weight:600;border:1px solid #C8E4B8;">自建</span>`;
+      const titleClick=n.fromSch&&n.schUrl
+        ?`window.open('${n.schUrl}','_blank')`
+        :`window.open('${d.url}','_blank')`;
+      h+=`<tr>
+        <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+        <td><span class="ttl" title="${n.fromSch?'校網介接（點擊前往校網原文）':'學系自建（點擊前往系所官網）'}" onclick="${titleClick}">${n.t}</span></td>
+        <td style="text-align:center;">${srcBdg}</td>
+        <td style="font-size:11px;color:#888780;">${n.d}</td>
+        <td><span class="gb ${gr.c}">${gr.l}</span></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
+            <div class="sbrs">
+              <div class="sbr"><span class="sbl" title="資訊結構與事件即時性（含GEO優化）">時效(40)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/40*100)}%;background:#534AB7;"></div></div><span class="sbv">${n.g}</span></div>
+              <div class="sbr"><span class="sbl" title="視覺品質與版面（★依標題類型推估，非實際圖片分析）">★視覺(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/30*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
+              <div class="sbr"><span class="sbl" title="語氣與真誠度">語氣(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/30*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+            </div>
+            <span class="stot">${n.tot}</span>
+          </div>
+        </td>
+      </tr>`;
+    });
+    h+=`</tbody></table></div>`;
+  } else {
+    h+=`<div class="card empty"><i class="ti ti-inbox-off" style="font-size:28px;display:block;margin-bottom:.5rem;"></i>此系所在統計期間（2025.08.01 起）內暫無新聞記錄</div>`;
+  }
+
+  document.getElementById('mn').innerHTML=h;
+  // scroll main to top
+  document.getElementById('mn').scrollTop=0;
+}
+
+// ── 新聞撰寫小幫手：產生提示詞 ──
+function buildWriterPrompt(){
+  const dept=document.getElementById('wDept').value;
+  const title=document.getElementById('wTitle').value.trim();
+  const content=document.getElementById('wContent').value.trim();
+
+  if(content.length<10){
+    alert('請填寫至少 10 字的活動描述');
+    return;
+  }
+
+  const prompt=`你是逢甲大學秘書處公共事務組的新聞撰稿助手。請依照以下「校園新聞評分標準 v3.0」撰寫新聞稿，並自評分數。
+
+【資訊結構與事件即時性 /40】
+- 標題要包含具體日期感與GEO結構化實體（數字/縮寫/排名等），例如「OO系3位學生勇奪全國賽冠軍」
+- 內文開頭即點出事件重點，避免冗長鋪陳
+
+【視覺品質與版面 /30】
+- 若描述中有提及活動現場、典禮、競賽、展覽等畫面感強的場景，內文要描述具體畫面細節（人物動作、現場氛圍）
+- 若是純公告/研究成果類，則著重條理清晰的分段
+
+【語氣與真誠度 /30】
+- 避免「展現量能」「再創佳績」「大放異彩」等公關套話與AI機器感詞彙
+- 採用真誠直白、有人味的敘事語氣（可用「分享」「體驗」「攜手」等動詞）
+- 避免官僚語氣或上對下指導語氣
+
+請輸出以下格式（純文字，不要用 markdown 符號）：
+
+【建議標題】
+（一句話標題，15-25字，含GEO結構化實體）
+
+【新聞稿草稿】
+（200-350字，符合上述三項標準）
+
+【自評分數】
+時效與GEO結構：X/40
+視覺品質與版面：X/30
+語氣與真誠度：X/30
+總分：X/100
+
+【評分理由】
+（簡短說明三個維度的評分依據，50字以內）
+
+──────────
+
+學系/單位：${dept||'未指定'}
+活動標題（草稿）：${title||'（未提供，請自行擬定）'}
+
+活動描述內容：
+${content}`;
+
+  document.getElementById('wOutput').value=prompt;
+  document.getElementById('wOutputCard').style.display='block';
+  document.getElementById('wOutputCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyWriterPrompt(){
+  const ta=document.getElementById('wOutput');
+  ta.select();
+  navigator.clipboard?.writeText(ta.value).then(()=>{
+    const msg=document.getElementById('wCopyMsg');
+    msg.style.display='block';
+    setTimeout(()=>msg.style.display='none',2500);
+  }).catch(()=>{
+    document.execCommand('copy');
+  });
+}
+
+buildSB();
+sel('aero');
+</script>
+</body>
+</html>
