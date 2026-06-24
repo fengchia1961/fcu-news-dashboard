@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -92,8 +92,8 @@ tr:hover td{background:#faf9f6;}
       <div class="sb-t">逢甲大學各系所<br>新聞監測儀表板</div>
     </div>
     <div class="sb-m">秘書處公共事務組<br>2026-06-16 更新｜新到期：2025.08.01</div>
-    <button class="sb-btn" onclick="alert('請連接 Claude Code 使用新聞撰寫工具')">
-      <i class="ti ti-pencil"></i> 新聞撰寫工具
+    <button class="sb-btn" onclick="sel('writer')">
+      <i class="ti ti-pencil"></i> 新聞撰寫小幫手
     </button>
   </div>
   <div class="sb-body" id="sb-body"></div>
@@ -273,7 +273,6 @@ function grd(tot){
 }
 function dotC(n){
   if(n>=15)return'#1D9E75';
-  if(n>=10)return'#5DCAA5';
   if(n>=5)return'#EF9F27';
   if(n>=1)return'#E24B4A';
   return'#B4B2A9';
@@ -1037,7 +1036,10 @@ let cur=null;
 
 // Build sidebar
 function buildSB(){
-  let h=`<div class="col-h" style="color:#534AB7;margin-top:6px;">校級</div>
+  let h=`<div class="di" id="di-overview" onclick="sel('overview')" style="border-bottom:1px solid #dddcd4;margin-bottom:4px;padding-bottom:.55rem;">
+    <span class="dot" style="background:#185FA5;width:9px;height:9px;"></span><span class="di-n" style="font-weight:700;color:#185FA5;"><i class="ti ti-list-numbers" style="font-size:13px;"></i> 各學系新聞數量總覽</span>
+  </div>
+  <div class="col-h" style="color:#534AB7;margin-top:6px;">校級</div>
   <div class="di" id="di-fcu" onclick="sel('fcu')"><span class="dot" style="background:#534AB7;width:9px;height:9px;"></span><span class="di-n" style="font-weight:600;">逢甲大學官方網站</span></div>`;
   cols.forEach(c=>{
     h+=`<div class="col-h">${c.name}</div>`;
@@ -1060,6 +1062,97 @@ function sel(id){
   if(cur)document.getElementById('di-'+cur)?.classList.remove('act');
   cur=id;
   document.getElementById('di-'+id)?.classList.add('act');
+
+  // ── 新聞撰寫小幫手 ──
+  if(id==='writer'){
+    const deptOpts=D.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
+    let h=`
+    <div class="card">
+      <div style="font-size:17px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-pencil" style="color:#534AB7;"></i> 新聞撰寫小幫手</div>
+      <div style="font-size:12.5px;color:#888780;line-height:1.6;">填寫活動資訊 → 產生提示詞 → 複製貼到免費的 AI 聊天室（Gemini 或 Claude）→ 把回覆的新聞稿複製回來使用。完全免費，不需要任何帳號設定。</div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：填寫活動資訊</div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">學系／單位</label>
+        <select id="wDept" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;">
+          <option value="">（請選擇，或自行於下方描述中註明）</option>
+          ${deptOpts}
+        </select>
+      </div>
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動標題（選填，可留空讓 AI 自行擬定）</label>
+        <input id="wTitle" type="text" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;" placeholder="例如：資工系黑客松活動">
+      </div>
+      <div>
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動描述（請盡量詳細：時間、地點、人數、特色、成果等）</label>
+        <textarea id="wContent" rows="6" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="例如：資訊工程系於6月20日舉辦24小時黑客松，共15組學生參加，由AI守護者團隊以智慧防災系統獲得冠軍，活動現場氣氛熱烈..."></textarea>
+      </div>
+      <button onclick="buildWriterPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;">
+        <i class="ti ti-wand"></i> 產生提示詞
+      </button>
+    </div>
+    <div class="card" id="wOutputCard" style="display:none;">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
+      <textarea id="wOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:12.5px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button onclick="copyWriterPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
+          <i class="ti ti-copy"></i> 複製提示詞
+        </button>
+        <a href="https://gemini.google.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Gemini
+        </a>
+        <a href="https://claude.ai" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Claude
+        </a>
+      </div>
+      <div id="wCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
+    </div>`;
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
+
+  // ── 各學系新聞數量總覽 ──
+  if(id==='overview'){
+    const sorted=[...D].sort((a,b)=>b.cnt-a.cnt);
+    const reach=sorted.filter(d=>d.cnt>=TGT).length;
+    const notReach=D.length-reach;
+    let h=legendHTML+`
+    <div class="sg" style="grid-template-columns:repeat(3,1fr);">
+      <div class="sc"><div class="sv" style="color:#185FA5;">${D.length}</div><div class="sl"><i class="ti ti-building-community" style="font-size:13px;"></i><br>系所總數</div></div>
+      <div class="sc"><div class="sv" style="color:#1D9E75;">${reach}</div><div class="sl"><i class="ti ti-circle-check" style="font-size:13px;"></i><br>已達標系所數</div></div>
+      <div class="sc"><div class="sv" style="color:#E24B4A;">${notReach}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>未達標系所數</div></div>
+    </div>
+    <div class="tbl-wrap">
+      <div class="tbl-hdr"><i class="ti ti-list-numbers"></i><span>各學系新聞數量總覽（共 ${D.length} 個單位｜114學年度累計，點列可進入該系詳情）</span></div>
+      <table><thead><tr>
+        <th style="width:36px;text-align:center;">#</th>
+        <th>學系／單位</th>
+        <th style="width:130px;">所屬學院</th>
+        <th style="width:75px;text-align:center;">新聞數量</th>
+        <th style="width:110px;">達標進度</th>
+        <th style="width:60px;text-align:center;">狀態</th>
+      </tr></thead><tbody>
+        ${sorted.map((d,i)=>{
+          const col=cols.find(c=>c.k===d.col);
+          const pct=Math.min(100,Math.round((d.cnt/TGT)*100));
+          const dc=dotC(d.cnt);
+          return `<tr style="cursor:pointer;" onclick="sel('${d.id}')">
+            <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+            <td><span class="ttl">${d.name}</span></td>
+            <td style="font-size:12.5px;color:#888780;">${col?.name||''}</td>
+            <td style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
+            <td><div class="pb-bg" style="height:8px;"><div class="pb-f" style="width:${pct}%;background:${dc};"></div></div></td>
+            <td style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
+          </tr>`;
+        }).join('')}
+      </tbody></table>
+    </div>`;
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
 
   // ── 校級檢視 ──
   if(id==='fcu'){
@@ -1264,6 +1357,74 @@ function sel(id){
   document.getElementById('mn').innerHTML=h;
   // scroll main to top
   document.getElementById('mn').scrollTop=0;
+}
+
+// ── 新聞撰寫小幫手：產生提示詞 ──
+function buildWriterPrompt(){
+  const dept=document.getElementById('wDept').value;
+  const title=document.getElementById('wTitle').value.trim();
+  const content=document.getElementById('wContent').value.trim();
+
+  if(content.length<10){
+    alert('請填寫至少 10 字的活動描述');
+    return;
+  }
+
+  const prompt=`你是逢甲大學秘書處公共事務組的新聞撰稿助手。請依照以下「校園新聞評分標準 v3.0」撰寫新聞稿，並自評分數。
+
+【資訊結構與事件即時性 /40】
+- 標題要包含具體日期感與GEO結構化實體（數字/縮寫/排名等），例如「OO系3位學生勇奪全國賽冠軍」
+- 內文開頭即點出事件重點，避免冗長鋪陳
+
+【視覺品質與版面 /30】
+- 若描述中有提及活動現場、典禮、競賽、展覽等畫面感強的場景，內文要描述具體畫面細節（人物動作、現場氛圍）
+- 若是純公告/研究成果類，則著重條理清晰的分段
+
+【語氣與真誠度 /30】
+- 避免「展現量能」「再創佳績」「大放異彩」等公關套話與AI機器感詞彙
+- 採用真誠直白、有人味的敘事語氣（可用「分享」「體驗」「攜手」等動詞）
+- 避免官僚語氣或上對下指導語氣
+
+請輸出以下格式（純文字，不要用 markdown 符號）：
+
+【建議標題】
+（一句話標題，15-25字，含GEO結構化實體）
+
+【新聞稿草稿】
+（200-350字，符合上述三項標準）
+
+【自評分數】
+時效與GEO結構：X/40
+視覺品質與版面：X/30
+語氣與真誠度：X/30
+總分：X/100
+
+【評分理由】
+（簡短說明三個維度的評分依據，50字以內）
+
+──────────
+
+學系/單位：${dept||'未指定'}
+活動標題（草稿）：${title||'（未提供，請自行擬定）'}
+
+活動描述內容：
+${content}`;
+
+  document.getElementById('wOutput').value=prompt;
+  document.getElementById('wOutputCard').style.display='block';
+  document.getElementById('wOutputCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyWriterPrompt(){
+  const ta=document.getElementById('wOutput');
+  ta.select();
+  navigator.clipboard?.writeText(ta.value).then(()=>{
+    const msg=document.getElementById('wCopyMsg');
+    msg.style.display='block';
+    setTimeout(()=>msg.style.display='none',2500);
+  }).catch(()=>{
+    document.execCommand('copy');
+  });
 }
 
 buildSB();
