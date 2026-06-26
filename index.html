@@ -1474,29 +1474,36 @@ function sel(id){
 
   // ── 新聞撰寫小幫手 ──
   if(id==='writer'){
-    const deptOpts=D.map(d=>`<option value="${d.name}">${d.name}</option>`).join('');
+    const wField=(id,label,ph)=>`
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">${label}</label>
+        <input id="${id}" type="text" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;" placeholder="${ph}">
+      </div>`;
+    const wArea=(id,label,ph,rows)=>`
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">${label}</label>
+        <textarea id="${id}" rows="${rows}" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="${ph}"></textarea>
+      </div>`;
     let h=`
     <div class="card">
       <div style="font-size:17px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-pencil" style="color:#534AB7;"></i> 新聞撰寫小幫手</div>
-      <div style="font-size:12.5px;color:#888780;line-height:1.6;">填寫活動資訊 → 產生提示詞 → 複製貼到免費的 AI 聊天室（Gemini 或 Claude）→ 把回覆的新聞稿複製回來使用。完全免費，不需要任何帳號設定。</div>
+      <div style="font-size:12.5px;color:#888780;line-height:1.6;">填寫活動資訊 → 產生提示詞 → 複製貼到免費的 AI 聊天室（Gemini 或 Claude）→ 把回覆的新聞稿複製回來使用。完全免費，不需要任何帳號設定。所有欄位皆為選填，可依實際情況填寫。</div>
     </div>
     <div class="card">
-      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：填寫活動資訊</div>
-      <div style="margin-bottom:10px;">
-        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">學系／單位</label>
-        <select id="wDept" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;">
-          <option value="">（請選擇，或自行於下方描述中註明）</option>
-          ${deptOpts}
-        </select>
-      </div>
-      <div style="margin-bottom:10px;">
-        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動標題（選填，可留空讓 AI 自行擬定）</label>
-        <input id="wTitle" type="text" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;" placeholder="例如：資工系黑客松活動">
-      </div>
-      <div>
-        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">活動描述（請盡量詳細：時間、地點、人數、特色、成果等）</label>
-        <textarea id="wContent" rows="6" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="例如：資訊工程系於6月20日舉辦24小時黑客松，共15組學生參加，由AI守護者團隊以智慧防災系統獲得冠軍，活動現場氣氛熱烈..."></textarea>
-      </div>
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：填寫重要資訊</div>
+      ${wField('wDept','學系／單位','例如：資訊工程學系')}
+      ${wField('wTheme','活動主題／競賽主題','例如：114學年度系黑客松競賽')}
+      ${wField('wTime','活動時間','例如：2026年6月20日（六）09:00-18:00')}
+      ${wField('wPlace','活動地點','例如：資訊大樓國際會議廳')}
+      ${wField('wHost','活動主辦單位','例如：資訊工程學系')}
+      ${wField('wCohost','活動協辦單位','例如：學生會、產學營運與推廣處')}
+      ${wField('wAttendees','參與人數/組數','例如：15組、共60位學生')}
+      ${wArea('wContent','活動描述（請盡量詳細：活動內容、亮點、特色、成果等）','例如：資訊工程系於6月20日舉辦24小時黑客松，由AI守護者團隊以智慧防災系統獲得冠軍，活動現場氣氛熱烈...',5)}
+      ${wArea('wFaculty','師長致詞內容','例如：系主任在開幕致詞時提到...',3)}
+      ${wArea('wGuest','貴賓致詞內容','例如：企業合作貴賓致詞表示...',3)}
+      ${wArea('wFeedback','學生參與活動／競賽獲獎心得','例如：得獎學生分享這次比賽的過程與收穫...',3)}
+      ${wArea('wAttach','活動附件提醒（講者簡報、競賽獲獎作品簡報、活動海報等，此處僅能文字備註，無法上傳檔案）','請簡述附件內容，例如：活動海報一張、獲獎作品簡報PPT一份。若有實際檔案，請在貼上提示詞後直接於 Gemini／Claude 對話框一併上傳檔案。',2)}
+      ${wArea('wAudience','目標受眾／溝通重點（選填）','例如：潛在學生與家長、產學合作企業、教育圈等；或特定想強調的溝通重點',2)}
       <button onclick="buildWriterPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;">
         <i class="ti ti-wand"></i> 產生提示詞
       </button>
@@ -1513,6 +1520,12 @@ function sel(id){
         </a>
         <a href="https://claude.ai" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Claude
+        </a>
+        <a href="https://chatgpt.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 ChatGPT
+        </a>
+        <a href="https://copilot.microsoft.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Copilot
         </a>
       </div>
       <div id="wCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
@@ -1788,54 +1801,81 @@ function sel(id){
 
 // ── 新聞撰寫小幫手：產生提示詞 ──
 function buildWriterPrompt(){
-  const dept=document.getElementById('wDept').value;
-  const title=document.getElementById('wTitle').value.trim();
+  const dept=document.getElementById('wDept').value.trim();
+  const theme=document.getElementById('wTheme').value.trim();
+  const time=document.getElementById('wTime').value.trim();
+  const place=document.getElementById('wPlace').value.trim();
+  const attendees=document.getElementById('wAttendees').value.trim();
+  const host=document.getElementById('wHost').value.trim();
+  const cohost=document.getElementById('wCohost').value.trim();
   const content=document.getElementById('wContent').value.trim();
+  const faculty=document.getElementById('wFaculty').value.trim();
+  const guest=document.getElementById('wGuest').value.trim();
+  const feedback=document.getElementById('wFeedback').value.trim();
+  const attach=document.getElementById('wAttach').value.trim();
+  const audience=document.getElementById('wAudience').value.trim();
 
-  if(content.length<10){
-    alert('請填寫至少 10 字的活動描述');
-    return;
-  }
+  const lineField=(label,val)=>val?(label+'：'+val+'\n'):'';
+  const block=(label,val)=>val?('\n'+label+'：\n'+val+'\n'):'';
 
-  const prompt=`你是逢甲大學秘書處公共事務組的新聞撰稿助手。請依照以下「校園新聞評分標準 v3.0」撰寫新聞稿，並自評分數。
+  const infoLines=
+    lineField('學系/單位',dept)+
+    lineField('活動主題/競賽主題',theme)+
+    lineField('活動時間',time)+
+    lineField('活動地點',place)+
+    lineField('參與人數',attendees)+
+    lineField('活動主辦單位',host)+
+    lineField('活動協辦單位',cohost);
 
-【資訊結構與事件即時性 /40】
-- 標題要包含具體日期感與GEO結構化實體（數字/縮寫/排名等），例如「OO系3位學生勇奪全國賽冠軍」
-- 內文開頭即點出事件重點，避免冗長鋪陳
+  const prompt=`請扮演專業的公關與新聞發布專家。請以「優質台灣記者」的身分、視角和語氣來撰寫，產出一篇能吸引線上記者目光、具備高刊登率，且同時符合 Google SEO 與 AI 搜尋引擎最佳化（GEO）標準的優質新聞稿。
 
-【視覺品質與版面 /30】
-- 若描述中有提及活動現場、典禮、競賽、展覽等畫面感強的場景，內文要描述具體畫面細節（人物動作、現場氛圍）
-- 若是純公告/研究成果類，則著重條理清晰的分段
+我會提供你一份新聞稿的原始素材（素材可能包含活動資訊、長官致詞、學生心得或相關附件，視當次提供內容而定）。【最高指導原則】：若素材中缺乏具體數據、人名或職稱等必要資訊，絕對不可自行捏造，請直接使用 [請填入OO資訊] 標示，提醒我後續補上。若素材中缺乏某項結構（如引言），請直接略過，切勿自行發明。
 
-【語氣與真誠度 /30】
-- 避免「展現量能」「再創佳績」「大放異彩」等公關套話與AI機器感詞彙
-- 採用真誠直白、有人味的敘事語氣（可用「分享」「體驗」「攜手」等動詞）
-- 避免官僚語氣或上對下指導語氣
+撰寫時，請務必「嚴格遵守」以下所有原則：
 
-請輸出以下格式（純文字，不要用 markdown 符號）：
+【一、結構與標題】
+1. 精準標題：在30字內濃縮5W1H核心亮點，必須包含具體數據或結構化實體。絕對避免「OO單位舉辦OO活動」這種無資訊量的報告體標題。
+2. 倒金字塔結構：
+- 第一段（破題）：包含最核心的5W1H，前100字就必須呈現新聞價值。請自我檢查：若整篇稿件只留第一段，這則新聞的價值是否依然成立？
+- 第二段（補充）：展開重要的細節與數據佐證。
+- 第三段（引言與背景）：放入素材中提供的長官引言、參與者心得及相關背景資訊。
+
+【二、語氣與用字】
+1. 真誠直白、具備人味：語氣要真誠直接，陳述事實。絕對避免「秉持無與倫比的前瞻性」、「展現量能」、「大放異彩」等空泛的包裝詞彙與AI機器感字眼。
+2. 數據取代形容詞：減少使用「盛大」、「熱烈」、「積極推動」等主觀形容詞。請從素材中找出「量化數據」（如人數、家數、成長比例）來定義活動的規模與價值。
+
+【三、引言處理（若有提供素材）】
+1. 長官/貴賓引言：要像「有見地且溫暖的真實人類」在說話，真誠傳達機構的願景與關懷，嚴禁出現「敬請指教」等制式官腔或上對下指導語氣。
+2. 學生/參與者分享：保留其真實的語氣與感受，不要將其修飾成生硬的官方宣傳稿。
+
+【四、專有名詞與稱呼規範】
+1. 單位名稱：絕對不使用「本校」、「本系」。一律使用客觀的單位名稱，第一次提及用全稱，第二次起用簡稱。
+2. 人物首次提及：格式為「單位＋職稱＋全名」（例：○○科技執行長王小明），職稱在前、姓名在後，不加「先生」、「女士」、「長官」等敬語。若為外籍人士，寫為「職稱＋中文譯名（英文全名）」。
+3. 人物再次提及：僅寫姓名（例：王小明補充表示...）。【例外規定】：國家元首、董事長、校長、副校長及重要貴賓，後續提及時仍須持續使用職稱稱呼。
+
+【五、SEO 與 GEO 友善寫作規範】
+1. 強化結構化實體（Entities）：確保人事時地物等「專有名詞」（如特定學校、企業名稱、計畫名稱、地點）在第一、二段完整且正確地出現，協助 AI 爬蟲建立知識圖譜。
+2. 自動判斷受眾與關鍵字：請先根據素材內容，判斷這篇新聞稿的「主要目標受眾」（如：潛在學生與家長、產學合作企業、教育圈等），並將該受眾可能搜尋的長尾關鍵字，以自然、不生硬的方式融入內文與小標題中。
+3. 直接且完整的解答（Direct Answers）：針對活動的核心價值或解決的痛點，在段落開頭給予簡明扼要的解答，以符合 AI 搜尋引擎擷取摘要的邏輯。
+
+【六、輸出格式要求】
+請直接輸出正式內容，不要包含 markdown 符號（如 # 或 *），並按照以下格式排版：
 
 【建議標題】
-（一句話標題，15-25字，含GEO結構化實體）
+（提供3-5個符合規範的標題供選擇）
 
-【新聞稿草稿】
-（200-350字，符合上述三項標準）
+【新聞稿正文】
+（依據倒金字塔原則，約600-800字，分段清晰）
 
-【自評分數】
-時效與GEO結構：X/40
-視覺品質與版面：X/30
-語氣與真誠度：X/30
-總分：X/100
+【視覺素材建議】
+（請根據新聞稿內容，用1-2句話建議發布時應搭配什麼樣的照片。提醒：強調構圖乾淨、捕捉真實互動瞬間，避免排排站大合照）
 
-【評分理由】
-（簡短說明三個維度的評分依據，50字以內）
+以下是本次的新聞稿原始素材，請開始撰寫：
 
-──────────
-
-學系/單位：${dept||'未指定'}
-活動標題（草稿）：${title||'（未提供，請自行擬定）'}
-
-活動描述內容：
-${content}`;
+${infoLines}
+活動描述：
+${content}
+${block('師長致詞內容',faculty)}${block('貴賓致詞內容',guest)}${block('學生參與活動/競賽獲獎心得',feedback)}${block('活動附件說明',attach)}${block('目標受眾/溝通重點',audience)}`;
 
   document.getElementById('wOutput').value=prompt;
   document.getElementById('wOutputCard').style.display='block';
