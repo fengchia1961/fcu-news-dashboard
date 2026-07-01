@@ -27,7 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
 .sb-btn-disabled:hover{background:#f7f6f1;border-color:#e2e0d8;}
 .soon{font-size:10px;background:#e2e0d8;color:#888780;padding:1px 5px;border-radius:8px;margin-left:2px;}
 .sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
-.col-h{padding:.55rem 1rem .2rem;font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.col-h{display:flex;align-items:center;gap:7px;margin-top:10px;padding:.45rem .9rem;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#C8102E 0%,#a00d26 100%);letter-spacing:.03em;}
 .di{display:flex;align-items:center;gap:8px;padding:.35rem 1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
 .di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
 .di.act{background:#fff;color:#C8102E;border-left-color:#C8102E;font-weight:700;}
@@ -67,43 +67,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
 .dbar-fill{height:100%;border-radius:6px;transition:width .5s ease;}
 .dbar-val{font-size:12px;font-weight:700;color:#1a1a18;width:42px;text-align:right;}
 
-/* ── Two-col ── */
+/* ── Two-col for radar+bars ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 @media(max-width:900px){.two-col{grid-template-columns:1fr;}}
 
 /* ── Radar ── */
 .radar-wrap{display:flex;justify-content:center;}
-.radar-wrap canvas{max-width:230px;max-height:230px;}
+.radar-wrap canvas{max-width:240px;max-height:240px;}
 
 /* ── Lists ── */
-.sec-lbl{font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
-.item-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
-.item-list li{font-size:12.5px;padding:6px 10px 6px 28px;border-radius:7px;position:relative;line-height:1.5;}
+.sec-lbl{font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;display:flex;align-items:center;gap:4px;}
+.item-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.item-list li{font-size:14px;padding:9px 12px 9px 32px;border-radius:8px;position:relative;line-height:1.65;}
 .hl li{background:#f0fdf4;color:#166534;}
-.hl li::before{content:'✓';position:absolute;left:9px;font-weight:700;color:#16a34a;}
+.hl li::before{content:'✓';position:absolute;left:10px;font-weight:700;color:#16a34a;}
 .pl li{background:#fff1f2;color:#991b1b;}
-.pl li::before{content:'⚠';position:absolute;left:8px;}
+.pl li::before{content:'⚠';position:absolute;left:9px;}
 .fx{counter-reset:s}
 .fx li{background:#fefce8;color:#78350f;counter-increment:s;}
-.fx li::before{content:counter(s);position:absolute;left:9px;font-weight:800;color:#d97706;}
+.fx li::before{content:counter(s);position:absolute;left:10px;font-weight:800;color:#d97706;}
 
-/* ── Pages table ── */
-.tbl-wrap{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e4dc;}
-.tbl-hdr{padding:.6rem 1.1rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:13px;font-weight:700;color:#1a1a18;}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{padding:.5rem .9rem;font-size:11px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;}
-td{padding:.55rem .9rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
-tr:last-child td{border-bottom:none;}
-tr:hover td{background:#faf9f6;}
+/* ── Per-page cards (two-col) ── */
+.pages-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:900px){.pages-grid{grid-template-columns:1fr;}}
+.page-card{background:#fff;border-radius:11px;border:1px solid #e5e4dc;overflow:hidden;}
+.page-card-hd{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #e5e4dc;background:#f7f6f1;}
+.page-card-name{font-size:13.5px;font-weight:700;flex:1;}
+.page-card-scores{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
 .ps{display:inline-flex;align-items:center;justify-content:center;width:32px;height:20px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;}
 .psA{background:#16a34a} .psB{background:#2563eb} .psC{background:#d97706} .psD{background:#dc2626} .psN{background:#94a3b8}
-.pg-link{color:#185FA5;text-decoration:none;font-size:11.5px;}
+.dim-mini{font-size:10px;color:#888780;background:#ebe9e0;border-radius:4px;padding:1px 5px;}
+.page-card-body{padding:10px 14px;}
+.page-note-text{font-size:13px;color:#374151;line-height:1.75;}
+.pg-link{color:#185FA5;text-decoration:none;font-size:11px;margin-left:auto;flex-shrink:0;}
 .pg-link:hover{text-decoration:underline;}
-.notes-row td{border-bottom:1px solid #e5e4dc;}
-.notes-row:last-child td{border-bottom:none;}
-.page-note{display:flex;gap:8px;align-items:flex-start;background:#f8f9fb;padding:8px 14px 10px;border-left:3px solid #C8102E;}
-.note-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
-.note-text{font-size:12px;color:#374151;line-height:1.7;}
 
 /* ── Rubric ── */
 .ru-card{background:#f8fafc;border-radius:9px;padding:12px 14px;margin-bottom:10px;border-left:3px solid #C8102E;}
@@ -410,47 +407,35 @@ function renderEvaluated(d){
 
   <!-- tab 0 -->
   <div class="tab-panel on" id="tp0">
-    <div class="two-col">
-      <div>
-        <div class="card" style="margin-bottom:.8rem;">
-          <div class="card-title"><i class="ti ti-radar"></i> 五維度雷達圖</div>
-          <div class="radar-wrap"><canvas id="radarCanvas"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-title"><i class="ti ti-chart-bar"></i> 各維度得分</div>
-          <div class="dim-grid" id="dimBars"></div>
-        </div>
+    <!-- Row 1: radar (left) + dim bars (right) -->
+    <div class="two-col" style="margin-bottom:.8rem;">
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-title"><i class="ti ti-radar"></i> 五維度雷達圖</div>
+        <div class="radar-wrap"><canvas id="radarCanvas"></canvas></div>
       </div>
-      <div>
-        <div class="card" style="margin-bottom:.8rem;">
-          <div class="sec-lbl"><i class="ti ti-star"></i> 網站亮點</div>
-          <ul class="item-list hl" id="mo-hl"></ul>
-        </div>
-        <div class="card" style="margin-bottom:.8rem;">
-          <div class="sec-lbl"><i class="ti ti-alert-triangle"></i> 主要問題</div>
-          <ul class="item-list pl" id="mo-pl"></ul>
-        </div>
-        <div class="card">
-          <div class="sec-lbl"><i class="ti ti-tools"></i> 小編急救包（今天可完成）</div>
-          <ul class="item-list fx" id="mo-fx"></ul>
-        </div>
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-title"><i class="ti ti-chart-bar"></i> 各維度得分</div>
+        <div class="dim-grid" id="dimBars"></div>
       </div>
+    </div>
+    <!-- Row 2: highlights, problems, quick fixes — single column -->
+    <div class="card" style="margin-bottom:.8rem;">
+      <div class="sec-lbl"><i class="ti ti-star"></i> 網站亮點</div>
+      <ul class="item-list hl" id="mo-hl"></ul>
+    </div>
+    <div class="card" style="margin-bottom:.8rem;">
+      <div class="sec-lbl"><i class="ti ti-alert-triangle"></i> 主要問題</div>
+      <ul class="item-list pl" id="mo-pl"></ul>
+    </div>
+    <div class="card">
+      <div class="sec-lbl"><i class="ti ti-tools"></i> 小編急救包（今天可完成）</div>
+      <ul class="item-list fx" id="mo-fx"></ul>
     </div>
   </div>
 
   <!-- tab 1 -->
   <div class="tab-panel" id="tp1">
-    <div class="tbl-wrap">
-      <div class="tbl-hdr">逐頁評分明細</div>
-      <table>
-        <thead><tr>
-          <th>頁面</th><th>總分</th>
-          <th>文案 /35</th><th>圖像 /25</th><th>連結 /20</th><th>閱讀 /15</th><th>即時 /5</th>
-          <th>前往</th>
-        </tr></thead>
-        <tbody id="pagesTbody"></tbody>
-      </table>
-    </div>
+    <div class="pages-grid" id="pagesGrid"></div>
   </div>
 
   <!-- tab 2 -->
@@ -492,29 +477,32 @@ function renderEvaluated(d){
     </div>`;
   });
 
-  // lists
-  document.getElementById('mo-hl').innerHTML=(d.highlights||[]).map(t=>`<li>${t}</li>`).join('');
-  document.getElementById('mo-pl').innerHTML=(d.pain_points||[]).map(t=>`<li>${t}</li>`).join('');
+  // lists (highlights ≤5, problems ≤10)
+  document.getElementById('mo-hl').innerHTML=(d.highlights||[]).slice(0,5).map(t=>`<li>${t}</li>`).join('');
+  document.getElementById('mo-pl').innerHTML=(d.pain_points||[]).slice(0,10).map(t=>`<li>${t}</li>`).join('');
   document.getElementById('mo-fx').innerHTML=(d.quick_fixes||[]).map(t=>`<li>${t}</li>`).join('');
 
-  // pages table
-  const tb=document.getElementById('pagesTbody');
+  // pages grid — two-column cards, text-focused
+  const grid=document.getElementById('pagesGrid');
   (d.pages||[]).forEach(p=>{
     const pg=gradeKey(p.score);
-    tb.innerHTML+=`<tr>
-      <td style="font-weight:600;white-space:nowrap">${p.name}</td>
-      <td><span class="ps ps${pg}">${p.score}</span></td>
-      <td>${p.d1}</td><td>${p.d2}</td><td>${p.d3}</td><td>${p.d4}</td>
-      <td>${p.d5>0?p.d5:'<span style="color:#94a3b8">—</span>'}</td>
-      <td><a class="pg-link" href="${p.url}" target="_blank">↗ 前往</a></td>
-    </tr>` + (p.notes ? `<tr class="notes-row">
-      <td colspan="8" style="padding:0">
-        <div class="page-note">
-          <span class="note-icon">💬</span>
-          <span class="note-text">${p.notes}</span>
-        </div>
-      </td>
-    </tr>` : '');
+    const dimStr=[
+      `文案 ${p.d1}/35`,`圖像 ${p.d2}/25`,`連結 ${p.d3}/20`,`閱讀 ${p.d4}/15`,
+      p.d5>0?`即時 ${p.d5}/5`:null
+    ].filter(Boolean).map(s=>`<span class="dim-mini">${s}</span>`).join('');
+    const card=document.createElement('div');
+    card.className='page-card';
+    card.innerHTML=`
+      <div class="page-card-hd">
+        <span class="ps ps${pg}">${p.score}</span>
+        <span class="page-card-name">${p.name}</span>
+        <a class="pg-link" href="${p.url}" target="_blank">↗ 前往</a>
+      </div>
+      <div class="page-card-body">
+        <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;">${dimStr}</div>
+        ${p.notes?`<p class="page-note-text">${p.notes}</p>`:'<p style="font-size:13px;color:#94a3b8;">尚無逐頁建議</p>'}
+      </div>`;
+    grid.appendChild(card);
   });
 
   // radar
