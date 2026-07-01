@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>逢甲大學 學系網站健檢儀表板</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Microsoft JhengHei',sans-serif;background:#f0efe9;color:#1a1a18;font-size:15px;line-height:1.5;}
+.layout{display:flex;height:100vh;overflow:hidden;}
+
+/* ── Sidebar ── */
+.sb{width:250px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:.85rem 1rem .7rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:8px;margin-bottom:.4rem;}
+.sb-logo i{font-size:20px;color:#C8102E;}
+.sb-t{font-size:14.5px;font-weight:700;color:#1a1a18;line-height:1.35;}
+.sb-m{font-size:11.5px;color:#888780;margin-top:3px;line-height:1.6;}
+.sb-btns{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
+.sb-btn{display:flex;align-items:center;gap:6px;width:100%;padding:6px 10px;font-size:12px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;text-decoration:none;transition:background .12s;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-btn.red{color:#C8102E;}
+.sb-btn.red:hover{background:#fff0f2;border-color:#f5a0a8;}
+.sb-btn-disabled{color:#b0adb8;cursor:default;background:#f7f6f1;border-color:#e2e0d8;}
+.sb-btn-disabled:hover{background:#f7f6f1;border-color:#e2e0d8;}
+.soon{font-size:10px;background:#e2e0d8;color:#888780;padding:1px 5px;border-radius:8px;margin-left:2px;}
+.sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
+.col-h{padding:.55rem 1rem .2rem;font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.di{display:flex;align-items:center;gap:8px;padding:.35rem 1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
+.di.act{background:#fff;color:#C8102E;border-left-color:#C8102E;font-weight:700;}
+.di-n{font-size:13px;line-height:1.35;flex:1;}
+.di-score{font-size:11px;font-weight:700;padding:1px 6px;border-radius:10px;flex-shrink:0;}
+.sA{background:#dcfce7;color:#15803d;}
+.sB{background:#dbeafe;color:#1d4ed8;}
+.sC{background:#fef9c3;color:#a16207;}
+.sD{background:#fee2e2;color:#b91c1c;}
+.sP{background:#f1f5f9;color:#94a3b8;}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{display:flex;align-items:center;gap:8px;background:#fff;border-bottom:1px solid #dddcd4;padding:.6rem 1.4rem;flex-shrink:0;font-size:12.5px;color:#888780;}
+.topbar strong{color:#1a1a18;}
+.mn{flex:1;overflow-y:auto;padding:1.1rem 1.4rem;background:#f0efe9;}
+.empty{text-align:center;padding:5rem 2rem;color:#B4B2A9;font-size:14px;}
+.empty i{font-size:28px;display:block;margin-bottom:.6rem;}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem;border:1px solid #e5e4dc;}
+.card-title{font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.7rem;display:flex;align-items:center;gap:6px;}
+.dept-hd{display:flex;align-items:flex-start;gap:14px;}
+.score-circle{width:68px;height:68px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;flex-shrink:0;}
+.dept-info h2{font-size:19px;font-weight:700;margin-bottom:3px;}
+.dept-info .college-tag{font-size:11px;color:#C8102E;font-weight:700;margin-bottom:4px;}
+.dept-info .url-link{font-size:12px;color:#185FA5;text-decoration:none;}
+.dept-info .url-link:hover{text-decoration:underline;}
+.dept-info .eval-date{font-size:11px;color:#888780;margin-top:2px;}
+.pending-note{background:#f8fafc;border-radius:8px;padding:2.5rem;text-align:center;color:#94a3b8;font-size:13px;}
+
+/* ── Dim bars ── */
+.dim-grid{display:flex;flex-direction:column;gap:7px;}
+.dbar-row{display:flex;align-items:center;gap:8px;}
+.dbar-name{font-size:12px;color:#5F5E5A;width:138px;flex-shrink:0;line-height:1.3;}
+.dbar-bg{flex:1;background:#ebe9e0;border-radius:6px;height:9px;overflow:hidden;}
+.dbar-fill{height:100%;border-radius:6px;transition:width .5s ease;}
+.dbar-val{font-size:12px;font-weight:700;color:#1a1a18;width:42px;text-align:right;}
+
+/* ── Two-col ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+
+/* ── Radar ── */
+.radar-wrap{display:flex;justify-content:center;}
+.radar-wrap canvas{max-width:230px;max-height:230px;}
+
+/* ── Lists ── */
+.sec-lbl{font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;display:flex;align-items:center;gap:4px;}
+.item-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.item-list li{font-size:12.5px;padding:6px 10px 6px 28px;border-radius:7px;position:relative;line-height:1.5;}
+.hl li{background:#f0fdf4;color:#166534;}
+.hl li::before{content:'✓';position:absolute;left:9px;font-weight:700;color:#16a34a;}
+.pl li{background:#fff1f2;color:#991b1b;}
+.pl li::before{content:'⚠';position:absolute;left:8px;}
+.fx{counter-reset:s}
+.fx li{background:#fefce8;color:#78350f;counter-increment:s;}
+.fx li::before{content:counter(s);position:absolute;left:9px;font-weight:800;color:#d97706;}
+
+/* ── Pages table ── */
+.tbl-wrap{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e4dc;}
+.tbl-hdr{padding:.6rem 1.1rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:13px;font-weight:700;color:#1a1a18;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{padding:.5rem .9rem;font-size:11px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;}
+td{padding:.55rem .9rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#faf9f6;}
+.ps{display:inline-flex;align-items:center;justify-content:center;width:32px;height:20px;border-radius:5px;font-size:11px;font-weight:700;color:#fff;}
+.psA{background:#16a34a} .psB{background:#2563eb} .psC{background:#d97706} .psD{background:#dc2626} .psN{background:#94a3b8}
+.pg-link{color:#185FA5;text-decoration:none;font-size:11.5px;}
+.pg-link:hover{text-decoration:underline;}
+.notes-row td{border-bottom:1px solid #e5e4dc;}
+.notes-row:last-child td{border-bottom:none;}
+.page-note{display:flex;gap:8px;align-items:flex-start;background:#f8f9fb;padding:8px 14px 10px;border-left:3px solid #C8102E;}
+.note-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
+.note-text{font-size:12px;color:#374151;line-height:1.7;}
+
+/* ── Rubric ── */
+.ru-card{background:#f8fafc;border-radius:9px;padding:12px 14px;margin-bottom:10px;border-left:3px solid #C8102E;}
+.ru-card h4{font-size:13px;font-weight:700;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;}
+.ru-pts{font-size:10.5px;background:#C8102E;color:#fff;padding:2px 8px;border-radius:20px;}
+.ru-card p{font-size:12px;color:#64748b;line-height:1.65;}
+.excl-note{background:#fff8f0;border-radius:9px;padding:11px 14px;font-size:12px;color:#78350f;line-height:1.7;}
+
+/* ── Tabs ── */
+.tabs{display:flex;gap:2px;border-bottom:2px solid #e5e4dc;margin-bottom:1rem;}
+.tab{padding:8px 14px;border:none;background:none;cursor:pointer;font-size:12.5px;font-weight:700;color:#888780;border-bottom:2.5px solid transparent;margin-bottom:-2px;transition:all .12s;}
+.tab.on{color:#C8102E;border-bottom-color:#C8102E;}
+.tab-panel{display:none;}
+.tab-panel.on{display:block;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<div class="sb">
+  <div class="sb-hdr">
+    <div class="sb-logo">
+      <i class="ti ti-stethoscope"></i>
+      <div class="sb-t">逢甲大學<br>學系網站健檢儀表板</div>
+    </div>
+    <div class="sb-m">秘書處公共事務組<br>評分標準 v1.0 ｜ 2026-07-01</div>
+    <div class="sb-btns">
+      <a class="sb-btn red" href="https://fengchia1961.github.io/fcu-news-dashboard/" target="_blank">
+        <i class="ti ti-news"></i> FCU 新聞監測儀表板
+      </a>
+      <span class="sb-btn sb-btn-disabled" title="即將上線">
+        <i class="ti ti-heart"></i> 學生愛分享儀表板 <span class="soon">即將上線</span>
+      </span>
+    </div>
+  </div>
+  <div class="sb-body" id="sb-body"></div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+  <div class="topbar">
+    <i class="ti ti-chart-bar" style="font-size:13px;color:#C8102E;"></i>
+    已評估 <strong id="tb-evaled">0</strong> 個學系 ／ 共 <strong id="tb-total">0</strong> 個學系
+    <span style="margin:0 4px;">｜</span>
+    平均分數 <strong id="tb-avg">—</strong>
+    <span style="margin-left:auto;font-size:11px;">
+      🟢≥80優良 &nbsp; 🔵70–79良好 &nbsp; 🟡60–69待改善 &nbsp; 🔴＜60急需補強 &nbsp; ⬜待評估
+    </span>
+  </div>
+  <div class="mn" id="mn">
+    <div class="empty">
+      <i class="ti ti-arrow-left"></i>
+      請從左側選擇學系
+    </div>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════════ */
+const DIMS = [
+  {id:'d1', name:'亮點展現與文案轉譯', max:35},
+  {id:'d2', name:'圖像品質與關連性',   max:25},
+  {id:'d3', name:'內容深度與連結',     max:20},
+  {id:'d4', name:'圖文適配與閱讀',     max:15},
+  {id:'d5', name:'新聞資訊即時性',     max:5},
+];
+
+const DEPTS = [
+/* ── 工程與科學學院 ── */
+{
+  id:'inde', college:'工程與科學學院',
+  name:'工業工程與系統管理學系',
+  url:'https://inde.fcu.edu.tw/', eval_date:'2026-07-01', evaluated:true,
+  overall:71, d1:20, d2:19, d3:13, d4:11, d5:8,
+  pages:[
+    {name:'首頁',      url:'https://inde.fcu.edu.tw/',                          score:76, d1:26,d2:20,d3:13,d4:12,d5:5,
+     notes:'整體第一印象良好，IEET 認證標章與最新消息區塊到位。主要缺口在「特色亮點」四張卡片：圖文設計完整，但每張卡均無「了解更多」連結，訪客看完即止步。建議為每張卡補上對應深度頁面的連結（如認證連 IEET 官網、課程連學士專業頁），讓首頁成為入口而非終點。'},
+    {name:'招生',      url:'https://inde.fcu.edu.tw/admissions/',               score:65, d1:18,d2:18,d3:14,d4:12,d5:3,
+     notes:'總覽頁提供學士／碩士／博士三條路徑，結構清楚。惟文字以條列學制規定為主，缺乏「為什麼選擇工工？」的情感召喚。建議在各路徑說明上方各加一句白話亮點（例：「台灣前 10 大科技廠都在招工業工程師」），並補上最新招生名額與考試日程，減少訪客另開招生辦公室官網的需求。'},
+    {name:'學士班招生',url:'https://inde.fcu.edu.tw/admissions_undergraduate/', score:65, d1:17,d2:20,d3:12,d4:13,d5:3,
+     notes:'照片品質尚可，但文案仍以學制說明為主。最關鍵的缺漏是：家長最想知道的「出路」與「就業率」完全缺席。建議新增一個「系友去哪了？」小區塊，列出 3–5 個代表性就職企業（如台積電、鴻海、台達電），並補上最近一屆平均起薪或升學比例（可引用系上就業輔導資料）。'},
+    {name:'碩博班招生',url:'https://inde.fcu.edu.tw/admissions_graduate/',      score:61, d1:16,d2:18,d3:12,d4:12,d5:3,
+     notes:'頁面以學制規定與修課要求為主，對潛在研究生的說服力不足。建議補充：①指導教授研究方向簡介（連結至師資頁個人簡介），②近三年畢業生論文題目代表性範例，③在職碩士生申請說明（此族群對彈性修課需求高但目前頁面未提及）。另需確認「最新消息」的日期，目前顯示為健檢當日，需定期維護。'},
+    {name:'學士專業',  url:'https://inde.fcu.edu.tw/undergraduate/',            score:82, d1:30,d2:21,d3:15,d4:13,d5:0,
+     notes:'全站文案最佳頁面之一。金字塔式課程地圖視覺清晰，「大一打底 → 大二分流 → 大三專攻 → 大四整合」路徑一目瞭然，高中生易於理解。小幅優化方向：①課程名稱旁若能加上一句白話說明（如「品質管理：學習讓每個零件都達標的方法」），可進一步降低理解門檻；②「業界選修」模組可列出 2–3 門合作企業開設的特色課程名稱，強化產學連結感。'},
+    {name:'碩博士專業',url:'https://inde.fcu.edu.tw/graduate/',                 score:66, d1:22,d2:18,d3:12,d4:12,d5:0,
+     notes:'研究方向分類（智慧製造／數位供應鏈／人因工程）清楚，但每個方向的說明文字過於學術，缺乏具體場景。建議每個方向補充一行「這項研究能解決什麼現實問題？」（例：「智慧製造：協助工廠預測機台故障，避免停工損失」），讓有意升學的學生或企業贊助者快速判斷相關性。研究室連結若能直通各研究室網頁（目前部分連結為空），效果更佳。'},
+    {name:'師資',      url:'https://inde.fcu.edu.tw/teachers/',                 score:78, d1:26,d2:22,d3:15,d4:13,d5:0,
+     notes:'師資卡片版面整齊，大頭照清晰，學歷與研究專長均已列出。提升空間：①部分老師的「研究專長」使用縮寫或英文術語（如 SCM、SPC），建議加上中文白話括注；②若能在卡片上加一個「近期代表著作或產學合作案例」的一行摘要，可大幅提升家長及學生對師資實力的信任感；③辦公室/聯絡資訊建議設計為可點擊寄信的 mailto 連結。'},
+    {name:'產學合作',  url:'https://inde.fcu.edu.tw/research-project/',         score:54, d1:16,d2:16,d3:8, d4:11,d5:3,
+     notes:'七個研究案例採輪播呈現，版面視覺尚可，但有兩個核心問題嚴重影響說服力：①所有案例均未揭露合作企業名稱（僅標「某半導體廠」），訪客無從判斷合作層級；②無任何深度連結，輪播一翻而過即結束，無法進一步了解細節。建議：在獲授權的案例中揭露企業名稱，並為每個案例新增一個「成果摘要」展開區塊，說明解決了什麼問題、產生什麼效益。'},
+    {name:'特色實驗室',url:'https://inde.fcu.edu.tw/lab/',                      score:42, d1:10,d2:14,d3:7, d4:10,d5:0,
+     notes:'⚠️ 全站最低分頁面，急需優先改善。目前僅介紹一個實驗室（Karakuri），且說明文字直接引用日文機構教科書定義，高中生與家長完全無法理解其與日常生活或未來工作的連結。改善方向：①白話改寫 Karakuri 說明（例：「用最少零件完成機械動作的傳統日本工藝——我們把這個原理用在現代工廠節能設計上」）；②補充另外 2–3 間實驗室介紹（設備照片＋一句研究白話說明）；③若有學生在實驗室工作的照片，立即加入，大幅提升真實感。'},
+    {name:'消息總覽',  url:'https://inde.fcu.edu.tw/release/',                  score:71, d1:20,d2:18,d3:15,d4:13,d5:5,
+     notes:'即時性佳，分類（學術活動／招生資訊／競賽得獎）清楚。建議優化：①各分類可加上「篩選」按鈕，讓訪客快速找到對自己有用的消息類型；②消息標題若能提煉亮點數字（如「工工學生獲 IEEE 國際競賽 第一名」而非「參加競賽成績優異」），點擊率會顯著提升；③每則消息可加上閱讀時間估算（「約 2 分鐘」），降低訪客點入的心理門檻。'},
+    {name:'校園新聞',  url:'https://inde.fcu.edu.tw/news-list/',                score:75, d1:20,d2:22,d3:15,d4:13,d5:5,
+     notes:'新聞附圖率高且圖片品質良好，即時性亦佳。優化建議：①新聞封面圖建議統一為橫式 16:9 比例，目前部分圖片比例不一，造成卡片高度參差；②可考慮在首則新聞設為「精選置頂」（Pinned），讓最重要的新聞固定在最上方不受發布時間影響；③新聞底部若加上「相關新聞」推薦連結，可引導訪客繼續閱讀，延長停留時間。'},
+    {name:'關於/綜覽', url:'https://inde.fcu.edu.tw/overview/',                 score:54, d1:18,d2:12,d3:10,d4:11,d5:3,
+     notes:'⚠️ 圖像得分全站最低（12/25）。主因是頁面核心位置使用一張年代久遠的師生大合照，與網站整體現代設計風格嚴重落差，對首次造訪的高中生或家長留下過時印象。立即可做：將合照替換為近 3 年系所活動精選照（如畢業典禮、業界參訪、競賽頒獎）。文案部分建議加入量化數字（師資人數、實驗室數量、國際合作校數），讓「關於」頁成為快速建立信任的資訊錨點。'},
+    {name:'歡迎',      url:'https://inde.fcu.edu.tw/welcome/',                  score:85, d1:33,d2:22,d3:14,d4:14,d5:0,
+     notes:'全站得分最高頁面，亦是最佳招生文案範本。系主任真人照親切、數字具體（50% 升學、40% 取得國際證照）、語氣直接對話高中生，這是全系網站最值得複製到其他頁面的寫作模式。微調建議：①系主任署名照片下方可加上「歡迎預約參觀系所 / 聯絡信箱」，讓有意願的家長立即有行動出口；②「即時性」維度得 0 分是因為此頁無日期資訊，建議加上「歡迎詞更新於 YYYY 年」，讓人感受到系所持續維護的用心。'},
+  ],
+  highlights:[
+    '「歡迎」頁系主任真人照＋具體數字（50%升學、40%取證照），全站最強招生文案',
+    '「學士專業」課程地圖金字塔圖表清晰，高中生一眼理解四年路徑',
+    'IE 重新詮釋為「Integrating Expert（整合型專家）」，品牌論述有創意',
+    '2024 IEET 認證在首頁即清楚標示，公信力佐證到位',
+  ],
+  pain_points:[
+    '【42分】特色實驗室全站最低：只有一個實驗室、教科書原文直貼、無白話說明',
+    '【54分】綜覽頁使用疑似數十年前舊合照，與現代設計嚴重格格不入',
+    '產學合作七個研究案例全部匿名化，且以輪播呈現、無深度連結',
+    '首頁「特色亮點」四張卡無任何「了解更多」連結，訪客看完無路可走',
+  ],
+  quick_fixes:[
+    '替換「關於/綜覽」頁舊合照，改用近 3 年師生活動照',
+    '改寫「特色實驗室」說明為白話文：刪除教科書定義，補一張道場靜態照',
+    '為首頁「特色亮點」四張卡各加一個連結（IEET 連認證官網，其餘連學習頁）',
+  ]
+},
+{id:'mse',      college:'工程與科學學院', name:'材料科學與工程學系',       url:'https://mse.fcu.edu.tw/',       evaluated:false},
+{id:'mcae',     college:'工程與科學學院', name:'機械與電腦輔助工程學系',   url:'https://mcae.fcu.edu.tw/',      evaluated:false},
+{id:'fcm',      college:'工程與科學學院', name:'纖維與複合材料學系',       url:'https://fcm.fcu.edu.tw/',       evaluated:false},
+{id:'che',      college:'工程與科學學院', name:'化學工程學系',             url:'https://che.fcu.edu.tw/',       evaluated:false},
+{id:'apmath',   college:'工程與科學學院', name:'應用數學與資料科學學系',   url:'https://apmath.fcu.edu.tw/',    evaluated:false},
+{id:'aero',     college:'工程與科學學院', name:'航太與系統工程學系',       url:'https://aero.fcu.edu.tw/',      evaluated:false},
+{id:'ees',      college:'工程與科學學院', name:'環境工程與科學學系',       url:'https://ees.fcu.edu.tw/',       evaluated:false},
+{id:'photonics',college:'工程與科學學院', name:'光電通訊與工程學系',       url:'https://photonics.fcu.edu.tw/', evaluated:false},
+{id:'psd',      college:'工程與科學學院', name:'精密系統設計學士學位學程', url:'https://psd.fcu.edu.tw/',       evaluated:false},
+
+/* ── 商學院 ── */
+{
+  id:'marketing', college:'商學院', name:'行銷學系',
+  url:'https://marketing.fcu.edu.tw/', eval_date:'2026-07-01', evaluated:true,
+  overall:58, d1:14, d2:16, d3:8, d4:11, d5:9,
+  pages:[
+    {name:'首頁',      url:'https://marketing.fcu.edu.tw/',                                         score:60, d1:18,d2:18,d3:8, d4:12,d5:4},
+    {name:'招生',      url:'https://marketing.fcu.edu.tw/apply/',                                   score:62, d1:18,d2:18,d3:14,d4:12,d5:3},
+    {name:'學士專業',  url:'https://marketing.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e5%b0%88%e6%a5%ad/',   score:40, d1:10,d2:14,d3:6, d4:8, d5:0},
+    {name:'師資總覽',  url:'https://marketing.fcu.edu.tw/teachers/',                                score:65, d1:18,d2:20,d3:12,d4:12,d5:0},
+    {name:'國際交流',  url:'https://marketing.fcu.edu.tw/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81-2/', score:48, d1:12,d2:14,d3:8, d4:11,d5:0},
+    {name:'學院風格',  url:'https://marketing.fcu.edu.tw/%e5%ad%b8%e7%bf%92%e6%8c%87%e6%a8%99/',   score:35, d1:8, d2:12,d3:5, d4:8, d5:0},
+    {name:'產研',      url:'https://marketing.fcu.edu.tw/%e7%94%a2%e7%a0%94/',                      score:38, d1:8, d2:12,d3:6, d4:10,d5:0},
+    {name:'新聞與活動',url:'https://marketing.fcu.edu.tw/release/',                                 score:72, d1:20,d2:18,d3:14,d4:13,d5:5},
+    {name:'學生愛分享',url:'https://marketing.fcu.edu.tw/share-list/',                              score:68, d1:22,d2:18,d3:12,d4:13,d5:3},
+    {name:'關於/綜覽', url:'https://marketing.fcu.edu.tw/%e7%b6%9c%e8%a6%bd/',                     score:38, d1:10,d2:12,d3:6, d4:8, d5:2},
+    {name:'歡迎',      url:'https://marketing.fcu.edu.tw/%e6%ad%a1%e8%bf%8e/',                      score:45, d1:12,d2:14,d3:8, d4:10,d5:0},
+  ],
+  highlights:[
+    '新聞即時性最佳，更新至 2026/6/29，新聞標題具體有說服力',
+    '學生愛分享分類清楚（5大主題），有真實學生第一人稱敘述',
+    '雙聯學位頁列出三所合作大學（英國艾塞克斯 / 澳洲昆士蘭科技 / 阿德萊德）',
+  ],
+  pain_points:[
+    '「學習」主選單連結技術性失效（href 為 http://learn），且殘留 2022 年垃圾文章 slug',
+    '國際交流、學院風格、產研等多個一二級分類均為空殼或內容重複',
+    '學士專業頁完全無課程地圖、課程名稱，說服力極低',
+    '缺乏畢業出路數據、就業率、系友案例，家長最想知道的資訊缺席',
+  ],
+  quick_fixes:[
+    '立即聯繫網管修復「學習」導覽列連結（href 應改為正確的課程分頁網址）',
+    '在「學士專業」頁新增課程模組清單（至少列出 3–5 門核心課程名稱）',
+    '在「綜覽/關於」頁補充系所介紹正文，目前幾乎只有聯絡資訊',
+  ]
+},
+{id:'acct',  college:'商學院', name:'會計學系',                    url:'https://acct.fcu.edu.tw/',   evaluated:false},
+{id:'itra',  college:'商學院', name:'國際貿易與財務管理學系',      url:'https://itra.fcu.edu.tw/',   evaluated:false},
+{id:'pf',    college:'商學院', name:'財務學系',                    url:'https://pf.fcu.edu.tw/',     evaluated:false},
+{id:'coop',  college:'商學院', name:'合作經濟暨社會事業經營學系',  url:'https://coop.fcu.edu.tw/',   evaluated:false},
+{id:'stat',  college:'商學院', name:'統計學系',                    url:'https://stat.fcu.edu.tw/',   evaluated:false},
+{id:'econ',  college:'商學院', name:'經濟學系',                    url:'https://econ.fcu.edu.tw/',   evaluated:false},
+{id:'ba',    college:'商學院', name:'企業管理學系',                url:'https://ba.fcu.edu.tw/',     evaluated:false},
+{id:'biba',  college:'商學院', name:'國際企業管理英語碩士學位學程',url:'https://biba.fcu.edu.tw/',   evaluated:false},
+{id:'bce',   college:'商學院', name:'商學院學士學位學程',          url:'https://bce.fcu.edu.tw/',    evaluated:false},
+{id:'id',    college:'商學院', name:'學士設計學士學位學程',        url:'https://id.fcu.edu.tw/',     evaluated:false},
+
+/* ── 金融學院 ── */
+{id:'rmi',    college:'金融學院', name:'風險管理與保險學系',         url:'https://rmi.fcu.edu.tw/',    evaluated:false},
+{id:'fina',   college:'金融學院', name:'財務金融學系',               url:'https://fina.fcu.edu.tw/',   evaluated:false},
+{id:'bpfeas', college:'金融學院', name:'財務工程與精算學士學位學程', url:'https://bpfeas.fcu.edu.tw/', evaluated:false},
+{id:'upfc',   college:'金融學院', name:'金融學院學士班',             url:'https://upfc.fcu.edu.tw/',   evaluated:false},
+
+/* ── 人文社會學院 ── */
+{id:'cl',  college:'人文社會學院', name:'中國文學系',   url:'https://cl.fcu.edu.tw/',  evaluated:false},
+{id:'fll', college:'人文社會學院', name:'外國語文學系', url:'https://fll.fcu.edu.tw/', evaluated:false},
+
+/* ── 資訊電機學院 ── */
+{id:'ee',     college:'資訊電機學院', name:'電機工程學系',    url:'https://ee.fcu.edu.tw/',      evaluated:false},
+{id:'fcuece', college:'資訊電機學院', name:'電子工程學系',    url:'https://fcuece.fcu.edu.tw/',  evaluated:false},
+{id:'auto',   college:'資訊電機學院', name:'自動控制工程學系',url:'https://auto.fcu.edu.tw/',    evaluated:false},
+{id:'ce',     college:'資訊電機學院', name:'通訊工程學系',    url:'https://ce.fcu.edu.tw/',      evaluated:false},
+{id:'upiee',  college:'資訊電機學院', name:'資訊電機學院學士班',url:'https://upiee.fcu.edu.tw/', evaluated:false},
+
+/* ── 建設學院 ── */
+{id:'civil', college:'建設學院', name:'土木工程學系',          url:'https://civil.fcu.edu.tw/', evaluated:false},
+{id:'he',    college:'建設學院', name:'水利工程與資源保育學系',url:'https://he.fcu.edu.tw/',    evaluated:false},
+{id:'up',    college:'建設學院', name:'都市計畫與空間資訊學系',url:'https://up.fcu.edu.tw/',    evaluated:false},
+{id:'tl',    college:'建設學院', name:'運輸與物流學系',        url:'https://tl.fcu.edu.tw/',    evaluated:false},
+{id:'lm',    college:'建設學院', name:'土地管理學系',          url:'https://lm.fcu.edu.tw/',    evaluated:false},
+
+/* ── 創能學院 ── */
+{id:'aita', college:'創能學院', name:'人工智慧技術與應用學士學位學程', url:'https://aita.fcu.edu.tw/', evaluated:false},
+];
+
+/* ═══════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════ */
+function gradeKey(s){return s>=80?'A':s>=70?'B':s>=60?'C':'D';}
+function gradeColor(s){return s>=80?'#16a34a':s>=70?'#2563eb':s>=60?'#d97706':'#dc2626';}
+function pct(v,mx){return Math.round(v/mx*100);}
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════════ */
+let radarChart = null;
+
+function buildSidebar(){
+  const body = document.getElementById('sb-body');
+  const colleges = [...new Set(DEPTS.map(d=>d.college))];
+  colleges.forEach(col=>{
+    const depts = DEPTS.filter(d=>d.college===col);
+    const hdr = document.createElement('div');
+    hdr.className='col-h'; hdr.textContent=col;
+    body.appendChild(hdr);
+    depts.forEach(d=>{
+      const el = document.createElement('div');
+      el.className='di'; el.id='di-'+d.id;
+      const scoreHtml = d.evaluated
+        ? `<span class="di-score s${gradeKey(d.overall)}">${d.overall}</span>`
+        : `<span class="di-score sP">—</span>`;
+      el.innerHTML=`<div class="di-n">${d.name}</div>${scoreHtml}`;
+      el.onclick=()=>selectDept(d.id);
+      body.appendChild(el);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════════════════ */
+function updateTopbar(){
+  const evaled = DEPTS.filter(d=>d.evaluated);
+  const avg = evaled.length ? Math.round(evaled.reduce((a,d)=>a+d.overall,0)/evaled.length) : null;
+  document.getElementById('tb-evaled').textContent = evaled.length;
+  document.getElementById('tb-total').textContent  = DEPTS.length;
+  document.getElementById('tb-avg').textContent    = avg||'—';
+}
+
+/* ═══════════════════════════════════════════════════════
+   SELECT DEPT
+═══════════════════════════════════════════════════════ */
+function selectDept(id){
+  document.querySelectorAll('.di').forEach(e=>e.classList.remove('act'));
+  const el = document.getElementById('di-'+id);
+  if(el) el.classList.add('act');
+  const d = DEPTS.find(x=>x.id===id);
+  if(!d) return;
+  d.evaluated ? renderEvaluated(d) : renderPending(d);
+}
+
+function renderPending(d){
+  document.getElementById('mn').innerHTML=`
+  <div class="card">
+    <div class="dept-hd">
+      <div class="score-circle" style="background:#94a3b8;font-size:13px;line-height:1.3;text-align:center;">待<br>評估</div>
+      <div class="dept-info">
+        <div class="college-tag">${d.college}</div>
+        <h2>${d.name}</h2>
+        <a class="url-link" href="${d.url}" target="_blank">${d.url} ↗</a>
+        <div class="eval-date">尚未進行健檢</div>
+      </div>
+    </div>
+  </div>
+  <div class="pending-note">
+    <i class="ti ti-clock" style="font-size:28px;display:block;margin-bottom:.6rem;color:#94a3b8;"></i>
+    此學系網站尚待排入健檢作業
+  </div>`;
+}
+
+function renderEvaluated(d){
+  const gc=gradeColor(d.overall);
+  document.getElementById('mn').innerHTML=`
+  <div class="card">
+    <div class="dept-hd">
+      <div class="score-circle" style="background:${gc};">${d.overall}</div>
+      <div class="dept-info" style="flex:1">
+        <div class="college-tag">${d.college}</div>
+        <h2>${d.name}</h2>
+        <a class="url-link" href="${d.url}" target="_blank">${d.url} ↗</a>
+        <div class="eval-date">健檢日期：${d.eval_date}</div>
+      </div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab(0)">📊 健檢總覽</button>
+    <button class="tab" onclick="switchTab(1)">📄 逐頁評分</button>
+    <button class="tab" onclick="switchTab(2)">📋 評分標準</button>
+  </div>
+
+  <!-- tab 0 -->
+  <div class="tab-panel on" id="tp0">
+    <div class="two-col">
+      <div>
+        <div class="card" style="margin-bottom:.8rem;">
+          <div class="card-title"><i class="ti ti-radar"></i> 五維度雷達圖</div>
+          <div class="radar-wrap"><canvas id="radarCanvas"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="ti ti-chart-bar"></i> 各維度得分</div>
+          <div class="dim-grid" id="dimBars"></div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:.8rem;">
+          <div class="sec-lbl"><i class="ti ti-star"></i> 網站亮點</div>
+          <ul class="item-list hl" id="mo-hl"></ul>
+        </div>
+        <div class="card" style="margin-bottom:.8rem;">
+          <div class="sec-lbl"><i class="ti ti-alert-triangle"></i> 主要問題</div>
+          <ul class="item-list pl" id="mo-pl"></ul>
+        </div>
+        <div class="card">
+          <div class="sec-lbl"><i class="ti ti-tools"></i> 小編急救包（今天可完成）</div>
+          <ul class="item-list fx" id="mo-fx"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- tab 1 -->
+  <div class="tab-panel" id="tp1">
+    <div class="tbl-wrap">
+      <div class="tbl-hdr">逐頁評分明細</div>
+      <table>
+        <thead><tr>
+          <th>頁面</th><th>總分</th>
+          <th>文案 /35</th><th>圖像 /25</th><th>連結 /20</th><th>閱讀 /15</th><th>即時 /5</th>
+          <th>前往</th>
+        </tr></thead>
+        <tbody id="pagesTbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- tab 2 -->
+  <div class="tab-panel" id="tp2">
+    <div class="ru-card">
+      <h4>維度一：亮點展現與文案轉譯<span class="ru-pts">/35分</span></h4>
+      <p>文字是否淺顯易懂，將艱澀學術名詞轉化為高中生與家長能看懂的敘述？若文字直接複製貼上計畫書、公文或冰冷學術簡介，或使用過度空泛形容詞而無實質內容，則予以扣分。</p>
+    </div>
+    <div class="ru-card">
+      <h4>維度二：圖像品質與關連性<span class="ru-pts">/25分</span></h4>
+      <p>圖片是否清晰？是否真實反映校園與教學樣貌？圖片內容是否與旁邊文字緊密相關？扣分條件：過度依賴 AI 生成圖或罐頭圖庫、畫質模糊、圖片壓字過多影響質感（長輩圖風格）。</p>
+    </div>
+    <div class="ru-card">
+      <h4>維度三：內容深度與第二層連結<span class="ru-pts">/20分</span></h4>
+      <p>區塊內容是否設置「了解更多」或指向第二層詳細說明的連結？扣分條件：畫面只放好看照片與吸睛標題，但訪客無法點擊深入了解具體資訊。</p>
+    </div>
+    <div class="ru-card">
+      <h4>維度四：圖文適配與閱讀舒適度<span class="ru-pts">/15分</span></h4>
+      <p>主輔色搭配是否易於文字閱讀？在不同裝置或互動時，文字量是否導致「超出色塊邊界」或「排版破圖」？</p>
+    </div>
+    <div class="ru-card">
+      <h4>維度五：新聞與資訊即時性<span class="ru-pts">/5分（逐頁）</span></h4>
+      <p>針對消息總覽與校園新聞頁面進行日期檢核。若最新消息停留在半年或一年前，顯示維護停滯，則予以扣分。</p>
+    </div>
+    <div class="excl-note">
+      <strong>⚠️ 評分排除項目：</strong>「主導覽選單結構」與「網頁載入速度」屬全校統一公版設計，學系無法自行調整，<strong>不納入扣分考量</strong>。
+    </div>
+  </div>`;
+
+  // dim bars
+  const barsEl = document.getElementById('dimBars');
+  DIMS.forEach(dim=>{
+    const v=d[dim.id], p=pct(v,dim.max);
+    const col=p>=80?'#16a34a':p>=70?'#2563eb':p>=60?'#d97706':'#dc2626';
+    barsEl.innerHTML+=`<div class="dbar-row">
+      <span class="dbar-name">${dim.name}</span>
+      <div class="dbar-bg"><div class="dbar-fill" style="width:${p}%;background:${col}"></div></div>
+      <span class="dbar-val">${v}/${dim.max}</span>
+    </div>`;
+  });
+
+  // lists
+  document.getElementById('mo-hl').innerHTML=(d.highlights||[]).map(t=>`<li>${t}</li>`).join('');
+  document.getElementById('mo-pl').innerHTML=(d.pain_points||[]).map(t=>`<li>${t}</li>`).join('');
+  document.getElementById('mo-fx').innerHTML=(d.quick_fixes||[]).map(t=>`<li>${t}</li>`).join('');
+
+  // pages table
+  const tb=document.getElementById('pagesTbody');
+  (d.pages||[]).forEach(p=>{
+    const pg=gradeKey(p.score);
+    tb.innerHTML+=`<tr>
+      <td style="font-weight:600;white-space:nowrap">${p.name}</td>
+      <td><span class="ps ps${pg}">${p.score}</span></td>
+      <td>${p.d1}</td><td>${p.d2}</td><td>${p.d3}</td><td>${p.d4}</td>
+      <td>${p.d5>0?p.d5:'<span style="color:#94a3b8">—</span>'}</td>
+      <td><a class="pg-link" href="${p.url}" target="_blank">↗ 前往</a></td>
+    </tr>` + (p.notes ? `<tr class="notes-row">
+      <td colspan="8" style="padding:0">
+        <div class="page-note">
+          <span class="note-icon">💬</span>
+          <span class="note-text">${p.notes}</span>
+        </div>
+      </td>
+    </tr>` : '');
+  });
+
+  // radar
+  const ctx=document.getElementById('radarCanvas').getContext('2d');
+  if(radarChart){radarChart.destroy();}
+  radarChart=new Chart(ctx,{
+    type:'radar',
+    data:{
+      labels:DIMS.map(x=>x.name),
+      datasets:[{
+        label:'得分（%）',
+        data:DIMS.map(x=>pct(d[x.id],x.max)),
+        backgroundColor:'rgba(200,16,46,.12)',
+        borderColor:'rgba(200,16,46,.85)',
+        pointBackgroundColor:'rgba(200,16,46,1)',
+        pointRadius:4,
+      }]
+    },
+    options:{
+      responsive:true,
+      scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:25,font:{size:9}},pointLabels:{font:{size:10}}}},
+      plugins:{legend:{display:false}}
+    }
+  });
+}
+
+function switchTab(i){
+  document.querySelectorAll('.tab').forEach((b,idx)=>b.classList.toggle('on',idx===i));
+  document.querySelectorAll('.tab-panel').forEach((p,idx)=>p.classList.toggle('on',idx===i));
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildSidebar();
+  updateTopbar();
+});
+</script>
+</body>
+</html>
