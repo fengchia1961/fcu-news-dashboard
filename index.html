@@ -2083,15 +2083,7 @@ function sel(id){
     const sorted=[...D].sort((a,b)=>b.cnt-a.cnt);
     const reach=sorted.filter(d=>d.cnt>=TGT).length;
     const notReach=D.length-reach;
-    let h=`
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.9rem;">
-      <a href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer" style="font-size:12px;padding:6px 14px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;text-decoration:none;color:#534AB7;font-weight:600;display:inline-flex;align-items:center;gap:5px;">
-        <i class="ti ti-shield-check"></i> 網站健檢儀表板
-      </a>
-      <a href="https://fengchia1961.github.io/fcu-news-dashboard/" target="_blank" rel="noopener noreferrer" style="font-size:12px;padding:6px 14px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;text-decoration:none;color:#185FA5;font-weight:600;display:inline-flex;align-items:center;gap:5px;">
-        <i class="ti ti-news"></i> FCU新聞監測儀表板
-      </a>
-    </div>`+legendHTML+`
+    let h=legendHTML+`
     <div class="sg" style="grid-template-columns:repeat(3,1fr);">
       <div class="sc"><div class="sv" style="color:#185FA5;">${D.length}</div><div class="sl"><i class="ti ti-building-community" style="font-size:13px;"></i><br>系所總數</div></div>
       <div class="sc"><div class="sv" style="color:#1D9E75;">${reach}</div><div class="sl"><i class="ti ti-circle-check" style="font-size:13px;"></i><br>已達標系所數</div></div>
