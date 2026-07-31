@@ -60,13 +60,16 @@ tr:hover td{background:#faf9f6;}
 .mob-btn:hover{background:rgba(0,0,0,.08);}
 .sb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:98;display:none;}
 .sb-overlay.sb-open{display:block;}
+.sg-wrap{position:relative;margin-bottom:.9rem;}
+.sg-wrap>.sg{margin-bottom:0;}
+.sg-arrow{display:none;align-items:center;gap:2px;position:absolute;top:2px;right:0;font-size:10.5px;color:#B4B2A9;pointer-events:none;z-index:1;}
+.mob-meta{display:none;}
 @media(max-width:767px){
   .mob-btn{display:flex;}
   .mob-hide{display:none!important;}
   .sb{position:fixed;top:0;left:0;height:100%;width:80%;max-width:290px;z-index:99;transform:translateX(-100%);transition:transform .22s ease;box-shadow:4px 0 20px rgba(0,0,0,.22);}
   .sb.sb-open{transform:translateX(0);}
   .mn{padding:.85rem .9rem;}
-  .sg{grid-template-columns:repeat(2,1fr)!important;}
   .sv{font-size:22px;}
   .sc{padding:.6rem .4rem;}
   .topbar{padding:.5rem .9rem;font-size:12px;gap:4px 6px;}
@@ -75,6 +78,16 @@ tr:hover td{background:#faf9f6;}
   .tbl-wrap{overflow-x:auto;}
   .tbl-hdr{flex-direction:column;align-items:stretch;}
   .tbl-hdr input[type="text"]{width:100%!important;box-sizing:border-box;margin-top:4px;}
+  .sg-wrap{padding-top:18px;}
+  .sg-arrow{display:flex;}
+  .sg-wrap>.sg{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:8px;padding-bottom:2px;}
+  .sg-wrap>.sg::-webkit-scrollbar{display:none;}
+  .sg-wrap>.sg>.sc{flex:0 0 calc(50% - 4px);scroll-snap-align:start;min-width:115px;flex-shrink:0;}
+  .mob-meta{display:flex!important;flex-wrap:wrap;gap:3px 6px;margin-top:5px;align-items:center;}
+  .art-tbl td.td-col,.art-tbl td.td-dept,.art-tbl td.td-date,.art-tbl td.td-pv{display:none;}
+  .art-tbl th.th-col,.art-tbl th.th-dept,.art-tbl th.th-date,.art-tbl th.th-pv{display:none;}
+  .hc-tbl td.td-col,.hc-tbl td.td-date,.hc-tbl td.td-pv{display:none;}
+  .hc-tbl th.th-col,.hc-tbl th.th-date,.hc-tbl th.th-pv{display:none;}
 }
 </style>
 </head>
@@ -116,7 +129,7 @@ const SHARE_RAW = [{"id": 50967, "t": "大學只有一次，用力去做每一�
 const GA4_SHARE = {"since": "2015-08-14", "cutDate": "2025-08-01", "fetchedAt": "2026-07-03 22:16", "allTime": {"pv": 209533, "users": 62593, "avgDur": 175, "topChannel": "google / organic", "topChannelSessions": 36735}, "sinceCut": {"pv": 62340, "users": 20281}, "pageViews": {"/share/aero005/": 4225, "/share/fll002/": 2861, "/share/mse003/": 2411, "/share/acct002/": 2394, "/share/stat001/": 2370, "/share/marketing009/": 2317, "/share/fll006/": 2271, "/share/iecs001/": 2259, "/share/iecs012/": 1937, "/share/pf005/": 1912, "/share/fina006/": 1791, "/share/aero001/": 1769, "/share/fll001/": 1657, "/share/biba001/": 1650, "/share/pf007/": 1333, "/share/psd001/": 1319, "/share/aita001/": 1224, "/share/ba003/": 1208, "/share/ees006/": 1166, "/share/ttm001/": 1163, "/share/fina005/": 1155, "/share/hpiee001/": 1137, "/share/rmi005/": 1071, "/share/ee003/": 1060, "/share/pf006/": 1057, "/share/ees009/": 1038, "/share/mcae01/": 978, "/share/fina004/": 956, "/share/itra001/": 940, "/share/istm002/": 895, "/share/iecs011/": 877, "/share/rmi004/": 876, "/share/ce002/": 865, "/share/biba002/": 860, "/share/iecs009/": 853, "/share/auto002/": 849, "/share/iecs010/": 823, "/share/fcm001/": 822, "/share/ees001/": 814, "/share/aero004/": 801, "/share/pf008/": 799, "/share/he001/": 790, "/share/gest002/": 776, "/share/iecs014/": 762, "/share/econ006/": 759, "/share/ee01/": 745, "/share/marketing002/": 733, "/share/ees008/": 731, "/share/pf009/": 724, "/share/bpfeas005/": 723, "/share/auto005/": 685, "/share/mse002/": 666, "/share/fina001/": 665, "/share/bpfeas004/": 648, "/share/fll004/": 643, "/share/ba004/": 633, "/share/mse001/": 632, "/share/biba005/": 628, "/share/bpfeas01/": 632, "/share/biba007/": 627, "/share/photonics003/": 621, "/share/mse004/": 603, "/share/cl002/": 595, "/share/biba008/": 592, "/share/iecs013/": 586, "/share/fina002/": 585, "/share/aero002/": 572, "/share/up003/": 562, "/share/ees010/": 552, "/share/archschool001/": 549, "/share/psd003/": 543, "/share/econ008/": 520, "/share/ba001/": 523, "/share/che001/": 519, "/share/acct004/": 512, "/share/ees007/": 500, "/share/lm1/": 485, "/share/archschool002/": 483, "/share/econ007/": 470, "/share/fina003/": 468, "/share/marketing003/": 453, "/share/marketing008/": 448, "/share/auto001/": 438, "/share/ttm007/": 430, "/share/ttm004/": 428, "/share/iecs002/": 420, "/share/gest001/": 423, "/share/iecs005/": 402, "/share/aero003/": 397, "/share/marketing006/": 378, "/share/pf002/": 377, "/share/rmi002/": 368, "/share/econ003/": 359, "/share/auto003/": 363, "/share/auto004/": 348, "/share/bpfeas006/": 342, "/share/fll005/": 333, "/share/marketing004/": 326, "/share/iecs007/": 325, "/share/up002/": 314, "/share/ttm003/": 311, "/share/up001/": 311, "/share/acct001/": 310, "/share/iecs008/": 309, "/share/acct003/": 304, "/share/fll003/": 299, "/share/econ005/": 298, "/share/biba006/": 282, "/share/marketing005/": 280, "/share/ba002/": 277, "/share/biba004/": 273, "/share/mse005/": 271, "/share/coop002/": 269, "/share/he003/": 269, "/share/mcae003/": 263, "/share/stat002/": 263, "/share/stat003/": 253, "/share/rmi003/": 247, "/share/ttm05/": 246, "/share/iecs006/": 245, "/share/econ004/": 242, "/share/che002/": 239, "/share/ees004/": 236, "/share/pf003/": 234, "/share/civil001/": 233, "/share/rmi001/": 233, "/share/lm2/": 231, "/share/coop001/": 224, "/share/iecs004/": 223, "/share/econ002/": 216, "/share/he002/": 216, "/share/marketing001/": 215, "/share/photonics002/": 220, "/share/bpfeas02/": 212, "/share/itra003/": 211, "/share/biba003/": 210, "/share/ce001/": 206, "/share/cl001/": 206, "/share/itra002/": 208, "/share/mcae001/": 200, "/share/ees005/": 186, "/share/ttm002/": 185, "/share/he004/": 173, "/share/ees003/": 171, "/share/pf001/": 171, "/share/iecs003/": 168, "/share/photonics001/": 168, "/share/pf004/": 167, "/share/ttm005/": 156, "/share/istm001/": 150, "/share/econlaw001/": 143, "/share/ees002/": 137, "/share/bpfeas003/": 127, "/share/psd002/": 126, "/share/marketing010/": 48}};
 const COLLEGES = [{"col": "工程與科學學院", "depts": ["機械與電腦輔助工程學系", "纖維與複合材料學系", "工業工程與系統管理學系", "化學工程學系", "應用數學系", "航太與系統工程學系", "環境工程與科學學系", "材料科學與工程學系", "光電科學與工程學系", "精密系統設計學士學位學程", "電聲碩士學位學程", "電漿科技研究中心", "綠色能源科技碩士學位學程", "數據科學碩士學位學程", "智能製造與工程管理碩士在職學位學程", "機械與航空工程博士學位學程", "綠色產品研究中心", "碳纖維產業研究中心", "太空系統工程碩士學位學程", "學士後工程與科學學院淨零智慧永續學士班"]}, {"col": "商學院", "depts": ["會計學系", "國際經營與貿易學系", "國際企業管理全英語學士學位學程", "財稅學系", "合作經濟暨社會事業經營學系", "統計學系", "經濟學系", "企業管理學系", "行銷學系", "商學進修學士學位學程", "財經法律研究所", "商學專業碩士在職學位學程", "商學博士學位學程"]}, {"col": "金融學院", "depts": ["風險管理與保險學系", "財務金融學系", "財務工程與精算學士學位學程", "金融碩士在職學位學程", "金融博士學位學程", "金融學院學士班"]}, {"col": "人文社會學院", "depts": ["人文社會學院", "中國文學系", "外國語文學系", "歷史與文物研究所", "人文社會學士學位學程", "文化與社會創新碩士學位學程", "外語文教學中心", "國語文教學中心"]}, {"col": "資訊電機學院", "depts": ["資訊電機學院", "資訊工程學系", "電機工程學系", "電子工程學系", "自動控制工程學系", "通訊工程學系", "資訊電機學院學士班", "資訊電機工程碩士在職學位學程", "資訊與電機產業碩士專班", "生醫資訊暨生醫工程碩士學位學程", "電機與通訊工程博士學位學程", "資訊工程學系學士後專班"]}, {"col": "建設學院", "depts": ["建設學院", "土木工程學系", "水利工程與資源保育學系", "都市計畫與空間資訊學系", "運輸與物流學系", "土地管理學系", "專案管理碩士在職學位學程", "建設碩士在職學位學程", "智慧城市碩士學位學程", "建設規劃與工程博士學位學程", "智慧運輸與物流創新中心"]}, {"col": "建築專業學院", "depts": ["建築專業學院"]}, {"col": "經營管理學院", "depts": ["經營管理學院"]}, {"col": "國際科技與管理學院", "depts": ["國際科技與管理學院"]}, {"col": "創能學院", "depts": ["人工智慧技術與應用學士學位學程"]}, {"col": "通識教育中心", "depts": ["全校國際生大一不分系學士班"]}, {"col": "其他", "depts": ["未對應系所"]}];
 const CUT = "2025-08-01";
-const BUILT_AT = "2026-07-31 23:15";
+const BUILT_AT = "2026-08-01 00:36";
 
 const COLLEGE_PALETTE = [
   {bg:'#EAF0FB', fg:'#185FA5', dot:'#185FA5'},
@@ -195,17 +208,24 @@ function yearChart(items){
 
 function rowHTML(n,i,pvColor,showCollege,showDept){
   const col = collegeColor(n.college);
+  const pvColor2 = pvColor||(n.pv?'#185FA5':'#B4B2A9');
+  const mmp = [];
+  if(showCollege!==false) mmp.push('<span class="gb" style="font-size:11.5px;padding:2px 7px;background:'+col.bg+';color:'+col.fg+';">'+esc(n.college)+'</span>');
+  if(showDept!==false) mmp.push('<span style="font-size:11.5px;color:#5F5E5A;">'+esc(n.dept)+'</span>');
+  mmp.push('<span style="font-size:11.5px;color:#888780;">'+jd(n.d)+'</span>');
+  mmp.push('<span style="font-size:11.5px;font-weight:700;color:'+pvColor2+';">'+(n.pv?fmtNum(n.pv):'—')+'</span>');
+  const mobMeta = '<div class="mob-meta">'+mmp.join('')+'</div>';
   const collegeCell = showCollege===false ? '' :
-    '<td><span class="gb" style="background:'+col.bg+';color:'+col.fg+';">'+esc(n.college)+'</span></td>';
+    '<td class="td-col"><span class="gb" style="background:'+col.bg+';color:'+col.fg+';">'+esc(n.college)+'</span></td>';
   const deptCell = showDept===false ? '' :
-    '<td style="font-size:12.5px;color:#5F5E5A;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+esc(n.dept)+'">'+esc(n.dept)+'</td>';
+    '<td class="td-dept" style="font-size:12.5px;color:#5F5E5A;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+esc(n.dept)+'">'+esc(n.dept)+'</td>';
   return '<tr>'
-    + '<td style="text-align:center;color:#B4B2A9;font-size:11px;">'+(i+1)+'</td>'
-    + '<td><a href="'+esc(safeUrl(n.url))+'" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">'+esc(n.t)+'</a></td>'
+    + '<td class="td-rank" style="text-align:center;color:#B4B2A9;font-size:11px;">'+(i+1)+'</td>'
+    + '<td class="td-title"><a href="'+esc(safeUrl(n.url))+'" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">'+esc(n.t)+'</a>'+mobMeta+'</td>'
     + collegeCell
     + deptCell
-    + '<td style="font-size:11.5px;color:#888780;white-space:nowrap;">'+jd(n.d)+'</td>'
-    + '<td style="text-align:right;font-weight:700;color:'+(pvColor||(n.pv?'#185FA5':'#B4B2A9'))+';">'+(n.pv?fmtNum(n.pv):'—')+'</td>'
+    + '<td class="td-date" style="font-size:11.5px;color:#888780;white-space:nowrap;">'+jd(n.d)+'</td>'
+    + '<td class="td-pv" style="text-align:right;font-weight:700;color:'+pvColor2+';">'+(n.pv?fmtNum(n.pv):'—')+'</td>'
     + '</tr>';
 }
 
@@ -218,7 +238,7 @@ function articleTable(containerId, items, showCollegeDept){
       : '<tr><td colspan="'+(showCD?6:4)+'" class="empty">查無符合的文章</td></tr>';
   }
   const extraCols = showCD
-    ? '<th style="width:90px;">學院</th><th style="width:140px;">學系</th>'
+    ? '<th class="th-col" style="width:90px;">學院</th><th class="th-dept" style="width:140px;">學系</th>'
     : '';
   document.getElementById(containerId).innerHTML =
     '<div class="tbl-wrap">'
@@ -226,12 +246,12 @@ function articleTable(containerId, items, showCollegeDept){
     + '<span><i class="ti ti-list-details"></i> 文章列表（共 <span id="'+containerId+'-count">'+sorted.length+'</span> 篇）</span>'
     + '<input id="'+containerId+'-search" type="text" placeholder="搜尋標題…" style="padding:5px 10px;border:1px solid #d3d1c7;border-radius:6px;font-size:13px;width:200px;">'
     + '</div>'
-    + '<table><thead><tr>'
-    + '<th style="width:30px;text-align:center;">#</th>'
-    + '<th>標題</th>'
+    + '<table class="art-tbl"><thead><tr>'
+    + '<th class="th-rank" style="width:30px;text-align:center;">#</th>'
+    + '<th class="th-title">標題</th>'
     + extraCols
-    + '<th style="width:85px;">發佈日期</th>'
-    + '<th style="width:85px;text-align:right;">累計瀏覽</th>'
+    + '<th class="th-date" style="width:85px;">發佈日期</th>'
+    + '<th class="th-pv" style="width:85px;text-align:right;">累計瀏覽</th>'
     + '</tr></thead><tbody id="'+containerId+'-tbody">'+renderRows(sorted)+'</tbody></table>'
     + '</div>';
 
@@ -247,14 +267,15 @@ function hotColdHTML(){
   const withViews = SHARE_RAW.filter(function(n){ return n.pv>0; });
   const hot = withViews.slice().sort(function(a,b){ return b.pv-a.pv; }).slice(0,10);
   const cold = withViews.slice().sort(function(a,b){ return a.pv-b.pv; }).slice(0,10);
+  const hcHead = '<thead><tr><th class="th-rank" style="width:28px;"></th><th class="th-title">標題</th><th class="th-col" style="width:110px;">學院</th><th class="th-date" style="width:85px;">發佈日期</th><th class="th-pv" style="width:90px;text-align:right;">瀏覽次數</th></tr></thead>';
   return '<div class="tbl-wrap" style="margin-bottom:.9rem;">'
     + '<div class="tbl-hdr"><i class="ti ti-trending-up"></i><span>歷年熱門分享 Top '+hot.length+'（全站累計瀏覽次數）</span></div>'
-    + '<table><thead><tr><th style="width:28px;"></th><th>標題</th><th style="width:110px;">學院</th><th style="width:85px;">發佈日期</th><th style="width:90px;text-align:right;">瀏覽次數</th></tr></thead>'
+    + '<table class="hc-tbl">'+hcHead
     + '<tbody>'+hot.map(function(n,i){ return rowHTML(n,i,'#185FA5',true,false); }).join('')+'</tbody></table>'
     + '</div>'
     + '<div class="tbl-wrap" style="margin-bottom:.9rem;">'
     + '<div class="tbl-hdr"><i class="ti ti-trending-down"></i><span>歷年冷門分享 Top '+cold.length+'（全站累計瀏覽次數，至少1次瀏覽）</span></div>'
-    + '<table><thead><tr><th style="width:28px;"></th><th>標題</th><th style="width:110px;">學院</th><th style="width:85px;">發佈日期</th><th style="width:90px;text-align:right;">瀏覽次數</th></tr></thead>'
+    + '<table class="hc-tbl">'+hcHead
     + '<tbody>'+cold.map(function(n,i){ return rowHTML(n,i,'#E24B4A',true,false); }).join('')+'</tbody></table>'
     + '</div>';
 }
@@ -299,25 +320,25 @@ function renderOverview(){
 
   const g = GA4_SHARE;
   let h = ''
-    + '<div class="sg">'
+    + '<div class="sg-wrap"><span class="sg-arrow"><i class="ti ti-chevrons-right" style="font-size:12px;"></i>左右滑動</span><div class="sg">'
     + '<div class="sc"><div class="sv" style="color:#185FA5;">'+total+'</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>全站總篇數</div></div>'
     + '<div class="sc"><div class="sv" style="color:'+(sinceCut.length?'#1D9E75':'#E24B4A')+';">'+sinceCut.length+'</div><div class="sl"><i class="ti ti-calendar-plus" style="font-size:13px;"></i><br>114學年度新增</div></div>'
     + '<div class="sc"><div class="sv" style="color:#534AB7;">'+deptsWithPosts.length+'</div><div class="sl"><i class="ti ti-school" style="font-size:13px;"></i><br>已產出系所數</div></div>'
     + '<div class="sc"><div class="sv" style="color:#BA7517;font-size:18px;">'+jd(lastDate)+'</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>最近發佈日期</div></div>'
     + '<div class="sc"><div class="sv" style="color:#185FA5;">'+avgPerMonth+'</div><div class="sl"><i class="ti ti-chart-bar" style="font-size:13px;"></i><br>全站平均則/月</div></div>'
-    + '</div>'
+    + '</div></div>'
     + insightHTML
     + '<div class="card" style="padding:.85rem 1.2rem .7rem;">'
     + '<div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:10px;">'
     + '<i class="ti ti-chart-line" style="font-size:11px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（全站累計，/share/ 區段）'
     + '<span style="float:right;font-size:10px;font-weight:400;color:#B4B2A9;">更新：'+g.fetchedAt+'</span>'
     + '</div>'
-    + '<div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:6px;">'
+    + '<div class="sg-wrap"><span class="sg-arrow"><i class="ti ti-chevrons-right" style="font-size:12px;"></i>左右滑動</span><div class="sg" style="grid-template-columns:repeat(4,1fr);">'
     + '<div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">'+fmtNum(g.allTime.pv)+'</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>'
     + '<div class="sc"><div class="sv" style="color:#1D9E75;font-size:22px;">'+fmtNum(g.allTime.users)+'</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>'
     + '<div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">'+esc(g.allTime.topChannel)+'</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>'
     + '<div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">'+g.allTime.avgDur+'<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>'
-    + '</div>'
+    + '</div></div>'
     + '<div style="font-size:11.5px;color:#888780;text-align:right;">114學年度起（'+jd(g.cutDate)+'）：瀏覽次數 '+fmtNum(g.sinceCut.pv)+'｜不重複使用者 '+fmtNum(g.sinceCut.users)+'</div>'
     + '</div>'
     + '<div class="card" style="padding:.85rem 1.2rem .7rem;">'
@@ -344,11 +365,11 @@ function renderDept(deptName){
     + '<div class="dn" style="color:'+col.fg+';">'+esc(deptName)+'</div>'
     + '<div class="ds">'+esc(collegeName||'')+' / 學系頁面</div>'
     + '</div>'
-    + '<div class="sg" style="grid-template-columns:repeat(3,1fr);">'
+    + '<div class="sg-wrap"><span class="sg-arrow"><i class="ti ti-chevrons-right" style="font-size:12px;"></i>左右滑動</span><div class="sg" style="grid-template-columns:repeat(3,1fr);">'
     + '<div class="sc"><div class="sv" style="color:'+col.fg+';">'+items.length+'</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>累計篇數</div></div>'
     + '<div class="sc"><div class="sv" style="color:'+(sinceCut.length?'#1D9E75':'#E24B4A')+';">'+sinceCut.length+'</div><div class="sl"><i class="ti ti-calendar-plus" style="font-size:13px;"></i><br>114學年度新增</div></div>'
     + '<div class="sc"><div class="sv" style="color:#185FA5;">'+fmtNum(pvSum)+'</div><div class="sl"><i class="ti ti-eye" style="font-size:13px;"></i><br>累計瀏覽次數合計</div></div>'
-    + '</div>'
+    + '</div></div>'
     + '<div class="card" style="padding:.85rem 1.2rem .7rem;">'
     + '<div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:7px;"><i class="ti ti-chart-bar" style="font-size:11px;color:'+col.dot+';margin-right:3px;"></i>年度發佈趨勢</div>'
     + yearChart(items)
