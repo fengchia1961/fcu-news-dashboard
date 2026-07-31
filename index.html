@@ -86,6 +86,7 @@ tr:hover td{background:#faf9f6;}
 .sb-toggle{display:none;}
 .sb-backdrop{display:none;}
 .swipe-hint{display:none;}
+.stk-gscore{display:none;}
 @media (max-width:768px){
   body{font-size:15px;}
   .layout{height:100dvh;}
@@ -130,7 +131,10 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
   .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
-  .tbl-stack .stk-grade{display:inline-block;margin-top:4px;}
+  .tbl-stack .stk-grade{display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;margin-top:4px;}
+  .tbl-stack .stk-gscore{display:block;font-size:16px;font-weight:800;color:#1a1a18;}
+  .tbl-stack .stot{display:none;}
+  .tbl-stack .stk-badge{margin-right:8px;}
   .tbl-stack .stk-score{display:block;margin-top:6px;}
   .tbl-stack .stk-score-inner{justify-content:flex-start!important;flex-wrap:wrap;row-gap:4px;}
   .tbl-stack .sbrs{width:auto;min-width:0!important;flex:1 1 auto;}
@@ -562,6 +566,7 @@ function dotC(n){
 
 // ── 月發文趨勢圖 ──
 function buildMonthChart(af){
+  const mobile=window.matchMedia('(max-width:768px)').matches;
   // 產生 CUT 起至今的所有月份
   const months=[];
   const [cy,cm]=CUT.split('.').map(Number);
@@ -576,27 +581,30 @@ function buildMonthChart(af){
   months.forEach(m=>cnt[m]=0);
   af.forEach(n=>{const m=n.d.slice(0,7);if(cnt[m]!==undefined)cnt[m]++;});
   const max=Math.max(...Object.values(cnt),1);
-  const BW=13,GAP=2,BH=28;
+  const BW=mobile?16:13,GAP=mobile?3:2,BH=mobile?32:28;
+  const numFS=mobile?7:4,lblFS=mobile?4.5:2;
   const TW=months.length*(BW+GAP)-GAP;
   const bars=months.map((m,i)=>{
     const c=cnt[m];
     const h=c?Math.max(4,Math.round(c/max*BH)):0;
     const x=i*(BW+GAP);
     const fill=c>=5?'#1D9E75':c>=1?'#5DCAA5':'#ebe9e0';
-    const numY=c>0?Math.max(8,BH-h-2):BH-2;
+    const numY=c>0?Math.max(numFS+4,BH-h-2):BH-2;
     const numFill=c>0?'#5F5E5A':'#B4B2A9';
     const fw=c>0?'600':'400';
     const op=c?'1':'.6';
     const lbl=m.slice(5)+'/'+"'"+m.slice(2,4);
     return `<g>
       <rect x="${x}" y="${BH-h}" width="${BW}" height="${Math.max(h,0)}" fill="${fill}" rx="2" opacity="${op}"/>
-      <text x="${x+BW/2}" y="${numY}" font-size="4" text-anchor="middle" fill="${numFill}" font-weight="${fw}">${c}</text>
-      <text x="${x+BW/2}" y="${BH+5}" font-size="2" text-anchor="middle" fill="#888780">${lbl}</text>
+      <text x="${x+BW/2}" y="${numY}" font-size="${numFS}" text-anchor="middle" fill="${numFill}" font-weight="${fw}">${c}</text>
+      <text x="${x+BW/2}" y="${BH+lblFS+3}" font-size="${lblFS}" text-anchor="middle" fill="#888780">${lbl}</text>
     </g>`;
   }).join('');
   // 「無文章」提示線
   const zeroline=`<line x1="0" y1="${BH}" x2="${TW}" y2="${BH}" stroke="#e5e4dc" stroke-width="1"/>`;
-  return `<svg width="70%" viewBox="0 0 ${TW} ${BH+16}" xmlns="http://www.w3.org/2000/svg" style="display:block;">${zeroline}${bars}</svg>`;
+  const svgW=mobile?'100%':'70%';
+  const vbH=mobile?BH+24:BH+16;
+  return `<svg width="${svgW}" viewBox="0 0 ${TW} ${vbH}" xmlns="http://www.w3.org/2000/svg" style="display:block;">${zeroline}${bars}</svg>`;
 }
 
 // ── 校級新聞（RSS 分頁抓取，200則，快取：fcu_school_news.json）──
@@ -2212,7 +2220,7 @@ function sel(id){
           <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
           <td class="stk-date" style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
           <td class="stk-tags" style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
-          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
+          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span><span class="stk-gscore">${n.tot}</span></td>
           <td class="stk-score">
             <div class="stk-score-inner" style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
               <div class="sbrs">
@@ -2281,7 +2289,7 @@ function sel(id){
   if(d.af.length){
     const schPct=d.cnt?Math.round(d.fromSch/d.cnt*100):0;
     const selfPct=100-schPct;
-    h+=`<div class="tbl-wrap">
+    h+=`<div class="tbl-wrap tbl-stack">
     <div class="tbl-hdr" style="flex-direction:column;align-items:flex-start;gap:6px;">
       <div style="display:flex;align-items:center;gap:6px;width:100%;">
         <i class="ti ti-sparkles"></i>
@@ -2313,13 +2321,13 @@ function sel(id){
       const linkUrl=(n.fromSch&&n.schUrl)||n.url||d.url;
       const hasArticleUrl=!!((n.fromSch&&n.schUrl)||n.url);
       h+=`<tr>
-        <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-        <td><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
-        <td style="text-align:center;">${srcBdg}</td>
-        <td style="font-size:11px;color:#888780;">${esc(n.d)}</td>
-        <td><span class="gb ${gr.c}">${gr.l}</span></td>
-        <td>
-          <div style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
+        <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+        <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
+        <td class="stk-badge" style="text-align:center;">${srcBdg}</td>
+        <td class="stk-date" style="font-size:11px;color:#888780;">${esc(n.d)}</td>
+        <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span><span class="stk-gscore">${n.tot}</span></td>
+        <td class="stk-score">
+          <div class="stk-score-inner" style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
             <div class="sbrs">
               <div class="sbr"><span class="sbl" title="資訊結構與即時加分">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#534AB7;"></div></div><span class="sbv">${n.g}</span></div>
               <div class="sbr"><span class="sbl" title="可視覺化潛力與版面（📷列以實際圖片數＋圖說計分，其餘依標題推估）">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
