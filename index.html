@@ -86,7 +86,6 @@ tr:hover td{background:#faf9f6;}
 .sb-toggle{display:none;}
 .sb-backdrop{display:none;}
 .swipe-hint{display:none;}
-.stk-gscore{display:none;}
 @media (max-width:768px){
   body{font-size:15px;}
   .layout{height:100dvh;}
@@ -131,11 +130,9 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
   .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
-  .tbl-stack .stk-grade{display:flex!important;flex-direction:column;align-items:flex-start;gap:2px;margin-top:4px;}
-  .tbl-stack .stk-gscore{display:block;font-size:16px;font-weight:800;color:#1a1a18;}
-  .tbl-stack .stot{display:none;}
+  .tbl-stack .stk-grade{display:block;margin-top:4px;}
   .tbl-stack .stk-badge{margin-right:8px;}
-  .tbl-stack .stk-score{display:block;margin-top:6px;}
+  .tbl-stack .stk-score{display:block;margin-top:3px;}
   .tbl-stack .stk-score-inner{justify-content:flex-start!important;flex-wrap:wrap;row-gap:4px;}
   .tbl-stack .sbrs{width:auto;min-width:0!important;flex:1 1 auto;}
   .tbl-stack .sbl{width:52px!important;font-size:10.5px!important;}
@@ -2220,7 +2217,7 @@ function sel(id){
           <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
           <td class="stk-date" style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
           <td class="stk-tags" style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
-          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span><span class="stk-gscore">${n.tot}</span></td>
+          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
           <td class="stk-score">
             <div class="stk-score-inner" style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
               <div class="sbrs">
@@ -2325,7 +2322,7 @@ function sel(id){
         <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
         <td class="stk-badge" style="text-align:center;">${srcBdg}</td>
         <td class="stk-date" style="font-size:11px;color:#888780;">${esc(n.d)}</td>
-        <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span><span class="stk-gscore">${n.tot}</span></td>
+        <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
         <td class="stk-score">
           <div class="stk-score-inner" style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
             <div class="sbrs">
