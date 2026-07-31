@@ -3,8 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' https: data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>逢甲大學各系所新聞監測儀表板</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/tabler-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" integrity="sha384-hs5SINUk7GPohxRis+rS7grpSWEbtOIJ3sRoseBKg3CDPIKpG55RfSenbvA6ALOt" crossorigin="anonymous">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f0efe9;color:#1a1a18;font-size:17px;line-height:1.5;}
@@ -49,10 +51,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans
 .pb-n{font-size:13px;color:#5F5E5A;margin-top:.4rem;}
 
 /* ── Table ── */
-.tbl-wrap{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e4dc;}
+.tbl-wrap{background:#fff;border-radius:12px;overflow:clip;border:1px solid #e5e4dc;}
 .tbl-hdr{padding:.7rem 1.2rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:14px;font-weight:700;color:#1a1a18;display:flex;align-items:center;gap:8px;}
 table{width:100%;border-collapse:collapse;font-size:14.5px;}
-th{padding:.55rem 1rem;font-size:13px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;}
+th{padding:.55rem 1rem;font-size:13px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;position:sticky;top:0;z-index:2;}
 td{padding:.6rem 1rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:#faf9f6;}
@@ -79,6 +81,34 @@ tr:hover td{background:#faf9f6;}
 .leg-i{display:flex;align-items:center;gap:6px;font-size:13px;color:#5F5E5A;}
 .topbar{display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #dddcd4;padding:.7rem 1.6rem;flex-shrink:0;font-size:13px;color:#888780;}
 .topbar strong{color:#1a1a18;font-size:15px;}
+
+/* ── 手機版（≤768px）：側欄化為抽屜、表格橫向滑動、間距縮小 ── */
+.sb-toggle{display:none;}
+.sb-backdrop{display:none;}
+@media (max-width:768px){
+  body{font-size:15px;}
+  .layout{height:100dvh;}
+  .sb{position:fixed;top:0;left:0;bottom:0;z-index:60;width:min(80vw,280px);transform:translateX(-105%);transition:transform .25s ease;box-shadow:4px 0 18px rgba(0,0,0,.18);}
+  .sb.open{transform:none;}
+  .sb.open+.sb-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(20,20,18,.4);}
+  .sb-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #d3d1c7;border-radius:8px;background:#fff;color:#1a1a18;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .topbar{padding:.55rem .8rem;font-size:11px;gap:6px;flex-wrap:wrap;}
+  .topbar span:last-child{display:none;}
+  .mn{padding:.8rem .7rem;}
+  .card{padding:.9rem .8rem;}
+  .dn{font-size:18px;}
+  .sg{grid-template-columns:repeat(2,1fr)!important;gap:7px;}
+  .sc{padding:.6rem .4rem;}
+  .card>div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tbl-wrap table{min-width:680px;}
+  table{font-size:12.5px;}
+  th,td{padding:.45rem .55rem;font-size:12.5px;}
+  .tbl-hdr{padding:.6rem .8rem;font-size:12.5px;}
+  .sbl{width:52px;font-size:10.5px;}
+  .sbrs{min-width:110px;}
+  .legend{gap:8px;}
+}
 </style>
 </head>
 <body>
@@ -98,16 +128,21 @@ tr:hover td{background:#faf9f6;}
     <button class="sb-btn" onclick="sel('translator')">
       <i class="ti ti-language"></i> 新聞英譯小幫手
     </button>
-    <a class="sb-btn" href="https://fengchia1961.github.io/fcu-news-dashboard/health-check.html" target="_blank" style="margin-top:4px;color:#C8102E;border-color:#f5a0a8;">
-      <i class="ti ti-arrow-left"></i> 返回學系網站健檢儀表板
+    <button class="sb-btn" onclick="sel('rubric')">
+      <i class="ti ti-stars"></i> AI 評分標準說明
+    </button>
+    <a class="sb-btn" href="https://fengchia1961.github.io/fcu-news-dashboard/health-check.html" target="_blank" rel="noopener noreferrer" style="text-align:center;text-decoration:none;">
+      <i class="ti ti-arrow-left"></i> 返回網站健檢儀表板
     </a>
   </div>
   <div class="sb-body" id="sb-body"></div>
 </div>
+<div class="sb-backdrop" onclick="closeSb()"></div>
 
 <!-- Main -->
 <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
   <div class="topbar">
+    <button class="sb-toggle" onclick="toggleSb()" aria-label="開啟選單"><i class="ti ti-menu-2"></i></button>
     <i class="ti ti-calendar-stats" style="font-size:14px;color:#1D9E75;"></i>
     <span>統計起迄：<strong style="color:#1a1a18;">2025.08.01</strong> 起</span>
     <span>｜</span>
@@ -387,84 +422,103 @@ const CUT='2025.08.01', TGT=20, MONTHS=10.5;
 // 參照「校園新聞評分標準 v3.0」：時效GEO 40 / 視覺版面 30 / 語氣真誠 30
 
 // 完整評分標準（供介面提示使用）
-const RUBRIC_TIP=`【資訊結構與事件即時性 /40】
-時效判斷：從標題提取「X月X日」事件日期，與發布日期比對差距。
-若差距 ≤7天（或無法提取事件日期）→ 即時；>7天 → 延遲。
+const RUBRIC_TIP=`【資訊結構與即時加分 /30】
+僅評估已發生、可報導的事件（活動預告/招生/截止/行政通知等非新聞類另扣30分）。
+資訊結構：具體數字、具名縮寫、明確排名／屆次，達2類以上得20分，1類得10分。
+即時加分：從內文提取事件日期，發布後7天內＋10分；超過7天或無法判斷不加分。
 
-40：即時＋高密度GEO（具體數字/縮寫/排名等結構化實體）
-30：即時，但缺乏GEO結構
-20：延遲，但具備GEO結構
-10：延遲且無GEO結構
+30：資訊結構20＋即時10（兩類GEO且即時）
+20：資訊結構10＋即時10（一類GEO且即時）
+20：資訊結構20，但延遲或時效待確認
+10：資訊結構10，且延遲或時效待確認
 
-【視覺品質與版面 /30】（★依標題類型推估）
-30：卓越－有活動現場生動畫面（競賽/典禮/展覽類）
-20：達標－標準合照＋基本分段（一般活動新聞）
-10：研究/論文/學術類（通常以文字為主）
+【可視覺化潛力與版面 /20】（★依標題類型推估，不代表實際圖片品質）
+20：儀式感/現場感強（競賽/頒獎/典禮/展覽類）
+15：一般活動新聞（標準合照＋基本分段）
+10：研究/論文/學術類（多為識別照）
  0：純公告/通知，無照片無分段
 
-【語氣與真誠度 /30】
-30：真誠直白，零公關套話
-20：平順，偶有老派詞彙
-10：過度形容詞堆疊或AI機器感
- 0：官僚語氣或上對下指導語氣`;
+【語氣與真誠度 /25】
+25：真誠直白，有人味，具名人物或可核實引述
+15：中性語氣，無明顯套話
+10：PR套話或AI機器感詞彙
+ 0：官僚語氣或上對下指導語氣
+
+【資訊完整性與可核實性 /25】（★需有內文，標題推估多為0）
+25：時間、人物、地點、成果皆清楚，含引述或可追溯數據
+15：交代重點與基本事實，缺少引述或成果脈絡
+ 5：僅部分基本資訊，多為概述或口號
+ 0：事實缺漏嚴重，或無依據
+
+非新聞類扣分：預告/招生/截止/行政通知→ -30`
 
 // 從「YYYY.MM.DD」格式日期字串建立 Date 物件
 function parseD(s){const[y,m,d]=s.split('.').map(Number);return new Date(y,m-1,d);}
 
-function autoSc(t,d){
-  // ── 維度 1：資訊結構與事件即時性（含 GEO 優化）40分 ──
-  // 【時效】：嘗試從標題提取 X月X日（事件日期），與發布日期(d)比對
-  let isRecent=true; // 預設即時（若標題無日期則跳過時效扣分）
+// HTML 跳脫（動態資料插入 innerHTML 前必經）與外部連結白名單（僅允許 http/https）
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function safeUrl(u){u=String(u==null?'':u);return /^https?:\/\//i.test(u)?u:'#';}
+
+function autoSc(t,c,d){
+  // 向後相容：autoSc(title, date) 舊呼叫，第二引數若為日期字串則視為 d
+  if(d===undefined&&c&&/^\d{4}\.\d{2}/.test(c)){d=c;c='';}
+  if(!c)c='';
+  const source=t+'\n'+c;
+
+  // ── 非新聞類判定（預告/招生/行政通知 → penalty -30）──
+  const isNonNews=/公告|甄選|作業|招生|通知|截止|規定|注意事項|依規辦理|填報|報名|徵件|開放申/.test(t);
+  const penalty=isNonNews?-30:0;
+
+  // ── 維度 1：資訊結構 + 即時加分（/30）──
+  let timelinessStatus='unknown';
   if(d){
-    const em=t.match(/(\d{1,2})月(\d{1,2})日/);
+    const em=c.match(/(\d{1,2})月(\d{1,2})日/);
     if(em){
       const pub=parseD(d);
-      const py=pub.getFullYear(), pm=pub.getMonth()+1;
-      const evM=parseInt(em[1]), evD=parseInt(em[2]);
-      // 事件年份：若事件月份 > 發布月份，視為上一年（跨年度邊界）
+      const py=pub.getFullYear(),pm=pub.getMonth()+1;
+      const evM=parseInt(em[1]),evD=parseInt(em[2]);
+      // 跨年度邊界：事件月份 > 發布月份 → 視為上一年
       const evYear=evM>pm?py-1:py;
-      const ev=new Date(evYear,evM-1,evD);
-      const diff=Math.round((pub-ev)/86400000); // 差距天數
-      isRecent=diff>=0&&diff<=7;                 // 0~7天 = 即時；負值(未來) = 視為即時
+      const diff=Math.round((pub-new Date(evYear,evM-1,evD))/86400000);
+      timelinessStatus=diff>=0&&diff<=7?'timely':'late';
     }
-    // 標題無 X月X日 → 無法判斷事件日期 → 維持 isRecent=true（跳過時效扣分）
   }
-  // 【GEO結構】：標題含量化數字+單位、具名縮寫、明確排名/屆次
-  const hasNum=/\d+[人組件萬%名屆強校所位項]/.test(t);
-  const hasAcronym=/AI|GEO|MOU|NVIDIA|IEET|EUR-ACE|WBC|ESG|SDG|USR|IEEE|ISO|RTX|AAIS|APT|AIA/.test(t);
-  const hasRank=/全國[冠亞季]軍|全國第[一二三1-3]|全球排名|世界前\d|四強|蟬聯|冠軍/.test(t);
-  const hasGEO=hasNum||hasAcronym||hasRank;
-  const g=isRecent?(hasGEO?40:30):(hasGEO?20:10);
+  const hasNum=/\d+[人組件萬%名屆強校所位項]/.test(source);
+  const hasAcronym=/AI|GEO|MOU|NVIDIA|IEET|EUR-ACE|WBC|ESG|SDG|USR|IEEE|ISO|RTX|AAIS|APT|AIA/.test(source);
+  const hasRank=/全國[冠亞季]軍|全國第[一二三1-3]|全球排名|全球前\d|世界前\d|四強|蟬聯|冠軍/.test(source);
+  const evidenceCount=[hasNum,hasAcronym,hasRank].filter(Boolean).length;
+  const structureScore=evidenceCount>=2?20:10;
+  const g=structureScore+(timelinessStatus==='timely'?10:0);
 
-  // ── 維度 2：視覺品質與版面 30分（★標題推估，校園合照不扣分） ──
-  // 先判斷「純公告/通知」→ 0分（通常無照片、無分段）
+  // ── 維度 2：可視覺化潛力與版面 /20（★標題推估）──
   const isNotice=/公告|甄選|作業|招生|通知|截止|規定|注意事項|辦理|開放申|月報/.test(t);
-  let v;
-  if(isNotice){
-    v=0;
-  } else if(/競賽|頒獎|典禮|畢典|成果展|發表會|音樂會|展覽|盛典|簽署|訪問|參訪|黑客松|馬拉松|錦標賽|授旗|授證/.test(t)){
-    // 卓越加分：儀式感/現場感強的活動，預期有生動照片
-    v=30;
-  } else if(/論文|研究|期刊|升等|入選|獲聘|學報|計畫通過/.test(t)){
-    // 降分：研究成就類，多為排版照或識別照，缺乏現場感
-    v=10;
-  } else {
-    // 一般新聞：預期至少 1 張標準合照＋基本分段
-    v=20;
-  }
+  const v=isNotice?0
+    :/競賽|頒獎|典禮|畢典|成果展|發表會|音樂會|展覽|盛典|簽署|訪問|參訪|黑客松|馬拉松|錦標賽|授旗|授證/.test(t)?20
+    :/論文|研究|期刊|升等|入選|獲聘|學報|計畫通過/.test(t)?10
+    :15;
 
-  // ── 維度 3：語氣與真誠度 30分 ──
-  // 0分：官僚語氣
+  // ── 維度 3：語氣與真誠度 /25 ──
   const isBureau=/相關事項|作業規定|甄選公告|注意事項|依規辦理|敬請|依規定|填報/.test(t);
-  if(isBureau)return{g,v,a:0};
-  // 10分：PR 套話 / AI 機器感
-  const isPR=/展現.{0,5}量能|再創佳績|大放異彩|豐碩成果|矚目成就|精彩呈現|卓越表現|璀璨|耀眼|亮眼|深耕|締造|強強聯手/.test(t);
-  // 30分：真誠直白的人味語氣
-  const isGenuine=/引領|探索|思索|體驗|走進|漫談|分享|訪談|對談|翻轉|返校|守護|陪伴|聆聽|重塑|攜手|用心/.test(t);
-  const a=isPR?10:(isGenuine?30:20);
+  const status=isNonNews?'non_news':timelinessStatus;
 
-  return{g,v,a};
+  // ── 維度 4：資訊完整性與可核實性 /25 ──
+  const hasEventDate=/(\d{1,2})月(\d{1,2})日/.test(c);
+  const hasActor=/校長|院長|系主任|教授|教師|學生|校友|團隊|中心|學院|學系/.test(c);
+  const hasPlace=/(?:於|在).{0,16}(?:舉行|辦理|登場|進行|完成|發表|展開)/.test(c);
+  const hasQuote=/表示|指出|認為|分享|強調/.test(c);
+  const completenessCount=[hasEventDate,hasActor,hasPlace,hasQuote,hasNum||hasRank].filter(Boolean).length;
+  const i=completenessCount>=4?25:completenessCount>=3?15:completenessCount>=2?5:0;
+
+  if(isBureau)return{g,v,a:0,i,penalty,status};
+  const isPR=/展現.{0,5}量能|再創佳績|大放異彩|豐碩成果|矚目成就|精彩呈現|卓越表現|璀璨|耀眼|亮眼|深耕|締造|強強聯手/.test(t);
+  const isGenuine=/引領|探索|思索|體驗|走進|漫談|分享|訪談|對談|翻轉|返校|守護|陪伴|聆聽|重塑|攜手|用心/.test(t);
+  const a=isPR?10:(isGenuine?25:15);
+
+  return{g,v,a,i,penalty,status};
 }
+
+// ── PRE_SCORES：內文＋圖片完整評分（fetch_article_scores.py 產生）──
+const PRE_SCORES={"https://aero.fcu.edu.tw/news/2026042701/":{"g":30,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2026-03-09-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"late","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2026-03-06-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"late","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2026-03-03-01/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2026-02-26-01-2/":{"g":10,"v":0,"a":0,"i":0,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://aero.fcu.edu.tw/news/20251027-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://aero.fcu.edu.tw/news/20251020-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2025-10-13-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"late","ph":1,"full":1},"https://aero.fcu.edu.tw/news/2025-10-09-01/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://aero.fcu.edu.tw/news/20250916-01/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://aero.fcu.edu.tw/news/20250825-01/":{"g":10,"v":0,"a":0,"i":0,"penalty":-30,"status":"non_news","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026061501/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026040101/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112802/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025102103/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025092301/":{"g":20,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025091801/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025082801/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025081403/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026062402/":{"g":20,"v":15,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026062401/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026062201/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026061701/":{"g":20,"v":10,"a":25,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://mse.fcu.edu.tw/news/mse_news_20260610/":{"g":10,"v":20,"a":10,"i":25,"penalty":0,"status":"unknown","ph":4,"full":1},"https://fcm.fcu.edu.tw/news/%e7%b4%a1%e7%b9%94%e7%94%a2%e6%a5%ad%e5%90%8d%e4%ba%ba%e8%ac%9b%e5%a0%82/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026060301/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://mse.fcu.edu.tw/news/mse_news_20260522/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026052504/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://che.fcu.edu.tw/news/2026052301/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026052002/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://mse.fcu.edu.tw/news/20260322_news_nmc-2026/":{"g":10,"v":15,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://mse.fcu.edu.tw/news/20260301_ic-plants-2026/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026050503/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026040904/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://che.fcu.edu.tw/news/2026032701/":{"g":10,"v":20,"a":10,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026032304/":{"g":20,"v":0,"a":15,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026031601/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"late","ph":3,"full":1},"https://mse.fcu.edu.tw/news/114-overseas-internship/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026012701/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026012601/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://che.fcu.edu.tw/news/2026011302/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://che.fcu.edu.tw/news/2026011301/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026011202/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026010601/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025123003/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025123001/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":3,"full":1},"https://che.fcu.edu.tw/news/2025122901/":{"g":10,"v":20,"a":10,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://mse.fcu.edu.tw/news/20251206_asian-apc/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121902/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://apmath.fcu.edu.tw/news/20251211/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://photonics.fcu.edu.tw/news/%e6%9e%97%e5%bf%a0%e5%8b%87%e5%90%8c%e5%ad%b8%e6%a6%ae%e7%8d%b2-optic2025-%e5%ad%b8%e7%94%9f%e8%ab%96%e6%96%87%e6%b5%b7%e5%a0%b1%e7%8d%8e/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120205/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025111702/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://inde.fcu.edu.tw/news/%e6%81%ad%e5%96%9c%e5%bc%b5%e7%99%bb%e5%87%b1-%e5%ad%b8%e9%95%b7%e6%a6%ae%e7%8d%b2%e9%80%a2%e7%94%b2%e7%ac%ac26%e5%b1%86%e5%82%91%e5%87%ba%e7%b3%bb%e5%8f%8b%ef%bc%88%e6%93%98%e5%8a%83%e9%95%b7/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://photonics.fcu.edu.tw/news/%e9%b4%bb%e6%ba%96%e7%b2%be%e5%af%86%e5%b7%a5%e6%a5%adctt%e4%ba%8b%e6%a5%ad%e7%be%a4%e5%8a%a9%e6%94%bb%e5%af%a6%e5%8b%99%e6%95%99%e5%ad%b8-%e7%99%be%e8%90%ac%e7%b4%9a%e5%85%89%e5%ad%b8%e9%87%8f/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://apmath.fcu.edu.tw/news/20251106/":{"g":10,"v":15,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025102801/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":4,"full":1},"https://che.fcu.edu.tw/news/2025102101/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025102002/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.fcu.edu.tw/news/2025100703/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025100701/":{"g":20,"v":10,"a":25,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025100702/":{"g":10,"v":10,"a":10,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://apmath.fcu.edu.tw/news/certificate/":{"g":20,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://che.fcu.edu.tw/news/2025100301/":{"g":20,"v":15,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025100302/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025093001/":{"g":20,"v":10,"a":25,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025091804/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025091602/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://che.fcu.edu.tw/news/2025090501/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025090103/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":5,"full":1},"https://www.fcu.edu.tw/news/2025081902/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025081901/":{"g":10,"v":20,"a":25,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025081102/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026070301/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/115-1%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026062501/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026062202/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026061801/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026061702/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://fina.fcu.edu.tw/news/%e7%94%a2%e5%ad%b8%e5%85%b1%e6%8e%88%e6%96%b0%e5%85%b8%e7%af%84%ef%bc%81%e9%80%a2%e7%94%b2%e9%87%91%e8%9e%8d%e5%ad%b8%e9%99%a2-x-%e7%b5%b1%e4%b8%80%e6%8a%95%e4%bf%a1%e9%87%91%e7%8d%8e%e5%9c%98/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026061502/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://ics.fcu.edu.tw/news/cacs-lab20260615/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://ics.fcu.edu.tw/news/dlt20260608/":{"g":20,"v":15,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%B3%87%E8%A8%8A%E5%B7%A5%E7%A8%8B%E5%AD%B8%E7%B3%BB2026%E7%95%A2%E6%A5%AD%E5%85%B8%E7%A6%AE/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%bb%ba%e7%af%89%e4%b8%bb%e8%be%a648%e5%b1%86%e7%a0%94%e8%a8%8e%e6%9c%83-mecanoo%e5%8a%a9%e5%ae%a4%e8%a8%ad%e7%94%9f%e6%8e%a5%e8%bb%8c%e5%9c%8b%e9%9a%9b/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-%e7%ac%ac%e4%ba%8c%e5%b1%86%e3%80%8c%e5%85%a8%e7%90%83%e4%bc%81%e6%a5%ad%e9%a0%98%e8%a2%96%e7%8f%ad%e3%80%8d%e7%b5%90%e6%a5%ad%e5%85%b8%e7%a6%ae%f0%9f%8e%89/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://tl.fcu.edu.tw/news/%e7%9b%b4%e6%93%8a%e8%88%aa%e7%a9%ba%e7%94%a2%e6%a5%ad%e5%bf%83%e8%87%9f%ef%bc%81%e9%81%8b%e7%89%a9%e7%b3%bb%e5%b8%ab%e7%94%9f%e5%8f%83%e8%a8%aa%e9%95%b7%e6%a6%ae%e8%88%aa%e7%a9%ba%e8%88%87%e8%88%aa/":{"g":10,"v":15,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026061101/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026061003/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://bpfeas.fcu.edu.tw/news/%e5%90%b3%e5%a5%87%e8%9e%a2%e7%b3%bb%e5%8f%8b%e8%bf%94%e6%a0%a1%e5%88%86%e4%ba%ab%e7%b2%be%e7%ae%97%e8%81%b7%e6%b6%af%e7%b6%93%e9%a9%97%e3%80%80%e5%8d%94%e5%8a%a9%e5%ad%b8%e7%94%9f%e6%8e%8c%e6%8f%a1/":{"g":10,"v":10,"a":25,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://upfc.fcu.edu.tw/news/1150602/":{"g":20,"v":15,"a":15,"i":25,"penalty":0,"status":"unknown","ph":2,"full":1},"https://upfc.fcu.edu.tw/news/1150528/":{"g":10,"v":15,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026060903/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":6,"full":1},"https://www.fcu.edu.tw/news/2026060902/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://smd.fcu.edu.tw/news/%e2%9c%a8%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-113%e7%b4%9a%e7%95%a2%e6%a5%ad%e3%80%91%e2%9c%a8/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":10,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%bc%95%e9%a0%98%e6%b0%b8%e7%ba%8cai%ef%bc%8c%e5%ad%b8%e7%94%9f%e8%b6%99%e8%be%b0%e6%85%88%e6%88%90%e6%9c%80%e5%b9%b4%e8%bc%95leed-ga/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%ef%bc%9a%e7%ab%b6%e8%b3%bd%e9%a9%85%e5%8b%95%e5%b0%88%e6%a5%ad%ef%bc%8c%e6%ab%bb%e8%8a%b1%e5%bb%9a%e5%85%b7%e5%8a%a9%e5%af%a6%e7%bf%92%e3%80%82/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e9%80%b2%e4%bf%ae%e9%83%a8%e7%95%a2%e8%a8%ad%ef%bc%9a%e7%af%89%e5%a4%a2%e5%ad%b8%e5%ad%90%e7%b6%bb%e6%94%be%e8%a8%ad%e8%a8%88%e5%85%89%e8%8a%92/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":4,"full":1},"https://bpfeas.fcu.edu.tw/news/%e8%b2%a1%e5%8b%99%e5%b7%a5%e7%a8%8b%e6%b7%b1%e7%a2%97%e5%b0%88%e9%a1%8c%e6%88%90%e6%9e%9c%e7%99%bc%e8%a1%a8%e5%9c%93%e6%bb%bf%e8%90%bd%e5%b9%95%e3%80%80%e5%b1%95%e7%8f%be%e9%87%91%e8%9e%8d%e5%b7%a5/":{"g":20,"v":15,"a":15,"i":5,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026060401/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://id.fcu.edu.tw/news/%e5%8d%8a%e7%95%9d%e5%a1%98%e6%b1%9f%e6%96%87%e6%b7%b5%e9%80%a2%e7%94%b2%e6%bc%94%e8%ac%9b%ef%bc%9a%e5%bb%ba%e7%af%89%e4%b9%8b%e3%80%8c%e9%81%93%e3%80%8d%e8%88%87%e3%80%8c%e5%ae%9a%e4%bd%8d%e3%80%8d/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%8f%83%e8%a8%aa%e5%a4%a7%e7%87%81%e7%85%a7%e6%98%8e%ef%bc%8c%e5%ad%b8%e7%94%a8%e5%90%88%e4%b8%80%e6%8f%90%e5%8d%87%e5%ad%b8%e7%94%9f%e7%ab%b6%e7%88%ad%e5%8a%9b/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026060201/":{"g":30,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://bpfeas.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e8%88%87%e9%a6%ac%e4%be%86%e8%a5%bf%e4%ba%9e%e5%9c%8b%e7%ab%8b%e5%a4%a7%e5%ad%b8%e6%94%9c%e6%89%8b-%e8%88%89%e8%be%a6%e8%b7%a8%e5%9c%8b%e7%b2%be%e7%ae%97%e6%96%87/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":6,"full":1},"https://www.fcu.edu.tw/news/2026060101/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026060102/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026052901/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026052701/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/20260502601/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":6,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%A2%81%E9%83%81%E7%8F%AE%E6%95%99%E6%8E%88%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%B8%AB%E5%9C%A8%E6%96%B0%E4%B8%96%E4%BB%A3%E8%A8%98%E6%86%B6%E9%AB%94%E8%88%87%E5%84%B2%E5%AD%98%E7%B3%BB%E7%B5%B1%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2%E8%88%87%E6%8C%91%E6%88%B0/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%8F%B0%E7%81%A3%E5%AD%B8%E8%A1%93%E4%B9%8B%E5%85%89%E5%BC%B5%E7%9C%9F%E8%AA%A0%E6%95%99%E6%8E%88%E6%A6%AE%E8%86%BA%E9%A6%96%E5%B1%86%E5%9C%8B%E9%9A%9B%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E7%A7%91%E5%AD%B8%E9%99%A2%EF%BC%88AAIS%EF%BC%89%E6%9C%83%E5%A3%AB/":{"g":30,"v":15,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026052503/":{"g":10,"v":10,"a":25,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026052501/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%91%A8%E5%85%86%E9%BE%8D%E5%8F%8A%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E7%9A%84%E7%A0%94%E7%A9%B6%E5%9C%98%E9%9A%8A%E7%8D%B2DLT2026%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E7%A0%94%E7%A9%B6%E5%9C%98%E9%9A%8A%E7%8D%B2DLT2026%E3%80%812026%20ECO%E9%9B%99%E7%A0%94%E8%A8%8E%E6%9C%83%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://tl.fcu.edu.tw/news/%e5%8f%b0%e7%81%a3%e6%b8%af%e5%8b%99%e5%85%ac%e5%8f%b8%e5%91%a8%e6%b0%b8%e6%9a%89%e8%91%a3%e4%ba%8b%e9%95%b7%e8%bf%94%e6%af%8d%e6%a0%a1%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e9%96%8b%e8%ac%9b-%e5%88%86/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026051801/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://he.fcu.edu.tw/news/115%e5%8f%83%e8%88%87%e6%bd%ad%e5%ad%90%e5%8d%80%e9%98%b2%e7%81%bd%e8%a8%93%e7%b7%b4/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":8,"full":1},"https://www.fcu.edu.tw/news/2026051401/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026051203/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026051201/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026051204/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%9E%97%E5%AD%90%E6%80%A1%E6%95%99%E6%8E%88%20%E5%B7%A5%E6%A5%AD%E5%BD%B1%E5%83%8F%E6%87%89%E7%94%A8%E5%AF%A6%E5%8B%99%EF%BC%9A%E5%BE%9E%E7%94%A2%E5%AD%B8%E5%90%88%E4%BD%9C%E5%B0%88%E6%A1%88%E5%88%B0%E5%B0%88%E5%88%A9%E6%8A%80%E8%A1%93%E7%B4%AF%E7%A9%8D/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://fll.fcu.edu.tw/news/1150504-2/":{"g":20,"v":15,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://fll.fcu.edu.tw/news/1150504-1/":{"g":30,"v":15,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026050801/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://he.fcu.edu.tw/news/115%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e6%b0%b4%e5%88%a9%e7%b3%bb%e8%81%b7%e6%b6%af%e5%88%86%e4%ba%ab/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026050701/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E7%8E%8B%E8%92%9E%E5%90%9B%E6%95%99%E6%8E%88%206G%20and%20AI:%20Why%3F%20What%3F%20And%20How%3F/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026050502/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026050405/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://marketing.fcu.edu.tw/news/%e6%9c%8d%e5%8b%99%e8%a8%ad%e8%a8%88%e5%af%a6%e5%8b%99%e8%88%87%e6%87%89%e7%94%a8-%e5%8c%97%e7%be%8e%e9%ab%98%e7%ab%af%e9%81%8b%e5%8b%95%e5%93%81%e7%89%8c-%e5%85%a8%e9%ab%94%e9%80%9a%e8%b7%af%e7%a0%94/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://fll.fcu.edu.tw/news/0504/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://www.fcu.edu.tw/news/2026050404/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8ETerra%20A.I.R.%E5%9C%98%E9%9A%8A%E5%8B%87%E5%A5%AA%E3%80%8C%E6%98%8E%E7%B7%AF%E6%99%BA%E6%85%A7%E6%B0%B8%E7%BA%8C%E7%A7%91%E6%8A%80%E7%AB%B6%E8%B3%BD%E3%80%8D%E9%8A%80%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026043002/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026042902/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://marketing.fcu.edu.tw/news/%e5%88%a5%e5%86%8d%e8%be%a6%e6%b2%92%e4%ba%ba%e4%be%86%e7%9a%84%e6%b4%bb%e5%8b%95%ef%bc%81%e5%be%9e0%e5%88%b01%e6%89%93%e9%80%a0%e7%88%86%e6%bb%bf%e6%b4%bb%e5%8b%95%e7%9a%84%e9%97%9c%e9%8d%b5%e6%80%9d/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026042901/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026042704/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%90%B3%E6%89%BF%E8%BB%92%E7%8D%B22026%20CSP%E5%9C%8B%E9%9A%9B%E6%9C%83%E8%AD%B0%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%B0%A1%E5%A0%B1%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026042702/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026042701/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://smd.fcu.edu.tw/news/%e8%8f%81%e8%8b%b1%e8%81%9a%e5%8a%9b%ef%bc%8c%e6%a6%ae%e8%80%80%e4%ba%8c%e5%8d%81/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":9,"full":1},"https://up.fcu.edu.tw/news/news20260418/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://up.fcu.edu.tw/news/news20260411/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e6%94%9c%e6%89%8b%e5%be%b7%e5%bb%9a%e7%b2%be%e5%93%81%e5%bb%9a%e9%9b%bb%e6%b7%b1%e5%8c%96%e6%99%ba%e6%85%a7/":{"g":10,"v":20,"a":10,"i":25,"penalty":0,"status":"unknown","ph":7,"full":1},"https://biba.fcu.edu.tw/news/%e3%80%8c%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e3%80%8d%e8%aa%b2%e7%a8%8b%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa-%e8%90%ac%e5%b9%b4%e6%b8%85%e7%92%b0%e5%a2%83%e5%b7%a5%e7%a8%8b%e8%82%a1%e4%bb%bd%e6%9c%89/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"late","ph":4,"full":1},"https://biba.fcu.edu.tw/news/%e9%98%bf%e5%be%b7%e8%90%8a%e5%be%b7%e5%a4%a7%e5%ad%b8%e6%a0%a1%e4%bb%a3%e8%a1%a8%e4%be%86%e8%a8%aa/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%B4%AA%E6%99%BA%E5%82%91%E6%95%99%E6%8E%88%20%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E8%AB%B8%E7%A5%9E%E9%BB%83%E6%98%8F%EF%BC%9AAI%20%E6%99%82%E4%BB%A3%E4%B8%8B%E7%9A%84%E8%BB%9F%E9%AB%94%E6%80%9D%E7%B6%AD%E9%87%8D%E6%A7%8B/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026042001/":{"g":30,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e7%ac%ac%e5%85%ad%e5%b1%86%e5%8d%9a%e8%a7%80%e8%ac%9b%e5%a0%82%e7%b5%90%e6%a5%ad%e5%9b%89%f0%9f%8e%89%f0%9f%8e%89%f0%9f%8e%89/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://biba.fcu.edu.tw/news/%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e8%aa%b2%e7%a8%8b%e7%89%b9%e9%82%80-ecct-%e5%9f%b7%e8%a1%8c%e9%95%b7-freddie-hoglund-%e5%85%88%e7%94%9f%e9%80%b2%e8%a1%8c%e4%bc%81%e6%a5%ad%e5%b0%88%e9%a1%8c/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026041601/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026041401/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026041301/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%8B%87%E6%95%A2%E8%B7%A8%E5%87%BA%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%88%91%E7%9A%84%E8%90%8A%E6%96%AF%E5%A4%A7%E5%AD%B8%E4%BA%A4%E6%8F%9B%E6%88%90%E9%95%B7%E8%A8%98/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/115%E5%AD%B8%E5%B9%B4%E5%BA%A6%E5%AD%B8%E5%A3%AB%E7%94%9F%E5%85%88%E4%BF%AE%E7%A2%A9%E5%A3%AB%E7%8F%AD%E8%AA%B2%E7%A8%8B%E7%94%84%E9%81%B8/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026041001/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026040901/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026040902/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://fll.fcu.edu.tw/news/20260408/":{"g":10,"v":0,"a":15,"i":25,"penalty":0,"status":"late","ph":0,"full":1},"https://www.fcu.edu.tw/news/2026040801/":{"g":20,"v":20,"a":10,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%AF%A6%E5%8A%9B%E7%8D%B2%E6%AE%BF%E5%A0%82%E7%B4%9A%E8%AA%8D%E8%AD%89%EF%BC%81%E9%80%A2%E7%94%B2%E5%A4%A7%E5%AD%B86%E5%BA%A6%E5%A5%AA%E8%98%8B%E6%9E%9CWWDC-Swift%E5%A4%A7%E7%8D%8E%EF%BC%8C%E5%85%A8%E5%8F%B0%E5%94%AF%E4%B8%80%E5%85%A9%E4%BD%8D%E5%AD%B8%E7%94%9F%E5%90%8C%E7%8D%B2%E6%AE%8A%E6%A6%AE/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":6,"full":1},"https://www.fcu.edu.tw/news/2026040803/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":5,"full":1},"https://id.fcu.edu.tw/news/%e6%95%99%e8%82%b2%e9%83%a8%e8%aa%8d%e5%8f%af%e5%9c%8b%e9%9a%9b%e7%ab%b6%e8%b3%bd%e8%82%af%e5%ae%9a%e3%80%80%e5%ad%b8%e7%94%9f%e4%bd%9c%e5%93%81%e7%99%bb%e4%b8%8a%e5%9c%8b%e9%9a%9b%e8%88%9e%e5%8f%b0/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E7%AB%B6%E8%B3%BD%E5%8F%8A%E8%AD%89%E7%85%A7%E8%A3%9C%E5%8A%A9%E3%80%91114%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AB%B6%E8%B3%BD%E7%8D%B2%E7%8D%8E%E8%88%87%E8%AD%89%E7%85%A7%E8%A3%9C%E5%8A%A9%E8%AA%AA%E6%98%8E~5-13%E5%89%8D%E5%AE%8C%E6%88%90%E7%94%B3%E8%AB%8B/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e5%ad%b8%e7%b3%bb%e4%b8%80%e5%b9%b4%e7%b4%9a%e7%b9%9e%e5%a0%b4%e7%ab%b6%e8%b3%bd%e5%8b%87%e5%a5%aa%e5%85%a8%e6%a0%a1%e7%ac%ac%e4%ba%8c%e5%90%8d/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":6,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%A5%8A%E7%AB%A3%E5%B4%B4%E6%95%99%E6%8E%88%20%E6%B7%BA%E8%AB%87%E9%87%8F%E5%AD%90%E5%AF%86%E7%A2%BC%E5%AD%B8/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026033003/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://marketing.fcu.edu.tw/news/%e5%b8%83%e6%96%bd%e5%b8%86%e6%b5%b7%e5%8b%87%e9%97%962026%e7%ac%ac12%e5%b1%86%e6%8e%a2%e7%b4%a2%e5%8f%b0%e7%81%a3120h/":{"g":20,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2%E5%85%A8%E5%9C%8B%E9%9B%BB%E5%AD%90%E8%A8%AD%E8%A8%88%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E4%BA%9E%E8%BB%8D%E3%80%81%E4%BD%B3%E4%BD%9C/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%96%9B%E5%BF%B5%E6%9E%97%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2%E5%BE%97%E5%85%A8%E5%9C%8B%E9%9B%BB%E5%AD%90%E8%A8%AD%E8%A8%88%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E5%AD%A3%E8%BB%8D%E5%8F%8A%E4%BD%B3%E4%BD%9C%E6%88%90%E7%B8%BE/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%9B%9B%E6%94%AF%E9%9A%8A%E4%BC%8D%E6%96%BC%E3%80%8C2026%20%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E9%81%94AI%E5%89%B5%E6%84%8F%E6%87%89%E7%94%A8%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E5%A4%9A%E9%A0%85%E6%AE%8A%E6%A6%AE/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://he.fcu.edu.tw/news/115sdergold/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":6,"full":1},"https://www.fcu.edu.tw/news/2026032603/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026032501/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2AI%20CUP%E6%95%99%E8%82%B2%E9%83%A8%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E7%AB%B6%E8%B3%BD%E5%84%AA%E7%AD%89%E7%8D%8E/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9B%BE%E7%85%9C%E6%A3%8B%E5%9C%8B%E5%AE%B6%E8%AC%9B%E5%BA%A7%20%E5%A4%A7%E8%AA%9E%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B7%A6%E5%8F%B3%E4%B8%8D%E5%88%86/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026032402/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026032401/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026032201/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E9%BB%83%E6%B0%B8%E9%83%BD%E3%80%81%E6%B1%9F%E5%96%86%E6%A5%B7%E3%80%81%E9%99%B3%E5%BF%83%E6%A8%BA%E5%8F%83%E5%8A%A0%E3%80%8C2026%20E%E5%8C%96%E7%B3%BB%E7%B5%B1%E5%89%B5%E6%84%8F%E6%87%89%E7%94%A8%E7%AB%B6%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E4%BD%B3%E4%BD%9C/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://smd.fcu.edu.tw/news/%e3%80%90%e4%ba%ba%e7%94%9f%e5%83%8f%e5%81%9a%e9%ba%b5%e5%8c%85-%e9%9c%80%e8%a6%81%e6%99%82%e9%96%93%e7%99%bc%e9%85%b5%e3%80%91/":{"g":10,"v":15,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://fll.fcu.edu.tw/news/1150319starlux/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://acct.fcu.edu.tw/news/2024_03_01/":{"g":10,"v":0,"a":15,"i":15,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://fll.fcu.edu.tw/news/2026031703/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://fll.fcu.edu.tw/news/2026031702/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"late","ph":0,"full":1},"https://fll.fcu.edu.tw/news/2026031701/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"late","ph":0,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E5%B0%88%E5%B1%AC%E3%80%81%E6%AC%8A%E5%A8%81%E9%A0%98%E8%88%AA%20-%20%E4%B8%8D%E7%94%A8%E6%A9%9F%E7%A5%A8%EF%BC%8C%E6%88%91%E5%80%91%E6%8A%8A%E5%85%A8%E7%90%83AI%E7%9B%9B%E4%BA%8B%20NVIDIA%20GTC%E5%B8%B6%E9%80%B2%E6%A0%A1%E5%9C%92%E4%BA%86%EF%BC%81/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026031602/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://fll.fcu.edu.tw/news/0313/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%85%A8%E5%8F%B0%E5%94%AF%E4%B8%80%EF%BC%81%E9%80%A2%E7%94%B2%E8%B3%87%E5%B7%A5%E5%9C%98%E9%9A%8A%E6%8C%91%E6%88%B0%E7%91%9E%E5%A3%AB%20ETH%20Z%C3%BCrich%20%E5%9C%8B%E9%9A%9B%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%8C%E5%8B%87%E5%A5%AA%20Honorable%20mentions%20%E6%AE%8A%E6%A6%AE/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://ba.fcu.edu.tw/news/114%e5%ad%b8%e5%b9%b4%e5%ba%a6%e4%bc%81%e6%a5%ad%e7%ae%a1%e7%90%86%e5%ad%b8%e7%b3%bb%e3%80%8c%e5%b0%88%e6%a5%ad%e8%ad%89%e7%85%a7%e7%8d%8e%e5%8b%b5%e3%80%8d%e7%94%b3%e8%ab%8b%e4%bd%9c%e6%a5%ad/":{"g":10,"v":0,"a":15,"i":5,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://ba.fcu.edu.tw/news/%e6%aa%a2%e9%80%81114%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%95%86%e5%ad%b8%e9%99%a2%e3%80%8c%e5%b0%88%e6%a5%ad%e8%ad%89%e7%85%a7%e7%8d%8e%e5%8b%b5%e3%80%8d%e5%8f%8a%e3%80%8c%e5%ad%b8%e7%94%9f%e5%8f%83/":{"g":10,"v":0,"a":15,"i":5,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://id.fcu.edu.tw/news/760/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":7,"full":1},"https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e8%88%87%e5%be%b7%e5%bb%9a%e9%9b%86%e5%9c%98%e6%94%9c%e6%89%8b%e5%90%88%e4%bd%9c-%e5%9c%a8%e5%a4%a7/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":8,"full":1},"https://acct.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e6%9c%83%e8%a8%88%e5%ad%b8%e7%b3%bb%e8%bd%89%e7%b3%bb%e7%94%b3%e8%ab%8b/":{"g":10,"v":15,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026030501/":{"g":10,"v":10,"a":10,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026030502/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://fll.fcu.edu.tw/news/1150304/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E5%A7%9C%E4%BF%A1%E6%AC%BD%E7%B8%BD%E7%B6%93%E7%90%86%20%E9%AB%98%E6%95%88%E8%83%BD%E6%99%B6%E7%89%87%E6%99%82%E4%BB%A3%E7%9A%84%E9%9A%B1%E5%BD%A2%E9%97%9C%E9%8D%B5%EF%BC%9AESD%E9%9D%9C%E9%9B%BB%E9%98%B2%E8%AD%B7%E8%A8%AD%E8%A8%88%E7%9A%84%E6%8C%91%E6%88%B0%E8%88%87%E5%89%B5%E6%96%B0/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%8A%E9%81%A0%E8%A6%8B%E3%80%8B2026%E4%BC%81%E6%A5%AD%E6%9C%80%E6%84%9B%E5%A4%A7%E5%AD%B8%E7%94%9F%E6%8F%AD%E6%9B%89%20%E9%80%A2%E7%94%B2%E5%A5%AA%E7%A7%81%E6%A0%A1%E7%AC%AC%E4%B8%80/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E5%A4%A7%E5%AD%B8%E6%94%9C%E6%89%8B%E8%8F%AF%E7%A2%A9%E6%89%93%E9%80%A0AI%E4%BA%BA%E6%89%8D%E5%9F%B9%E8%82%B2%E5%9F%BA%E5%9C%B0GeForce%20RTX%205080/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"unknown","ph":5,"full":1},"https://fll.fcu.edu.tw/news/2022041201/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://ba.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%a4%a7%e5%ad%b8%e9%83%a8%e4%ba%8c%e3%80%81%e4%b8%89%e5%b9%b4%e7%b4%9a%e5%ad%b8%e7%94%9f%e8%bd%89%e7%b3%bb%e7%9b%b8%e9%97%9c%e4%bd%9c%e6%a5%ad%e4%ba%8b%e9%a0%85/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026022501/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026022302/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026022303/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026022304/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/114-2%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E8%B3%87%E5%B7%A5%E5%B1%95%E7%8F%BE%E9%A0%82%E5%B0%96%E5%AF%A6%E6%88%B0%E5%8A%9B%EF%BC%81%E6%A0%A1%E5%8F%8B%E8%88%87%E5%9C%A8%E6%A0%A1%E7%94%9F%E6%94%9C%E6%89%8B%E5%8B%87%E5%A5%AA%E5%8F%B0%E7%A9%8D%E9%9B%BB%202026%20CareerHack%20%E4%BA%9E%E8%BB%8D/":{"g":10,"v":10,"a":25,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://acct.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e6%9c%83%e8%a8%88%e5%8b%87%e5%a5%aa%e3%80%8c2026%e8%b3%87%e8%aa%a0%e5%9c%8b%e9%9a%9b%e7%a7%9f%e7%a8%85%e7%9b%83%e5%80%8b%e6%a1%88%e5%88%86%e6%9e%90%e7%ab%b6%e8%b3%bd%e3%80%8d/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://id.fcu.edu.tw/news/%e6%8d%b7%e5%a0%b1%ef%bd%9c%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%88%e6%a5%ad%e5%ad%b8%e9%99%a2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e5%85%bc%e4%bb%bb%e6%95%99/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://fll.fcu.edu.tw/news/1141219/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://fll.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%a4%96%e5%9c%8b%e8%aa%9e%e6%96%87%e5%ad%b8%e7%b3%bb%e7%89%b9%e9%82%80%e8%ab%8b%e7%9f%a5%e5%90%8d%e5%9c%8b%e9%9a%9b%e5%ad%b8%e8%80%85-prof-elly-mccausland/":{"g":10,"v":15,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://fll.fcu.edu.tw/news/1150114/":{"g":20,"v":0,"a":15,"i":15,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://bce.fcu.edu.tw/news/%e5%be%9e%e5%bd%b1%e5%83%8f%e5%87%ba%e7%99%bc%e8%b5%b0%e5%85%a5%e7%9c%9f%e5%af%a6%e7%a4%be%e6%9c%83%e3%80%80%e5%95%86%e9%80%b2%e5%ad%b8%e7%94%9f%e8%b7%a8%e5%9f%9f%e5%af%a6%e4%bd%9c%e5%9b%9e%e6%87%89/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":6,"full":1},"https://www.fcu.edu.tw/news/2026011201/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://biba.fcu.edu.tw/news/114%e5%ad%b8%e5%b9%b4%e5%ba%a6-%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81%e9%ab%94%e9%a9%97%e8%aa%b2%e7%a8%8b%e5%90%88%e4%bd%9c%e5%ad%b8%e6%a0%a1%e4%bb%8b%e7%b4%b9/":{"g":10,"v":20,"a":25,"i":0,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026010901/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026010902/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://biba.fcu.edu.tw/news/2025-biba%e8%81%96%e8%aa%95%e6%b4%be%e5%b0%8d/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":9,"full":1},"https://econ.fcu.edu.tw/news/%e5%b0%88%e6%a5%ad%e7%90%86%e8%ab%96%e8%88%87%e5%af%a6%e5%8b%99%e6%87%89%e7%94%a8%e4%b8%a6%e9%87%8d%ef%bc%9a%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e7%b6%93%e6%bf%9f%e5%ad%b8%e7%b3%bb%e5%ad%b8%e7%94%9f/":{"g":10,"v":15,"a":10,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026010801/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E4%B8%BB%E6%8C%81%E5%9C%8B%E7%A7%91%E6%9C%83%E8%A8%88%E7%95%AB%E7%8D%B2114%E5%B9%B4%E5%BA%A6%E5%9C%8B%E7%A7%91%E6%9C%83%E8%B3%87%E8%A8%8A%E5%AD%B8%E9%96%80%E6%88%90%E6%9E%9C%E5%B1%95%E3%80%8C%E5%84%AA%E8%89%AF%E8%A8%88%E7%95%AB%E5%9F%B7%E8%A1%8C%E6%88%90%E6%9E%9C%E7%8D%8E%E3%80%8D/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026010701/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026010603/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026010602/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026010502/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://marketing.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac16%e5%b1%8620%e6%ad%b2%e6%88%90%e5%b9%b4%e7%a6%ae%e9%9d%a9%e6%96%b0%e7%a5%9d%e7%a6%8f%ef%bc%9a%e6%88%b6%e5%a4%96%e6%94%9d%e5%bd%b1%e6%a3%9a/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":7,"full":1},"https://www.fcu.edu.tw/news/2025123101/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025123102/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":6,"full":1},"https://marketing.fcu.edu.tw/news/%e6%b0%b8%e7%ba%8c%e4%b8%ad%e7%9a%84%e6%97%a5%e5%b8%b8%ef%bc%8c%e6%97%a5%e5%b8%b8%e4%b8%ad%e7%9a%84%e6%b0%b8%e7%ba%8c%ef%bc%9a%e7%ac%ac%e5%8d%81%e5%85%ad%e5%b1%86%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%bd%b1/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":5,"full":1},"https://www.fcu.edu.tw/news/2025122901/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025122301/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://biba.fcu.edu.tw/news/michal-fliegel%e5%89%af%e4%b8%bb%e4%bb%bb%e5%8f%83%e8%88%87%e5%9c%8b%e7%ab%8b%e4%b8%ad%e8%88%88%e5%a4%a7%e5%ad%b8%e4%ba%ba%e6%96%87%e7%a4%be%e6%9c%83%e7%a7%91%e5%ad%b8%e5%89%8d%e7%9e%bb%e7%a0%94/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"late","ph":3,"full":1},"https://biba.fcu.edu.tw/news/biba-%e8%90%ac%e8%81%96%e7%af%80%e6%b4%be%e5%b0%8d/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":10,"full":1},"https://biba.fcu.edu.tw/news/biba-%e7%9d%a1%e8%a1%a3%e6%b4%be%e5%b0%8d%e6%b4%bb%e5%8b%95%e5%9b%9e%e9%a1%a7/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":5,"full":1},"https://bpfeas.fcu.edu.tw/news/%e8%b2%a1%e7%ae%97%e5%ad%b8%e7%a8%8b%e6%84%9f%e8%ac%9d%e7%8d%b2%e9%a0%92%e7%ac%ac%e4%b8%89%e5%8d%81%e4%ba%8c%e5%b1%86%e5%90%b3%e5%ae%b6%e9%8c%84%e4%bf%9d%e9%9a%aa%e6%95%99%e8%82%b2%e7%8d%8e%e5%ad%b8/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://bpfeas.fcu.edu.tw/news/%e8%b2%a1%e7%ae%97%e5%ad%b8%e7%a8%8b%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c%e7%99%bc%e8%a1%a8%e6%9c%83-%e5%b1%95%e7%8f%be%e5%9b%9b%e5%b9%b4%e5%b0%88%e6%a5%ad%e5%af%a6%e5%8a%9b/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025122201/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://he.fcu.edu.tw/news/%e8%81%b7%e6%b6%af%e7%99%bc%e5%b1%95%e8%ac%9b%e5%ba%a7%e2%94%80%e6%b0%b4%e5%88%a9%e5%b7%a5%e7%a8%8b%e8%81%b7%e6%b6%af%e6%96%b0%e6%88%b0%e5%a0%b4/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://he.fcu.edu.tw/news/%e8%87%ba%e6%97%a5%e8%b7%a8%e5%9c%8b%e5%85%b1%e7%af%89%e7%81%bd%e5%ae%b3%e9%9f%8c%e6%80%a7/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":13,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B2%E7%AC%AC%E5%8D%81%E5%B1%86%20%E7%B6%A0%E8%89%B2%E7%94%9F%E6%B4%BB%E5%89%B5%E6%84%8F%E8%A8%AD%E8%A8%88%E5%A4%A7%E8%B3%BD%E5%8B%87%E5%A5%AA%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E7%B5%84%E9%8A%80%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://bpfeas.fcu.edu.tw/news/%e7%b3%bb%e5%8f%8b%e6%9e%97%e8%82%b2%e8%91%b3%e8%bf%94%e6%a0%a1%e5%88%86%e4%ba%ab%e5%a4%a7%e5%ad%b8%e7%94%9f%e6%b4%bb%e8%88%87%e7%b2%be%e7%ae%97%e8%81%b7%e6%b6%af%e7%b6%93%e9%a9%97/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121801/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025121705/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":5,"full":1},"https://econ.fcu.edu.tw/news/%e8%b5%b0%e9%80%b2%e5%8f%b0%e7%a9%8d%e9%9b%bb%e4%b8%ad%e7%a7%91%e7%94%9f%e6%85%8b%e5%9c%92%e5%8d%80%ef%bc%9a%e7%b6%93%e6%bf%9f%e6%95%99%e8%82%b2%e4%b8%ad%e7%9a%84%e6%b0%b8%e7%ba%8c%e5%af%a6%e8%b8%90/":{"g":10,"v":15,"a":25,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121704/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://bce.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%95%86%e9%80%b2%e5%8b%87%e5%a5%aa-2025-%e6%b0%b8%e7%ba%8c%e6%99%ba%e6%85%a7%e5%89%b5%e6%96%b0%e9%bb%91%e5%ae%a2%e6%9d%be-11-%e9%a0%85%e5%a4%a7%e7%8d%8e%e3%80%80%e5%b1%95%e7%8f%be/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":8,"full":1},"https://fina.fcu.edu.tw/news/%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%9c%9f%e6%9c%ab%e5%b0%88%e9%a1%8c%e6%9a%a8%e9%87%91%e8%9e%8d%e7%a7%91%e6%8a%80%e5%89%b5%e6%96%b0%e6%9c%8d%e5%8b%99%e6%8f%90%e6%a1%88%e7%ab%b6%e8%b3%bd/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121702/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121603/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121601/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E7%84%A6%E6%83%A0%E6%B4%A5%E6%95%99%E6%8E%88%20%E5%B9%B4%E8%BC%95%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E5%B8%AB%E5%A6%82%E4%BD%95%E5%B1%95%E9%96%8B%E6%96%B0%E5%B7%A5%E4%BD%9C/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://he.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e8%88%87%e8%87%ba%e6%9d%b1%e5%a4%a7%e5%ad%b8%e6%94%9c%e6%89%8b%e6%97%a5%e6%9c%ac%e9%98%b2%e7%81%bd%e5%a3%ab/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":10,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%91%82%E6%85%A7%E6%AC%A3%E3%80%81%E8%83%A1%E7%91%8B%E5%80%AB%E3%80%81%E9%99%B3%E6%9F%8F%E7%86%B9%E3%80%81%E7%8E%8B%E4%BB%81%E6%AF%85%E5%8F%83%E5%8A%A0%E3%80%8C2025%20%E5%85%A8%E5%9C%8B%20AI%20%E5%B0%88%E9%A1%8C%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E3%80%8C%E8%B3%87%E9%9B%BB%E9%A0%98%E5%9F%9F%E3%80%8D%E7%B5%84%E4%BD%B3%E4%BD%9C/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%99%B3%E9%8C%AB%E6%B0%91%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%90%8C%E5%AD%B8%E7%8D%B2%E6%B0%B8%E7%BA%8C%E5%89%B5%E6%96%B0%E9%BB%91%E5%AE%A2%E6%9D%BE-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%A4%A7%E6%95%B8%E6%93%9A%E5%B9%B3%E5%8F%B0%E5%9C%A8%E8%97%A5%E5%B1%80%E7%9A%84%E6%87%89%E7%94%A8%E4%B8%AD%E7%8D%B2%E5%BE%97%E7%AC%AC%E4%B8%80%E5%90%8D/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025121202/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://ce.fcu.edu.tw/news/20251212/":{"g":10,"v":20,"a":10,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121105/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%9C%98%E9%9A%8A%E7%8D%B22025%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E6%99%BA%E6%85%A7%E5%89%B5%E6%96%B0%E6%9A%A8%E8%B7%A8%E5%9F%9F%E6%95%B4%E5%90%88%E5%89%B5%E4%BD%9C%E7%AB%B6%E8%B3%BD%E4%B8%89%E9%A0%85%E7%8D%8E%E9%A0%85/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://rmi.fcu.edu.tw/news/%e4%bb%a5%e5%a4%9a%e5%93%81%e7%89%8c%e5%8f%8a%e6%95%b8%e4%bd%8d%e8%bd%89%e5%9e%8b%e6%88%90%e7%82%ba%e6%9c%80%e5%85%b7%e5%bd%b1%e9%9f%bf%e5%8a%9b%e7%9a%84%e9%a4%90%e9%a3%b2%e9%9b%86%e5%9c%98/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://fll.fcu.edu.tw/news/1210/":{"g":10,"v":15,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://gche.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e8%a8%ad%e8%a6%8f%e5%8a%83%e8%88%87%e5%b7%a5%e7%a8%8b%e5%8d%9a%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e9%87%91%e5%bb%88%e7%a7%bb%e5%9c%b0%e6%95%99/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":13,"full":1},"https://ba.fcu.edu.tw/news/2025-11-30/":{"g":10,"v":15,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://marketing.fcu.edu.tw/news/fcu-marketing-graduation-project-%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":6,"full":1},"https://tl.fcu.edu.tw/news/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81%e6%96%b0%e9%87%8c%e7%a8%8b%e7%a2%91%ef%bc%9a-%e6%96%b0%e5%8a%a0%e5%9d%a1%e7%a4%be%e7%a7%91%e5%a4%a7%e5%ad%b8%e5%b8%ab%e7%94%9f%e8%a8%aa%e9%80%a2%e7%94%b2%e5%a4%a7/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025120804/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%9C%98%E9%9A%8A%E7%8D%B2APICTA%20Awards%202025%20%E5%A4%A7%E5%B0%88%E9%99%A2%E6%A0%A1%E7%B5%84%E5%84%AA%E5%8B%9D/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://he.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e6%b0%b4%e5%88%a9%e7%b3%bb%e5%b8%ab%e7%94%9f114%e5%8f%83%e8%a8%aa%e7%9f%b3%e5%b2%a1%e5%a3%a9/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":11,"full":1},"https://www.fcu.edu.tw/news/2025120501/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://fll.fcu.edu.tw/news/1205/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://www.fcu.edu.tw/news/2025120403/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120301/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025120201/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025120104/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://marketing.fcu.edu.tw/news/%e7%ac%ac16%e5%b1%86%e8%a1%8c%e9%8a%b7%e5%bd%b1%e5%b1%95%e5%8d%b3%e5%b0%87%e7%99%bb%e5%a0%b4%ef%bc%81%e5%b9%b4%e8%bc%95%e8%a6%96%e8%a7%92%e8%a9%ae%e9%87%8b%e6%b0%b8%e7%ba%8c%e6%97%a5%e5%b8%b8/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025120103/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://id.fcu.edu.tw/news/%e9%9a%88%e7%a0%94%e5%90%be%e9%a0%98%e9%8a%9c%e5%9c%8b%e9%9a%9b%e5%bb%ba%e7%af%89%e5%a4%a7%e5%b8%ab-%e9%bd%8a%e8%81%9a%e9%80%a2%e7%94%b2%e5%85%b1%e5%96%84%e6%a8%93-%e6%bf%80%e7%9b%aa%e8%a8%ad%e8%a8%88/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://rmi.fcu.edu.tw/news/%e7%81%bd%e9%98%b2%e5%9e%8b%e4%bf%9d%e9%9a%aa%e4%bb%8b%e7%b4%b9-%e4%bd%8f%e5%ae%85%e7%81%ab%e7%81%bd%e5%8f%8a%e5%9c%b0%e9%9c%87%e5%9f%ba%e6%9c%ac%e4%bf%9d%e9%9a%aa/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025112701/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112603/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025112602/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025112601/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E9%9F%93%E5%9C%8B%E6%BC%A2%E9%99%BD%E5%A4%A7%E5%AD%B8%E3%80%91%E7%A2%A9%E5%8D%9A%E5%A3%AB%E7%8F%AD%E5%85%A8%E9%A1%8D%E5%AD%B8%E8%B2%BB%E7%8D%8E%E5%AD%B8%E9%87%91/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025112501/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":3,"full":1},"https://econ.fcu.edu.tw/news/%e7%b6%93%e6%bf%9f%e5%ad%b8%e7%b3%bb%e5%b0%88%e9%a1%8c%e6%b5%b7%e5%a0%b1%e7%ab%b6%e8%b3%bd/":{"g":20,"v":10,"a":15,"i":5,"penalty":0,"status":"timely","ph":1,"full":1},"https://marketing.fcu.edu.tw/news/%e7%be%8e%e5%ad%b8%e8%88%87%e7%94%a2%e5%93%81%e5%89%b5%e6%84%8f%e8%aa%b2%e5%a0%82%e4%bb%a5%e3%80%8c%e7%85%96%e3%80%8d%e7%82%ba%e9%a1%8c%e3%80%80%e5%9c%a8%e6%b9%af%e5%b8%ad%e4%b8%ad%e5%93%81%e5%91%b3/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":4,"full":1},"https://bpfeas.fcu.edu.tw/news/%e7%be%a4%e7%9b%8a%e6%8a%95%e4%bf%a1%e5%91%82%e9%b4%bb%e5%be%b7%e5%89%af%e7%b8%bd%e7%b6%93%e7%90%86%e6%bc%94%e8%ac%9b%e8%81%b0%e6%98%8e%e7%90%86%e8%b2%a1%e5%be%9e%e7%8f%be%e5%9c%a8%e9%96%8b%e5%a7%8b/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112502/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E5%91%A8%E5%BB%BA%E9%8A%98%E5%89%B5%E8%BE%A6%E4%BA%BA%206G%E6%A8%99%E6%BA%96%E5%88%B6%E5%AE%9A%E8%88%87%E6%BD%9B%E5%9C%A8%E6%8A%80%E8%A1%93%E5%92%8C%E6%87%89%E7%94%A8/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://tl.fcu.edu.tw/news/%e9%96%8b%e6%8b%93%e7%89%a9%e6%b5%81%e6%96%b0%e8%a6%96%e9%87%8e%ef%bc%8c%e6%b7%b1%e8%80%95%e6%b0%b8%e7%ba%8c%e7%b6%93%e7%87%9f%e7%90%86%e5%bf%b5/":{"g":30,"v":15,"a":10,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-2025%e7%94%a2%e6%a5%ad%e8%ab%96%e6%96%87%e5%af%ab%e4%bd%9c%e7%a0%94%e8%a8%8e%e6%9c%83%e3%80%91/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025112101/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E8%88%87%E5%BB%A0%E5%95%86%E5%85%B1%E5%90%8C%E7%A0%94%E7%99%BC%E6%88%90%E6%9E%9C%E6%A6%AE%E7%8D%B2%E5%9C%8B%E9%9A%9B%E5%89%B5%E6%96%B0%E7%99%BC%E6%98%8E%E7%AB%B6%E8%B3%BD%E9%87%91%E7%89%8C/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B22025%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E9%99%A2%E6%A0%A1%E7%94%A2%E5%AD%B8%E5%89%B5%E6%96%B0%E5%AF%A6%E4%BD%9C%E7%AB%B6%E8%B3%BD%E7%AC%AC%E4%B8%80%E5%90%8D/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://id.fcu.edu.tw/news/113%e5%b9%b4%e5%ba%a6%e5%bb%ba%e7%af%89-%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8c%e4%b8%80%e5%bb%ba%e5%bf%a0%e5%8b%a4%e3%80%8d/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://fll.fcu.edu.tw/news/111902/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://fll.fcu.edu.tw/news/111901/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://fll.fcu.edu.tw/news/1119/":{"g":10,"v":10,"a":25,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025111801/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://econ.fcu.edu.tw/news/%e7%b6%93%e6%bf%9f%e7%b3%bb%e8%a7%a3%e9%8e%96%e3%80%8c%e6%a5%ad%e7%95%8c%e6%80%9d%e7%b6%ad%e3%80%8d%ef%bc%9a%e8%a3%95%e9%9a%86%e9%9b%86%e5%9c%98%e8%b3%87%e6%96%99%e5%88%86%e6%9e%90%e5%b8%ab%e5%88%86/":{"g":10,"v":15,"a":25,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://fina.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e8%b2%a1%e9%87%91%e7%b3%bb%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa%e3%80%80%e8%b5%b0%e9%80%b2%e7%94%a2%e6%a5%ad%e7%8f%be%e5%a0%b4%e6%b7%b1%e5%8c%96%e9%87%91%e8%9e%8d/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025111402/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025111401/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://rmi.fcu.edu.tw/news/%e6%9c%ac%e7%b3%bb%e5%b8%ab%e7%94%9f%e8%87%b3%e3%80%8c%e5%ae%89%e8%81%af%e4%ba%ba%e5%a3%bd-%e5%8f%b0%e4%b8%ad%e5%88%86%e5%85%ac%e5%8f%b8%e3%80%8d%e9%80%b2%e8%a1%8c%e4%bc%81%e6%a5%ad%e5%8f%83/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":5,"full":1},"https://bpfeas.fcu.edu.tw/news/%e8%b2%a1%e5%8b%99%e5%b7%a5%e7%a8%8b%e8%88%87%e7%b2%be%e7%ae%97%e5%ad%b8%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e8%88%87%e9%87%91%e8%9e%8d%e5%ad%b8%e9%99%a2%e5%ad%b8%e5%a3%ab%e7%8f%ad%e4%bc%81/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://bpfeas.fcu.edu.tw/news/%e6%81%ad%e8%b3%80-%e9%99%b3%e5%bd%a5%e5%bf%97%e6%95%99%e6%8e%88%e6%a6%ae%e7%8d%b2114%e5%ad%b8%e5%b9%b4%e5%ba%a6%e6%95%99%e5%ad%b8%e5%82%91%e5%87%ba%e7%8d%8e/":{"g":10,"v":15,"a":15,"i":0,"penalty":0,"status":"unknown","ph":2,"full":1},"https://upfc.fcu.edu.tw/news/1141107/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E8%A8%B1%E6%99%BA%E6%B7%B5%E7%A0%94%E7%A9%B6%E5%93%A1%20%E8%87%AA%E9%A7%95%E8%BB%8A%E8%BC%9B%E5%BD%B1%E5%83%8F%E6%84%9F%E6%B8%AC%E6%8A%80%E8%A1%93%E8%88%87%E7%99%BC%E5%B1%95%E8%B6%A8%E5%8B%A2/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025110703/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025110704/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://bce.fcu.edu.tw/news/114%e5%95%86%e5%ad%b8%e5%ad%b8%e7%a8%8b%e6%ad%a1%e6%85%b6%e6%96%b0%e7%94%9f%e6%bb%bf%e6%9c%88%e6%9a%a8%e8%90%ac%e8%81%96%e7%af%80%e5%90%8c%e6%a8%82%e6%b4%bb%e5%8b%95/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":4,"full":1},"https://rmi.fcu.edu.tw/news/%e5%9c%8b%e6%b3%b0%e6%b0%b8%e7%ba%8c%e9%87%91%e8%9e%8d%e5%bd%b1%e9%9f%bf%e5%8a%9b%e4%b9%8b%e5%af%a6%e8%b8%90/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://bpfeas.fcu.edu.tw/news/%e6%9d%8e%e9%83%81%e7%b3%bb%e5%8f%8b%e5%9b%9e%e5%a8%98%e5%ae%b6%e5%88%86%e4%ba%ab%e3%80%8c%e5%be%9e%e6%a0%a1%e5%9c%92%e5%88%b0%e8%81%b7%e5%a0%b4%e3%80%8d/":{"g":10,"v":20,"a":25,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025110501/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/205110403/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":6,"full":1},"https://www.fcu.edu.tw/news/2025110304/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://ce.fcu.edu.tw/news/20251103/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-115%e6%8b%9b%e7%94%9f%e8%aa%aa%e6%98%8e%e6%9c%83%e3%80%91/":{"g":20,"v":0,"a":15,"i":5,"penalty":-30,"status":"non_news","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B22025%E7%AC%AC30%E5%B1%86%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E8%B3%87%E8%A8%8A%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99%E5%89%B5%E6%96%B0%E7%AB%B6%E8%B3%BD%E7%94%A2%E6%A5%AD%E5%89%B5%E6%96%B0AI%E7%B5%84%E7%AC%AC%E4%BA%8C%E5%90%8D/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B22025%E7%AC%AC30%E5%B1%86%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E8%B3%87%E8%A8%8A%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99%E5%89%B5%E6%96%B0%E7%AB%B6%E8%B3%BD%E3%80%8C%E7%94%A2%E5%AD%B8%E5%90%88%E4%BD%9C%E7%B5%84%20PR2%E3%80%8D%E7%AC%AC%E4%B8%80%E5%90%8D/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.pmpf.fcu.edu.tw/announcements20251031-2":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.pmpf.fcu.edu.tw/announcements20251031":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://rmi.fcu.edu.tw/news/30%e6%ad%b2%e5%89%8d%e5%bf%ab%e9%80%9f%e7%b4%af%e7%a9%8d%e7%99%be%e8%90%ac%e6%a1%b6%e9%87%91%e7%9a%84%e9%8d%8a%e9%87%91%e8%a1%93-2/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9D%8E%E9%87%91%E9%B3%B3%E8%80%81%E5%B8%AB%E7%8D%B2IIHMSP%202025%E5%84%AA%E7%A7%80%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E7%A0%94%E7%99%BC%E6%88%90%E6%9E%9C%E7%8D%B2%E9%A6%AC%E4%BE%86%E8%A5%BF%E4%BA%9E%E7%99%BC%E6%98%8E%E7%AB%B6%E8%B3%BD%E9%87%91%E7%89%8C%EF%BC%86%E5%8A%A0%E6%8B%BF%E5%A4%A7TISIAS%E7%89%B9%E5%88%A5%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025102901/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://fina.fcu.edu.tw/news/%e9%87%91%e8%9e%8d%e5%af%a6%e7%bf%92%e5%b0%8e%e8%ab%96%e7%b3%bb%e5%88%97%e8%aa%aa%e6%98%8e%e6%9c%83%e7%99%bb%e5%a0%b4%e3%80%80%e9%80%a3%e7%b5%90%e7%94%a2%e6%a5%ad%e8%b3%87%e6%ba%90%e5%bc%b7%e5%8c%96/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025102804/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025102802/":{"g":20,"v":10,"a":25,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://marketing.fcu.edu.tw/news/%e5%a5%a7%e7%be%8e%e5%bb%a3%e5%91%8a-x-%e6%9d%be%e8%8f%b8%e6%96%87%e5%89%b5-%e5%85%a8%e7%90%83%e8%a1%8c%e9%8a%b7%e7%a2%a9%e5%a3%ab%e7%8f%ad%e5%af%a6%e5%9c%b0%e6%8e%a2%e7%b4%a2%e5%bb%a3%e5%91%8a/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.fcu.edu.tw/news/2025102701/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":7,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B2%E8%90%AC%E6%BD%A42025%E5%89%B5%E6%96%B0%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E6%9C%80%E4%BD%B3%E6%BD%9B%E5%8A%9B%E7%8D%8E/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025102102/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9E%97%E5%A6%99%E8%81%B0%E6%95%99%E6%8E%88%20Server%20Scheduling%20on%20Parallel%20Machines/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9C%AC%E7%B3%BB%E6%9E%97%E5%AE%B8%E6%AF%85%E6%91%98%E4%B8%8B%E9%9B%B2%E7%AB%AF%E9%81%8B%E7%AE%97%E5%9C%8B%E6%89%8B%E8%B3%87%E6%A0%BC%E4%BB%A3%E8%A1%A8%E5%8F%B0%E7%81%A3%E5%87%BA%E5%BE%812025%E4%BA%9E%E6%B4%B2%E6%8A%80%E8%83%BD%E7%AB%B6%E8%B3%BD/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025102101/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025102003/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025102001/":{"g":20,"v":10,"a":25,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%8D%9A%E5%A3%AB%E7%94%9F%E6%9E%97%E9%A1%AF%E4%BB%B2%E3%80%81%E7%A2%A9%E5%A3%AB%E7%94%9F%E7%8E%8B%E7%B5%A2%E3%80%81%E5%BB%96%E8%AC%B9%E7%B7%AF%E8%88%87%E6%9E%97%E5%AE%9C%E7%B8%A2%E7%8D%B2IIHMSP%202025%E5%84%AA%E7%A7%80%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://up.fcu.edu.tw/news/new251017/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025101601/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://fll.fcu.edu.tw/news/1015/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://www.fcu.edu.tw/news/2025101501/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E7%B0%A1%E8%89%AF%E7%9B%8A%E8%91%A3%E4%BA%8B%E9%95%B7%20%E6%9C%80%E6%96%B0%E7%94%9F%E6%88%90%E5%BC%8F%20AI%E9%96%8B%E6%BA%90%E6%A8%A1%E5%9E%8B%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB/":{"g":10,"v":10,"a":25,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025101301/":{"g":10,"v":10,"a":25,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://upfc.fcu.edu.tw/news/%e3%80%90%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e6%9a%a8%e5%b0%88%e9%a1%8c%e6%b4%bb%e5%8b%95%e3%80%91%e5%bc%95%e9%a0%98%e6%96%b0%e7%94%9f%e4%bb%a5%e5%89%b5%e6%84%8f%e8%88%87%e7%a7%91/":{"g":10,"v":15,"a":25,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://smd.fcu.edu.tw/news/%e7%b6%93%e7%87%9f%e7%ae%a1%e7%90%86%e7%a2%a9%e5%a3%ab%e5%9c%a8%e8%81%b7%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e3%80%8c%e6%95%b8%e4%bd%8d%e5%89%b5%e6%96%b0%e7%ae%a1%e7%90%86%e7%b5%84%e3%80%8d%e8%88%87/":{"g":10,"v":0,"a":15,"i":5,"penalty":0,"status":"late","ph":0,"full":1},"https://fll.fcu.edu.tw/news/1009/":{"g":10,"v":0,"a":0,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://tl.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e9%81%8b%e8%bc%b8%e8%88%87%e7%89%a9%e6%b5%81%e5%ad%b8%e7%b3%bb%e8%88%87%e5%90%8c%e6%bf%9f%e5%a4%a7%e5%ad%b8%e4%ba%a4%e9%80%9a%e5%ad%b8%e9%99%a2%e8%88%89%e8%a1%8c/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025100902/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://rmi.fcu.edu.tw/news/%e8%a2%ab%e4%bd%8e%e4%bc%b0%e7%9a%84%e7%94%a2%e9%9a%aa%e6%a5%ad-%e8%b2%ac%e4%bb%bb%e3%80%81%e6%a9%9f%e6%9c%83%e8%88%87%e6%8c%91%e6%88%b0-2/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://fll.fcu.edu.tw/news/100802/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://fll.fcu.edu.tw/news/100801/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E5%BC%B5%E7%9C%9F%E8%AA%A0%E8%AC%9B%E5%BA%A7%E6%95%99%E6%8E%88%20%E6%BB%BF%E6%BB%BF%E6%AD%A3%E8%83%BD%E9%87%8F%20%E6%88%90%E5%B0%B1%E7%84%A1%E9%99%90%E5%8F%AF%E8%83%BD/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://he.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e7%a2%a9%e5%a3%ab%e7%8f%ad%e7%94%84%e8%a9%a6/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://fll.fcu.edu.tw/news/%e5%af%a6%e7%bf%92%e5%85%ac%e5%91%8a2026%e5%b9%b4%e4%b8%ad%e8%8f%af%e8%88%aa%e7%a9%ba%e5%85%ac%e5%8f%b8%e5%b0%88%e6%a5%ad%e5%af%a6%e7%bf%92%e7%94%b3%e8%ab%8b/":{"g":10,"v":0,"a":15,"i":15,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://fll.fcu.edu.tw/news/20251002/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://rmi.fcu.edu.tw/news/30%e6%ad%b2%e5%89%8d%e5%bf%ab%e9%80%9f%e7%b4%af%e7%a9%8d%e7%99%be%e8%90%ac%e6%a1%b6%e9%87%91%e7%9a%84%e9%8d%8a%e9%87%91%e8%a1%93/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/1141%E7%8D%8E%E5%AD%B8%E9%87%91%E7%94%B3%E8%AB%8B/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://marketing.fcu.edu.tw/news/%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c%e5%81%9a%e4%bb%80%e9%ba%bc%ef%bc%9f%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac14%e5%b1%86%e3%80%8c%e6%8b%bc%e6%98%a0%e6%88%90%e8%a1%8c%e3%80%8d%e6%88%90/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E9%99%B3%E9%87%91%E9%88%B4%E7%89%B9%E8%81%98%E6%95%99%E6%8E%88%20%E5%8D%80%E5%A1%8A%E9%8D%B5%E5%B0%8D%E6%88%91%E5%80%91%E6%9C%AA%E4%BE%86%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F%E7%9A%84%E6%94%B9%E8%AE%8A/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025093002/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":6,"full":1},"https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2emba%e6%ba%ab%e6%83%85%e5%a5%89%e8%8c%b6-%e5%82%b3%e9%81%9e%e6%84%9f%e6%81%a9%e8%88%87%e5%b0%8a%e5%b8%ab%e6%83%85%e8%aa%bc/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":4,"full":1},"https://he.fcu.edu.tw/news/%e9%85%b7%e5%b7%a5%e7%a8%8b%e6%bd%ae%e6%9c%aa%e4%be%86%e8%ac%9b%e5%ba%a7/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://fll.fcu.edu.tw/news/20250925/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://acct.fcu.edu.tw/news/2025_09_24/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":1,"full":1},"https://biba.fcu.edu.tw/news/%f0%9f%93%a2-2025%e5%b9%b4%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8ahello-world%e3%80%8b%e5%9c%93%e6%bb%bf%e8%90%bd%e5%b9%95/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":10,"full":1},"https://biba.fcu.edu.tw/news/%f0%9f%93%a22025%e3%80%8a%e9%9f%93%e5%9c%8b%e4%b8%ad%e5%a4%ae%e5%a4%a7%e5%ad%b8%e3%80%8b%e6%9a%91%e6%9c%9f%e7%9f%ad%e6%9c%9f%e4%ba%a4%e6%b5%81biba%e5%ad%b8%e7%94%9f%e5%88%86%e4%ba%ab%ef%bc%81/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":5,"full":1},"https://biba.fcu.edu.tw/news/%e6%81%ad%e8%b3%80biba%e5%ad%b8%e7%a8%8b%e5%90%b3%e5%ae%9c%e7%8e%b2%e5%90%8c%e5%ad%b8%e6%a6%ae%e7%8d%b2%e6%95%99%e8%82%b2%e9%83%a8%e5%ad%b8%e6%b5%b7%e9%a3%9b%e9%a2%ba%e7%8d%8e%e5%ad%b8%e9%87%91/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025092401/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://fll.fcu.edu.tw/news/092301/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://fll.fcu.edu.tw/news/%e5%af%a6%e7%bf%92%e5%85%ac%e5%91%8a%e4%bd%b3%e9%9f%b3%e4%ba%8b%e6%a5%ad%e8%82%a1%e4%bb%bd%e6%9c%89%e9%99%90%e5%85%ac%e5%8f%b8/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://fll.fcu.edu.tw/news/092303/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"late","ph":0,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E8%95%AD%E8%8F%8A%E8%B2%9E%E5%B0%8E%E6%BC%94%20%E3%80%8A%E9%80%A0%E5%B1%B1%E8%80%85%E3%80%8B%E7%9A%84%E6%96%87%E5%8C%96%E6%9B%B8%E5%AF%AB%E8%88%87%E5%BD%B1%E9%9F%BF%E5%8A%9B/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025092202/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E8%AA%B2%E6%A5%AD%E8%BC%94%E5%B0%8E%E3%80%91114-1%E8%B3%87%E8%A8%8A%E7%B3%BB%E8%AA%B2%E6%A5%AD%E8%BC%94%E5%B0%8E%E6%8E%92%E7%8F%AD%E8%A1%A8/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://bce.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%95%86%e5%ad%b8%e5%ad%b8%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b114%e5%b9%b4%e5%ba%a6%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e6%b4%bb/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":5,"full":1},"https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9D%8E%E7%A5%96%E8%81%96%E6%95%99%E6%8E%88%20%E4%BA%BA%E5%BD%A2%E6%A9%9F%E5%99%A8%E4%BA%BA%EF%BC%9A%E8%A8%AD%E8%A8%88%E3%80%81%E9%96%8B%E7%99%BC%E3%80%81%E7%94%A2%E5%93%81%E5%8C%96%E3%80%81%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E9%A9%85%E5%8B%95%E6%8E%A7%E5%88%B6%E8%88%87%E8%A6%96%E8%A6%BA/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025091501/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://fll.fcu.edu.tw/news/%e9%95%b7%e6%a6%ae%e8%88%aa%e7%a9%ba115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%af%a6%e7%bf%92%e7%94%9f%e7%94%84%e9%81%b8%e7%94%b3%e8%ab%8b%e8%aa%aa%e6%98%8e/":{"g":10,"v":0,"a":15,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://fll.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%a4%96%e5%9c%8b%e8%aa%9e%e6%96%87%e5%ad%b8%e7%b3%bb%e5%b0%88%e6%a5%ad%e5%af%a6%e7%bf%92%e7%94%b3%e8%ab%8b%e7%9b%b8%e9%97%9c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85/":{"g":10,"v":0,"a":0,"i":0,"penalty":-30,"status":"non_news","ph":0,"full":1},"https://www.fcu.edu.tw/news/2025091202/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025091201/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025091001/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://he.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e6%b0%b4%e5%88%a9%e7%b3%bb%e9%a0%98%e8%88%aa%e5%85%a9%e5%b2%b8/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025090803/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e8%88%89%e8%be%a6%e6%96%b0%e7%94%9f%e5%85%b1%e5%96%84%e7%87%9f-%e4%bb%a5%e3%80%8c%e5%a4%a7%e5%a5%bd%e3%83%bb%e5%85%b1%e5%96%84%e3%83%bb%e5%90%8c%e6%a8%82/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%9c%a8%e5%b9%b9%e5%98%9b/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":8,"full":1},"https://www.fcu.edu.tw/news/2025090301/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025090101/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.iecs.fcu.edu.tw/news/%E6%9D%8E%E9%87%91%E9%B3%B3%E8%80%81%E5%B8%AB%E6%A6%AE%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E8%94%A1%E5%9C%8B%E8%A3%95%E8%88%87%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E5%85%B1%E5%90%8C%E6%8C%87%E5%B0%8E%E6%9E%97%E9%A7%BF%E7%92%8B%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E5%BC%B5%E5%93%B2%E8%AA%A0%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%8D%9A%E5%A3%AB%E7%94%9F%E5%90%B3%E6%9F%8F%E5%BB%B7%E3%80%81%E9%BB%83%E9%88%BA%E8%8C%97%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/":{"g":10,"v":10,"a":15,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.iecs.fcu.edu.tw/news/%E9%99%B3%E7%83%88%E6%AD%A6%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B3%B4%E9%8C%A1%E7%8D%B2%E7%AC%AC%E5%8D%81%E5%85%AB%E5%B1%86%E5%8F%B0%E7%81%A3%E7%AE%A1%E7%90%86%E5%AD%B8%E6%9C%83%E8%AB%96%E6%96%87%E5%A4%A7%E8%B3%9E2025%EF%BC%9AAI%E6%87%89%E7%94%A8%E8%AB%96%E6%96%87%E7%AB%B6%E8%B3%BD%E3%80%8C%E7%A2%A9%E5%A3%AB%E7%B5%84%E3%80%8D%E4%BD%B3%E4%BD%9C/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025082103/":{"g":10,"v":10,"a":15,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025082101/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025082102/":{"g":10,"v":20,"a":10,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://fll.fcu.edu.tw/news/coursemap/":{"g":10,"v":0,"a":15,"i":0,"penalty":0,"status":"unknown","ph":0,"full":1},"https://he.fcu.edu.tw/news/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81%ef%bc%8c%e5%8e%9a%e6%a4%8d%e5%b0%88%e6%a5%ad%e5%af%a6%e5%8a%9b/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":5,"full":1},"https://he.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e6%b0%b4%e5%88%a9%e7%b3%bb%e6%a0%a1%e5%a4%96%e5%8f%83%e8%a8%aa-%e6%b7%b1%e5%8c%96%e5%b0%8f%e6%b0%b4%e5%8a%9b%e7%99%bc%e9%9b%bb%e8%88%87%e6%b0%b4%e5%b7%a5%e5%af%a6/":{"g":10,"v":20,"a":15,"i":0,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025081401/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://ba.fcu.edu.tw/news/2025-08-12/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025081103/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025080602/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://fina.fcu.edu.tw/news/%e9%87%91%e8%9e%8d%e5%89%b5%e6%96%b0%e8%b7%a8%e5%9f%9f%e8%9e%8d%e5%90%88-%e3%80%8c%e5%96%94%e4%b8%89%e8%90%ac%e3%80%8d%e5%9c%98%e9%9a%8a%e5%8b%87%e5%a5%aa%e6%b5%b7%e5%b3%bd%e5%85%a9%e5%b2%b8%e5%a4%a7/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026062503/":{"g":10,"v":10,"a":25,"i":15,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026062502/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026061703/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026061201/":{"g":30,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026061004/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026061002/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026061001/":{"g":20,"v":0,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026060901/":{"g":20,"v":10,"a":25,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026052902/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026052801/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026052702/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026052602/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026052603/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026052502/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026052101/":{"g":10,"v":0,"a":25,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026052001/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026051802/":{"g":30,"v":10,"a":25,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026051205/":{"g":20,"v":20,"a":15,"i":5,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026051202/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026050501/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026050403/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026050402/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026050401/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026043001/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026042703/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026042401/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026042202/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026042201/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026042002/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026041602/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026041501/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026041302/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026041002/":{"g":20,"v":20,"a":10,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/202600905/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026040804/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026040202/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026040201/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026033002/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026033001/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026032602/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026032601/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026030503/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026032502/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026032303/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026032302/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026032001/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026031801/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026031702/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026031701/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2026031103/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026031102/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026031101/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026030902/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026030901/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026030202/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026030201/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026022601/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026022502/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026022301/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":5,"full":1},"https://www.fcu.edu.tw/news/2026012102/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026012101/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2026010803/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2026010702/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2026010501/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025123002/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025122902/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025122602/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025122601/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025122401/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025122302/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025122202/":{"g":10,"v":20,"a":25,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121901/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121802/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025121501/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025121701/":{"g":10,"v":10,"a":15,"i":5,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025121602/":{"g":10,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025121201/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121104/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121103/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121102/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025121101/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120901/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":5,"full":1},"https://www.fcu.edu.tw/news/2025120805/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025120802/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120801/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025120401/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025120302/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025120204/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120203/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025120202/":{"g":10,"v":20,"a":25,"i":0,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025120102/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025120101/":{"g":10,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112801/":{"g":10,"v":0,"a":10,"i":0,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025112503/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025112401/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112003/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025112002/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025112001/":{"g":10,"v":20,"a":15,"i":5,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025111901/":{"g":20,"v":20,"a":25,"i":15,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025111701/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":6,"full":1},"https://www.fcu.edu.tw/news/2025111302/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025111301/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025111101/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025110702/":{"g":10,"v":10,"a":25,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025110701/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025110502/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025110402/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025110401/":{"g":30,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025110305/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025110303/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025110302/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025110301/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/202510302/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025102803/":{"g":20,"v":0,"a":15,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025102005/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025102004/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025101701/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025101401/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025100903/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"unknown","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025100901/":{"g":10,"v":20,"a":15,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/20250100801/":{"g":20,"v":10,"a":15,"i":15,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025100704/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025100301/":{"g":20,"v":20,"a":15,"i":15,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025093003/":{"g":10,"v":0,"a":10,"i":5,"penalty":0,"status":"unknown","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025092502/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025092501/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025092402/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025092302/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025092201/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025091803/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025091802/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025091701/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025091601/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025091203/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025091101/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025090802/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":2,"full":1},"https://www.fcu.edu.tw/news/2025090801/":{"g":30,"v":10,"a":15,"i":25,"penalty":0,"status":"timely","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025090501/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025090402/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025090401/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"late","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025090102/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025082104/":{"g":10,"v":20,"a":25,"i":5,"penalty":0,"status":"unknown","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025081903/":{"g":20,"v":20,"a":25,"i":25,"penalty":0,"status":"timely","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025081402/":{"g":20,"v":0,"a":15,"i":15,"penalty":-30,"status":"non_news","ph":3,"full":1},"https://www.fcu.edu.tw/news/2025081202/":{"g":20,"v":10,"a":15,"i":25,"penalty":0,"status":"late","ph":1,"full":1},"https://www.fcu.edu.tw/news/2025081201/":{"g":20,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025081101/":{"g":30,"v":20,"a":15,"i":25,"penalty":0,"status":"timely","ph":4,"full":1},"https://www.fcu.edu.tw/news/2025080601/":{"g":10,"v":20,"a":15,"i":15,"penalty":0,"status":"late","ph":3,"full":1}};
 
 function grd(tot){
   if(tot>=80)return{l:'優良',c:'gg'};
@@ -852,7 +906,7 @@ const SCHOOL={
 };
 (()=>{
   const af=SCHOOL.news.slice().sort((a,b)=>b.d.localeCompare(a.d));
-  af.forEach(n=>{const s=autoSc(n.t,n.d);n.g=s.g;n.v=s.v;n.a=s.a;n.tot=s.g+s.v+s.a;});
+  af.forEach(n=>{const p=n.url&&PRE_SCORES[n.url];const s=p||autoSc(n.t,n.d);n.pre=!!p;n.ph=s.ph||0;n.g=s.g;n.v=s.v;n.a=s.a;n.i=s.i||0;n.penalty=s.penalty||0;n.status=s.status||'unknown';n.tot=Math.max(0,s.g+s.v+s.a+s.i+(s.penalty||0));});
   SCHOOL.af=af;
   SCHOOL.cnt=af.length;
   SCHOOL.last=af[0]?.d||'—';
@@ -864,6 +918,7 @@ const cols=[
   {name:'工程與科學學院',k:'eng'},
   {name:'商學院',k:'biz'},
   {name:'金融學院',k:'fin'},
+  {name:'經營管理學院',k:'mgt'},
   {name:'人文社會學院',k:'hum'},
   {name:'資訊電機學院',k:'ece'},
   {name:'建設學院',k:'con'},
@@ -1189,6 +1244,25 @@ const D=[
     {d:'2025.08.11',t:'逢甲風保系連三年奪「最佳校園菁英獎」 吳涵萱實現目標站上保險信望愛舞台',url:'https://www.fcu.edu.tw/news/2025081103/'},
     {d:'2025.08.06',t:'逢甲金融學院學生以「文化資產評級系統」拿下兩岸金融創新創意賽二等獎',url:'https://www.fcu.edu.tw/news/2025080602/'},
   ]},
+  {id:'pmpf',col:'fin',name:'金融碩士在職學位學程',url:'https://www.pmpf.fcu.edu.tw/announcements',extHost:1,news:[
+    {d:'2025.10.31',t:'114學年度研究生學位論文延後公開申請',url:'https://www.pmpf.fcu.edu.tw/announcements20251031-2'},
+    {d:'2025.10.31',t:'114學年度論文考試審查申請',url:'https://www.pmpf.fcu.edu.tw/announcements20251031'},
+  ]},
+  {id:'fphd',col:'fin',name:'金融博士學位學程',url:'https://www.fphd.fcu.edu.tw/',extHost:1,news:[
+  ]},
+  {id:'smd',col:'mgt',name:'經營管理學院',url:'https://smd.fcu.edu.tw/news/',news:[
+    {d:'2026.06.13',t:'逢甲大學EMBA 第二屆「全球企業領袖班」結業典禮🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-%e7%ac%ac%e4%ba%8c%e5%b1%86%e3%80%8c%e5%85%a8%e7%90%83%e4%bc%81%e6%a5%ad%e9%a0%98%e8%a2%96%e7%8f%ad%e3%80%8d%e7%b5%90%e6%a5%ad%e5%85%b8%e7%a6%ae%f0%9f%8e%89/'},
+    {d:'2026.06.07',t:'✨【逢甲大學EMBA 113級畢業】✨',url:'https://smd.fcu.edu.tw/news/%e2%9c%a8%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-113%e7%b4%9a%e7%95%a2%e6%a5%ad%e3%80%91%e2%9c%a8/'},
+    {d:'2026.04.25',t:'菁英聚力，榮耀二十',url:'https://smd.fcu.edu.tw/news/%e8%8f%81%e8%8b%b1%e8%81%9a%e5%8a%9b%ef%bc%8c%e6%a6%ae%e8%80%80%e4%ba%8c%e5%8d%81/'},
+    {d:'2026.04.18',t:'逢甲大學EMBA第六屆博觀講堂結業囉~🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e7%ac%ac%e5%85%ad%e5%b1%86%e5%8d%9a%e8%a7%80%e8%ac%9b%e5%a0%82%e7%b5%90%e6%a5%ad%e5%9b%89%f0%9f%8e%89%f0%9f%8e%89%f0%9f%8e%89/'},
+    {d:'2026.03.20',t:'【人生像做麵包 需要時間發酵】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e4%ba%ba%e7%94%9f%e5%83%8f%e5%81%9a%e9%ba%b5%e5%8c%85-%e9%9c%80%e8%a6%81%e6%99%82%e9%96%93%e7%99%bc%e9%85%b5%e3%80%91/'},
+    {d:'2025.11.23',t:'【逢甲大學EMBA 2025產業論文寫作研討會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-2025%e7%94%a2%e6%a5%ad%e8%ab%96%e6%96%87%e5%af%ab%e4%bd%9c%e7%a0%94%e8%a8%8e%e6%9c%83%e3%80%91/'},
+    {d:'2025.11.02',t:'【逢甲大學EMBA 115招生說明會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-115%e6%8b%9b%e7%94%9f%e8%aa%aa%e6%98%8e%e6%9c%83%e3%80%91/'},
+    {d:'2025.10.09',t:'經營管理碩士在職學位學程「數位創新管理組」與「文化創意產業管理組」116學年度停招暨學生修課權益說明會',url:'https://smd.fcu.edu.tw/news/%e7%b6%93%e7%87%9f%e7%ae%a1%e7%90%86%e7%a2%a9%e5%a3%ab%e5%9c%a8%e8%81%b7%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e3%80%8c%e6%95%b8%e4%bd%8d%e5%89%b5%e6%96%b0%e7%ae%a1%e7%90%86%e7%b5%84%e3%80%8d%e8%88%87/'},
+    {d:'2025.09.27',t:'逢甲EMBA溫情奉茶 傳遞感恩與尊師情誼',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2emba%e6%ba%ab%e6%83%85%e5%a5%89%e8%8c%b6-%e5%82%b3%e9%81%9e%e6%84%9f%e6%81%a9%e8%88%87%e5%b0%8a%e5%b8%ab%e6%83%85%e8%aa%bc/'},
+    {d:'2025.09.08',t:'逢甲大學EMBA舉辦新生共善營 以「大好・共善・同樂」開啟學習新旅程',url:'https://www.fcu.edu.tw/news/2025090803/'},
+    {d:'2025.09.07',t:'逢甲大學EMBA舉辦新生共善營 以「大好・共善・同樂」開啟學習新旅程',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e8%88%89%e8%be%a6%e6%96%b0%e7%94%9f%e5%85%b1%e5%96%84%e7%87%9f-%e4%bb%a5%e3%80%8c%e5%a4%a7%e5%a5%bd%e3%83%bb%e5%85%b1%e5%96%84%e3%83%bb%e5%90%8c%e6%a8%82/'},
+  ]},
   {id:'cl',col:'hum',name:'中國文學系',url:'https://cl.fcu.edu.tw/news/',news:[
     {d:'2026.05.25',t:'走進城市驛站與鐵道人生 逢甲中文系台中車站策展正式登場',url:'https://www.fcu.edu.tw/news/2026052503/'},
     {d:'2026.05.25',t:'展現跨域競爭力！逢甲中文系學生勇奪微軟MOS世界賽門票',url:'https://www.fcu.edu.tw/news/2026052501/'},
@@ -1310,6 +1384,148 @@ const D=[
   {id:'upiee',col:'ece',name:'資訊電機學院學士班',url:'https://upiee.fcu.edu.tw/news/',news:[
     {d:'2024.06.08',t:'系學會獲全校學生社團評鑑自治性社團最佳組織經營獎第一名'},
   ]},
+  {id:'iecs',col:'ece',name:'資訊工程學系',url:'https://www.iecs.fcu.edu.tw/news/',extHost:1,news:[
+    {d:'2026.06.30',t:'115-1 資訊系大學部選課',url:'https://www.iecs.fcu.edu.tw/news/115-1%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/'},
+    {d:'2026.06.14',t:'資訊工程學系2026畢業典禮',url:'https://www.iecs.fcu.edu.tw/news/%E8%B3%87%E8%A8%8A%E5%B7%A5%E7%A8%8B%E5%AD%B8%E7%B3%BB2026%E7%95%A2%E6%A5%AD%E5%85%B8%E7%A6%AE/'},
+    {d:'2026.05.26',t:'【專題演講】 梁郁珮教授 程式設計師在新世代記憶體與儲存系統中的角色與挑戰',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%A2%81%E9%83%81%E7%8F%AE%E6%95%99%E6%8E%88%20%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88%E5%B8%AB%E5%9C%A8%E6%96%B0%E4%B8%96%E4%BB%A3%E8%A8%98%E6%86%B6%E9%AB%94%E8%88%87%E5%84%B2%E5%AD%98%E7%B3%BB%E7%B5%B1%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2%E8%88%87%E6%8C%91%E6%88%B0/'},
+    {d:'2026.05.26',t:'台灣學術之光張真誠教授榮膺首屆國際人工智慧科學院（AAIS）會士',url:'https://www.iecs.fcu.edu.tw/news/%E5%8F%B0%E7%81%A3%E5%AD%B8%E8%A1%93%E4%B9%8B%E5%85%89%E5%BC%B5%E7%9C%9F%E8%AA%A0%E6%95%99%E6%8E%88%E6%A6%AE%E8%86%BA%E9%A6%96%E5%B1%86%E5%9C%8B%E9%9A%9B%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E7%A7%91%E5%AD%B8%E9%99%A2%EF%BC%88AAIS%EF%BC%89%E6%9C%83%E5%A3%AB/'},
+    {d:'2026.05.23',t:'周兆龍及郭崇韋老師指導的研究團隊獲DLT2026最佳論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E5%91%A8%E5%85%86%E9%BE%8D%E5%8F%8A%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E7%9A%84%E7%A0%94%E7%A9%B6%E5%9C%98%E9%9A%8A%E7%8D%B2DLT2026%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2026.05.23',t:'林佩蓉老師指導研究團隊獲DLT2026、2026 ECO雙研討會最佳論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E7%A0%94%E7%A9%B6%E5%9C%98%E9%9A%8A%E7%8D%B2DLT2026%E3%80%812026%20ECO%E9%9B%99%E7%A0%94%E8%A8%8E%E6%9C%83%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2026.05.12',t:'【專題演講】 林子怡教授 工業影像應用實務：從產學合作專案到專利技術累積',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%9E%97%E5%AD%90%E6%80%A1%E6%95%99%E6%8E%88%20%E5%B7%A5%E6%A5%AD%E5%BD%B1%E5%83%8F%E6%87%89%E7%94%A8%E5%AF%A6%E5%8B%99%EF%BC%9A%E5%BE%9E%E7%94%A2%E5%AD%B8%E5%90%88%E4%BD%9C%E5%B0%88%E6%A1%88%E5%88%B0%E5%B0%88%E5%88%A9%E6%8A%80%E8%A1%93%E7%B4%AF%E7%A9%8D/'},
+    {d:'2026.05.05',t:'【專題演講】 王蒞君教授 6G and AI: Why? What? And How?',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E7%8E%8B%E8%92%9E%E5%90%9B%E6%95%99%E6%8E%88%206G%20and%20AI:%20Why%3F%20What%3F%20And%20How%3F/'},
+    {d:'2026.05.01',t:'林峰正老師指導Terra A.I.R.團隊勇奪「明緯智慧永續科技競賽」銀獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8ETerra%20A.I.R.%E5%9C%98%E9%9A%8A%E5%8B%87%E5%A5%AA%E3%80%8C%E6%98%8E%E7%B7%AF%E6%99%BA%E6%85%A7%E6%B0%B8%E7%BA%8C%E7%A7%91%E6%8A%80%E7%AB%B6%E8%B3%BD%E3%80%8D%E9%8A%80%E7%8D%8E/'},
+    {d:'2026.04.27',t:'郭崇韋老師指導吳承軒獲2026 CSP國際會議最佳論文簡報獎',url:'https://www.iecs.fcu.edu.tw/news/%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%90%B3%E6%89%BF%E8%BB%92%E7%8D%B22026%20CSP%E5%9C%8B%E9%9A%9B%E6%9C%83%E8%AD%B0%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%B0%A1%E5%A0%B1%E7%8D%8E/'},
+    {d:'2026.04.21',t:'【專題演講】洪智傑教授 工程師的諸神黃昏：AI 時代下的軟體思維重構',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%B4%AA%E6%99%BA%E5%82%91%E6%95%99%E6%8E%88%20%E5%B7%A5%E7%A8%8B%E5%B8%AB%E7%9A%84%E8%AB%B8%E7%A5%9E%E9%BB%83%E6%98%8F%EF%BC%9AAI%20%E6%99%82%E4%BB%A3%E4%B8%8B%E7%9A%84%E8%BB%9F%E9%AB%94%E6%80%9D%E7%B6%AD%E9%87%8D%E6%A7%8B/'},
+    {d:'2026.04.11',t:'勇敢跨出第一步：我的萊斯大學交換成長記',url:'https://www.iecs.fcu.edu.tw/news/%E5%8B%87%E6%95%A2%E8%B7%A8%E5%87%BA%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E6%88%91%E7%9A%84%E8%90%8A%E6%96%AF%E5%A4%A7%E5%AD%B8%E4%BA%A4%E6%8F%9B%E6%88%90%E9%95%B7%E8%A8%98/'},
+    {d:'2026.04.10',t:'115學年度學士生先修碩士班課程甄選',url:'https://www.iecs.fcu.edu.tw/news/115%E5%AD%B8%E5%B9%B4%E5%BA%A6%E5%AD%B8%E5%A3%AB%E7%94%9F%E5%85%88%E4%BF%AE%E7%A2%A9%E5%A3%AB%E7%8F%AD%E8%AA%B2%E7%A8%8B%E7%94%84%E9%81%B8/'},
+    {d:'2026.04.08',t:'實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮',url:'https://www.iecs.fcu.edu.tw/news/%E5%AF%A6%E5%8A%9B%E7%8D%B2%E6%AE%BF%E5%A0%82%E7%B4%9A%E8%AA%8D%E8%AD%89%EF%BC%81%E9%80%A2%E7%94%B2%E5%A4%A7%E5%AD%B86%E5%BA%A6%E5%A5%AA%E8%98%8B%E6%9E%9CWWDC-Swift%E5%A4%A7%E7%8D%8E%EF%BC%8C%E5%85%A8%E5%8F%B0%E5%94%AF%E4%B8%80%E5%85%A9%E4%BD%8D%E5%AD%B8%E7%94%9F%E5%90%8C%E7%8D%B2%E6%AE%8A%E6%A6%AE/'},
+    {d:'2026.04.02',t:'【競賽及證照補助】114學年度競賽獲獎與證照補助說明~5-13前完成申請',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E7%AB%B6%E8%B3%BD%E5%8F%8A%E8%AD%89%E7%85%A7%E8%A3%9C%E5%8A%A9%E3%80%91114%E5%AD%B8%E5%B9%B4%E5%BA%A6%E7%AB%B6%E8%B3%BD%E7%8D%B2%E7%8D%8E%E8%88%87%E8%AD%89%E7%85%A7%E8%A3%9C%E5%8A%A9%E8%AA%AA%E6%98%8E~5-13%E5%89%8D%E5%AE%8C%E6%88%90%E7%94%B3%E8%AB%8B/'},
+    {d:'2026.03.31',t:'【專題演講】 楊竣崴教授 淺談量子密碼學',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E6%A5%8A%E7%AB%A3%E5%B4%B4%E6%95%99%E6%8E%88%20%E6%B7%BA%E8%AB%87%E9%87%8F%E5%AD%90%E5%AF%86%E7%A2%BC%E5%AD%B8/'},
+    {d:'2026.03.28',t:'林佩蓉老師指導學生獲全國電子設計創意競賽亞軍、佳作',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2%E5%85%A8%E5%9C%8B%E9%9B%BB%E5%AD%90%E8%A8%AD%E8%A8%88%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E4%BA%9E%E8%BB%8D%E3%80%81%E4%BD%B3%E4%BD%9C/'},
+    {d:'2026.03.28',t:'薛念林老師指導學生獲得全國電子設計創意競賽季軍及佳作成績',url:'https://www.iecs.fcu.edu.tw/news/%E8%96%9B%E5%BF%B5%E6%9E%97%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2%E5%BE%97%E5%85%A8%E5%9C%8B%E9%9B%BB%E5%AD%90%E8%A8%AD%E8%A8%88%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E5%AD%A3%E8%BB%8D%E5%8F%8A%E4%BD%B3%E4%BD%9C%E6%88%90%E7%B8%BE/'},
+    {d:'2026.03.27',t:'葉春秀教授指導四支隊伍於「2026 毫米波雷達AI創意應用賽」榮獲多項殊榮',url:'https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%9B%9B%E6%94%AF%E9%9A%8A%E4%BC%8D%E6%96%BC%E3%80%8C2026%20%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E9%81%94AI%E5%89%B5%E6%84%8F%E6%87%89%E7%94%A8%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E5%A4%9A%E9%A0%85%E6%AE%8A%E6%A6%AE/'},
+    {d:'2026.03.25',t:'林佩蓉老師指導學生獲AI CUP教育部全國大專校院人工智慧競賽優等獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B2AI%20CUP%E6%95%99%E8%82%B2%E9%83%A8%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E7%AB%B6%E8%B3%BD%E5%84%AA%E7%AD%89%E7%8D%8E/'},
+    {d:'2026.03.24',t:'【專題演講】曾煜棋國家講座 大語言模型，左右不分',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9B%BE%E7%85%9C%E6%A3%8B%E5%9C%8B%E5%AE%B6%E8%AC%9B%E5%BA%A7%20%E5%A4%A7%E8%AA%9E%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%B7%A6%E5%8F%B3%E4%B8%8D%E5%88%86/'},
+    {d:'2026.03.21',t:'葉春秀教授指導黃永都、江喆楷、陳心樺參加「2026 E化系統創意應用競賽」榮獲佳作',url:'https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E9%BB%83%E6%B0%B8%E9%83%BD%E3%80%81%E6%B1%9F%E5%96%86%E6%A5%B7%E3%80%81%E9%99%B3%E5%BF%83%E6%A8%BA%E5%8F%83%E5%8A%A0%E3%80%8C2026%20E%E5%8C%96%E7%B3%BB%E7%B5%B1%E5%89%B5%E6%84%8F%E6%87%89%E7%94%A8%E7%AB%B6%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E4%BD%B3%E4%BD%9C/'},
+    {d:'2026.03.17',t:'逢甲專屬、權威領航 - 不用機票，我們把全球AI盛事 NVIDIA GTC帶進校園了！',url:'https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E5%B0%88%E5%B1%AC%E3%80%81%E6%AC%8A%E5%A8%81%E9%A0%98%E8%88%AA%20-%20%E4%B8%8D%E7%94%A8%E6%A9%9F%E7%A5%A8%EF%BC%8C%E6%88%91%E5%80%91%E6%8A%8A%E5%85%A8%E7%90%83AI%E7%9B%9B%E4%BA%8B%20NVIDIA%20GTC%E5%B8%B6%E9%80%B2%E6%A0%A1%E5%9C%92%E4%BA%86%EF%BC%81/'},
+    {d:'2026.03.13',t:'全台唯一！逢甲資工團隊挑戰瑞士 ETH Zürich 國際黑客松，勇奪 Honorable mentions 殊榮',url:'https://www.iecs.fcu.edu.tw/news/%E5%85%A8%E5%8F%B0%E5%94%AF%E4%B8%80%EF%BC%81%E9%80%A2%E7%94%B2%E8%B3%87%E5%B7%A5%E5%9C%98%E9%9A%8A%E6%8C%91%E6%88%B0%E7%91%9E%E5%A3%AB%20ETH%20Z%C3%BCrich%20%E5%9C%8B%E9%9A%9B%E9%BB%91%E5%AE%A2%E6%9D%BE%EF%BC%8C%E5%8B%87%E5%A5%AA%20Honorable%20mentions%20%E6%AE%8A%E6%A6%AE/'},
+    {d:'2026.03.03',t:'【專題演講】 姜信欽總經理 高效能晶片時代的隱形關鍵：ESD靜電防護設計的挑戰與創新',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%20%E5%A7%9C%E4%BF%A1%E6%AC%BD%E7%B8%BD%E7%B6%93%E7%90%86%20%E9%AB%98%E6%95%88%E8%83%BD%E6%99%B6%E7%89%87%E6%99%82%E4%BB%A3%E7%9A%84%E9%9A%B1%E5%BD%A2%E9%97%9C%E9%8D%B5%EF%BC%9AESD%E9%9D%9C%E9%9B%BB%E9%98%B2%E8%AD%B7%E8%A8%AD%E8%A8%88%E7%9A%84%E6%8C%91%E6%88%B0%E8%88%87%E5%89%B5%E6%96%B0/'},
+    {d:'2026.03.02',t:'《遠見》2026企業最愛大學生揭曉 逢甲奪私校第一',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%8A%E9%81%A0%E8%A6%8B%E3%80%8B2026%E4%BC%81%E6%A5%AD%E6%9C%80%E6%84%9B%E5%A4%A7%E5%AD%B8%E7%94%9F%E6%8F%AD%E6%9B%89%20%E9%80%A2%E7%94%B2%E5%A5%AA%E7%A7%81%E6%A0%A1%E7%AC%AC%E4%B8%80/'},
+    {d:'2026.03.02',t:'逢甲大學攜手華碩打造AI人才培育基地GeForce RTX 5080',url:'https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E5%A4%A7%E5%AD%B8%E6%94%9C%E6%89%8B%E8%8F%AF%E7%A2%A9%E6%89%93%E9%80%A0AI%E4%BA%BA%E6%89%8D%E5%9F%B9%E8%82%B2%E5%9F%BA%E5%9C%B0GeForce%20RTX%205080/'},
+    {d:'2026.02.10',t:'114-2 資訊系大學部選課',url:'https://www.iecs.fcu.edu.tw/news/114-2%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/'},
+    {d:'2026.02.07',t:'逢甲資工展現頂尖實戰力！校友與在校生攜手勇奪台積電 2026 CareerHack 亞軍',url:'https://www.iecs.fcu.edu.tw/news/%E9%80%A2%E7%94%B2%E8%B3%87%E5%B7%A5%E5%B1%95%E7%8F%BE%E9%A0%82%E5%B0%96%E5%AF%A6%E6%88%B0%E5%8A%9B%EF%BC%81%E6%A0%A1%E5%8F%8B%E8%88%87%E5%9C%A8%E6%A0%A1%E7%94%9F%E6%94%9C%E6%89%8B%E5%8B%87%E5%A5%AA%E5%8F%B0%E7%A9%8D%E9%9B%BB%202026%20CareerHack%20%E4%BA%9E%E8%BB%8D/'},
+    {d:'2026.01.07',t:'郭崇韋老師主持國科會計畫獲114年度國科會資訊學門成果展「優良計畫執行成果獎」',url:'https://www.iecs.fcu.edu.tw/news/%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E4%B8%BB%E6%8C%81%E5%9C%8B%E7%A7%91%E6%9C%83%E8%A8%88%E7%95%AB%E7%8D%B2114%E5%B9%B4%E5%BA%A6%E5%9C%8B%E7%A7%91%E6%9C%83%E8%B3%87%E8%A8%8A%E5%AD%B8%E9%96%80%E6%88%90%E6%9E%9C%E5%B1%95%E3%80%8C%E5%84%AA%E8%89%AF%E8%A8%88%E7%95%AB%E5%9F%B7%E8%A1%8C%E6%88%90%E6%9E%9C%E7%8D%8E%E3%80%8D/'},
+    {d:'2025.12.19',t:'林峰正老師指導跨領域團隊獲第十屆 綠色生活創意設計大賽勇奪大專校院組銀獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B2%E7%AC%AC%E5%8D%81%E5%B1%86%20%E7%B6%A0%E8%89%B2%E7%94%9F%E6%B4%BB%E5%89%B5%E6%84%8F%E8%A8%AD%E8%A8%88%E5%A4%A7%E8%B3%BD%E5%8B%87%E5%A5%AA%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E7%B5%84%E9%8A%80%E7%8D%8E/'},
+    {d:'2025.12.16',t:'【專題演講】焦惠津教授 年輕軟體工程師如何展開新工作',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E7%84%A6%E6%83%A0%E6%B4%A5%E6%95%99%E6%8E%88%20%E5%B9%B4%E8%BC%95%E8%BB%9F%E9%AB%94%E5%B7%A5%E7%A8%8B%E5%B8%AB%E5%A6%82%E4%BD%95%E5%B1%95%E9%96%8B%E6%96%B0%E5%B7%A5%E4%BD%9C/'},
+    {d:'2025.12.13',t:'葉春秀教授指導呂慧欣、胡瑋倫、陳柏熹、王仁毅參加「2025 全國 AI 專題創意競賽」榮獲「資電領域」組佳作',url:'https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%91%82%E6%85%A7%E6%AC%A3%E3%80%81%E8%83%A1%E7%91%8B%E5%80%AB%E3%80%81%E9%99%B3%E6%9F%8F%E7%86%B9%E3%80%81%E7%8E%8B%E4%BB%81%E6%AF%85%E5%8F%83%E5%8A%A0%E3%80%8C2025%20%E5%85%A8%E5%9C%8B%20AI%20%E5%B0%88%E9%A1%8C%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E3%80%8D%E6%A6%AE%E7%8D%B2%E3%80%8C%E8%B3%87%E9%9B%BB%E9%A0%98%E5%9F%9F%E3%80%8D%E7%B5%84%E4%BD%B3%E4%BD%9C/'},
+    {d:'2025.12.13',t:'陳錫民老師指導同學獲永續創新黑客松-健康管理大數據平台在藥局的應用中獲得第一名',url:'https://www.iecs.fcu.edu.tw/news/%E9%99%B3%E9%8C%AB%E6%B0%91%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%90%8C%E5%AD%B8%E7%8D%B2%E6%B0%B8%E7%BA%8C%E5%89%B5%E6%96%B0%E9%BB%91%E5%AE%A2%E6%9D%BE-%E5%81%A5%E5%BA%B7%E7%AE%A1%E7%90%86%E5%A4%A7%E6%95%B8%E6%93%9A%E5%B9%B3%E5%8F%B0%E5%9C%A8%E8%97%A5%E5%B1%80%E7%9A%84%E6%87%89%E7%94%A8%E4%B8%AD%E7%8D%B2%E5%BE%97%E7%AC%AC%E4%B8%80%E5%90%8D/'},
+    {d:'2025.12.11',t:'林峰正老師指導團隊獲2025全國大專校院智慧創新暨跨域整合創作競賽三項獎項',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%9C%98%E9%9A%8A%E7%8D%B22025%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E6%99%BA%E6%85%A7%E5%89%B5%E6%96%B0%E6%9A%A8%E8%B7%A8%E5%9F%9F%E6%95%B4%E5%90%88%E5%89%B5%E4%BD%9C%E7%AB%B6%E8%B3%BD%E4%B8%89%E9%A0%85%E7%8D%8E%E9%A0%85/'},
+    {d:'2025.12.08',t:'林峰正老師指導團隊獲APICTA Awards 2025 大專院校組優勝',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%9C%98%E9%9A%8A%E7%8D%B2APICTA%20Awards%202025%20%E5%A4%A7%E5%B0%88%E9%99%A2%E6%A0%A1%E7%B5%84%E5%84%AA%E5%8B%9D/'},
+    {d:'2025.11.26',t:'【韓國漢陽大學】碩博士班全額學費獎學金',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E9%9F%93%E5%9C%8B%E6%BC%A2%E9%99%BD%E5%A4%A7%E5%AD%B8%E3%80%91%E7%A2%A9%E5%8D%9A%E5%A3%AB%E7%8F%AD%E5%85%A8%E9%A1%8D%E5%AD%B8%E8%B2%BB%E7%8D%8E%E5%AD%B8%E9%87%91/'},
+    {d:'2025.11.25',t:'【專題演講】周建銘創辦人 6G標準制定與潛在技術和應用',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E5%91%A8%E5%BB%BA%E9%8A%98%E5%89%B5%E8%BE%A6%E4%BA%BA%206G%E6%A8%99%E6%BA%96%E5%88%B6%E5%AE%9A%E8%88%87%E6%BD%9B%E5%9C%A8%E6%8A%80%E8%A1%93%E5%92%8C%E6%87%89%E7%94%A8/'},
+    {d:'2025.11.20',t:'林佩蓉老師與廠商共同研發成果榮獲國際創新發明競賽金牌',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E8%88%87%E5%BB%A0%E5%95%86%E5%85%B1%E5%90%8C%E7%A0%94%E7%99%BC%E6%88%90%E6%9E%9C%E6%A6%AE%E7%8D%B2%E5%9C%8B%E9%9A%9B%E5%89%B5%E6%96%B0%E7%99%BC%E6%98%8E%E7%AB%B6%E8%B3%BD%E9%87%91%E7%89%8C/'},
+    {d:'2025.11.20',t:'林佩蓉老師指導學生獲2025全國大專院校產學創新實作競賽第一名',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%AD%B8%E7%94%9F%E7%8D%B22025%E5%85%A8%E5%9C%8B%E5%A4%A7%E5%B0%88%E9%99%A2%E6%A0%A1%E7%94%A2%E5%AD%B8%E5%89%B5%E6%96%B0%E5%AF%A6%E4%BD%9C%E7%AB%B6%E8%B3%BD%E7%AC%AC%E4%B8%80%E5%90%8D/'},
+    {d:'2025.11.11',t:'【專題演講】許智淵研究員 自駕車輛影像感測技術與發展趨勢',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E8%A8%B1%E6%99%BA%E6%B7%B5%E7%A0%94%E7%A9%B6%E5%93%A1%20%E8%87%AA%E9%A7%95%E8%BB%8A%E8%BC%9B%E5%BD%B1%E5%83%8F%E6%84%9F%E6%B8%AC%E6%8A%80%E8%A1%93%E8%88%87%E7%99%BC%E5%B1%95%E8%B6%A8%E5%8B%A2/'},
+    {d:'2025.11.01',t:'林峰正老師指導跨領域團隊獲2025第30屆大專校院資訊應用服務創新競賽產業創新AI組第二名',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B22025%E7%AC%AC30%E5%B1%86%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E8%B3%87%E8%A8%8A%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99%E5%89%B5%E6%96%B0%E7%AB%B6%E8%B3%BD%E7%94%A2%E6%A5%AD%E5%89%B5%E6%96%B0AI%E7%B5%84%E7%AC%AC%E4%BA%8C%E5%90%8D/'},
+    {d:'2025.11.01',t:'林峰正老師指導跨領域團隊獲2025第30屆大專校院資訊應用服務創新競賽「產學合作組 PR2」第一名',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B22025%E7%AC%AC30%E5%B1%86%E5%A4%A7%E5%B0%88%E6%A0%A1%E9%99%A2%E8%B3%87%E8%A8%8A%E6%87%89%E7%94%A8%E6%9C%8D%E5%8B%99%E5%89%B5%E6%96%B0%E7%AB%B6%E8%B3%BD%E3%80%8C%E7%94%A2%E5%AD%B8%E5%90%88%E4%BD%9C%E7%B5%84%20PR2%E3%80%8D%E7%AC%AC%E4%B8%80%E5%90%8D/'},
+    {d:'2025.10.30',t:'李金鳳老師獲IIHMSP 2025優秀論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9D%8E%E9%87%91%E9%B3%B3%E8%80%81%E5%B8%AB%E7%8D%B2IIHMSP%202025%E5%84%AA%E7%A7%80%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2025.10.30',t:'林佩蓉老師研發成果獲馬來西亞發明競賽金牌＆加拿大TISIAS特別獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E4%BD%A9%E8%93%89%E8%80%81%E5%B8%AB%E7%A0%94%E7%99%BC%E6%88%90%E6%9E%9C%E7%8D%B2%E9%A6%AC%E4%BE%86%E8%A5%BF%E4%BA%9E%E7%99%BC%E6%98%8E%E7%AB%B6%E8%B3%BD%E9%87%91%E7%89%8C%EF%BC%86%E5%8A%A0%E6%8B%BF%E5%A4%A7TISIAS%E7%89%B9%E5%88%A5%E7%8D%8E/'},
+    {d:'2025.10.23',t:'林峰正老師指導跨領域團隊獲萬潤2025創新創意競賽最佳潛力獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9E%97%E5%B3%B0%E6%AD%A3%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B7%A8%E9%A0%98%E5%9F%9F%E5%9C%98%E9%9A%8A%E7%8D%B2%E8%90%AC%E6%BD%A42025%E5%89%B5%E6%96%B0%E5%89%B5%E6%84%8F%E7%AB%B6%E8%B3%BD%E6%9C%80%E4%BD%B3%E6%BD%9B%E5%8A%9B%E7%8D%8E/'},
+    {d:'2025.10.21',t:'【專題演講】林妙聰教授 Server Scheduling on Parallel Machines',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9E%97%E5%A6%99%E8%81%B0%E6%95%99%E6%8E%88%20Server%20Scheduling%20on%20Parallel%20Machines/'},
+    {d:'2025.10.21',t:'本系林宸毅摘下雲端運算國手資格代表台灣出征2025亞洲技能競賽',url:'https://www.iecs.fcu.edu.tw/news/%E6%9C%AC%E7%B3%BB%E6%9E%97%E5%AE%B8%E6%AF%85%E6%91%98%E4%B8%8B%E9%9B%B2%E7%AB%AF%E9%81%8B%E7%AE%97%E5%9C%8B%E6%89%8B%E8%B3%87%E6%A0%BC%E4%BB%A3%E8%A1%A8%E5%8F%B0%E7%81%A3%E5%87%BA%E5%BE%812025%E4%BA%9E%E6%B4%B2%E6%8A%80%E8%83%BD%E7%AB%B6%E8%B3%BD/'},
+    {d:'2025.10.17',t:'葉春秀教授指導博士生林顯仲、碩士生王絢、廖謹緯與林宜縢獲IIHMSP 2025優秀論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E8%91%89%E6%98%A5%E7%A7%80%E6%95%99%E6%8E%88%E6%8C%87%E5%B0%8E%E5%8D%9A%E5%A3%AB%E7%94%9F%E6%9E%97%E9%A1%AF%E4%BB%B2%E3%80%81%E7%A2%A9%E5%A3%AB%E7%94%9F%E7%8E%8B%E7%B5%A2%E3%80%81%E5%BB%96%E8%AC%B9%E7%B7%AF%E8%88%87%E6%9E%97%E5%AE%9C%E7%B8%A2%E7%8D%B2IIHMSP%202025%E5%84%AA%E7%A7%80%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2025.10.14',t:'【專題演講】簡良益董事長 最新生成式 AI開源模型經驗分享',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E7%B0%A1%E8%89%AF%E7%9B%8A%E8%91%A3%E4%BA%8B%E9%95%B7%20%E6%9C%80%E6%96%B0%E7%94%9F%E6%88%90%E5%BC%8F%20AI%E9%96%8B%E6%BA%90%E6%A8%A1%E5%9E%8B%E7%B6%93%E9%A9%97%E5%88%86%E4%BA%AB/'},
+    {d:'2025.10.07',t:'【專題演講】張真誠講座教授 滿滿正能量 成就無限可能',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E5%BC%B5%E7%9C%9F%E8%AA%A0%E8%AC%9B%E5%BA%A7%E6%95%99%E6%8E%88%20%E6%BB%BF%E6%BB%BF%E6%AD%A3%E8%83%BD%E9%87%8F%20%E6%88%90%E5%B0%B1%E7%84%A1%E9%99%90%E5%8F%AF%E8%83%BD/'},
+    {d:'2025.10.01',t:'1141獎學金申請',url:'https://www.iecs.fcu.edu.tw/news/1141%E7%8D%8E%E5%AD%B8%E9%87%91%E7%94%B3%E8%AB%8B/'},
+    {d:'2025.09.30',t:'【專題演講】陳金鈴特聘教授 區塊鍵對我們未來生活方式的改變',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E9%99%B3%E9%87%91%E9%88%B4%E7%89%B9%E8%81%98%E6%95%99%E6%8E%88%20%E5%8D%80%E5%A1%8A%E9%8D%B5%E5%B0%8D%E6%88%91%E5%80%91%E6%9C%AA%E4%BE%86%E7%94%9F%E6%B4%BB%E6%96%B9%E5%BC%8F%E7%9A%84%E6%94%B9%E8%AE%8A/'},
+    {d:'2025.09.23',t:'【專題演講】蕭菊貞導演 《造山者》的文化書寫與影響力',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E8%95%AD%E8%8F%8A%E8%B2%9E%E5%B0%8E%E6%BC%94%20%E3%80%8A%E9%80%A0%E5%B1%B1%E8%80%85%E3%80%8B%E7%9A%84%E6%96%87%E5%8C%96%E6%9B%B8%E5%AF%AB%E8%88%87%E5%BD%B1%E9%9F%BF%E5%8A%9B/'},
+    {d:'2025.09.22',t:'【課業輔導】114-1資訊系課業輔導排班表',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E8%AA%B2%E6%A5%AD%E8%BC%94%E5%B0%8E%E3%80%91114-1%E8%B3%87%E8%A8%8A%E7%B3%BB%E8%AA%B2%E6%A5%AD%E8%BC%94%E5%B0%8E%E6%8E%92%E7%8F%AD%E8%A1%A8/'},
+    {d:'2025.09.16',t:'【專題演講】李祖聖教授 人形機器人：設計、開發、產品化、人工智慧驅動控制與視覺',url:'https://www.iecs.fcu.edu.tw/news/%E3%80%90%E5%B0%88%E9%A1%8C%E6%BC%94%E8%AC%9B%E3%80%91%E6%9D%8E%E7%A5%96%E8%81%96%E6%95%99%E6%8E%88%20%E4%BA%BA%E5%BD%A2%E6%A9%9F%E5%99%A8%E4%BA%BA%EF%BC%9A%E8%A8%AD%E8%A8%88%E3%80%81%E9%96%8B%E7%99%BC%E3%80%81%E7%94%A2%E5%93%81%E5%8C%96%E3%80%81%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7%E9%A9%85%E5%8B%95%E6%8E%A7%E5%88%B6%E8%88%87%E8%A6%96%E8%A6%BA/'},
+    {d:'2025.08.24',t:'李金鳳老師榮獲ICKII 2025最佳論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E6%9D%8E%E9%87%91%E9%B3%B3%E8%80%81%E5%B8%AB%E6%A6%AE%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2025.08.24',t:'蔡國裕與郭崇韋老師共同指導林駿璋獲ICKII 2025最佳論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E8%94%A1%E5%9C%8B%E8%A3%95%E8%88%87%E9%83%AD%E5%B4%87%E9%9F%8B%E8%80%81%E5%B8%AB%E5%85%B1%E5%90%8C%E6%8C%87%E5%B0%8E%E6%9E%97%E9%A7%BF%E7%92%8B%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2025.08.24',t:'張哲誠老師指導博士生吳柏廷、黃鈺茗獲ICKII 2025最佳論文獎',url:'https://www.iecs.fcu.edu.tw/news/%E5%BC%B5%E5%93%B2%E8%AA%A0%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E5%8D%9A%E5%A3%AB%E7%94%9F%E5%90%B3%E6%9F%8F%E5%BB%B7%E3%80%81%E9%BB%83%E9%88%BA%E8%8C%97%E7%8D%B2ICKII%202025%E6%9C%80%E4%BD%B3%E8%AB%96%E6%96%87%E7%8D%8E/'},
+    {d:'2025.08.24',t:'陳烈武老師指導賴錡獲第十八屆台灣管理學會論文大賞2025：AI應用論文競賽「碩士組」佳作',url:'https://www.iecs.fcu.edu.tw/news/%E9%99%B3%E7%83%88%E6%AD%A6%E8%80%81%E5%B8%AB%E6%8C%87%E5%B0%8E%E8%B3%B4%E9%8C%A1%E7%8D%B2%E7%AC%AC%E5%8D%81%E5%85%AB%E5%B1%86%E5%8F%B0%E7%81%A3%E7%AE%A1%E7%90%86%E5%AD%B8%E6%9C%83%E8%AB%96%E6%96%87%E5%A4%A7%E8%B3%9E2025%EF%BC%9AAI%E6%87%89%E7%94%A8%E8%AB%96%E6%96%87%E7%AB%B6%E8%B3%BD%E3%80%8C%E7%A2%A9%E5%A3%AB%E7%B5%84%E3%80%8D%E4%BD%B3%E4%BD%9C/'},
+  ]},
+  {id:'miee',col:'ece',name:'資訊電機工程碩士在職學位學程',url:'https://miee.fcu.edu.tw/news-list/',news:[
+    {d:'2026.06.09',t:'逢甲大學115級畢典「未央 Beyond」首頒榮譽學生肯定多元表現',url:'https://www.fcu.edu.tw/news/2026060903/'},
+    {d:'2026.06.09',t:'逢甲大學授予楊龍士名譽博士 表彰都市規劃與校務建設卓越貢獻',url:'https://www.fcu.edu.tw/news/2026060902/'},
+    {d:'2026.06.01',t:'AI 科技新浪潮進校園！逢甲大學緊扣國際趨勢 師生同步參與黃仁勳主題演講直播同樂會',url:'https://www.fcu.edu.tw/news/2026060101/'},
+    {d:'2026.05.05',t:'錄取率不到4%！ 逢甲育成「夆泩數位」獲國發會創業百強與300萬支持金',url:'https://www.fcu.edu.tw/news/2026050503/'},
+    {d:'2026.04.30',t:'逢甲大學攜手渢妙離岸風場簽署MOU 產官學齊聚助攻綠能人才培育',url:'https://www.fcu.edu.tw/news/2026043002/'},
+    {d:'2026.04.20',t:'逢甲大學副校長黎淑婷榮獲2026台灣建築學會會士殊榮',url:'https://www.fcu.edu.tw/news/2026042001/'},
+    {d:'2026.04.16',t:'展現堅實辦學續航力！逢甲大學連12年蟬聯《Cheers》辦學績效私校榜首',url:'https://www.fcu.edu.tw/news/2026041601/'},
+    {d:'2026.04.13',t:'2026預見逢甲吸引逾4千人，溫馨應援祝考生「得正取」',url:'https://www.fcu.edu.tw/news/2026041301/'},
+    {d:'2026.04.08',t:'實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮',url:'https://www.fcu.edu.tw/news/2026040803/'},
+  ]},
+  {id:'rdms',col:'ece',name:'資訊與電機產業碩士專班',url:'https://rdms.fcu.edu.tw/',news:[
+    {d:'2026.07.03',t:'Apple認證全台唯一APP競賽 逢甲大學決賽8獎囊括6項創11年最佳紀錄',url:'https://rdms.fcu.edu.tw/events-list/?id=51001'},
+    {d:'2026.06.30',t:'含金量最高國科會大專生計畫 逢甲大學通過145件比肩頂大',url:'https://rdms.fcu.edu.tw/events-list/?id=50931'},
+    {d:'2026.06.29',t:'「再上一次學」中逢青第五屆團長交接 近200位校友共聚傳承逢甲精神',url:'https://rdms.fcu.edu.tw/events-list/?id=50919'},
+  ]},
+  {id:'bmie',col:'ece',name:'生醫資訊暨生醫工程碩士學位學程',url:'https://bmie.fcu.edu.tw/news/',news:[
+  ]},
+  {id:'gece',col:'ece',name:'電機與通訊工程博士學位學程',url:'https://gece.fcu.edu.tw/news/',news:[
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊',url:'https://www.fcu.edu.tw/news/2025112802/'},
+  ]},
+  {id:'pbiecs',col:'ece',name:'資訊工程學系學士後專班',url:'https://pbiecs.fcu.edu.tw/news/',news:[
+    {d:'2026.07.03',t:'Apple認證全台唯一APP競賽 逢甲大學決賽8獎囊括6項創11年最佳紀錄',url:'https://www.fcu.edu.tw/news/2026070301/'},
+    {d:'2026.06.25',t:'逢甲大學×統一投信連續四年產學共授 「基金理財」課程跨系修讀成果亮眼',url:'https://www.fcu.edu.tw/news/2026062501/'},
+    {d:'2026.06.10',t:'逢甲大學和IEET參與 EUR-ACE® Connect 資電學院三系歐洲工程認證成果躍上國際舞台',url:'https://www.fcu.edu.tw/news/2026061003/'},
+    {d:'2026.06.04',t:'2026 WildBot機器人挑戰賽 逢甲跨校隊闖進全國四強',url:'https://www.fcu.edu.tw/news/2026060401/'},
+    {d:'2026.06.02',t:'台灣學術之光！逢甲大學張真誠講座教授榮膺國際人工智慧科學院(AAIS)會士',url:'https://www.fcu.edu.tw/news/2026060201/'},
+    {d:'2026.05.26',t:'百組爭鋒、50強決戰！「2026逢甲大學共善創新競賽」決賽登場 產官學研高度肯定',url:'https://www.fcu.edu.tw/news/20260502601/'},
+    {d:'2026.05.12',t:'用AI守護工業安全！逢甲通訊系研發5G無人機預警系統 抱回智慧創新大賞佳作',url:'https://www.fcu.edu.tw/news/2026051204/'},
+    {d:'2026.05.08',t:'逢甲大學專題講座聚焦6G與AI 陽明交大院長王蒞君分享未來通訊關鍵技術',url:'https://www.fcu.edu.tw/news/2026050801/'},
+    {d:'2026.05.07',t:'逢甲資訊系學生奪技能競賽中區雲端運算職類銀牌 七月決戰最高殿堂',url:'https://www.fcu.edu.tw/news/2026050701/'},
+    {d:'2026.05.04',t:'逢甲跨域學生團隊勇奪2026明緯智慧永續科技競賽全國銀獎',url:'https://www.fcu.edu.tw/news/2026050404/'},
+    {d:'2026.04.29',t:'逢甲自控系50+週年系慶盛大登場！逾300系友回娘家',url:'https://www.fcu.edu.tw/news/2026042901/'},
+    {d:'2026.04.27',t:'自控系林子傑、林煜豪榮獲上緯智聯「機器狗競技挑戰賽」全能亞軍',url:'https://www.fcu.edu.tw/news/2026042704/'},
+    {d:'2026.04.14',t:'用AI解決真實社會問題！逢甲資訊系於「毫米波雷達創意賽」奪亞、季軍',url:'https://www.fcu.edu.tw/news/2026041401/'},
+    {d:'2026.04.10',t:'研發心臟影像AI辨識技術！逢甲大學團隊獲教育部AI CUP優等',url:'https://www.fcu.edu.tw/news/2026041001/'},
+    {d:'2026.04.09',t:'生成式 AI 助力科研！逢甲大學攜手鈦思科技舉辦 2026 MATLAB® Day 研討會',url:'https://www.fcu.edu.tw/news/2026040902/'},
+    {d:'2026.04.08',t:'實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮',url:'https://www.fcu.edu.tw/news/2026040803/'},
+    {d:'2026.04.08',t:'逢甲大學於全國電子設計創意競賽大放異彩 APP類包辦前三、勇奪雙冠',url:'https://www.fcu.edu.tw/news/2026040801/'},
+    {d:'2026.04.01',t:'首屆大一定錨課程專題實作競賽「U-Impact」21組跨域團隊展現實戰力',url:'https://www.fcu.edu.tw/news/2026040101/'},
+    {d:'2026.03.24',t:'全台唯一！逢甲資工團隊挑戰瑞士 ETH Zürich 國際黑客松，勇奪 Honorable mentions 殊榮',url:'https://www.fcu.edu.tw/news/2026032402/'},
+    {d:'2026.02.25',t:'台灣首批！逢甲電子、自控、通訊獲 ENAEE 歐洲工程認證',url:'https://www.fcu.edu.tw/news/2026022501/'},
+    {d:'2026.01.12',t:'恭賀！本校18位老師榮獲升等',url:'https://www.fcu.edu.tw/news/2026011202/'},
+    {d:'2026.01.08',t:'逢甲資工系郭崇韋老師榮獲國科會「優良計畫執行成果獎」',url:'https://www.fcu.edu.tw/news/2026010801/'},
+    {d:'2026.01.06',t:'資通安全碩士學位學程「資安創新研討室」正式啟用',url:'https://www.fcu.edu.tw/news/2026010602/'},
+    {d:'2026.01.05',t:'逢甲大學攜手華碩打造AI人才培育基地GeForce RTX 5080',url:'https://www.fcu.edu.tw/news/2026010502/'},
+    {d:'2025.12.22',t:'綠色生活創意設計決賽 逢甲大學團隊獲大專校院組銀獎',url:'https://www.fcu.edu.tw/news/2025122201/'},
+    {d:'2025.12.17',t:'Young飛全球行動計畫 2組逢甲學生團隊獲夢想實踐家獎',url:'https://www.fcu.edu.tw/news/2025121704/'},
+    {d:'2025.12.16',t:'2025全國大專院校產學創新實作競賽 逢甲大學勇奪雙料冠軍',url:'https://www.fcu.edu.tw/news/2025121603/'},
+    {d:'2025.12.16',t:'全國之冠！逢甲大學在2025智慧創新暨跨域整合創作競賽勇奪12獎',url:'https://www.fcu.edu.tw/news/2025121601/'},
+    {d:'2025.12.12',t:'七大校友企業聯手出題！第三屆廣告金句比賽講進心坎裡',url:'https://www.fcu.edu.tw/news/2025121202/'},
+    {d:'2025.12.11',t:'逢甲學生榮獲APICTA Awards優勝 AI智慧檢測展現跨域研發實力',url:'https://www.fcu.edu.tw/news/2025121105/'},
+    {d:'2025.12.08',t:'副總統蕭美琴接見崇越論文大賞得主 逢甲師生獲「AI技術開發」特優',url:'https://www.fcu.edu.tw/news/2025120804/'},
+    {d:'2025.12.03',t:'2025-2026年台義雙邊交流研討會 逢甲赴義發表跨域環境科研成果',url:'https://www.fcu.edu.tw/news/2025120301/'},
+    {d:'2025.12.02',t:'亞洲技能競賽台灣二連霸 逢甲林宸毅雲端運算奪銅 助攻國家隊',url:'https://www.fcu.edu.tw/news/2025120201/'},
+    {d:'2025.11.28',t:'逢甲大學深化5G發展基礎 以6G前瞻技術講座引導師生掌握次世代通訊',url:'https://www.fcu.edu.tw/news/2025112802/'},
+    {d:'2025.11.26',t:'逢甲資電學院攜手杜林理工 推動「1+1雙碩士」深化半導體與資安合作',url:'https://www.fcu.edu.tw/news/2025112601/'},
+    {d:'2025.11.25',t:'全國唯一 逢甲自控陳宇柔勇奪自動控制學會碩士論文獎「特優」',url:'https://www.fcu.edu.tw/news/2025112502/'},
+    {d:'2025.11.21',t:'義大利五大名校「聯合訪臺創紀錄」 逢甲大學簽署四校MOU',url:'https://www.fcu.edu.tw/news/2025112101/'},
+    {d:'2025.11.18',t:'華碩i-Taiwan數位志工攜手逢甲大學，縮短原住民小學資訊落差',url:'https://www.fcu.edu.tw/news/2025111801/'},
+    {d:'2025.11.14',t:'逢甲大學攜手智捷科技 打造5G × AIoT創新應用與人才培育基地',url:'https://www.fcu.edu.tw/news/2025111402/'},
+    {d:'2025.11.05',t:'AI為聽損兒開口發聲 逢甲「生聲」榮獲Apple移動應用創新賽大中華區二等獎',url:'https://www.fcu.edu.tw/news/2025110501/'},
+    {d:'2025.11.04',t:'逢甲勇奪全國資訊應用創新賽13獎項 兩隊入選APICTA台灣代表隊進軍亞太',url:'https://www.fcu.edu.tw/news/205110403/'},
+    {d:'2025.11.03',t:'逢甲大學學生團隊以智慧道路檢測系統榮獲萬潤2025電機資訊類最佳潛力獎',url:'https://www.fcu.edu.tw/news/2025110304/'},
+    {d:'2025.10.21',t:'逢甲林宸毅摘下雲端運算國手資格 代表台灣出征2025亞洲技能競賽',url:'https://www.fcu.edu.tw/news/2025102102/'},
+    {d:'2025.10.20',t:'2025創新技術博覽會逢甲3金2銀1銅 前方車輛盲區預警獲鴻海特別獎',url:'https://www.fcu.edu.tw/news/2025102002/'},
+    {d:'2025.10.07',t:'逢甲大學學生團隊勇奪教育部「職涯輔導心得競賽」全國第三名與人氣獎',url:'https://www.fcu.edu.tw/news/2025100703/'},
+    {d:'2025.10.07',t:'國科會大專學生研究計畫全國第六！大魚帶小魚 逢甲老師陪伴學生把研究變成最有價值的打工',url:'https://www.fcu.edu.tw/news/2025100701/'},
+    {d:'2025.09.28',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎',url:'https://www.fcu.edu.tw/news/2025093002/'},
+    {d:'2025.09.23',t:'逢甲大學35人次入榜全球前 2% 頂尖科學家 名列雙榜師長再增',url:'https://www.fcu.edu.tw/news/2025092301/'},
+    {d:'2025.09.12',t:'逢甲大學AI Club跨域團隊勇奪上銀智慧機器手實作競賽「智慧撞球組」評審特別獎',url:'https://www.fcu.edu.tw/news/2025091202/'},
+    {d:'2025.09.12',t:'逢甲自控系師生參與2025台北自動化工業大展 智慧製造成果獲業界關注',url:'https://www.fcu.edu.tw/news/2025091201/'},
+    {d:'2025.09.03',t:'近千篇論文競逐 逢甲大學三組師生榮獲台灣管理學會AI論文競賽特優與佳作',url:'https://www.fcu.edu.tw/news/2025090301/'},
+    {d:'2025.08.19',t:'逢甲大學三大智慧醫療技術亮相2025 BIO Asia 積極鏈結臨床與產業推動創新技術商品化',url:'https://www.fcu.edu.tw/news/2025081902/'},
+    {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行',url:'https://www.fcu.edu.tw/news/2025081403/'},
+  ]},
+  {id:'ics',col:'ece',name:'資通安全碩士學位學程',url:'https://ics.fcu.edu.tw/news/',news:[
+    {d:'2026.06.15',t:'郭崇韋老師指導 CACS Lab. 跨學程研究團隊於第36屆全國資訊安全會議榮獲最佳學生論文獎佳作',url:'https://ics.fcu.edu.tw/news/cacs-lab20260615/'},
+    {d:'2026.06.15',t:'周兆龍主任及郭崇韋老師指導之研究團隊 勇奪DLT2026 最佳論文獎',url:'https://ics.fcu.edu.tw/news/dlt20260608/'},
+  ]},
   {id:'civil',col:'con',name:'土木工程學系',url:'https://civil.fcu.edu.tw/news/',news:[
     {d:'2026.06.11',t:'逢甲建設學院舉辦AEC產業數位原型實作及地理資訊競賽 學生以AI解決宿舍排隊難題',url:'https://www.fcu.edu.tw/news/2026061101/'},
     {d:'2026.01.07',t:'逢甲大學土木系與興亞營造簽署MOU成立興亞學堂深化產學合作',url:'https://www.fcu.edu.tw/news/2026010701/'},
@@ -1381,6 +1597,26 @@ const D=[
     {d:'2025.12.30',t:'113國科會大專生研究創作獎 逢甲3位學生獲獎',url:'https://www.fcu.edu.tw/news/2025123003/'},
     {d:'2025.11.17',t:'逢甲日常節達人秀初賽火力全開 各系新鮮人強勢爭奪決賽門票',url:'https://www.fcu.edu.tw/news/2025111702/'},
   ]},
+  {id:'mppm',col:'con',name:'專案管理碩士在職學位學程',url:'https://mppm.fcu.edu.tw/news/',news:[
+  ]},
+  {id:'mcd',col:'con',name:'建設碩士在職學位學程',url:'https://mcd.fcu.edu.tw/news/',news:[
+  ]},
+  {id:'smcd',col:'con',name:'智慧城市碩士學位學程',url:'https://mcd.fcu.edu.tw/news/',news:[
+  ]},
+  {id:'gche',col:'con',name:'建設規劃與工程博士學位學程',url:'https://gche.fcu.edu.tw/news/',news:[
+    {d:'2025.12.10',t:'114學年度金廈移地教學--跨域實作深化學術與視野',url:'https://gche.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e8%a8%ad%e8%a6%8f%e5%8a%83%e8%88%87%e5%b7%a5%e7%a8%8b%e5%8d%9a%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e9%87%91%e5%bb%88%e7%a7%bb%e5%9c%b0%e6%95%99/'},
+  ]},
+  {id:'imsc',col:'con',name:'智慧城市國際碩士在職學位學程越南境外專班',url:'https://imsc.fcu.edu.tw/news-list/',news:[
+    {d:'2026.06.09',t:'逢甲大學115級畢典「未央 Beyond」首頒榮譽學生肯定多元表現',url:'https://www.fcu.edu.tw/news/2026060903/'},
+    {d:'2026.06.09',t:'逢甲大學授予楊龍士名譽博士 表彰都市規劃與校務建設卓越貢獻',url:'https://www.fcu.edu.tw/news/2026060902/'},
+    {d:'2026.06.01',t:'AI 科技新浪潮進校園！逢甲大學緊扣國際趨勢 師生同步參與黃仁勳主題演講直播同樂會',url:'https://www.fcu.edu.tw/news/2026060101/'},
+    {d:'2026.05.05',t:'錄取率不到4%！ 逢甲育成「夆泩數位」獲國發會創業百強與300萬支持金',url:'https://www.fcu.edu.tw/news/2026050503/'},
+    {d:'2026.04.30',t:'逢甲大學攜手渢妙離岸風場簽署MOU 產官學齊聚助攻綠能人才培育',url:'https://www.fcu.edu.tw/news/2026043002/'},
+    {d:'2026.04.20',t:'逢甲大學副校長黎淑婷榮獲2026台灣建築學會會士殊榮',url:'https://www.fcu.edu.tw/news/2026042001/'},
+    {d:'2026.04.16',t:'展現堅實辦學續航力！逢甲大學連12年蟬聯《Cheers》辦學績效私校榜首',url:'https://www.fcu.edu.tw/news/2026041601/'},
+    {d:'2026.04.13',t:'2026預見逢甲吸引逾4千人，溫馨應援祝考生「得正取」',url:'https://www.fcu.edu.tw/news/2026041301/'},
+    {d:'2026.04.08',t:'實力獲殿堂級認證！逢甲大學6度奪蘋果WWDC-Swift大獎，全台唯一兩位學生同獲殊榮',url:'https://www.fcu.edu.tw/news/2026040803/'},
+  ]},
   {id:'pmp',col:'gen',name:'全校國際生大一不分系學士班',url:'https://pmp.fcu.edu.tw/news/',news:[
     {d:'2026.05.25',t:'國際生華語演說比賽大談AI和我 八國學生勁歌熱舞',url:'https://www.fcu.edu.tw/news/2026052504/'},
     {d:'2025.08.21',t:'逢甲華語教師學分學程海外拓點成功 持續深耕泰國、印尼並開展新據點',url:'https://www.fcu.edu.tw/news/2025082102/'},
@@ -1406,6 +1642,14 @@ const D=[
     {d:'2025.09.30',t:'逢甲大學首屆新鮮人專題競賽登場 電子系奪金、行銷系獲社群人氣獎',url:'https://www.fcu.edu.tw/news/2025093002/'},
     {d:'2025.08.14',t:'逢甲學子跨海築夢 新南向計畫深入泰北實習與公益並行',url:'https://www.fcu.edu.tw/news/2025081403/'},
   ]},
+  {id:'aitm',col:'cre',name:'人工智慧科技與管理碩士學位學程',url:'https://aitm.fcu.edu.tw/news/',news:[
+    {d:'2026.06.01',t:'AI 科技新浪潮進校園！逢甲大學緊扣國際趨勢 師生同步參與黃仁勳主題演講直播同樂會',url:'https://www.fcu.edu.tw/news/2026060101/'},
+    {d:'2026.05.18',t:'當 AI 改變世界：逢甲大學攜手美光 探討記憶體創新與未來職涯',url:'https://www.fcu.edu.tw/news/2026051801/'},
+    {d:'2026.05.04',t:'逢甲跨域學生團隊勇奪2026明緯智慧永續科技競賽全國銀獎',url:'https://www.fcu.edu.tw/news/2026050404/'},
+    {d:'2026.04.09',t:'逢甲大學學生奪下2026國際大數據與ERP研討會最佳論文獎首獎',url:'https://www.fcu.edu.tw/news/2026040901/'},
+    {d:'2026.03.24',t:'AI浪潮來襲！逢甲大學導讀NVIDIA GTC 2026 關鍵技術 跨院系熱烈參與',url:'https://www.fcu.edu.tw/news/2026032401/'},
+    {d:'2026.01.27',t:'教育部數位人文計畫2025人文青石獎 逢甲大學勇奪4金3銀 全國第二',url:'https://www.fcu.edu.tw/news/2026012701/'},
+  ]},
 ];
 
 // Pre-compute
@@ -1416,13 +1660,14 @@ D.forEach(d=>{
   const deptTitles=new Set(deptAf.map(n=>n.t));
   const deptUrls=new Set(deptAf.map(n=>n.url).filter(Boolean));
   deptAf.forEach(n=>{
-    const s=autoSc(n.t,n.d);n.g=s.g;n.v=s.v;n.a=s.a;n.tot=s.g+s.v+s.a;
+    const p=n.url&&PRE_SCORES[n.url];const s=p||autoSc(n.t,n.d);n.pre=!!p;n.ph=s.ph||0;n.g=s.g;n.v=s.v;n.a=s.a;n.i=s.i||0;n.penalty=s.penalty||0;n.status=s.status||'unknown';n.tot=Math.max(0,s.g+s.v+s.a+s.i+(s.penalty||0));
     // 判斷是否為校網來源：直接讀取該網址在 www.fcu.edu.tw 文章頁上的真實 #hashtag，
     // 確認其中是否包含此學系名稱（URL_CATS 為即時抓取結果，比快取的 SCHOOL_RAW 更準確完整）
     const liveCats=n.url?URL_CATS[n.url]:null;
-    const sr=(n.url&&SCH_BY_URL.get(n.url))||SCH_BY_TITLE.get(n.t);
+    const sr=(n.url&&SCH_BY_URL.get(n.url))||(!d.extHost&&SCH_BY_TITLE.get(n.t));
     const cats=liveCats||sr?.cats||[];
-    n.fromSch=cats.includes(d.name);
+    const isFcuUrl=!d.extHost&&n.url&&n.url.startsWith('https://www.fcu.edu.tw/');
+    n.fromSch=!!isFcuUrl||cats.includes(d.name);
     if(n.fromSch){n.schUrl=n.url||sr?.url;}
   });
 
@@ -1431,9 +1676,10 @@ D.forEach(d=>{
     .filter(s=>jd(s.d)>=CUT&&(s.cats||[]).includes(d.name)&&!deptTitles.has(s.t)&&!deptUrls.has(s.url))
     .map(s=>{
       const sd=jd(s.d);
-      const sc=autoSc(s.t,sd);
-      return{d:sd,t:s.t,url:s.url,fromSch:true,schUrl:s.url,
-             g:sc.g,v:sc.v,a:sc.a,tot:sc.g+sc.v+sc.a};
+      const sc=(s.url&&PRE_SCORES[s.url])||autoSc(s.t,sd);
+      return{d:sd,t:s.t,url:s.url,fromSch:true,schUrl:s.url,pre:!!(s.url&&PRE_SCORES[s.url]),ph:sc.ph||0,
+             g:sc.g,v:sc.v,a:sc.a,i:sc.i||0,penalty:sc.penalty||0,status:sc.status||'unknown',
+             tot:Math.max(0,sc.g+sc.v+sc.a+(sc.i||0)+(sc.penalty||0))};
     });
 
   // 3. 合併：學系自有 ＋ 校網獨家串接，按日期降序
@@ -1458,9 +1704,9 @@ function buildSB(){
   <div class="col-h" style="color:#534AB7;margin-top:6px;">校級</div>
   <div class="di" id="di-fcu" onclick="sel('fcu')"><span class="dot" style="background:#534AB7;width:9px;height:9px;"></span><span class="di-n" style="font-weight:600;">逢甲大學官方網站</span></div>`;
   cols.forEach(c=>{
-    h+=`<div class="col-h">${c.name}</div>`;
+    h+=`<div class="col-h">${esc(c.name)}</div>`;
     D.filter(d=>d.col===c.k).forEach(d=>{
-      h+=`<div class="di" id="di-${d.id}" onclick="sel('${d.id}')"><span class="dot" style="background:${dotC(d.cnt)}"></span><span class="di-n">${d.name}</span></div>`;
+      h+=`<div class="di" id="di-${d.id}" onclick="sel('${d.id}')"><span class="dot" style="background:${dotC(d.cnt)}"></span><span class="di-n">${esc(d.name)}</span></div>`;
     });
   });
   document.getElementById('sb-body').innerHTML=h;
@@ -1522,16 +1768,16 @@ function sel(id){
         <button onclick="copyWriterPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
           <i class="ti ti-copy"></i> 複製提示詞
         </button>
-        <a href="https://gemini.google.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Gemini
         </a>
-        <a href="https://claude.ai" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Claude
         </a>
-        <a href="https://chatgpt.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 ChatGPT
         </a>
-        <a href="https://copilot.microsoft.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Copilot
         </a>
       </div>
@@ -1567,20 +1813,233 @@ function sel(id){
         <button onclick="copyTranslatorPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
           <i class="ti ti-copy"></i> 複製提示詞
         </button>
-        <a href="https://gemini.google.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Gemini
         </a>
-        <a href="https://claude.ai" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Claude
         </a>
-        <a href="https://chatgpt.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 ChatGPT
         </a>
-        <a href="https://copilot.microsoft.com" target="_blank" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Copilot
         </a>
       </div>
       <div id="tCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
+    </div>`;
+    document.getElementById('mn').innerHTML=h;
+    document.getElementById('mn').scrollTop=0;
+    return;
+  }
+
+  // ── AI 評分標準說明 ──
+  if(id==='rubric'){
+    const h=`
+    <div class="card" style="background:#1C1C2E;border-color:#1C1C2E;color:#fff;padding:1rem 1.25rem;">
+      <div style="font-size:17px;font-weight:700;margin-bottom:6px;"><i class="ti ti-stars" style="color:#C084FC;"></i> AI 新聞品質評分標準 v3.2</div>
+      <div style="font-size:12.5px;color:#9E9DBF;line-height:1.7;">每則新聞由程式自動評分（0–100 分）：標 📷 者已抓取內文＋圖片以完整訊號計分，其餘僅由標題推估。四個維度加總，非新聞類額外扣 30 分，最低顯示為 0。</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;">
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#5B9CF6;">30</div>
+          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">資訊結構<br>與即時加分</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#C084FC;">20</div>
+          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">可視覺化潛力<br>與版面 ★</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#34D399;">25</div>
+          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">語氣<br>與真誠度</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
+          <div style="font-size:22px;font-weight:800;color:#F59E0B;">25</div>
+          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">資訊完整性<br>可核實性 ★</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#185FA5;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 1</span>
+        <span style="font-size:15px;font-weight:700;color:#185FA5;">資訊結構與即時加分 /30</span>
+      </div>
+      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">由兩部分組成：<strong>資訊結構基礎分</strong>（標題是否含可核實實體）＋<strong>即時加分</strong>（事件是否在 7 天內報導）。最高 30 分。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+        <div style="background:#EBF3FF;border-radius:8px;padding:.85rem 1rem;">
+          <div style="font-size:11.5px;font-weight:700;color:#185FA5;margin-bottom:6px;"><i class="ti ti-building-skyscraper"></i> 資訊結構基礎分</div>
+          <div style="font-size:12px;color:#5F5E5A;line-height:1.75;">
+            符合 <strong>2 類以上</strong>可核實實體 → <strong style="color:#185FA5;">20 分</strong><br>
+            符合 <strong>1 類</strong>可核實實體 → <strong>10 分</strong>
+          </div>
+          <div style="font-size:11.5px;color:#888780;margin-top:8px;line-height:1.7;">
+            ① 具體數字＋單位（3位、5組、千萬元…）<br>
+            ② 具名縮寫（AI、IEEE、MOU、NVIDIA…）<br>
+            ③ 明確排名／屆次（全國冠軍、全球前10…）
+          </div>
+        </div>
+        <div style="background:#EBF3FF;border-radius:8px;padding:.85rem 1rem;">
+          <div style="font-size:11.5px;font-weight:700;color:#185FA5;margin-bottom:6px;"><i class="ti ti-clock-bolt"></i> 即時加分</div>
+          <div style="font-size:12px;color:#5F5E5A;line-height:1.75;">
+            從<strong>內文</strong>提取事件日期，與發布日比對<br>
+            發生後 ≤ 7 天 → <strong style="color:#185FA5;">+10 分</strong><br>
+            &gt; 7 天 → <strong>+0 分</strong><br>
+            無法判斷 → <strong style="color:#B4B2A9;">+0 分（標記待確認）</strong>
+          </div>
+        </div>
+      </div>
+      <table style="font-size:12.5px;border-collapse:collapse;width:100%;border-radius:8px;overflow:hidden;">
+        <thead>
+          <tr style="background:#EBF3FF;">
+            <th style="padding:8px 12px;text-align:left;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;"></th>
+            <th style="padding:8px 12px;text-align:center;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;">≥ 2 類 GEO（基礎 20）</th>
+            <th style="padding:8px 12px;text-align:center;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;">1 類 GEO（基礎 10）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:8px 12px;border:1px solid #dddcd4;font-weight:600;color:#5F5E5A;">即時（≤ 7 天）</td>
+            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:800;color:#185FA5;">30</td>
+            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#185FA5;">20</td>
+          </tr>
+          <tr style="background:#faf9f6;">
+            <td style="padding:8px 12px;border:1px solid #dddcd4;font-weight:600;color:#5F5E5A;">延遲／時效待確認</td>
+            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#888780;">20</td>
+            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#888780;">10</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:11.5px;color:#B4B2A9;margin-top:8px;"><i class="ti ti-info-circle"></i> 標 📷 的文章已抓取內文，可判斷即時加分；其餘僅有標題，即時加分多為 0。</div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#534AB7;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 2</span>
+        <span style="font-size:15px;font-weight:700;color:#534AB7;">可視覺化潛力與版面 /20　★</span>
+      </div>
+      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">標 📷 的文章以<strong>實際圖片數＋圖說</strong>計分：0 張=0、1 張=10、2 張=15（有圖說=20）、3 張以上=20；公告類標題一律 0。其餘文章依標題關鍵字推估（★），優先序如下：</div>
+      <div style="display:grid;gap:7px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#EEEDFE;border-left:4px solid #534AB7;">
+          <div style="font-size:20px;font-weight:800;color:#534AB7;min-width:24px;text-align:center;line-height:1.6;">20</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#534AB7;margin-bottom:3px;">儀式感 / 現場感強</div><div style="font-size:11.5px;color:#888780;">競賽・頒獎・典禮・畢典・成果展・發表會・音樂會・展覽・盛典・簽署・訪問・參訪・黑客松・馬拉松・錦標賽・授旗・授證</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F5F4FE;border-left:4px solid #A9A4E8;">
+          <div style="font-size:20px;font-weight:800;color:#534AB7;min-width:24px;text-align:center;line-height:1.6;">15</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#534AB7;margin-bottom:3px;">一般活動新聞</div><div style="font-size:11.5px;color:#888780;">未命中以上關鍵字（預期標準合照＋基本分段）</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F5F4FE;border-left:4px solid #A9A4E8;">
+          <div style="font-size:20px;font-weight:800;color:#888780;min-width:24px;text-align:center;line-height:1.6;">10</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">研究 / 學術類</div><div style="font-size:11.5px;color:#888780;">論文・研究・期刊・升等・入選・獲聘・學報・計畫通過</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
+          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">純公告 / 通知類</div><div style="font-size:11.5px;color:#888780;">公告・甄選・作業・招生・通知・截止・規定・注意事項・辦理・開放申・月報</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#1D9E75;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 3</span>
+        <span style="font-size:15px;font-weight:700;color:#1D9E75;">語氣與真誠度 /25</span>
+      </div>
+      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">依標題關鍵字判斷語氣風格，依以下優先序比對，命中即停止：</div>
+      <div style="display:grid;gap:7px;margin-bottom:14px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#EDF7F3;border-left:4px solid #1D9E75;">
+          <div style="font-size:20px;font-weight:800;color:#1D9E75;min-width:24px;text-align:center;line-height:1.6;">25</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#1D9E75;margin-bottom:3px;">真誠直白、有人味</div><div style="font-size:11.5px;color:#888780;">引領・探索・思索・體驗・走進・漫談・分享・訪談・對談・翻轉・返校・守護・陪伴・聆聽・重塑・攜手・用心</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F2FBF8;border-left:4px solid #8ECFB9;">
+          <div style="font-size:20px;font-weight:800;color:#1D9E75;min-width:24px;text-align:center;line-height:1.6;">15</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">中性語氣</div><div style="font-size:11.5px;color:#888780;">未命中以上任何關鍵字</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FAEEDA;border-left:4px solid #E9A23B;">
+          <div style="font-size:20px;font-weight:800;color:#854F0B;min-width:24px;text-align:center;line-height:1.6;">10</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#854F0B;margin-bottom:3px;">PR 套話 / AI 機器感</div><div style="font-size:11.5px;color:#888780;">展現量能・再創佳績・大放異彩・豐碩成果・矚目成就・精彩呈現・卓越表現・璀璨・耀眼・亮眼・深耕・締造・強強聯手</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
+          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">官僚語氣</div><div style="font-size:11.5px;color:#888780;">相關事項・作業規定・甄選公告・注意事項・依規辦理・敬請・依規定・填報</div></div>
+        </div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:8px;border:1px solid #FACDCD;padding:.85rem 1rem;">
+        <div style="font-size:12px;font-weight:700;color:#E24B4A;margin-bottom:5px;"><i class="ti ti-circle-minus"></i> 非新聞類扣分 −30（總分最低為 0）</div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7;">標題或內文命中以下關鍵字，判定為非新聞類，額外扣 30 分：<br><span style="color:#888780;">公告・甄選・作業・招生・通知・截止・規定・注意事項・依規辦理・填報・報名・徵件・開放申</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+        <span style="background:#92400E;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 4</span>
+        <span style="font-size:15px;font-weight:700;color:#92400E;">資訊完整性與可核實性 /25　★</span>
+      </div>
+      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">以全文檢查新聞是否交代足夠、可追溯的事實。自動評分以日期、人物、地點、引述與成果等訊號初步推估；正式評分應由人工或 LLM 覆核。</div>
+      <div style="display:grid;gap:7px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FEF3C7;border-left:4px solid #F59E0B;">
+          <div style="font-size:20px;font-weight:800;color:#92400E;min-width:24px;text-align:center;line-height:1.6;">25</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#92400E;margin-bottom:3px;">完整可核實</div><div style="font-size:11.5px;color:#888780;">時間、人物／單位、地點、具體成果皆清楚，並有具名引述、資料來源或可追溯數據（4 項以上訊號）</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFFBEB;border-left:4px solid #FCD34D;">
+          <div style="font-size:20px;font-weight:800;color:#92400E;min-width:24px;text-align:center;line-height:1.6;">15</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">已交代重點</div><div style="font-size:11.5px;color:#888780;">已交代事件重點與多數基本事實，但缺少引述、成果脈絡或資料依據（3 項訊號）</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFFBEB;border-left:4px solid #FCD34D;">
+          <div style="font-size:20px;font-weight:800;color:#888780;min-width:24px;text-align:center;line-height:1.6;">5</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">部分資訊</div><div style="font-size:11.5px;color:#888780;">僅交代部分基本資訊，內容多為概述或口號（2 項訊號）</div></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
+          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
+          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">事實缺漏</div><div style="font-size:11.5px;color:#888780;">事實不清、人物／時間／結果嚴重缺漏，或無法確認依據（1 項以下訊號）</div></div>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:#B4B2A9;margin-top:8px;"><i class="ti ti-info-circle"></i> 標 📷 的文章已抓取內文並偵測上述訊號；其餘僅有標題，維度 4 為 0。</div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:15px;font-weight:700;color:#1a1a18;margin-bottom:12px;"><i class="ti ti-medal" style="color:#BA7517;"></i> 等級標準</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <div style="background:#EAF3DE;border-radius:10px;padding:1rem;text-align:center;">
+          <div style="font-size:26px;font-weight:800;color:#3B6D11;line-height:1;">≥ 80</div>
+          <div style="margin:6px 0;"><span class="gb gg">優良</span></div>
+          <div style="font-size:11.5px;color:#3B6D11;line-height:1.6;">多類 GEO 結構<br>有現場感＋人味語氣</div>
+        </div>
+        <div style="background:#FAEEDA;border-radius:10px;padding:1rem;text-align:center;">
+          <div style="font-size:26px;font-weight:800;color:#854F0B;line-height:1;">60–79</div>
+          <div style="margin:6px 0;"><span class="gb gn">普通</span></div>
+          <div style="font-size:11.5px;color:#854F0B;line-height:1.6;">具備基本資訊結構<br>語氣尚可</div>
+        </div>
+        <div style="background:#FAECE7;border-radius:10px;padding:1rem;text-align:center;">
+          <div style="font-size:26px;font-weight:800;color:#993C1D;line-height:1;">&lt; 60</div>
+          <div style="margin:6px 0;"><span class="gb gw">待改善</span></div>
+          <div style="font-size:11.5px;color:#993C1D;line-height:1.6;">GEO 結構不足<br>或套話／官僚語氣</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="background:#faf9f6;border-color:#e5e4dc;">
+      <div style="font-size:14px;font-weight:700;color:#5F5E5A;margin-bottom:10px;"><i class="ti ti-alert-triangle" style="color:#BA7517;"></i> 評分限制說明</div>
+      <div style="display:grid;gap:9px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
+          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 2（視覺）</strong>標 📷 者以實際圖片數＋圖說計分；未抓取內文者依標題類型推估，同類型標題得分相同。</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
+          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 3（語氣）</strong>依標題關鍵字比對，非語意分析，含關鍵字的標題均觸發對應分數。</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:#888780;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">說明</span>
+          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>即時加分</strong>需要內文才能提取事件日期，多數標題的即時加分為 0。</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
+          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 4（完整性）</strong>偵測內文中的日期、人物、地點、引述、數據訊號；未抓取內文（無 📷）的文章一律 0 分。</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <span style="background:#888780;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">說明</span>
+          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;">評分關鍵字以<strong>繁體中文標題</strong>設計，英文或混合語言標題可能誤判。</div>
+        </div>
+      </div>
     </div>`;
     document.getElementById('mn').innerHTML=h;
     document.getElementById('mn').scrollTop=0;
@@ -1614,8 +2073,8 @@ function sel(id){
           const dc=dotC(d.cnt);
           return `<tr style="cursor:pointer;" onclick="sel('${d.id}')">
             <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-            <td><span class="ttl">${d.name}</span></td>
-            <td style="font-size:12.5px;color:#888780;">${col?.name||''}</td>
+            <td><span class="ttl">${esc(d.name)}</span></td>
+            <td style="font-size:12.5px;color:#888780;">${esc(col?.name||'')}</td>
             <td style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
             <td><div class="pb-bg" style="height:8px;"><div class="pb-f" style="width:${pct}%;background:${dc};"></div></div></td>
             <td style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
@@ -1636,11 +2095,11 @@ function sel(id){
     <div class="card" style="background:#1C1C2E;border-color:#1C1C2E;color:#fff;padding:1rem 1.25rem;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">
         <div>
-          <div style="font-size:17px;font-weight:700;">${s.name}</div>
-          <div style="font-size:11px;color:#9E9DBF;margin-top:4px;">資料來源：${s.src}</div>
+          <div style="font-size:17px;font-weight:700;">${esc(s.name)}</div>
+          <div style="font-size:11px;color:#9E9DBF;margin-top:4px;">資料來源：${esc(s.src)}</div>
           <div style="font-size:10px;color:#7A79A0;margin-top:3px;">⚠ 官網使用 JavaScript 動態載入，靜態抓取限制為最新 ${s.cnt} 則</div>
         </div>
-        <a href="${s.url}" target="_blank" style="font-size:11px;padding:5px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;text-decoration:none;color:#fff;white-space:nowrap;">
+        <a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener noreferrer" style="font-size:11px;padding:5px 12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;text-decoration:none;color:#fff;white-space:nowrap;">
           <i class="ti ti-external-link"></i> 前往校官網
         </a>
       </div>
@@ -1658,7 +2117,7 @@ function sel(id){
       <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
         <div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">${GA4_FCU.summary.pv.toLocaleString()}</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>
         <div class="sc"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
-        <div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">${GA4_FCU.summary.topChannel}</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>
+        <div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">${esc(GA4_FCU.summary.topChannel)}</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>
         <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
       </div>
     </div>
@@ -1672,8 +2131,8 @@ function sel(id){
       </tr></thead><tbody>
         ${GA4_FCU.topPages.map((p,i)=>`<tr>
           <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><a href="${s.url.replace(/\/news\/?$/,'')}${p.path}" target="_blank" class="ttl" style="text-decoration:none;color:#1a1a18;">${p.title}</a></td>
-          <td style="font-size:11px;color:#888780;">${p.date}</td>
+          <td><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
+          <td style="font-size:11px;color:#888780;">${esc(p.date)}</td>
           <td style="text-align:right;font-weight:700;color:#185FA5;">${p.pv.toLocaleString()}</td>
         </tr>`).join('')}
       </tbody></table>
@@ -1688,8 +2147,8 @@ function sel(id){
       </tr></thead><tbody>
         ${GA4_FCU.coldPages.map((p,i)=>`<tr>
           <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><a href="${s.url.replace(/\/news\/?$/,'')}${p.path}" target="_blank" class="ttl" style="text-decoration:none;color:#1a1a18;">${p.title}</a></td>
-          <td style="font-size:11px;color:#888780;">${p.date}</td>
+          <td><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
+          <td style="font-size:11px;color:#888780;">${esc(p.date)}</td>
           <td style="text-align:right;font-weight:700;color:#E24B4A;">${p.pv.toLocaleString()}</td>
         </tr>`).join('')}
       </tbody></table>
@@ -1716,23 +2175,24 @@ function sel(id){
         const deptTags=(n.cats||[]).map(c=>{
           const did=DEPT_CLICK.get(c);
           return did
-            ?`<span onclick="sel('${did}')" style="cursor:pointer;display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#EAF0FB;color:#185FA5;margin:2px;line-height:1.5;" title="點擊查看 ${c}">${c}</span>`
-            :`<span style="display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#f0efe8;color:#888780;margin:2px;line-height:1.5;">${c}</span>`;
+            ?`<span onclick="sel('${did}')" style="cursor:pointer;display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#EAF0FB;color:#185FA5;margin:2px;line-height:1.5;" title="點擊查看 ${esc(c)}">${esc(c)}</span>`
+            :`<span style="display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#f0efe8;color:#888780;margin:2px;line-height:1.5;">${esc(c)}</span>`;
         }).join('');
         h+=`<tr>
           <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><span class="ttl" title="點擊前往校網原文" onclick="window.open('${n.url}','_blank')">${n.t}</span></td>
-          <td style="font-size:11px;color:#888780;white-space:nowrap;">${n.d}</td>
+          <td><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
+          <td style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
           <td style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
           <td><span class="gb ${gr.c}">${gr.l}</span></td>
           <td>
             <div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
               <div class="sbrs">
-                <div class="sbr"><span class="sbl">GEO(40)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/40*100)}%;background:#888780;"></div></div><span class="sbv">${n.g}</span></div>
-                <div class="sbr"><span class="sbl">視覺(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/30*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
-                <div class="sbr"><span class="sbl">語氣(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/30*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+                <div class="sbr"><span class="sbl">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#888780;"></div></div><span class="sbv">${n.g}</span></div>
+                <div class="sbr"><span class="sbl">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
+                <div class="sbr"><span class="sbl">語氣(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/25*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+                <div class="sbr"><span class="sbl">完整(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round((n.i||0)/25*100)}%;background:#BA7517;"></div></div><span class="sbv">${n.i||0}</span></div>
               </div>
-              <span class="stot">${n.tot}</span>
+              ${n.pre?`<span title="已抓取內文＋圖片完整評分（${n.ph||0} 張圖）" style="cursor:help;font-size:12px;">📷</span>`:''}<span class="stot">${n.tot}</span>
             </div>
           </td>
         </tr>`;
@@ -1753,10 +2213,10 @@ function sel(id){
   <div class="card" style="padding:.8rem 1.4rem;">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
       <div>
-        <div class="dn">${d.name}</div>
-        <div class="ds" style="margin-top:3px;">${col?.name}｜<a href="${d.url}" target="_blank">${d.url.replace('https://','').replace('/news/','')}</a>｜<i class="ti ti-refresh" style="font-size:10px;"></i> 最後更新：${d.last}</div>
+        <div class="dn">${esc(d.name)}</div>
+        <div class="ds" style="margin-top:3px;">${esc(col?.name)}｜<a href="${esc(safeUrl(d.url))}" target="_blank" rel="noopener noreferrer">${esc(d.url.replace('https://','').replace('/news/',''))}</a>｜<i class="ti ti-refresh" style="font-size:10px;"></i> 最後更新：${esc(d.last)}</div>
       </div>
-      <a href="${d.url}" target="_blank" style="font-size:11px;padding:5px 12px;background:#f7f6f2;border:1px solid #d3d1c7;border-radius:6px;text-decoration:none;color:#5F5E5A;white-space:nowrap;flex-shrink:0;">
+      <a href="${esc(safeUrl(d.url))}" target="_blank" rel="noopener noreferrer" style="font-size:11px;padding:5px 12px;background:#f7f6f2;border:1px solid #d3d1c7;border-radius:6px;text-decoration:none;color:#5F5E5A;white-space:nowrap;flex-shrink:0;">
         <i class="ti ti-external-link"></i> 前往系所官網
       </a>
     </div>
@@ -1821,22 +2281,22 @@ function sel(id){
         ?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#185FA5;color:#fff;font-weight:700;letter-spacing:.03em;" title="此則新聞來自逢甲大學校官網介接">校網</span>`
         :`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#F0F9EC;color:#3B6D11;font-weight:600;border:1px solid #C8E4B8;">自建</span>`;
       const linkUrl=(n.fromSch&&n.schUrl)||n.url||d.url;
-      const titleClick=`window.open('${linkUrl}','_blank')`;
       const hasArticleUrl=!!((n.fromSch&&n.schUrl)||n.url);
       h+=`<tr>
         <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-        <td><span class="ttl" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" onclick="${titleClick}">${n.t}</span></td>
+        <td><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
         <td style="text-align:center;">${srcBdg}</td>
-        <td style="font-size:11px;color:#888780;">${n.d}</td>
+        <td style="font-size:11px;color:#888780;">${esc(n.d)}</td>
         <td><span class="gb ${gr.c}">${gr.l}</span></td>
         <td>
           <div style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
             <div class="sbrs">
-              <div class="sbr"><span class="sbl" title="資訊結構與事件即時性（含GEO優化）">時效(40)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/40*100)}%;background:#534AB7;"></div></div><span class="sbv">${n.g}</span></div>
-              <div class="sbr"><span class="sbl" title="視覺品質與版面（★依標題類型推估，非實際圖片分析）">★視覺(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/30*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
-              <div class="sbr"><span class="sbl" title="語氣與真誠度">語氣(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/30*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+              <div class="sbr"><span class="sbl" title="資訊結構與即時加分">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#534AB7;"></div></div><span class="sbv">${n.g}</span></div>
+              <div class="sbr"><span class="sbl" title="可視覺化潛力與版面（📷列以實際圖片數＋圖說計分，其餘依標題推估）">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
+              <div class="sbr"><span class="sbl" title="語氣與真誠度">語氣(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/25*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
+              <div class="sbr"><span class="sbl" title="資訊完整性與可核實性（需內文，📷列才有效）">完整(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round((n.i||0)/25*100)}%;background:#BA7517;"></div></div><span class="sbv">${n.i||0}</span></div>
             </div>
-            <span class="stot">${n.tot}</span>
+            ${n.pre?`<span title="已抓取內文＋圖片完整評分（${n.ph||0} 張圖）" style="cursor:help;font-size:12px;">📷</span>`:''}<span class="stot">${n.tot}</span>
           </div>
         </td>
       </tr>`;
@@ -1971,7 +2431,7 @@ function buildTranslatorPrompt(){
   if(matches.length){
     matchList.innerHTML=matches.map(m=>{
       const ens=m.variants.map(v=>v[1]).join('／');
-      return `<div style="margin-bottom:4px;"><strong>${m.zh}</strong> → ${ens}</div>`;
+      return `<div style="margin-bottom:4px;"><strong>${esc(m.zh)}</strong> → ${esc(ens)}</div>`;
     }).join('');
   } else {
     matchList.innerHTML='<span style="color:#B4B2A9;">未比對到詞彚庫中的專有名詞</span>';
@@ -2020,6 +2480,14 @@ function copyTranslatorPrompt(){
 document.getElementById('tgtVal').textContent=TGT;
 buildSB();
 sel('fcu');
+</script>
+<script>
+// 手機版側欄抽屜：漢堡開合、遮罩點擊關閉、點選任一選單項目後自動收合
+function toggleSb(){document.querySelector('.sb').classList.toggle('open');}
+function closeSb(){document.querySelector('.sb').classList.remove('open');}
+document.querySelector('.sb').addEventListener('click',function(e){
+  if(window.innerWidth<=768&&e.target.closest('.di,.sb-btn'))closeSb();
+});
 </script>
 </body>
 </html>
