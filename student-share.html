@@ -320,6 +320,12 @@ function renderOverview(){
 
   const g = GA4_SHARE;
   let h = ''
+    + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.9rem;">'
+    + '<a href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer" style="font-size:12px;padding:6px 14px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;text-decoration:none;color:#534AB7;font-weight:600;display:inline-flex;align-items:center;gap:5px;">'
+    + '<i class="ti ti-shield-check"></i> 網站健檢儀表板</a>'
+    + '<a href="https://fengchia1961.github.io/fcu-news-dashboard/" target="_blank" rel="noopener noreferrer" style="font-size:12px;padding:6px 14px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;text-decoration:none;color:#185FA5;font-weight:600;display:inline-flex;align-items:center;gap:5px;">'
+    + '<i class="ti ti-news"></i> FCU新聞監測儀表板</a>'
+    + '</div>'
     + '<div class="sg-wrap"><span class="sg-arrow"><i class="ti ti-chevrons-right" style="font-size:12px;"></i>左右滑動</span><div class="sg">'
     + '<div class="sc"><div class="sv" style="color:#185FA5;">'+total+'</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>全站總篇數</div></div>'
     + '<div class="sc"><div class="sv" style="color:'+(sinceCut.length?'#1D9E75':'#E24B4A')+';">'+sinceCut.length+'</div><div class="sl"><i class="ti ti-calendar-plus" style="font-size:13px;"></i><br>114學年度新增</div></div>'
