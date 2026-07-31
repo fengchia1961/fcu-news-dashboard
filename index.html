@@ -85,6 +85,7 @@ tr:hover td{background:#faf9f6;}
 /* ── 手機版（≤768px）：側欄化為抽屜、表格橫向滑動、間距縮小 ── */
 .sb-toggle{display:none;}
 .sb-backdrop{display:none;}
+.swipe-hint{display:none;}
 @media (max-width:768px){
   body{font-size:15px;}
   .layout{height:100dvh;}
@@ -107,10 +108,33 @@ tr:hover td{background:#faf9f6;}
   .tbl-hdr{padding:.6rem .8rem;font-size:12.5px;}
   .sbl{width:52px;font-size:10.5px;}
   .sbrs{min-width:110px;}
-  .sg-ga4{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:4px;scroll-snap-type:x proximity;}
-  .sg-ga4 .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
+  .sg-swipe{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:2px;scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;}
+  .sg-swipe::-webkit-scrollbar{display:none;}
+  .sg-swipe .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
   .sg-ga4 .sc-users{display:none;}
+  .swipe-hint{display:flex;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:-2px 0 4px;}
   .legend{gap:8px;}
+  /* ── 表格轉卡片式堆疊（熱門/冷門新聞、校級新聞列表）── */
+  .tbl-stack table{display:block!important;min-width:0!important;}
+  .tbl-stack thead{display:none;}
+  .tbl-stack tbody{display:block;}
+  .tbl-stack tr{display:block;padding:.6rem .8rem;border-bottom:1px solid #eceae0;}
+  .tbl-stack tr:last-child{border-bottom:none;}
+  .tbl-stack td{display:inline;border:none!important;padding:0!important;text-align:left!important;white-space:normal!important;background:none!important;}
+  .tbl-stack .stk-rk{color:#B4B2A9;font-size:11px;}
+  .tbl-stack .stk-rk::after{content:'.';margin-right:4px;}
+  .tbl-stack .stk-ttl{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .tbl-stack .stk-ttl a{color:inherit;}
+  .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
+  .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
+  .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
+  .tbl-stack .stk-tags{display:block;margin-top:4px;}
+  .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;}
+  .tbl-stack .stk-grade{display:inline-block;margin-top:4px;}
+  .tbl-stack .stk-score{display:block;margin-top:6px;}
+  .tbl-stack .stk-score-inner{justify-content:flex-start!important;flex-wrap:wrap;row-gap:4px;}
+  .tbl-stack .sbrs{width:auto;min-width:0!important;flex:1 1 auto;}
+  .tbl-stack .sbl{width:52px!important;font-size:10.5px!important;}
 }
 </style>
 </head>
@@ -2107,7 +2131,8 @@ function sel(id){
         </a>
       </div>
     </div>
-    <div class="sg" style="grid-template-columns:repeat(3,1fr);">
+    <div class="swipe-hint">左右滑動 ↔</div>
+    <div class="sg sg-swipe" style="grid-template-columns:repeat(3,1fr);">
       <div class="sc"><div class="sv" style="color:#534AB7;">${s.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>擷取新聞則數</div></div>
       <div class="sc"><div class="sv" style="color:#BA7517;">${s.avgSc}</div><div class="sl"><i class="ti ti-star" style="font-size:13px;"></i><br>AI平均分數</div></div>
       <div class="sc"><div class="sv" style="color:#185FA5;">${s.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
@@ -2117,14 +2142,15 @@ function sel(id){
         <i class="ti ti-chart-line" style="font-size:11px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（自 ${GA4_FCU.since} 起｜/news/ 區段）
         <span style="float:right;font-size:10px;font-weight:400;color:#B4B2A9;">更新：${GA4_FCU.fetchedAt}</span>
       </div>
-      <div class="sg sg-ga4" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
+      <div class="swipe-hint">左右滑動 ↔</div>
+      <div class="sg sg-swipe sg-ga4" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
         <div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">${GA4_FCU.summary.pv.toLocaleString()}</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>
         <div class="sc sc-users"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
         <div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">${esc(GA4_FCU.summary.topChannel)}</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>
         <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
       </div>
     </div>
-    <div class="tbl-wrap" style="margin-bottom:.9rem;">
+    <div class="tbl-wrap tbl-stack" style="margin-bottom:.9rem;">
       <div class="tbl-hdr"><i class="ti ti-trending-up"></i><span>熱門新聞頁面 Top ${GA4_FCU.topPages.length}（依瀏覽次數）</span></div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
@@ -2133,14 +2159,14 @@ function sel(id){
         <th style="width:100px;text-align:right;">瀏覽次數</th>
       </tr></thead><tbody>
         ${GA4_FCU.topPages.map((p,i)=>`<tr>
-          <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
-          <td style="font-size:11px;color:#888780;">${esc(p.date)}</td>
-          <td style="text-align:right;font-weight:700;color:#185FA5;">${p.pv.toLocaleString()}</td>
+          <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+          <td class="stk-ttl"><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
+          <td class="stk-date" style="font-size:11px;color:#888780;">${esc(p.date)}</td>
+          <td class="stk-pv" style="text-align:right;font-weight:700;color:#185FA5;">${p.pv.toLocaleString()}</td>
         </tr>`).join('')}
       </tbody></table>
     </div>
-    <div class="tbl-wrap" style="margin-bottom:.9rem;">
+    <div class="tbl-wrap tbl-stack" style="margin-bottom:.9rem;">
       <div class="tbl-hdr"><i class="ti ti-trending-down"></i><span>冷門新聞頁面 Top ${GA4_FCU.coldPages.length}（依瀏覽次數，由低到高）</span></div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
@@ -2149,17 +2175,17 @@ function sel(id){
         <th style="width:100px;text-align:right;">瀏覽次數</th>
       </tr></thead><tbody>
         ${GA4_FCU.coldPages.map((p,i)=>`<tr>
-          <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
-          <td style="font-size:11px;color:#888780;">${esc(p.date)}</td>
-          <td style="text-align:right;font-weight:700;color:#E24B4A;">${p.pv.toLocaleString()}</td>
+          <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+          <td class="stk-ttl"><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
+          <td class="stk-date" style="font-size:11px;color:#888780;">${esc(p.date)}</td>
+          <td class="stk-pv" style="text-align:right;font-weight:700;color:#E24B4A;">${p.pv.toLocaleString()}</td>
         </tr>`).join('')}
       </tbody></table>
     </div>`;
     if(s.af.length){
       // 學系名稱 → dept id 對照（用於校級面板點擊跳轉）
       const DEPT_CLICK=new Map(D.map(x=>[x.name,x.id]));
-      h+=`<div class="tbl-wrap">
+      h+=`<div class="tbl-wrap tbl-stack">
       <div class="tbl-hdr" style="justify-content:space-between;">
         <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，共 ${s.af.length} 則｜AI 品質評分｜串接學系）</span>
         <span style="font-size:12px;color:#888780;font-weight:400;cursor:help;" title="${RUBRIC_TIP}">ⓘ 評分說明</span>
@@ -2182,13 +2208,13 @@ function sel(id){
             :`<span style="display:inline-block;font-size:12px;padding:2px 7px;border-radius:4px;background:#f0efe8;color:#888780;margin:2px;line-height:1.5;">${esc(c)}</span>`;
         }).join('');
         h+=`<tr>
-          <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
-          <td style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
-          <td style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
-          <td><span class="gb ${gr.c}">${gr.l}</span></td>
-          <td>
-            <div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
+          <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+          <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
+          <td class="stk-date" style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
+          <td class="stk-tags" style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
+          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
+          <td class="stk-score">
+            <div class="stk-score-inner" style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
               <div class="sbrs">
                 <div class="sbr"><span class="sbl">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#888780;"></div></div><span class="sbv">${n.g}</span></div>
                 <div class="sbr"><span class="sbl">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
@@ -2224,7 +2250,8 @@ function sel(id){
       </a>
     </div>
   </div>
-  <div class="sg">
+  <div class="swipe-hint">左右滑動 ↔</div>
+  <div class="sg sg-swipe">
     <div class="sc"><div class="sv" style="color:#1D9E75;">${d.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>新聞數量</div></div>
     <div class="sc"><div class="sv" style="color:#185FA5;">${d.fromSch}</div><div class="sl"><i class="ti ti-school" style="font-size:13px;"></i><br>來自校網</div></div>
     <div class="sc"><div class="sv" style="color:#534AB7;">${d.self}</div><div class="sl"><i class="ti ti-building" style="font-size:13px;"></i><br>學系自行建置</div></div>
