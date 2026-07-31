@@ -107,6 +107,9 @@ tr:hover td{background:#faf9f6;}
   .tbl-hdr{padding:.6rem .8rem;font-size:12.5px;}
   .sbl{width:52px;font-size:10.5px;}
   .sbrs{min-width:110px;}
+  .sg-ga4{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:4px;scroll-snap-type:x proximity;}
+  .sg-ga4 .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
+  .sg-ga4 .sc-users{display:none;}
   .legend{gap:8px;}
 }
 </style>
@@ -2114,9 +2117,9 @@ function sel(id){
         <i class="ti ti-chart-line" style="font-size:11px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（自 ${GA4_FCU.since} 起｜/news/ 區段）
         <span style="float:right;font-size:10px;font-weight:400;color:#B4B2A9;">更新：${GA4_FCU.fetchedAt}</span>
       </div>
-      <div class="sg" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
+      <div class="sg sg-ga4" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
         <div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">${GA4_FCU.summary.pv.toLocaleString()}</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>
-        <div class="sc"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
+        <div class="sc sc-users"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
         <div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">${esc(GA4_FCU.summary.topChannel)}</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>
         <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
       </div>
