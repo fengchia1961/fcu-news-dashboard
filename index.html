@@ -86,6 +86,7 @@ tr:hover td{background:#faf9f6;}
 .sb-toggle{display:none;}
 .sb-backdrop{display:none;}
 .swipe-hint{display:none;}
+.nn-lbl{display:none;}
 @media (max-width:768px){
   body{font-size:15px;}
   .layout{height:100dvh;}
@@ -127,6 +128,8 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack .stk-ttl a{color:inherit;}
   .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
   .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
+  .tbl-stack .stk-nn{margin-left:8px;}
+  .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:11px;font-weight:700;margin-left:5px;vertical-align:middle;}
   .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
   .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
@@ -155,9 +158,6 @@ tr:hover td{background:#faf9f6;}
     </button>
     <button class="sb-btn" onclick="sel('translator')">
       <i class="ti ti-language"></i> 新聞英譯小幫手
-    </button>
-    <button class="sb-btn" onclick="sel('rubric')">
-      <i class="ti ti-stars"></i> AI 評分標準說明
     </button>
     <a class="sb-btn" href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer" style="text-align:center;text-decoration:none;">
       <i class="ti ti-arrow-left"></i> 返回網站健檢儀表板
@@ -451,35 +451,6 @@ const CUT='2025.08.01', TGT=20, MONTHS=10.5;
 // 參照「校園新聞評分標準 v3.0」：時效GEO 40 / 視覺版面 30 / 語氣真誠 30
 
 // 完整評分標準（供介面提示使用）
-const RUBRIC_TIP=`【資訊結構與即時加分 /30】
-僅評估已發生、可報導的事件（活動預告/招生/截止/行政通知等非新聞類另扣30分）。
-資訊結構：具體數字、具名縮寫、明確排名／屆次，達2類以上得20分，1類得10分。
-即時加分：從內文提取事件日期，發布後7天內＋10分；超過7天或無法判斷不加分。
-
-30：資訊結構20＋即時10（兩類GEO且即時）
-20：資訊結構10＋即時10（一類GEO且即時）
-20：資訊結構20，但延遲或時效待確認
-10：資訊結構10，且延遲或時效待確認
-
-【可視覺化潛力與版面 /20】（★依標題類型推估，不代表實際圖片品質）
-20：儀式感/現場感強（競賽/頒獎/典禮/展覽類）
-15：一般活動新聞（標準合照＋基本分段）
-10：研究/論文/學術類（多為識別照）
- 0：純公告/通知，無照片無分段
-
-【語氣與真誠度 /25】
-25：真誠直白，有人味，具名人物或可核實引述
-15：中性語氣，無明顯套話
-10：PR套話或AI機器感詞彙
- 0：官僚語氣或上對下指導語氣
-
-【資訊完整性與可核實性 /25】（★需有內文，標題推估多為0）
-25：時間、人物、地點、成果皆清楚，含引述或可追溯數據
-15：交代重點與基本事實，缺少引述或成果脈絡
- 5：僅部分基本資訊，多為概述或口號
- 0：事實缺漏嚴重，或無依據
-
-非新聞類扣分：預告/招生/截止/行政通知→ -30`
 
 // 從「YYYY.MM.DD」格式日期字串建立 Date 物件
 function parseD(s){const[y,m,d]=s.split('.').map(Number);return new Date(y,m-1,d);}
@@ -552,12 +523,6 @@ const PRE_SCORES={"https://aero.fcu.edu.tw/news/2026042701/":{"g":30,"v":10,"a":
 // ── NEWS_REVIEW：v4.0 審核之非新聞判定（review_news_v4.py 產生）──
 const NEWS_REVIEW={"https://aero.fcu.edu.tw/news/2026-03-09-01/":{"nn":1,"why":"開始申請"},"https://aero.fcu.edu.tw/news/2026-03-06-01/":{"nn":1,"why":"活動預告（將於115年3月20日(）"},"https://aero.fcu.edu.tw/news/2026-03-03-01/":{"nn":1,"why":"招募／申請公告"},"https://aero.fcu.edu.tw/news/2026-02-26-01-2/":{"nn":1,"why":"招募／申請公告"},"https://aero.fcu.edu.tw/news/2025-10-13-01/":{"nn":1,"why":"開始申請"},"https://aero.fcu.edu.tw/news/2025-10-09-01/":{"nn":1,"why":"招募／申請公告"}};
 
-function grd(tot){
-  if(tot>=80)return{l:'優良',c:'gg'};
-  if(tot>=60)return{l:'普通',c:'gn'};
-  if(tot>=40)return{l:'待改善',c:'gw'};
-  return{l:'不足',c:'gp'};
-}
 function dotC(n){
   if(n>=15)return'#1D9E75';
   if(n>=5)return'#EF9F27';
@@ -970,8 +935,7 @@ const SCHOOL={
   SCHOOL.af=af;
   SCHOOL.cnt=af.length;
   SCHOOL.last=af[0]?.d||'—';
-  SCHOOL.avgSc=af.length?Math.round(af.reduce((s,n)=>s+n.tot,0)/af.length):0;
-  SCHOOL.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
+    SCHOOL.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
 })();
 
 const cols=[
@@ -1316,7 +1280,6 @@ D.forEach(d=>{
   d.af=af;
   d.cnt=af.length;
   d.last=af[0]?.d||'—';
-  d.avgSc=af.length?Math.round(af.reduce((s,n)=>s+n.tot,0)/af.length):0;
   d.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
   d.fromSch=af.filter(n=>n.fromSch).length;  // 校網介接（含轉貼＋獨家）
   d.self=af.filter(n=>!n.fromSch).length;     // 學系純自建
@@ -1461,219 +1424,6 @@ function sel(id){
     return;
   }
 
-  // ── AI 評分標準說明 ──
-  if(id==='rubric'){
-    const h=`
-    <div class="card" style="background:#1C1C2E;border-color:#1C1C2E;color:#fff;padding:1rem 1.25rem;">
-      <div style="font-size:17px;font-weight:700;margin-bottom:6px;"><i class="ti ti-stars" style="color:#C084FC;"></i> AI 新聞品質評分標準 v3.2</div>
-      <div style="font-size:12.5px;color:#9E9DBF;line-height:1.7;">每則新聞由程式自動評分（0–100 分）：標 📷 者已抓取內文＋圖片以完整訊號計分，其餘僅由標題推估。四個維度加總，非新聞類額外扣 30 分，最低顯示為 0。</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;">
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#5B9CF6;">30</div>
-          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">資訊結構<br>與即時加分</div>
-        </div>
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#C084FC;">20</div>
-          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">可視覺化潛力<br>與版面 ★</div>
-        </div>
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#34D399;">25</div>
-          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">語氣<br>與真誠度</div>
-        </div>
-        <div style="background:rgba(255,255,255,.08);border-radius:8px;padding:.7rem;text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#F59E0B;">25</div>
-          <div style="font-size:10.5px;color:#9E9DBF;margin-top:3px;line-height:1.4;">資訊完整性<br>可核實性 ★</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="background:#185FA5;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 1</span>
-        <span style="font-size:15px;font-weight:700;color:#185FA5;">資訊結構與即時加分 /30</span>
-      </div>
-      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">由兩部分組成：<strong>資訊結構基礎分</strong>（標題是否含可核實實體）＋<strong>即時加分</strong>（事件是否在 7 天內報導）。最高 30 分。</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-        <div style="background:#EBF3FF;border-radius:8px;padding:.85rem 1rem;">
-          <div style="font-size:11.5px;font-weight:700;color:#185FA5;margin-bottom:6px;"><i class="ti ti-building-skyscraper"></i> 資訊結構基礎分</div>
-          <div style="font-size:12px;color:#5F5E5A;line-height:1.75;">
-            符合 <strong>2 類以上</strong>可核實實體 → <strong style="color:#185FA5;">20 分</strong><br>
-            符合 <strong>1 類</strong>可核實實體 → <strong>10 分</strong>
-          </div>
-          <div style="font-size:11.5px;color:#888780;margin-top:8px;line-height:1.7;">
-            ① 具體數字＋單位（3位、5組、千萬元…）<br>
-            ② 具名縮寫（AI、IEEE、MOU、NVIDIA…）<br>
-            ③ 明確排名／屆次（全國冠軍、全球前10…）
-          </div>
-        </div>
-        <div style="background:#EBF3FF;border-radius:8px;padding:.85rem 1rem;">
-          <div style="font-size:11.5px;font-weight:700;color:#185FA5;margin-bottom:6px;"><i class="ti ti-clock-bolt"></i> 即時加分</div>
-          <div style="font-size:12px;color:#5F5E5A;line-height:1.75;">
-            從<strong>內文</strong>提取事件日期，與發布日比對<br>
-            發生後 ≤ 7 天 → <strong style="color:#185FA5;">+10 分</strong><br>
-            &gt; 7 天 → <strong>+0 分</strong><br>
-            無法判斷 → <strong style="color:#B4B2A9;">+0 分（標記待確認）</strong>
-          </div>
-        </div>
-      </div>
-      <table style="font-size:12.5px;border-collapse:collapse;width:100%;border-radius:8px;overflow:hidden;">
-        <thead>
-          <tr style="background:#EBF3FF;">
-            <th style="padding:8px 12px;text-align:left;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;"></th>
-            <th style="padding:8px 12px;text-align:center;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;">≥ 2 類 GEO（基礎 20）</th>
-            <th style="padding:8px 12px;text-align:center;border:1px solid #C7DCFF;color:#185FA5;font-size:12px;">1 類 GEO（基礎 10）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:8px 12px;border:1px solid #dddcd4;font-weight:600;color:#5F5E5A;">即時（≤ 7 天）</td>
-            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:800;color:#185FA5;">30</td>
-            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#185FA5;">20</td>
-          </tr>
-          <tr style="background:#faf9f6;">
-            <td style="padding:8px 12px;border:1px solid #dddcd4;font-weight:600;color:#5F5E5A;">延遲／時效待確認</td>
-            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#888780;">20</td>
-            <td style="padding:8px 12px;border:1px solid #dddcd4;text-align:center;font-size:18px;font-weight:700;color:#888780;">10</td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="font-size:11.5px;color:#B4B2A9;margin-top:8px;"><i class="ti ti-info-circle"></i> 標 📷 的文章已抓取內文，可判斷即時加分；其餘僅有標題，即時加分多為 0。</div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="background:#534AB7;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 2</span>
-        <span style="font-size:15px;font-weight:700;color:#534AB7;">可視覺化潛力與版面 /20　★</span>
-      </div>
-      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">標 📷 的文章以<strong>實際圖片數＋圖說</strong>計分：0 張=0、1 張=10、2 張=15（有圖說=20）、3 張以上=20；公告類標題一律 0。其餘文章依標題關鍵字推估（★），優先序如下：</div>
-      <div style="display:grid;gap:7px;">
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#EEEDFE;border-left:4px solid #534AB7;">
-          <div style="font-size:20px;font-weight:800;color:#534AB7;min-width:24px;text-align:center;line-height:1.6;">20</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#534AB7;margin-bottom:3px;">儀式感 / 現場感強</div><div style="font-size:11.5px;color:#888780;">競賽・頒獎・典禮・畢典・成果展・發表會・音樂會・展覽・盛典・簽署・訪問・參訪・黑客松・馬拉松・錦標賽・授旗・授證</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F5F4FE;border-left:4px solid #A9A4E8;">
-          <div style="font-size:20px;font-weight:800;color:#534AB7;min-width:24px;text-align:center;line-height:1.6;">15</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#534AB7;margin-bottom:3px;">一般活動新聞</div><div style="font-size:11.5px;color:#888780;">未命中以上關鍵字（預期標準合照＋基本分段）</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F5F4FE;border-left:4px solid #A9A4E8;">
-          <div style="font-size:20px;font-weight:800;color:#888780;min-width:24px;text-align:center;line-height:1.6;">10</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">研究 / 學術類</div><div style="font-size:11.5px;color:#888780;">論文・研究・期刊・升等・入選・獲聘・學報・計畫通過</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
-          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">純公告 / 通知類</div><div style="font-size:11.5px;color:#888780;">公告・甄選・作業・招生・通知・截止・規定・注意事項・辦理・開放申・月報</div></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="background:#1D9E75;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 3</span>
-        <span style="font-size:15px;font-weight:700;color:#1D9E75;">語氣與真誠度 /25</span>
-      </div>
-      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">依標題關鍵字判斷語氣風格，依以下優先序比對，命中即停止：</div>
-      <div style="display:grid;gap:7px;margin-bottom:14px;">
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#EDF7F3;border-left:4px solid #1D9E75;">
-          <div style="font-size:20px;font-weight:800;color:#1D9E75;min-width:24px;text-align:center;line-height:1.6;">25</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#1D9E75;margin-bottom:3px;">真誠直白、有人味</div><div style="font-size:11.5px;color:#888780;">引領・探索・思索・體驗・走進・漫談・分享・訪談・對談・翻轉・返校・守護・陪伴・聆聽・重塑・攜手・用心</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#F2FBF8;border-left:4px solid #8ECFB9;">
-          <div style="font-size:20px;font-weight:800;color:#1D9E75;min-width:24px;text-align:center;line-height:1.6;">15</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">中性語氣</div><div style="font-size:11.5px;color:#888780;">未命中以上任何關鍵字</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FAEEDA;border-left:4px solid #E9A23B;">
-          <div style="font-size:20px;font-weight:800;color:#854F0B;min-width:24px;text-align:center;line-height:1.6;">10</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#854F0B;margin-bottom:3px;">PR 套話 / AI 機器感</div><div style="font-size:11.5px;color:#888780;">展現量能・再創佳績・大放異彩・豐碩成果・矚目成就・精彩呈現・卓越表現・璀璨・耀眼・亮眼・深耕・締造・強強聯手</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
-          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">官僚語氣</div><div style="font-size:11.5px;color:#888780;">相關事項・作業規定・甄選公告・注意事項・依規辦理・敬請・依規定・填報</div></div>
-        </div>
-      </div>
-      <div style="background:#FFF5F5;border-radius:8px;border:1px solid #FACDCD;padding:.85rem 1rem;">
-        <div style="font-size:12px;font-weight:700;color:#E24B4A;margin-bottom:5px;"><i class="ti ti-circle-minus"></i> 非新聞類扣分 −30（總分最低為 0）</div>
-        <div style="font-size:12px;color:#5F5E5A;line-height:1.7;">標題或內文命中以下關鍵字，判定為非新聞類，額外扣 30 分：<br><span style="color:#888780;">公告・甄選・作業・招生・通知・截止・規定・注意事項・依規辦理・填報・報名・徵件・開放申</span></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-        <span style="background:#92400E;color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;">維度 4</span>
-        <span style="font-size:15px;font-weight:700;color:#92400E;">資訊完整性與可核實性 /25　★</span>
-      </div>
-      <div style="font-size:12.5px;color:#5F5E5A;line-height:1.7;margin-bottom:12px;">以全文檢查新聞是否交代足夠、可追溯的事實。自動評分以日期、人物、地點、引述與成果等訊號初步推估；正式評分應由人工或 LLM 覆核。</div>
-      <div style="display:grid;gap:7px;">
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FEF3C7;border-left:4px solid #F59E0B;">
-          <div style="font-size:20px;font-weight:800;color:#92400E;min-width:24px;text-align:center;line-height:1.6;">25</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#92400E;margin-bottom:3px;">完整可核實</div><div style="font-size:11.5px;color:#888780;">時間、人物／單位、地點、具體成果皆清楚，並有具名引述、資料來源或可追溯數據（4 項以上訊號）</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFFBEB;border-left:4px solid #FCD34D;">
-          <div style="font-size:20px;font-weight:800;color:#92400E;min-width:24px;text-align:center;line-height:1.6;">15</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">已交代重點</div><div style="font-size:11.5px;color:#888780;">已交代事件重點與多數基本事實，但缺少引述、成果脈絡或資料依據（3 項訊號）</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFFBEB;border-left:4px solid #FCD34D;">
-          <div style="font-size:20px;font-weight:800;color:#888780;min-width:24px;text-align:center;line-height:1.6;">5</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#5F5E5A;margin-bottom:3px;">部分資訊</div><div style="font-size:11.5px;color:#888780;">僅交代部分基本資訊，內容多為概述或口號（2 項訊號）</div></div>
-        </div>
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:.7rem 1rem;border-radius:8px;background:#FFF5F5;border-left:4px solid #E24B4A;">
-          <div style="font-size:20px;font-weight:800;color:#E24B4A;min-width:24px;text-align:center;line-height:1.6;">0</div>
-          <div><div style="font-size:12.5px;font-weight:700;color:#E24B4A;margin-bottom:3px;">事實缺漏</div><div style="font-size:11.5px;color:#888780;">事實不清、人物／時間／結果嚴重缺漏，或無法確認依據（1 項以下訊號）</div></div>
-        </div>
-      </div>
-      <div style="font-size:11.5px;color:#B4B2A9;margin-top:8px;"><i class="ti ti-info-circle"></i> 標 📷 的文章已抓取內文並偵測上述訊號；其餘僅有標題，維度 4 為 0。</div>
-    </div>
-
-    <div class="card">
-      <div style="font-size:15px;font-weight:700;color:#1a1a18;margin-bottom:12px;"><i class="ti ti-medal" style="color:#BA7517;"></i> 等級標準</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-        <div style="background:#EAF3DE;border-radius:10px;padding:1rem;text-align:center;">
-          <div style="font-size:26px;font-weight:800;color:#3B6D11;line-height:1;">≥ 80</div>
-          <div style="margin:6px 0;"><span class="gb gg">優良</span></div>
-          <div style="font-size:11.5px;color:#3B6D11;line-height:1.6;">多類 GEO 結構<br>有現場感＋人味語氣</div>
-        </div>
-        <div style="background:#FAEEDA;border-radius:10px;padding:1rem;text-align:center;">
-          <div style="font-size:26px;font-weight:800;color:#854F0B;line-height:1;">60–79</div>
-          <div style="margin:6px 0;"><span class="gb gn">普通</span></div>
-          <div style="font-size:11.5px;color:#854F0B;line-height:1.6;">具備基本資訊結構<br>語氣尚可</div>
-        </div>
-        <div style="background:#FAECE7;border-radius:10px;padding:1rem;text-align:center;">
-          <div style="font-size:26px;font-weight:800;color:#993C1D;line-height:1;">&lt; 60</div>
-          <div style="margin:6px 0;"><span class="gb gw">待改善</span></div>
-          <div style="font-size:11.5px;color:#993C1D;line-height:1.6;">GEO 結構不足<br>或套話／官僚語氣</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="background:#faf9f6;border-color:#e5e4dc;">
-      <div style="font-size:14px;font-weight:700;color:#5F5E5A;margin-bottom:10px;"><i class="ti ti-alert-triangle" style="color:#BA7517;"></i> 評分限制說明</div>
-      <div style="display:grid;gap:9px;">
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
-          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 2（視覺）</strong>標 📷 者以實際圖片數＋圖說計分；未抓取內文者依標題類型推估，同類型標題得分相同。</div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
-          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 3（語氣）</strong>依標題關鍵字比對，非語意分析，含關鍵字的標題均觸發對應分數。</div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <span style="background:#888780;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">說明</span>
-          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>即時加分</strong>需要內文才能提取事件日期，多數標題的即時加分為 0。</div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <span style="background:#E9A23B;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">★ 推估</span>
-          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;"><strong>維度 4（完整性）</strong>偵測內文中的日期、人物、地點、引述、數據訊號；未抓取內文（無 📷）的文章一律 0 分。</div>
-        </div>
-        <div style="display:flex;gap:10px;align-items:flex-start;">
-          <span style="background:#888780;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;margin-top:1px;">說明</span>
-          <div style="font-size:12.5px;color:#5F5E5A;line-height:1.6;">評分關鍵字以<strong>繁體中文標題</strong>設計，英文或混合語言標題可能誤判。</div>
-        </div>
-      </div>
-    </div>`;
-    document.getElementById('mn').innerHTML=h;
-    document.getElementById('mn').scrollTop=0;
-    return;
-  }
-
   // ── 各學系新聞數量總覽 ──
   if(id==='overview'){
     const sorted=[...D].sort((a,b)=>b.cnt-a.cnt);
@@ -1733,9 +1483,8 @@ function sel(id){
       </div>
     </div>
     <div class="swipe-hint">左右滑動 ↔</div>
-    <div class="sg sg-swipe" style="grid-template-columns:repeat(3,1fr);">
+    <div class="sg sg-swipe" style="grid-template-columns:repeat(2,1fr);">
       <div class="sc"><div class="sv" style="color:#534AB7;">${s.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>擷取新聞則數</div></div>
-      <div class="sc"><div class="sv" style="color:#BA7517;">${s.avgSc}</div><div class="sl"><i class="ti ti-star" style="font-size:13px;"></i><br>AI平均分數</div></div>
       <div class="sc"><div class="sv" style="color:#185FA5;">${s.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
     </div>
     <div class="card" style="padding:.85rem 1.2rem .7rem;">
@@ -1795,6 +1544,7 @@ function sel(id){
         <th>標題</th>
         <th style="width:90px;">發布日期</th>
         <th style="width:160px;">串接學系／單位</th>
+        <th style="width:58px;text-align:center;" title="紅點＝經 v4.0 審核判定為非新聞（公告／報名／招生／活動預告）">非新聞</th>
       </tr></thead><tbody>`;
       s.af.forEach((n,i)=>{
         // 產生串接學系標籤（僅顯示在 D 中有的系所）
@@ -1806,9 +1556,10 @@ function sel(id){
         }).join('');
         h+=`<tr>
           <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td class="stk-ttl">${(NEWS_REVIEW[n.url]||{}).nn?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FBE9E7;color:#B3261E;font-weight:700;border:1px solid #F5C6C0;margin-right:6px;cursor:help;vertical-align:middle;" title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿">非新聞</span>`:''}<a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
+          <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
           <td class="stk-date" style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
           <td class="stk-tags" style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
+          <td class="stk-nn" style="text-align:center;">${(NEWS_REVIEW[n.url]||{}).nn?`<span title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#E24B4A;cursor:help;vertical-align:middle;"></span><span class="nn-lbl">非新聞</span>`:''}</td>
         </tr>`;
       });
       h+=`</tbody></table></div>`;
@@ -1840,7 +1591,6 @@ function sel(id){
     <div class="sc"><div class="sv" style="color:#1D9E75;">${d.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>新聞數量</div></div>
     <div class="sc"><div class="sv" style="color:#185FA5;">${d.fromSch}</div><div class="sl"><i class="ti ti-school" style="font-size:13px;"></i><br>來自校網</div></div>
     <div class="sc"><div class="sv" style="color:#534AB7;">${d.self}</div><div class="sl"><i class="ti ti-building" style="font-size:13px;"></i><br>學系自行建置</div></div>
-    <div class="sc"><div class="sv" style="color:#BA7517;">${d.avgSc}</div><div class="sl"><i class="ti ti-star" style="font-size:13px;"></i><br>自建平均分</div></div>
     <div class="sc"><div class="sv" style="color:#BA7517;">${d.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
   </div>
   <div class="card" style="padding:.85rem 1.2rem .7rem;">
@@ -1887,6 +1637,7 @@ function sel(id){
       <th>標題</th>
       <th style="width:60px;text-align:center;">來源</th>
       <th style="width:90px;">發佈日期</th>
+      <th style="width:58px;text-align:center;" title="紅點＝經 v4.0 審核判定為非新聞（公告／報名／招生／活動預告）">非新聞</th>
     </tr></thead><tbody>`;
     d.af.forEach((n,i)=>{
       const srcBdg=n.fromSch
@@ -1896,9 +1647,10 @@ function sel(id){
       const hasArticleUrl=!!((n.fromSch&&n.schUrl)||n.url);
       h+=`<tr>
         <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-        <td class="stk-ttl">${(NEWS_REVIEW[n.url]||{}).nn?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FBE9E7;color:#B3261E;font-weight:700;border:1px solid #F5C6C0;margin-right:6px;cursor:help;vertical-align:middle;" title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿">非新聞</span>`:''}<a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
+        <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
         <td class="stk-badge" style="text-align:center;">${srcBdg}</td>
         <td class="stk-date" style="font-size:11px;color:#888780;">${esc(n.d)}</td>
+        <td class="stk-nn" style="text-align:center;">${(NEWS_REVIEW[n.url]||{}).nn?`<span title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:#E24B4A;cursor:help;vertical-align:middle;"></span><span class="nn-lbl">非新聞</span>`:''}</td>
       </tr>`;
     });
     h+=`</tbody></table></div>`;
