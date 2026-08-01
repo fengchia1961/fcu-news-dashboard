@@ -1788,19 +1788,15 @@ function sel(id){
       const DEPT_CLICK=new Map(D.map(x=>[x.name,x.id]));
       h+=`<div class="tbl-wrap tbl-stack">
       <div class="tbl-hdr" style="justify-content:space-between;">
-        <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，共 ${s.af.length} 則｜AI 品質評分｜串接學系）</span>
-        <span style="font-size:12px;color:#888780;font-weight:400;cursor:help;" title="${RUBRIC_TIP}">ⓘ 評分說明</span>
+        <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，共 ${s.af.length} 則｜串接學系）</span>
       </div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
         <th>標題</th>
         <th style="width:90px;">發布日期</th>
         <th style="width:160px;">串接學系／單位</th>
-        <th style="width:68px;">等級</th>
-        <th style="width:140px;text-align:right;cursor:help;" title="${RUBRIC_TIP}">AI評分 /100 ⓘ</th>
       </tr></thead><tbody>`;
       s.af.forEach((n,i)=>{
-        const gr=grd(n.tot);
         // 產生串接學系標籤（僅顯示在 D 中有的系所）
         const deptTags=(n.cats||[]).map(c=>{
           const did=DEPT_CLICK.get(c);
@@ -1810,21 +1806,9 @@ function sel(id){
         }).join('');
         h+=`<tr>
           <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
+          <td class="stk-ttl">${(NEWS_REVIEW[n.url]||{}).nn?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FBE9E7;color:#B3261E;font-weight:700;border:1px solid #F5C6C0;margin-right:6px;cursor:help;vertical-align:middle;" title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿">非新聞</span>`:''}<a class="ttl" href="${esc(safeUrl(n.url))}" target="_blank" rel="noopener noreferrer" title="點擊前往校網原文" style="text-decoration:none;">${esc(n.t)}</a></td>
           <td class="stk-date" style="font-size:11px;color:#888780;white-space:nowrap;">${esc(n.d)}</td>
           <td class="stk-tags" style="max-width:140px;">${deptTags||'<span style="color:#B4B2A9;font-size:10px;">—</span>'}</td>
-          <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
-          <td class="stk-score">
-            <div class="stk-score-inner" style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">
-              <div class="sbrs">
-                <div class="sbr"><span class="sbl">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#888780;"></div></div><span class="sbv">${n.g}</span></div>
-                <div class="sbr"><span class="sbl">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
-                <div class="sbr"><span class="sbl">語氣(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/25*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
-                <div class="sbr"><span class="sbl">完整(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round((n.i||0)/25*100)}%;background:#BA7517;"></div></div><span class="sbv">${n.i||0}</span></div>
-              </div>
-              ${n.pre?`<span title="已抓取內文＋圖片完整評分（${n.ph||0} 張圖）" style="cursor:help;font-size:12px;">📷</span>`:''}<span class="stot">${n.tot}</span>
-            </div>
-          </td>
         </tr>`;
       });
       h+=`</tbody></table></div>`;
@@ -1886,7 +1870,7 @@ function sel(id){
     <div class="tbl-hdr" style="flex-direction:column;align-items:flex-start;gap:6px;">
       <div style="display:flex;align-items:center;gap:6px;width:100%;">
         <i class="ti ti-sparkles"></i>
-        <span>114學年度新聞（${CUT} 起，共 ${d.cnt} 則｜AI品質評分）</span>
+        <span>114學年度新聞（${CUT} 起，共 ${d.cnt} 則）</span>
         <span style="margin-left:auto;font-size:10px;color:#888780;">
           <span style="color:#185FA5;font-weight:600;">校網介接 ${d.fromSch} 則</span>
           ｜
@@ -1903,11 +1887,8 @@ function sel(id){
       <th>標題</th>
       <th style="width:60px;text-align:center;">來源</th>
       <th style="width:90px;">發佈日期</th>
-      <th style="width:68px;">等級</th>
-      <th style="width:140px;text-align:right;cursor:help;" title="${RUBRIC_TIP}">AI評分 /100 ⓘ</th>
     </tr></thead><tbody>`;
     d.af.forEach((n,i)=>{
-      const gr=grd(n.tot);
       const srcBdg=n.fromSch
         ?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#185FA5;color:#fff;font-weight:700;letter-spacing:.03em;" title="此則新聞來自逢甲大學校官網介接">校網</span>`
         :`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#F0F9EC;color:#3B6D11;font-weight:600;border:1px solid #C8E4B8;">自建</span>`;
@@ -1915,21 +1896,9 @@ function sel(id){
       const hasArticleUrl=!!((n.fromSch&&n.schUrl)||n.url);
       h+=`<tr>
         <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-        <td class="stk-ttl"><a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
-        <td class="stk-badge" style="text-align:center;">${srcBdg}${(NEWS_REVIEW[n.url]||{}).nn?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FBE9E7;color:#B3261E;font-weight:700;border:1px solid #F5C6C0;margin-left:4px;cursor:help;" title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿">非新聞</span>`:''}</td>
+        <td class="stk-ttl">${(NEWS_REVIEW[n.url]||{}).nn?`<span style="display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;background:#FBE9E7;color:#B3261E;font-weight:700;border:1px solid #F5C6C0;margin-right:6px;cursor:help;vertical-align:middle;" title="經 v4.0 審核判定為非新聞（${esc((NEWS_REVIEW[n.url]||{}).why||'')}）——公告、報名、招生等內容不屬新聞稿">非新聞</span>`:''}<a class="ttl" href="${esc(safeUrl(linkUrl))}" target="_blank" rel="noopener noreferrer" title="${hasArticleUrl?'點擊前往新聞原文':'查無個別連結，點擊前往系所新聞列表'}" style="text-decoration:none;">${esc(n.t)}</a></td>
+        <td class="stk-badge" style="text-align:center;">${srcBdg}</td>
         <td class="stk-date" style="font-size:11px;color:#888780;">${esc(n.d)}</td>
-        <td class="stk-grade"><span class="gb ${gr.c}">${gr.l}</span></td>
-        <td class="stk-score">
-          <div class="stk-score-inner" style="display:flex;align-items:center;gap:5px;justify-content:flex-end;">
-            <div class="sbrs">
-              <div class="sbr"><span class="sbl" title="資訊結構與即時加分">結構(30)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.g/30*100)}%;background:#534AB7;"></div></div><span class="sbv">${n.g}</span></div>
-              <div class="sbr"><span class="sbl" title="可視覺化潛力與版面（📷列以實際圖片數＋圖說計分，其餘依標題推估）">視覺(20)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.v/20*100)}%;background:#185FA5;"></div></div><span class="sbv">${n.v}</span></div>
-              <div class="sbr"><span class="sbl" title="語氣與真誠度">語氣(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round(n.a/25*100)}%;background:#0F6E56;"></div></div><span class="sbv">${n.a}</span></div>
-              <div class="sbr"><span class="sbl" title="資訊完整性與可核實性（需內文，📷列才有效）">完整(25)</span><div class="sbb"><div class="sbf" style="width:${Math.round((n.i||0)/25*100)}%;background:#BA7517;"></div></div><span class="sbv">${n.i||0}</span></div>
-            </div>
-            ${n.pre?`<span title="已抓取內文＋圖片完整評分（${n.ph||0} 張圖）" style="cursor:help;font-size:12px;">📷</span>`:''}<span class="stot">${n.tot}</span>
-          </div>
-        </td>
       </tr>`;
     });
     h+=`</tbody></table></div>`;
