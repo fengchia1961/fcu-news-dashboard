@@ -129,6 +129,15 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
   .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
   .tbl-stack .stk-nn{margin-left:8px;}
+  /* 各學系總覽：卡片式，系名一行、數字一行、燈號固定右上 */
+  .ov-stack tr{position:relative;padding-right:2rem;}
+  .ov-stack .ov-name{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .ov-stack .ov-name::after{content:'';display:block;height:5px;}
+  .ov-stack .ov-n::before{content:'新聞 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-sch::before{content:'\3000校網 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-self::before{content:'\3000自建 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-nn::before{content:'\3000非新聞 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-dot{position:absolute;right:.8rem;top:.75rem;}
   .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:11px;font-weight:700;margin-left:5px;vertical-align:middle;}
   .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
@@ -523,11 +532,13 @@ const PRE_SCORES={"https://aero.fcu.edu.tw/news/2026042701/":{"g":30,"v":10,"a":
 // ── NEWS_REVIEW：v4.0 審核之非新聞判定（review_news_v4.py 產生）──
 const NEWS_REVIEW={"https://aero.fcu.edu.tw/news/2026-03-09-01/":{"nn":1,"why":"開始申請"},"https://aero.fcu.edu.tw/news/2026-03-06-01/":{"nn":1,"why":"活動預告（將於115年3月20日(）"},"https://aero.fcu.edu.tw/news/2026-03-03-01/":{"nn":1,"why":"招募／申請公告"},"https://aero.fcu.edu.tw/news/2026-02-26-01-2/":{"nn":1,"why":"招募／申請公告"},"https://aero.fcu.edu.tw/news/2025-10-13-01/":{"nn":1,"why":"開始申請"},"https://aero.fcu.edu.tw/news/2025-10-09-01/":{"nn":1,"why":"招募／申請公告"},"https://www.iecs.fcu.edu.tw/news/115-1%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/":{"nn":1,"why":"活動預告（預計於）"},"https://www.iecs.fcu.edu.tw/news/115%E5%AD%B8%E5%B9%B4%E5%BA%A6%E5%AD%B8%E5%A3%AB%E7%94%9F%E5%85%88%E4%BF%AE%E7%A2%A9%E5%A3%AB%E7%8F%AD%E8%AA%B2%E7%A8%8B%E7%94%84%E9%81%B8/":{"nn":1,"why":"甄選"},"https://acct.fcu.edu.tw/news/2024_03_01/":{"nn":1,"why":"招募／申請公告"},"https://fll.fcu.edu.tw/news/2026031702/":{"nn":1,"why":"招募／申請公告"},"https://fll.fcu.edu.tw/news/2026031701/":{"nn":1,"why":"招募／申請公告"},"https://ba.fcu.edu.tw/news/114%e5%ad%b8%e5%b9%b4%e5%ba%a6%e4%bc%81%e6%a5%ad%e7%ae%a1%e7%90%86%e5%ad%b8%e7%b3%bb%e3%80%8c%e5%b0%88%e6%a5%ad%e8%ad%89%e7%85%a7%e7%8d%8e%e5%8b%b5%e3%80%8d%e7%94%b3%e8%ab%8b%e4%bd%9c%e6%a5%ad/":{"nn":1,"why":"招募／申請公告"},"https://acct.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e6%9c%83%e8%a8%88%e5%ad%b8%e7%b3%bb%e8%bd%89%e7%b3%bb%e7%94%b3%e8%ab%8b/":{"nn":1,"why":"活動預告（將於115年3月27日(）"},"https://ba.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%a4%a7%e5%ad%b8%e9%83%a8%e4%ba%8c%e3%80%81%e4%b8%89%e5%b9%b4%e7%b4%9a%e5%ad%b8%e7%94%9f%e8%bd%89%e7%b3%bb%e7%9b%b8%e9%97%9c%e4%bd%9c%e6%a5%ad%e4%ba%8b%e9%a0%85/":{"nn":1,"why":"招募／申請公告"},"https://www.iecs.fcu.edu.tw/news/114-2%20%E8%B3%87%E8%A8%8A%E7%B3%BB%E5%A4%A7%E5%AD%B8%E9%83%A8%E9%81%B8%E8%AA%B2/":{"nn":1,"why":"活動預告（預計於）"},"https://www.iecs.fcu.edu.tw/news/1141%E7%8D%8E%E5%AD%B8%E9%87%91%E7%94%B3%E8%AB%8B/":{"nn":1,"why":"招募／申請公告"}};
 
+// 門檻一律由 TGT 推導，避免統計卡（≥TGT）與燈號（原寫死 15）各說各話
+const TGT_HALF=Math.round(TGT/2);
 function dotC(n){
-  if(n>=15)return'#1D9E75';
-  if(n>=5)return'#EF9F27';
-  if(n>=1)return'#E24B4A';
-  return'#B4B2A9';
+  if(n>=TGT)return'#1D9E75';        // 達標
+  if(n>=TGT_HALF)return'#EF9F27';   // 進行中
+  if(n>=1)return'#E24B4A';          // 需加強
+  return'#B4B2A9';                  // 無記錄
 }
 
 // ── 月發文趨勢圖 ──
@@ -1314,9 +1325,9 @@ function buildSB(){
 
 // Legend HTML
 const legendHTML=`<div class="legend">
-  <span class="leg-i"><span class="dot" style="background:#1D9E75;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> ≥15則（達標）</span>
-  <span class="leg-i"><span class="dot" style="background:#EF9F27;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 5–14則（進行中）</span>
-  <span class="leg-i"><span class="dot" style="background:#E24B4A;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 1–4則（需加強）</span>
+  <span class="leg-i"><span class="dot" style="background:#1D9E75;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> ≥${TGT}則（達標）</span>
+  <span class="leg-i"><span class="dot" style="background:#EF9F27;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> ${TGT_HALF}–${TGT-1}則（進行中）</span>
+  <span class="leg-i"><span class="dot" style="background:#E24B4A;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 1–${TGT_HALF-1}則（需加強）</span>
   <span class="leg-i"><span class="dot" style="background:#B4B2A9;display:inline-block;width:9px;height:9px;border-radius:50%;"></span> 0則（無記錄）</span>
 </div>`;
 
@@ -1445,7 +1456,7 @@ function sel(id){
       <div class="sc"><div class="sv" style="color:#1D9E75;">${reach}</div><div class="sl"><i class="ti ti-circle-check" style="font-size:13px;"></i><br>已達標系所數</div></div>
       <div class="sc"><div class="sv" style="color:#E24B4A;">${notReach}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>未達標系所數</div></div>
     </div>
-    <div class="tbl-wrap">
+    <div class="tbl-wrap tbl-stack ov-stack">
       <div class="tbl-hdr"><i class="ti ti-list-numbers"></i><span>各學系新聞數量總覽（共 ${D.length} 個單位｜114學年度累計，點列可進入該系詳情）<span style="font-weight:400;color:#888780;font-size:11.5px;">　※ 新聞數量已扣除非新聞</span></span></div>
       <table><thead><tr>
         <th style="width:36px;text-align:center;">#</th>
@@ -1459,13 +1470,13 @@ function sel(id){
         ${sorted.map((d,i)=>{
           const dc=dotC(d.cnt);
           return `<tr style="cursor:pointer;" onclick="sel('${d.id}')">
-            <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-            <td><span class="ttl">${esc(d.name)}</span></td>
-            <td style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
-            <td style="text-align:center;color:#185FA5;font-weight:600;">${d.fromSch||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
-            <td style="text-align:center;color:#3B6D11;font-weight:600;">${d.self||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
-            <td style="text-align:center;">${d.nn?`<span style="color:#E24B4A;font-weight:700;">${d.nn}</span>`:'<span style="color:#D5D3C9;">—</span>'}</td>
-            <td style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
+            <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
+            <td class="ov-name"><span class="ttl">${esc(d.name)}</span></td>
+            <td class="ov-n" style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
+            <td class="ov-sch" style="text-align:center;color:#185FA5;font-weight:600;">${d.fromSch||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
+            <td class="ov-self" style="text-align:center;color:#3B6D11;font-weight:600;">${d.self||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
+            <td class="ov-nn" style="text-align:center;">${d.nn?`<span style="color:#E24B4A;font-weight:700;">${d.nn}</span>`:'<span style="color:#D5D3C9;">—</span>'}</td>
+            <td class="ov-dot" style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
           </tr>`;
         }).join('')}
       </tbody></table>
