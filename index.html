@@ -933,9 +933,12 @@ const SCHOOL={
   const af=SCHOOL.news.slice().sort((a,b)=>b.d.localeCompare(a.d));
   af.forEach(n=>{const p=n.url&&PRE_SCORES[n.url];const s=p||autoSc(n.t,n.d);n.pre=!!p;n.ph=s.ph||0;n.g=s.g;n.v=s.v;n.a=s.a;n.i=s.i||0;n.penalty=s.penalty||0;n.status=s.status||'unknown';n.tot=Math.max(0,s.g+s.v+s.a+s.i+(s.penalty||0));});
   SCHOOL.af=af;
-  SCHOOL.cnt=af.length;
+  const sNews=af.filter(n=>!isNN(n));
+  SCHOOL.total=af.length;
+  SCHOOL.nn=af.length-sNews.length;
+  SCHOOL.cnt=sNews.length;
   SCHOOL.last=af[0]?.d||'—';
-    SCHOOL.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
+  SCHOOL.mavg=SCHOOL.cnt?(SCHOOL.cnt/MONTHS).toFixed(1):'0.0';
 })();
 
 const cols=[
@@ -1278,12 +1281,18 @@ D.forEach(d=>{
   const af=[...deptAf,...schOnly].sort((a,b)=>b.d.localeCompare(a.d));
 
   d.af=af;
-  d.cnt=af.length;
+  const dNews=af.filter(n=>!isNN(n));          // 扣除非新聞後的有效新聞
+  d.total=af.length;                           // 全部則數（列表仍會顯示非新聞）
+  d.nn=af.length-dNews.length;                 // 非新聞則數
+  d.cnt=dNews.length;                          // 新聞則數＝達標計算基準
   d.last=af[0]?.d||'—';
-  d.mavg=af.length?(af.length/MONTHS).toFixed(1):'0.0';
-  d.fromSch=af.filter(n=>n.fromSch).length;  // 校網介接（含轉貼＋獨家）
-  d.self=af.filter(n=>!n.fromSch).length;     // 學系純自建
+  d.mavg=d.cnt?(d.cnt/MONTHS).toFixed(1):'0.0';
+  d.fromSch=dNews.filter(n=>n.fromSch).length;  // 校網介接（含轉貼＋獨家）
+  d.self=dNews.filter(n=>!n.fromSch).length;    // 學系純自建
 });
+
+// 是否為 v4.0 判定之非新聞（公告／報名／招生／活動預告）
+function isNN(n){return !!(n.url&&(NEWS_REVIEW[n.url]||{}).nn);}
 
 let cur=null;
 
@@ -1483,8 +1492,9 @@ function sel(id){
       </div>
     </div>
     <div class="swipe-hint">左右滑動 ↔</div>
-    <div class="sg sg-swipe" style="grid-template-columns:repeat(2,1fr);">
+    <div class="sg sg-swipe" style="grid-template-columns:repeat(3,1fr);">
       <div class="sc"><div class="sv" style="color:#534AB7;">${s.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>擷取新聞則數</div></div>
+      <div class="sc" title="公告／報名／招生／活動預告等，經 v4.0 審核判定不屬新聞，已從新聞數量中扣除"><div class="sv" style="color:#E24B4A;">${s.nn}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>非新聞（已扣除）</div></div>
       <div class="sc"><div class="sv" style="color:#185FA5;">${s.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
     </div>
     <div class="card" style="padding:.85rem 1.2rem .7rem;">
@@ -1537,7 +1547,7 @@ function sel(id){
       const DEPT_CLICK=new Map(D.map(x=>[x.name,x.id]));
       h+=`<div class="tbl-wrap tbl-stack">
       <div class="tbl-hdr" style="justify-content:space-between;">
-        <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，共 ${s.af.length} 則｜串接學系）</span>
+        <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，新聞 ${s.cnt} 則${s.nn?`＋非新聞 ${s.nn} 則`:''}｜串接學系）</span>
       </div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
@@ -1591,6 +1601,7 @@ function sel(id){
     <div class="sc"><div class="sv" style="color:#1D9E75;">${d.cnt}</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>新聞數量</div></div>
     <div class="sc"><div class="sv" style="color:#185FA5;">${d.fromSch}</div><div class="sl"><i class="ti ti-school" style="font-size:13px;"></i><br>來自校網</div></div>
     <div class="sc"><div class="sv" style="color:#534AB7;">${d.self}</div><div class="sl"><i class="ti ti-building" style="font-size:13px;"></i><br>學系自行建置</div></div>
+    <div class="sc" title="公告／報名／招生／活動預告等，經 v4.0 審核判定不屬新聞，已從新聞數量中扣除"><div class="sv" style="color:#E24B4A;">${d.nn}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>非新聞（已扣除）</div></div>
     <div class="sc"><div class="sv" style="color:#BA7517;">${d.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
   </div>
   <div class="card" style="padding:.85rem 1.2rem .7rem;">
@@ -1620,7 +1631,7 @@ function sel(id){
     <div class="tbl-hdr" style="flex-direction:column;align-items:flex-start;gap:6px;">
       <div style="display:flex;align-items:center;gap:6px;width:100%;">
         <i class="ti ti-sparkles"></i>
-        <span>114學年度新聞（${CUT} 起，共 ${d.cnt} 則）</span>
+        <span>114學年度新聞（${CUT} 起，新聞 ${d.cnt} 則${d.nn?`＋非新聞 ${d.nn} 則`:''}）</span>
         <span style="margin-left:auto;font-size:10px;color:#888780;">
           <span style="color:#185FA5;font-weight:600;">校網介接 ${d.fromSch} 則</span>
           ｜
