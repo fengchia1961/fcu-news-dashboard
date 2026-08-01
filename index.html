@@ -1439,7 +1439,8 @@ function sel(id){
     const reach=sorted.filter(d=>d.cnt>=TGT).length;
     const notReach=D.length-reach;
     let h=legendHTML+`
-    <div class="sg" style="grid-template-columns:repeat(3,1fr);">
+    <div class="swipe-hint">左右滑動 ↔</div>
+    <div class="sg sg-swipe" style="grid-template-columns:repeat(3,1fr);">
       <div class="sc"><div class="sv" style="color:#185FA5;">${D.length}</div><div class="sl"><i class="ti ti-building-community" style="font-size:13px;"></i><br>系所總數</div></div>
       <div class="sc"><div class="sv" style="color:#1D9E75;">${reach}</div><div class="sl"><i class="ti ti-circle-check" style="font-size:13px;"></i><br>已達標系所數</div></div>
       <div class="sc"><div class="sv" style="color:#E24B4A;">${notReach}</div><div class="sl"><i class="ti ti-circle-x" style="font-size:13px;"></i><br>未達標系所數</div></div>
@@ -1449,27 +1450,21 @@ function sel(id){
       <table><thead><tr>
         <th style="width:36px;text-align:center;">#</th>
         <th>學系／單位</th>
-        <th style="width:118px;">所屬學院</th>
-        <th style="width:66px;text-align:center;" title="已扣除非新聞的有效新聞則數">新聞數量</th>
+        <th style="width:80px;text-align:center;" title="已扣除非新聞的有效新聞則數">新聞數量</th>
         <th style="width:66px;text-align:center;" title="由逢甲大學校官網介接而來">來自校網</th>
         <th style="width:74px;text-align:center;" title="學系自行於系網發布">學系自建</th>
-        <th style="width:62px;text-align:center;" title="公告／報名／招生／活動預告等，經 v4.0 審核判定不屬新聞，已從新聞數量中扣除">非新聞</th>
-        <th style="width:96px;">達標進度</th>
+        <th style="width:70px;text-align:center;" title="公告／報名／招生／活動預告等，經 v4.0 審核判定不屬新聞，已從新聞數量中扣除">非新聞</th>
         <th style="width:52px;text-align:center;">狀態</th>
       </tr></thead><tbody>
         ${sorted.map((d,i)=>{
-          const col=cols.find(c=>c.k===d.col);
-          const pct=Math.min(100,Math.round((d.cnt/TGT)*100));
           const dc=dotC(d.cnt);
           return `<tr style="cursor:pointer;" onclick="sel('${d.id}')">
             <td style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
             <td><span class="ttl">${esc(d.name)}</span></td>
-            <td style="font-size:12.5px;color:#888780;">${esc(col?.name||'')}</td>
             <td style="text-align:center;font-weight:700;color:${dc};">${d.cnt}</td>
             <td style="text-align:center;color:#185FA5;font-weight:600;">${d.fromSch||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
             <td style="text-align:center;color:#3B6D11;font-weight:600;">${d.self||'<span style="color:#D5D3C9;font-weight:400;">—</span>'}</td>
             <td style="text-align:center;">${d.nn?`<span style="color:#E24B4A;font-weight:700;">${d.nn}</span>`:'<span style="color:#D5D3C9;">—</span>'}</td>
-            <td><div class="pb-bg" style="height:8px;"><div class="pb-f" style="width:${pct}%;background:${dc};"></div></div></td>
             <td style="text-align:center;"><span class="dot" style="background:${dc};display:inline-block;width:9px;height:9px;border-radius:50%;"></span></td>
           </tr>`;
         }).join('')}
