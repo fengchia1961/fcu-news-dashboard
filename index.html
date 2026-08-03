@@ -116,7 +116,7 @@ tr:hover td{background:#faf9f6;}
   .sg-swipe::-webkit-scrollbar{display:none;}
   .sg-swipe .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
   .sg-ga4 .sc-users{display:none;}
-  .swipe-hint{display:flex;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:-2px 0 4px;}
+  .swipe-hint{display:flex;clear:both;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:2px 0 4px;}
   .legend{gap:6px 10px;font-size:10.5px;margin-bottom:.6rem;}
   .leg-i{white-space:nowrap;}
   /* 觸控目標放大至 44px 建議值 */
@@ -129,6 +129,8 @@ tr:hover td{background:#faf9f6;}
   .to-top{position:fixed;right:14px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #d3d1c7;background:#fff;color:#185FA5;font-size:19px;box-shadow:0 2px 10px rgba(0,0,0,.16);display:none;align-items:center;justify-content:center;z-index:50;cursor:pointer;}
   .to-top.show{display:flex;}
   /* ── 表格轉卡片式堆疊（熱門/冷門新聞、校級新聞列表）── */
+  /* 卡片式列表不需橫向捲動；保留 overflow 會使 overflow-y 變 hidden，吸頂標題失效 */
+  .tbl-stack{overflow:visible!important;}
   .tbl-stack table{display:block!important;min-width:0!important;}
   .tbl-stack thead{display:none;}
   .tbl-stack tbody{display:block;}
@@ -141,6 +143,7 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack .stk-ttl a{color:inherit;}
   .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
   .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
+  .tbl-stack .stk-date::before{content:'發佈 ';color:#B4B2A9;}
   .tbl-stack .stk-nn{margin-left:8px;}
   /* 各學系總覽：卡片式，系名一行、數字一行、燈號固定右上 */
   .ov-stack tr{position:relative;padding-right:2rem;}
@@ -151,8 +154,18 @@ tr:hover td{background:#faf9f6;}
   .ov-stack .ov-self::before{content:'\3000自建 ';color:#888780;font-size:11px;font-weight:400;}
   .ov-stack .ov-nn::before{content:'\3000非新聞 ';color:#888780;font-size:11px;font-weight:400;}
   .ov-stack .ov-dot{position:absolute;right:.8rem;top:.75rem;}
+  /* 三類列表以色帶區分，捲動時容易辨識目前所在區塊 */
+  .sec-hot .tbl-hdr{background:#EDF7F3;border-left:4px solid #1D9E75;color:#0F6E56;}
+  .sec-cold .tbl-hdr{background:#FDF0EE;border-left:4px solid #E24B4A;color:#993C1D;}
+  .sec-news .tbl-hdr{background:#EEEDFE;border-left:4px solid #534AB7;color:#3F3899;}
+  .sec-hot,.sec-cold,.sec-news{border-radius:12px;}
+  .sec-cold,.sec-news{margin-top:1.1rem;}
+  /* 區塊標題捲動時吸附在頂端 */
+  .sec-hot .tbl-hdr,.sec-cold .tbl-hdr,.sec-news .tbl-hdr{position:sticky;top:0;z-index:3;}
   .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:11px;font-weight:700;margin-left:5px;vertical-align:middle;}
-  .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:10px;}
+  .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:12px;}
+  .tbl-stack .stk-pv::before{content:'瀏覽 ';color:#B4B2A9;font-size:11.5px;font-weight:400;}
+  .tbl-stack .stk-pv::after{content:' 次';color:#B4B2A9;font-size:11.5px;font-weight:400;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
   .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
   .tbl-stack .stk-grade{display:block;margin-top:4px;}
@@ -1538,7 +1551,7 @@ function sel(id){
         <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
       </div>
     </div>
-    <div class="tbl-wrap tbl-stack" style="margin-bottom:.9rem;">
+    <div class="tbl-wrap tbl-stack sec-hot" style="margin-bottom:.9rem;">
       <div class="tbl-hdr"><i class="ti ti-trending-up"></i><span>熱門新聞頁面 Top ${GA4_FCU.topPages.length}（依瀏覽次數）</span></div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
@@ -1554,7 +1567,7 @@ function sel(id){
         </tr>`).join('')}
       </tbody></table>
     </div>
-    <div class="tbl-wrap tbl-stack" style="margin-bottom:.9rem;">
+    <div class="tbl-wrap tbl-stack sec-cold" style="margin-bottom:.9rem;">
       <div class="tbl-hdr"><i class="ti ti-trending-down"></i><span>冷門新聞頁面 Top ${GA4_FCU.coldPages.length}（依瀏覽次數，由低到高）</span></div>
       <table><thead><tr>
         <th style="width:28px;text-align:center;">#</th>
@@ -1573,7 +1586,7 @@ function sel(id){
     if(s.af.length){
       // 學系名稱 → dept id 對照（用於校級面板點擊跳轉）
       const DEPT_CLICK=new Map(D.map(x=>[x.name,x.id]));
-      h+=`<div class="tbl-wrap tbl-stack">
+      h+=`<div class="tbl-wrap tbl-stack sec-news">
       <div class="tbl-hdr" style="justify-content:space-between;">
         <span><i class="ti ti-sparkles"></i> 校級新聞（${CUT} 起，新聞 ${s.cnt} 則${s.nn?`＋非新聞 ${s.nn} 則`:''}｜串接學系）</span>
       </div>
