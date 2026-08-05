@@ -1,0 +1,357 @@
+﻿<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' https: data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>新聞撰寫小幫手｜逢甲大學秘書處公共事務組</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f0efe9;color:#1a1a18;font-size:17px;line-height:1.5;}
+.layout{display:flex;height:100vh;}
+
+/* ── Sidebar ── */
+.sb{width:256px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:1rem 1.1rem .75rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:9px;margin-bottom:.5rem;}
+.sb-logo i{font-size:22px;color:#534AB7;}
+.sb-t{font-size:16px;font-weight:700;color:#1a1a18;line-height:1.3;}
+.sb-m{font-size:12.5px;color:#888780;margin-top:4px;line-height:1.65;}
+.sb-btn{display:block;width:100%;margin-top:9px;padding:7px 0;font-size:13px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
+.col-h{padding:.6rem 1.1rem .2rem;font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.di{display:flex;align-items:center;gap:8px;padding:.4rem 1.1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
+.di.act{background:#fff;color:#185FA5;border-left-color:#185FA5;font-weight:700;}
+.di-n{font-size:15px;line-height:1.35;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+
+/* ── Main area ── */
+.mn{flex:1;overflow-y:auto;padding:1.25rem 1.6rem;background:#f0efe9;}
+.card{background:#fff;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;border:1px solid #e5e4dc;}
+.dn{font-size:22px;font-weight:700;color:#1a1a18;}
+.ds{font-size:13px;color:#888780;margin-top:4px;}
+.ds a{color:#185FA5;text-decoration:none;}
+.ds a:hover{text-decoration:underline;}
+.ubdg{display:inline-block;font-size:12.5px;padding:4px 13px;background:#EAF3DE;color:#3B6D11;border-radius:99px;margin-top:7px;font-weight:600;}
+
+/* ── Stat grid ── */
+.sg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:.9rem;}
+.sc{background:#fff;border-radius:10px;padding:.8rem .6rem;text-align:center;border:1px solid #e5e4dc;}
+.sv{font-size:28px;font-weight:700;line-height:1.1;}
+.sl{font-size:12.5px;color:#888780;margin-top:5px;line-height:1.4;}
+
+/* ── Progress bar ── */
+.pb-r{display:flex;justify-content:space-between;font-size:13.5px;color:#5F5E5A;margin-bottom:.45rem;}
+.pb-bg{height:15px;background:#ebe9e0;border-radius:8px;overflow:hidden;}
+.pb-f{height:100%;border-radius:8px;background:#E9A23B;transition:width .6s ease;}
+.pb-n{font-size:13px;color:#5F5E5A;margin-top:.4rem;}
+
+/* ── Table ── */
+.tbl-wrap{background:#fff;border-radius:12px;overflow:clip;border:1px solid #e5e4dc;}
+.tbl-hdr{padding:.7rem 1.2rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:14px;font-weight:700;color:#1a1a18;display:flex;align-items:center;gap:8px;}
+table{width:100%;border-collapse:collapse;font-size:14.5px;}
+th{padding:.55rem 1rem;font-size:13px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;position:sticky;top:0;z-index:2;}
+td{padding:.6rem 1rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:#faf9f6;}
+.ttl{color:#1a1a18;cursor:pointer;line-height:1.45;font-size:14.5px;}
+.ttl:hover{color:#185FA5;text-decoration:underline;}
+.gb{display:inline-block;font-size:12.5px;padding:3px 10px;border-radius:6px;font-weight:700;}
+.gg{background:#EAF3DE;color:#3B6D11;}
+.gn{background:#FAEEDA;color:#854F0B;}
+.gw{background:#FAECE7;color:#993C1D;}
+.gp{background:#FCEBEB;color:#A32D2D;}
+
+/* ── Score bars ── */
+.sbrs{display:flex;flex-direction:column;gap:4px;min-width:130px;}
+.sbr{display:flex;align-items:center;gap:5px;}
+.sbl{font-size:11.5px;color:#888780;width:60px;}
+.sbb{flex:1;height:8px;background:#ebe9e0;border-radius:4px;overflow:hidden;}
+.sbf{height:100%;border-radius:4px;}
+.sbv{font-size:11.5px;color:#5F5E5A;width:26px;text-align:right;}
+.stot{font-size:20px;font-weight:800;color:#854F0B;min-width:36px;text-align:right;}
+
+/* ── Misc ── */
+.empty{text-align:center;padding:4rem;color:#B4B2A9;font-size:15px;}
+.legend{display:flex;gap:14px;margin-bottom:.9rem;flex-wrap:wrap;}
+.leg-i{display:flex;align-items:center;gap:6px;font-size:13px;color:#5F5E5A;}
+.topbar{display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #dddcd4;padding:.7rem 1.6rem;flex-shrink:0;font-size:13px;color:#888780;}
+.topbar strong{color:#1a1a18;font-size:15px;}
+
+/* ── 手機版（≤768px）：側欄化為抽屜、表格橫向滑動、間距縮小 ── */
+.sb-toggle{display:none;}
+.sb-backdrop{display:none;}
+.swipe-hint{display:none;}
+.nn-lbl{display:none;}
+.more-btn{display:none;}
+.to-top{display:none;}
+@media (max-width:768px){
+  body{font-size:15px;}
+  .layout{height:100dvh;}
+  .sb{position:fixed;top:0;left:0;bottom:0;z-index:60;width:min(80vw,280px);transform:translateX(-105%);transition:transform .25s ease;box-shadow:4px 0 18px rgba(0,0,0,.18);}
+  .sb.open{transform:none;}
+  .sb.open+.sb-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(20,20,18,.4);}
+  .sb-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #d3d1c7;border-radius:8px;background:#fff;color:#1a1a18;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .topbar{padding:.5rem .7rem;font-size:11px;gap:6px;flex-wrap:nowrap;overflow:hidden;white-space:nowrap;}
+  /* 手機版只保留統計起迄，其餘資訊在各頁內已有 */
+  .topbar span:nth-child(n+4){display:none;}
+  .mn{padding:.8rem .7rem;}
+  .card{padding:.9rem .8rem;}
+  .dn{font-size:18px;}
+  .sg{grid-template-columns:repeat(2,1fr)!important;gap:7px;}
+  .sc{padding:.6rem .4rem;}
+  .card>div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .tbl-wrap table{min-width:680px;}
+  table{font-size:12.5px;}
+  th,td{padding:.45rem .55rem;font-size:12.5px;}
+  .tbl-hdr{padding:.6rem .8rem;font-size:12.5px;}
+  .sbl{width:52px;font-size:10.5px;}
+  .sbrs{min-width:110px;}
+  .sg-swipe{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:2px;scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;}
+  .sg-swipe::-webkit-scrollbar{display:none;}
+  .sg-swipe .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
+  .sg-ga4 .sc-users{display:none;}
+  .swipe-hint{display:flex;clear:both;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:2px 0 4px;}
+  .legend{gap:6px 10px;font-size:10.5px;margin-bottom:.6rem;}
+  .leg-i{white-space:nowrap;}
+  /* 觸控目標放大至 44px 建議值 */
+  .sb .di{padding-top:.5rem;padding-bottom:.5rem;min-height:44px;}
+  .sb-btn{padding:11px 0;min-height:44px;}
+  /* 分批顯示按鈕 */
+  .more-btn{display:block;width:100%;padding:12px;min-height:44px;border:none;border-top:1px solid #eceae0;background:#faf9f6;color:#185FA5;font-size:13px;font-weight:600;cursor:pointer;}
+  .more-btn:disabled{color:#B4B2A9;}
+  /* 回頂按鈕 */
+  .to-top{position:fixed;right:14px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #d3d1c7;background:#fff;color:#185FA5;font-size:19px;box-shadow:0 2px 10px rgba(0,0,0,.16);display:none;align-items:center;justify-content:center;z-index:50;cursor:pointer;}
+  .to-top.show{display:flex;}
+  /* ── 表格轉卡片式堆疊（熱門/冷門新聞、校級新聞列表）── */
+  /* 卡片式列表不需橫向捲動；保留 overflow 會使 overflow-y 變 hidden，吸頂標題失效 */
+  .tbl-stack{overflow:visible!important;}
+  .tbl-stack table{display:block!important;min-width:0!important;}
+  .tbl-stack thead{display:none;}
+  .tbl-stack tbody{display:block;}
+  .tbl-stack tr{display:block;padding:.6rem .8rem;border-bottom:1px solid #eceae0;}
+  .tbl-stack tr:last-child{border-bottom:none;}
+  .tbl-stack td{display:inline;border:none!important;padding:0!important;text-align:left!important;white-space:normal!important;background:none!important;}
+  .tbl-stack .stk-rk{color:#B4B2A9;font-size:11px;}
+  .tbl-stack .stk-rk::after{content:'.';margin-right:4px;}
+  .tbl-stack .stk-ttl{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .tbl-stack .stk-ttl a{color:inherit;}
+  .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
+  .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
+  .tbl-stack .stk-date::before{content:'發佈 ';color:#B4B2A9;}
+  .tbl-stack .stk-nn{margin-left:8px;}
+  /* 各學系總覽：卡片式，系名一行、數字一行、燈號固定右上 */
+  .ov-stack tr{position:relative;padding-right:2rem;}
+  .ov-stack .ov-name{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .ov-stack .ov-name::after{content:'';display:block;height:5px;}
+  .ov-stack .ov-n::before{content:'新聞 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-sch::before{content:'\3000校網 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-self::before{content:'\3000自建 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-nn::before{content:'\3000非新聞 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-dot{position:absolute;right:.8rem;top:.75rem;}
+  /* 三類列表以色帶區分，捲動時容易辨識目前所在區塊 */
+  .sec-hot .tbl-hdr{background:#EDF7F3;border-left:4px solid #1D9E75;color:#0F6E56;}
+  .sec-cold .tbl-hdr{background:#FDF0EE;border-left:4px solid #E24B4A;color:#993C1D;}
+  .sec-news .tbl-hdr{background:#EEEDFE;border-left:4px solid #534AB7;color:#3F3899;}
+  .sec-hot,.sec-cold,.sec-news{border-radius:12px;}
+  .sec-cold,.sec-news{margin-top:1.1rem;}
+  /* 區塊標題捲動時吸附在頂端 */
+  .sec-hot .tbl-hdr,.sec-cold .tbl-hdr,.sec-news .tbl-hdr{position:sticky;top:0;z-index:3;}
+  .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:11px;font-weight:700;margin-left:5px;vertical-align:middle;}
+  .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:12px;}
+  .tbl-stack .stk-pv::before{content:'瀏覽 ';color:#B4B2A9;font-size:11.5px;font-weight:400;}
+  .tbl-stack .stk-pv::after{content:' 次';color:#B4B2A9;font-size:11.5px;font-weight:400;}
+  .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
+  .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
+  .tbl-stack .stk-grade{display:block;margin-top:4px;}
+  .tbl-stack .stk-badge{margin-right:8px;}
+  .tbl-stack .stk-score{display:block;margin-top:3px;}
+  .tbl-stack .stk-score-inner{justify-content:flex-start!important;flex-wrap:wrap;row-gap:4px;}
+  .tbl-stack .sbrs{width:auto;min-width:0!important;flex:1 1 auto;}
+  .tbl-stack .sbl{width:52px!important;font-size:10.5px!important;}
+}
+</style>
+<style>
+/* 獨立頁面：不需要側欄，內容置中 */
+body{background:#f0efe9;}
+.page{max-width:860px;margin:0 auto;padding:1.1rem .9rem 3rem;}
+.pg-hd{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
+.pg-hd .bk{margin-left:auto;font-size:12px;padding:8px 14px;background:#fff;border:1px solid #d3d1c7;
+  border-radius:7px;text-decoration:none;color:#5F5E5A;min-height:40px;display:inline-flex;align-items:center;gap:5px;}
+@media (max-width:768px){
+  .page{padding:.8rem .7rem 3rem;}
+  .pg-hd .bk{min-height:44px;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pg-hd">
+    <div>
+      <div style="font-size:19px;font-weight:700;color:#1a1a18;"><i class="ti ti-pencil" style="color:#534AB7;"></i> 新聞撰寫小幫手</div>
+      <div style="font-size:11.5px;color:#888780;margin-top:2px;">逢甲大學秘書處公共事務組</div>
+    </div>
+    <a class="bk" href="index.html"><i class="ti ti-arrow-left"></i> 返回新聞監測儀表板</a>
+  </div>
+  <div id="mn"></div>
+</div>
+<script>
+// （本頁不需詞彚庫，故未內嵌 GLOSSARY，可省下約 181KB）
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+const wField=(id,label,ph)=>`
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">${label}</label>
+        <input id="${id}" type="text" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;" placeholder="${ph}">
+      </div>`;
+    const wArea=(id,label,ph,rows)=>`
+      <div style="margin-bottom:10px;">
+        <label style="font-size:12.5px;color:#888780;display:block;margin-bottom:4px;">${label}</label>
+        <textarea id="${id}" rows="${rows}" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="${ph}"></textarea>
+      </div>`;
+
+function render(){
+  let h=`
+    <div class="card">
+      <div style="font-size:17px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-pencil" style="color:#534AB7;"></i> 新聞撰寫小幫手</div>
+      <div style="font-size:12.5px;color:#888780;line-height:1.6;">填寫活動資訊 → 產生提示詞 → 複製貼到免費的 AI 聊天室（Gemini 或 Claude）→ 把回覆的新聞稿複製回來使用。完全免費，不需要任何帳號設定。所有欄位皆為選填，可依實際情況填寫。</div>
+    </div>
+    <div class="card">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：填寫重要資訊</div>
+      ${wField('wDept','學系／單位','例如：資訊工程學系')}
+      ${wField('wTheme','活動主題／競賽主題','例如：114學年度系黑客松競賽')}
+      ${wField('wTime','活動時間','例如：2026年6月20日（六）09:00-18:00')}
+      ${wField('wPlace','活動地點','例如：資訊大樓國際會議廳')}
+      ${wField('wHost','活動主辦單位','例如：資訊工程學系')}
+      ${wField('wCohost','活動協辦單位','例如：學生會、產學營運與推廣處')}
+      ${wField('wAttendees','參與人數/組數','例如：15組、共60位學生')}
+      ${wArea('wContent','活動描述（請盡量詳細：活動內容、亮點、特色、成果等）','例如：資訊工程系於6月20日舉辦24小時黑客松，由AI守護者團隊以智慧防災系統獲得冠軍，活動現場氣氛熱烈...',5)}
+      ${wArea('wFaculty','師長致詞內容','例如：系主任在開幕致詞時提到...',3)}
+      ${wArea('wGuest','貴賓致詞內容','例如：企業合作貴賓致詞表示...',3)}
+      ${wArea('wFeedback','學生參與活動／競賽獲獎心得','例如：得獎學生分享這次比賽的過程與收穫...',3)}
+      ${wArea('wAttach','活動附件提醒（講者簡報、競賽獲獎作品簡報、活動海報等，此處僅能文字備註，無法上傳檔案）','請簡述附件內容，例如：活動海報一張、獲獎作品簡報PPT一份。若有實際檔案，請在貼上提示詞後直接於 Gemini／Claude 對話框一併上傳檔案。',2)}
+      ${wArea('wAudience','目標受眾／溝通重點（選填）','例如：潛在學生與家長、產學合作企業、教育圈等；或特定想強調的溝通重點',2)}
+      <button onclick="buildWriterPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;">
+        <i class="ti ti-wand"></i> 產生提示詞
+      </button>
+    </div>
+    <div class="card" id="wOutputCard" style="display:none;">
+      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
+      <textarea id="wOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:12.5px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
+        <button onclick="copyWriterPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
+          <i class="ti ti-copy"></i> 複製提示詞
+        </button>
+        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Gemini
+        </a>
+        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Claude
+        </a>
+        <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 ChatGPT
+        </a>
+        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+          <i class="ti ti-external-link"></i> 開啟 Copilot
+        </a>
+      </div>
+      <div id="wCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
+    </div>`;
+  document.getElementById('mn').innerHTML=h;
+}
+function buildWriterPrompt(){
+  const dept=document.getElementById('wDept').value.trim();
+  const theme=document.getElementById('wTheme').value.trim();
+  const time=document.getElementById('wTime').value.trim();
+  const place=document.getElementById('wPlace').value.trim();
+  const attendees=document.getElementById('wAttendees').value.trim();
+  const host=document.getElementById('wHost').value.trim();
+  const cohost=document.getElementById('wCohost').value.trim();
+  const content=document.getElementById('wContent').value.trim();
+  const faculty=document.getElementById('wFaculty').value.trim();
+  const guest=document.getElementById('wGuest').value.trim();
+  const feedback=document.getElementById('wFeedback').value.trim();
+  const attach=document.getElementById('wAttach').value.trim();
+  const audience=document.getElementById('wAudience').value.trim();
+
+  const lineField=(label,val)=>val?(label+'：'+val+'\n'):'';
+  const block=(label,val)=>val?('\n'+label+'：\n'+val+'\n'):'';
+
+  const infoLines=
+    lineField('學系/單位',dept)+
+    lineField('活動主題/競賽主題',theme)+
+    lineField('活動時間',time)+
+    lineField('活動地點',place)+
+    lineField('參與人數',attendees)+
+    lineField('活動主辦單位',host)+
+    lineField('活動協辦單位',cohost);
+
+  const prompt=`請扮演專業的公關與新聞發布專家。請以「優質台灣記者」的身分、視角和語氣來撰寫，產出一篇能吸引線上記者目光、具備高刊登率，且同時符合 Google SEO 與 AI 搜尋引擎最佳化（GEO）標準的優質新聞稿。
+
+我會提供你一份新聞稿的原始素材（素材可能包含活動資訊、長官致詞、學生心得或相關附件，視當次提供內容而定）。【最高指導原則】：若素材中缺乏具體數據、人名或職稱等必要資訊，絕對不可自行捏造，請直接使用 [請填入OO資訊] 標示，提醒我後續補上。若素材中缺乏某項結構（如引言），請直接略過，切勿自行發明。
+
+撰寫時，請務必「嚴格遵守」以下所有原則：
+
+【一、結構與標題】
+1. 精準標題：在30字內濃縮5W1H核心亮點，必須包含具體數據或結構化實體。絕對避免「OO單位舉辦OO活動」這種無資訊量的報告體標題。
+2. 倒金字塔結構：
+- 第一段（破題）：包含最核心的5W1H，前100字就必須呈現新聞價值。請自我檢查：若整篇稿件只留第一段，這則新聞的價值是否依然成立？
+- 第二段（補充）：展開重要的細節與數據佐證。
+- 第三段（引言與背景）：放入素材中提供的長官引言、參與者心得及相關背景資訊。
+
+【二、語氣與用字】
+1. 真誠直白、具備人味：語氣要真誠直接，陳述事實。絕對避免「秉持無與倫比的前瞻性」、「展現量能」、「大放異彩」等空泛的包裝詞彙與AI機器感字眼。
+2. 數據取代形容詞：減少使用「盛大」、「熱烈」、「積極推動」等主觀形容詞。請從素材中找出「量化數據」（如人數、家數、成長比例）來定義活動的規模與價值。
+
+【三、引言處理（若有提供素材）】
+1. 長官/貴賓引言：要像「有見地且溫暖的真實人類」在說話，真誠傳達機構的願景與關懷，嚴禁出現「敬請指教」等制式官腔或上對下指導語氣。
+2. 學生/參與者分享：保留其真實的語氣與感受，不要將其修飾成生硬的官方宣傳稿。
+
+【四、專有名詞與稱呼規範】
+1. 單位名稱：絕對不使用「本校」、「本系」。一律使用客觀的單位名稱，第一次提及用全稱，第二次起用簡稱。
+2. 人物首次提及：格式為「單位＋職稱＋全名」（例：○○科技執行長王小明），職稱在前、姓名在後，不加「先生」、「女士」、「長官」等敬語。若為外籍人士，寫為「職稱＋中文譯名（英文全名）」。
+3. 人物再次提及：僅寫姓名（例：王小明補充表示...）。【例外規定】：國家元首、董事長、校長、副校長及重要貴賓，後續提及時仍須持續使用職稱稱呼。
+
+【五、SEO 與 GEO 友善寫作規範】
+1. 強化結構化實體（Entities）：確保人事時地物等「專有名詞」（如特定學校、企業名稱、計畫名稱、地點）在第一、二段完整且正確地出現，協助 AI 爬蟲建立知識圖譜。
+2. 自動判斷受眾與關鍵字：請先根據素材內容，判斷這篇新聞稿的「主要目標受眾」（如：潛在學生與家長、產學合作企業、教育圈等），並將該受眾可能搜尋的長尾關鍵字，以自然、不生硬的方式融入內文與小標題中。
+3. 直接且完整的解答（Direct Answers）：針對活動的核心價值或解決的痛點，在段落開頭給予簡明扼要的解答，以符合 AI 搜尋引擎擷取摘要的邏輯。
+
+【六、輸出格式要求】
+請直接輸出正式內容，不要包含 markdown 符號（如 # 或 *），並按照以下格式排版：
+
+【建議標題】
+（提供3-5個符合規範的標題供選擇）
+
+【新聞稿正文】
+（依據倒金字塔原則，約600-800字，分段清晰）
+
+【視覺素材建議】
+（請根據新聞稿內容，用1-2句話建議發布時應搭配什麼樣的照片。提醒：強調構圖乾淨、捕捉真實互動瞬間，避免排排站大合照）
+
+以下是本次的新聞稿原始素材，請開始撰寫：
+
+${infoLines}
+活動描述：
+${content}
+${block('師長致詞內容',faculty)}${block('貴賓致詞內容',guest)}${block('學生參與活動/競賽獲獎心得',feedback)}${block('活動附件說明',attach)}${block('目標受眾/溝通重點',audience)}`;
+
+  document.getElementById('wOutput').value=prompt;
+  document.getElementById('wOutputCard').style.display='block';
+  document.getElementById('wOutputCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyWriterPrompt(){
+  const ta=document.getElementById('wOutput');
+  ta.select();
+  navigator.clipboard?.writeText(ta.value).then(()=>{
+    const msg=document.getElementById('wCopyMsg');
+    msg.style.display='block';
+    setTimeout(()=>msg.style.display='none',2500);
+  }).catch(()=>{
+    document.execCommand('copy');
+  });
+}
+render();
+</script>
+</body>
