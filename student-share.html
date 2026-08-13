@@ -19,6 +19,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans
 .sb-logo i{font-size:22px;color:#534AB7;}
 .sb-t{font-size:16px;font-weight:700;color:#1a1a18;line-height:1.3;}
 .sb-m{font-size:12.5px;color:#888780;margin-top:4px;line-height:1.65;}
+.sb-btns{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
+.sb-btn{display:flex;align-items:center;gap:6px;width:100%;padding:6px 10px;font-size:12px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;text-decoration:none;transition:background .12s;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-btn.red{color:#185FA5;}
+.sb-btn.red:hover{background:#EAF1FA;border-color:#8FB8DD;}
 .sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
 .col-h{padding:.6rem 1.1rem .2rem;font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
 .di{display:flex;align-items:center;gap:8px;padding:.4rem 1.1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
@@ -70,6 +75,7 @@ tr:hover td{background:#faf9f6;}
   .sb{position:fixed;top:0;left:0;height:100%;width:80%;max-width:290px;z-index:99;transform:translateX(-100%);transition:transform .22s ease;box-shadow:4px 0 20px rgba(0,0,0,.22);}
   .sb.sb-open{transform:translateX(0);}
   .di{padding:.7rem 1rem;}
+  .sb-btn{padding:11px 10px;min-height:44px;}
   .mn{padding:.85rem .9rem;}
   .sv{font-size:22px;}
   .sc{padding:.65rem .5rem;}
@@ -111,6 +117,14 @@ tr:hover td{background:#faf9f6;}
       <div class="sb-t">學生愛分享<br>篇數與流量儀表板</div>
     </div>
     <div class="sb-m">秘書處公共事務組<br>資料建置：<span id="builtVal"></span></div>
+    <div class="sb-btns">
+      <a class="sb-btn red" href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-stethoscope"></i> 網站健檢儀表板
+      </a>
+      <a class="sb-btn" href="https://fengchia1961.github.io/fcu-news-dashboard/" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-news"></i> FCU新聞監測儀表版
+      </a>
+    </div>
   </div>
   <div class="sb-body" id="sb-body"></div>
 </div>
@@ -328,10 +342,6 @@ function renderOverview(){
 
   const g = GA4_SHARE;
   let h = ''
-    + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.9rem;">'
-    + '<a href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border:1px solid #d3d1c7;border-radius:8px;font-size:13px;color:#5F5E5A;text-decoration:none;background:#f7f6f1;"><i class="ti ti-stethoscope" style="font-size:14px;color:#185FA5;"></i>網站健檢儀表版</a>'
-    + '<a href="https://fengchia1961.github.io/fcu-news-dashboard/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border:1px solid #d3d1c7;border-radius:8px;font-size:13px;color:#5F5E5A;text-decoration:none;background:#f7f6f1;"><i class="ti ti-news" style="font-size:14px;color:#1D9E75;"></i>FCU新聞監測儀表版</a>'
-    + '</div>'
     + '<div class="sg-wrap"><span class="sg-arrow"><i class="ti ti-chevrons-right" style="font-size:12px;"></i>左右滑動</span><div class="sg">'
     + '<div class="sc"><div class="sv" style="color:#185FA5;">'+total+'</div><div class="sl"><i class="ti ti-news" style="font-size:13px;"></i><br>全站總篇數</div></div>'
     + '<div class="sc"><div class="sv" style="color:'+(sinceCut.length?'#1D9E75':'#E24B4A')+';">'+sinceCut.length+'</div><div class="sl"><i class="ti ti-calendar-plus" style="font-size:13px;"></i><br>114學年度新增</div></div>'
