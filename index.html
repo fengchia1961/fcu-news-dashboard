@@ -13,20 +13,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans
 .layout{display:flex;height:100vh;}
 
 /* ── Sidebar ── */
-.sb{width:256px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
-.sb-hdr{padding:1rem 1.1rem .75rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
-.sb-logo{display:flex;align-items:center;gap:9px;margin-bottom:.5rem;}
-.sb-logo i{font-size:22px;color:#534AB7;}
-.sb-t{font-size:16px;font-weight:700;color:#1a1a18;line-height:1.3;}
-.sb-m{font-size:12.5px;color:#888780;margin-top:4px;line-height:1.65;}
-.sb-btn{display:block;width:100%;margin-top:9px;padding:7px 0;font-size:13px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;}
+.sb{width:250px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:.85rem 1rem .7rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:8px;margin-bottom:.4rem;}
+.sb-logo i{font-size:20px;color:#534AB7;}
+.sb-t{font-size:14.5px;font-weight:700;color:#1a1a18;line-height:1.35;}
+.sb-m{font-size:11.5px;color:#888780;margin-top:3px;line-height:1.6;}
+.sb-btns{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
+.sb-btn{display:flex;align-items:center;gap:6px;width:100%;padding:6px 10px;font-size:12px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;text-decoration:none;transition:background .12s;}
 .sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-btn.red{color:#185FA5;}
+.sb-btn.red:hover{background:#EAF1FA;border-color:#8FB8DD;}
 .sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
-.col-h{padding:.6rem 1.1rem .2rem;font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
-.di{display:flex;align-items:center;gap:8px;padding:.4rem 1.1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.col-h{display:flex;align-items:center;gap:7px;margin-top:10px;padding:.45rem .9rem;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#534AB7 0%,#3F3899 100%);letter-spacing:.03em;}
+.di{display:flex;align-items:center;gap:8px;padding:.35rem 1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
 .di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
 .di.act{background:#fff;color:#185FA5;border-left-color:#185FA5;font-weight:700;}
-.di-n{font-size:15px;line-height:1.35;}
+.di-n{font-size:13px;line-height:1.35;flex:1;}
 .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 
 /* ── Main area ── */
@@ -85,6 +88,7 @@ tr:hover td{background:#faf9f6;}
 /* ── 手機版（≤768px）：側欄化為抽屜、表格橫向滑動、間距縮小 ── */
 .sb-toggle{display:none;}
 .sb-backdrop{display:none;}
+.sb-close{display:none;}
 .swipe-hint{display:none;}
 .nn-lbl{display:none;}
 .more-btn{display:none;}
@@ -96,6 +100,7 @@ tr:hover td{background:#faf9f6;}
   .sb.open{transform:none;}
   .sb.open+.sb-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(20,20,18,.4);}
   .sb-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #d3d1c7;border-radius:8px;background:#fff;color:#1a1a18;font-size:18px;cursor:pointer;flex-shrink:0;}
+  .sb-close{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border:none;background:#ebe9e0;border-radius:6px;cursor:pointer;color:#5F5E5A;font-size:14px;margin-left:auto;}
   .topbar{padding:.5rem .7rem;font-size:11px;gap:6px;flex-wrap:nowrap;overflow:hidden;white-space:nowrap;}
   /* 手機版只保留統計起迄，其餘資訊在各頁內已有 */
   .topbar span:nth-child(n+4){display:none;}
@@ -115,7 +120,6 @@ tr:hover td{background:#faf9f6;}
   .sg-swipe{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:2px;scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;}
   .sg-swipe::-webkit-scrollbar{display:none;}
   .sg-swipe .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
-  .sg-ga4 .sc-users{display:none;}
   .swipe-hint{display:flex;clear:both;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:2px 0 4px;}
   .legend{gap:6px 10px;font-size:10.5px;margin-bottom:.6rem;}
   .leg-i{white-space:nowrap;}
@@ -186,17 +190,20 @@ tr:hover td{background:#faf9f6;}
     <div class="sb-logo">
       <i class="ti ti-building-community"></i>
       <div class="sb-t">逢甲大學各系所<br>新聞監測儀表板</div>
+      <button class="sb-close" onclick="closeSb()" aria-label="關閉選單"><i class="ti ti-x"></i></button>
     </div>
     <div class="sb-m">秘書處公共事務組<br>2026-08-10 更新｜新到期：2025.08.01</div>
-    <a class="sb-btn" href="writer.html" style="text-align:center;text-decoration:none;">
-      <i class="ti ti-pencil"></i> 新聞撰寫小幫手
-    </a>
-    <a class="sb-btn" href="translator.html" style="text-align:center;text-decoration:none;">
-      <i class="ti ti-language"></i> 新聞英譯小幫手
-    </a>
-    <a class="sb-btn" href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer" style="text-align:center;text-decoration:none;">
-      <i class="ti ti-arrow-left"></i> 返回網站健檢儀表板
-    </a>
+    <div class="sb-btns">
+      <a class="sb-btn red" href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-stethoscope"></i> 學系網站健檢儀表板
+      </a>
+      <a class="sb-btn" href="writer.html" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-pencil"></i> 新聞撰寫小幫手
+      </a>
+      <a class="sb-btn" href="translator.html" target="_blank" rel="noopener noreferrer">
+        <i class="ti ti-language"></i> 新聞/訊息公告英譯小幫手
+      </a>
+    </div>
   </div>
   <div class="sb-body" id="sb-body"></div>
 </div>
@@ -1440,7 +1447,7 @@ function buildSB(){
   let h=`<div class="di" id="di-overview" onclick="sel('overview')" style="border-bottom:1px solid #dddcd4;margin-bottom:4px;padding-bottom:.55rem;">
     <span class="dot" style="background:#185FA5;width:9px;height:9px;"></span><span class="di-n" style="font-weight:700;color:#185FA5;"><i class="ti ti-list-numbers" style="font-size:13px;"></i> 各學系新聞數量總覽</span>
   </div>
-  <div class="col-h" style="color:#534AB7;margin-top:6px;">校級</div>
+  <div class="col-h">校級</div>
   <div class="di" id="di-fcu" onclick="sel('fcu')"><span class="dot" style="background:#534AB7;width:9px;height:9px;"></span><span class="di-n" style="font-weight:600;">逢甲大學官方網站</span></div>`;
   cols.forEach(c=>{
     h+=`<div class="col-h">${esc(c.name)}</div>`;
@@ -1531,14 +1538,13 @@ function sel(id){
       <div class="sc"><div class="sv" style="color:#185FA5;">${s.mavg}</div><div class="sl"><i class="ti ti-calendar" style="font-size:13px;"></i><br>則/月（114學年）</div></div>
     </div>
     <div class="card" style="padding:.85rem 1.2rem .7rem;">
-      <div style="font-size:11px;font-weight:700;color:#5F5E5A;margin-bottom:10px;">
-        <i class="ti ti-chart-line" style="font-size:11px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（${GA4_FCU.since} ～ ${GA4_FCU.until}｜/news/ 區段）
+      <div style="font-size:14px;font-weight:700;color:#1a1a18;margin-bottom:10px;">
+        <i class="ti ti-chart-line" style="font-size:14px;color:#185FA5;margin-right:4px;"></i>GA4 網站流量（${GA4_FCU.since} ～ ${GA4_FCU.until}｜/news/ 區段）
         <span style="float:right;font-size:10px;font-weight:400;color:#B4B2A9;">更新：${GA4_FCU.fetchedAt}</span>
       </div>
       <div class="swipe-hint">左右滑動 ↔</div>
-      <div class="sg sg-swipe sg-ga4" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
+      <div class="sg sg-swipe sg-ga4" style="grid-template-columns:repeat(3,1fr);margin-bottom:0;">
         <div class="sc"><div class="sv" style="color:#185FA5;font-size:22px;">${GA4_FCU.summary.pv.toLocaleString()}</div><div class="sl"><i class="ti ti-eye" style="font-size:12px;"></i><br>瀏覽次數</div></div>
-        <div class="sc sc-users"><div class="sv" style="color:#1D9E75;font-size:22px;">${GA4_FCU.summary.users.toLocaleString()}</div><div class="sl"><i class="ti ti-users" style="font-size:12px;"></i><br>不重複使用者</div></div>
         <div class="sc"><div class="sv" style="color:#534AB7;font-size:15px;">${esc(GA4_FCU.summary.topChannel)}</div><div class="sl"><i class="ti ti-route" style="font-size:12px;"></i><br>最大流量來源/媒介</div></div>
         <div class="sc"><div class="sv" style="color:#BA7517;font-size:22px;">${GA4_FCU.summary.avgDur}<span style="font-size:13px;">秒</span></div><div class="sl"><i class="ti ti-clock" style="font-size:12px;"></i><br>平均停留時間</div></div>
       </div>
