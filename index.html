@@ -125,7 +125,7 @@ tr:hover td{background:#faf9f6;}
   .leg-i{white-space:nowrap;}
   /* 觸控目標放大至 44px 建議值 */
   .sb .di{padding-top:.5rem;padding-bottom:.5rem;min-height:44px;}
-  .sb-btn{padding:11px 0;min-height:44px;}
+  .sb-btn{padding:11px 10px;min-height:44px;}
   /* 分批顯示按鈕 */
   .more-btn{display:block;width:100%;padding:12px;min-height:44px;border:none;border-top:1px solid #eceae0;background:#faf9f6;color:#185FA5;font-size:13px;font-weight:600;cursor:pointer;}
   .more-btn:disabled{color:#B4B2A9;}
@@ -194,7 +194,7 @@ tr:hover td{background:#faf9f6;}
     </div>
     <div class="sb-m">秘書處公共事務組<br>2026-08-10 更新｜新到期：2025.08.01</div>
     <div class="sb-btns">
-      <a class="sb-btn red" href="https://fengchia1961.github.io/websitecheck/" target="_blank" rel="noopener noreferrer">
+      <a class="sb-btn red" href="https://fengchia1961.github.io/check/" target="_blank" rel="noopener noreferrer">
         <i class="ti ti-stethoscope"></i> 學系網站健檢儀表板
       </a>
       <a class="sb-btn" href="writer.html" target="_blank" rel="noopener noreferrer">
@@ -932,30 +932,22 @@ const SCHOOL={
 const cols=[
   {name:'工程與科學學院',k:'eng'},
   {name:'商學院',k:'biz'},
+  {name:'建築專業學院',k:'arch'},
   {name:'金融學院',k:'fin'},
-  {name:'經營管理學院',k:'mgt'},
   {name:'人文社會學院',k:'hum'},
   {name:'資訊電機學院',k:'ece'},
   {name:'建設學院',k:'con'},
-  {name:'國際科技與管理學院',k:'istm'},
-  {name:'建築專業學院',k:'arch'},
-  {name:'通識教育中心',k:'gen'},
+  {name:'經營管理學院',k:'mgt'},
   {name:'創能學院',k:'cre'},
+  {name:'國際科技與管理學院',k:'istm'},
+  {name:'通識教育中心',k:'gen'},
 ];
 
 const D=[
-  {id:'aero',col:'eng',name:'航太與系統工程學系',url:'https://aero.fcu.edu.tw/news/',news:[
-    {d:'2026.04.27',t:'AIT 台中美國資料中心特別講座：俯瞰地球天際－NASA太空人的視野',url:'https://aero.fcu.edu.tw/news/2026042701/'},
-    {d:'2026.03.09',t:'114-2系友會助學金與急難救助金，開始申請。',url:'https://aero.fcu.edu.tw/news/2026-03-09-01/'},
-    {d:'2026.03.06',t:'LCIA 2026 AI應用落地輔導計畫成果發表會',url:'https://aero.fcu.edu.tw/news/2026-03-06-01/'},
-    {d:'2026.03.03',t:'115學年度「學士生先修碩士班課程」甄選作業',url:'https://aero.fcu.edu.tw/news/2026-03-03-01/'},
-    {d:'2026.02.26',t:'115學年度航太與系統工程學系轉系甄選公告',url:'https://aero.fcu.edu.tw/news/2026-02-26-01-2/'},
-    {d:'2025.10.29',t:'逢甲航太系以「星際能源網路」勇奪2025 Run Space創新組優勝',url:'https://aero.fcu.edu.tw/news/20251027-01/'},
-    {d:'2025.10.20',t:'黃柏文老師榮獲終身優良導師殊榮',url:'https://aero.fcu.edu.tw/news/20251020-01/'},
-    {d:'2025.10.13',t:'114-1系友會助學金與急難救助金，開始申請。',url:'https://aero.fcu.edu.tw/news/2025-10-13-01/'},
-    {d:'2025.10.09',t:'114學年度長榮航太專業實習',url:'https://aero.fcu.edu.tw/news/2025-10-09-01/'},
-    {d:'2025.09.16',t:'航太系特聘教授群',url:'https://aero.fcu.edu.tw/news/20250916-01/'},
-    {d:'2025.08.25',t:'114學年度第1學期課程加退選時程與注意事項',url:'https://aero.fcu.edu.tw/news/20250825-01/'},
+  {id:'inde',col:'eng',name:'工業工程與系統管理學系',url:'https://inde.fcu.edu.tw/news/',news:[
+    {d:'2025.11.15',t:'恭喜張登凱 學長榮獲逢甲第26屆傑出系友（擘劃長才 前瞻永續）',url:'https://inde.fcu.edu.tw/news/%e6%81%ad%e5%96%9c%e5%bc%b5%e7%99%bb%e5%87%b1-%e5%ad%b8%e9%95%b7%e6%a6%ae%e7%8d%b2%e9%80%a2%e7%94%b2%e7%ac%ac26%e5%b1%86%e5%82%91%e5%87%ba%e7%b3%bb%e5%8f%8b%ef%bc%88%e6%93%98%e5%8a%83%e9%95%b7/'},
+  ]},
+  {id:'mcae',col:'eng',name:'機械與電腦輔助工程學系',url:'https://mcae.fcu.edu.tw/news/',news:[
   ]},
   {id:'mse',col:'eng',name:'材料科學與工程學系',url:'https://mse.fcu.edu.tw/news/',news:[
     {d:'2026.07.14',t:'本系沈育安副教授指導之專題生呂潔心同學 榮獲 國科會大專學生研究創作獎',url:'https://mse.fcu.edu.tw/news/mse_news_20260714/'},
@@ -966,17 +958,12 @@ const D=[
     {d:'2026.02.03',t:'碩士生陳亞歆與歐宏禹同學 赴日九州大學參與「學海築夢」海外實習 成果豐碩',url:'https://mse.fcu.edu.tw/news/114-overseas-internship/'},
     {d:'2025.12.19',t:'碩士班張文宜同學赴日參加Asian APC 展現優異研究成果',url:'https://mse.fcu.edu.tw/news/20251206_asian-apc/'},
   ]},
-  {id:'mcae',col:'eng',name:'機械與電腦輔助工程學系',url:'https://mcae.fcu.edu.tw/news/',news:[
-  ]},
   {id:'fcm',col:'eng',name:'纖維與複合材料學系',url:'https://fcm.fcu.edu.tw/news/',news:[
     {d:'2026.06.10',t:'紡織產業名人講堂',url:'https://fcm.fcu.edu.tw/news/%e7%b4%a1%e7%b9%94%e7%94%a2%e6%a5%ad%e5%90%8d%e4%ba%ba%e8%ac%9b%e5%a0%82/'},
     {d:'2025.08.01',t:'高靜電科技防霾紗窗研究成果'},
     {d:'2025.08.01',t:'碳碳複合火箭噴嘴預型體研究'},
     {d:'2025.08.01',t:'高靜電科技防霾紗窗(High-Electrostatic Technology Anti-Smog Window Screen)',url:'https://fcm.fcu.edu.tw/news/%e9%ab%98%e9%9d%9c%e9%9b%bb%e7%a7%91%e6%8a%80%e9%98%b2%e9%9c%be%e7%b4%97%e7%aa%97high-electrostatic-technology-anti-smog-window-screen/'},
     {d:'2025.08.01',t:'碳碳複合火箭噴嘴預型體(Carbon–carbon composite rocket nozzle preform)',url:'https://fcm.fcu.edu.tw/news/1439/'},
-  ]},
-  {id:'inde',col:'eng',name:'工業工程與系統管理學系',url:'https://inde.fcu.edu.tw/news/',news:[
-    {d:'2025.11.15',t:'恭喜張登凱 學長榮獲逢甲第26屆傑出系友（擘劃長才 前瞻永續）',url:'https://inde.fcu.edu.tw/news/%e6%81%ad%e5%96%9c%e5%bc%b5%e7%99%bb%e5%87%b1-%e5%ad%b8%e9%95%b7%e6%a6%ae%e7%8d%b2%e9%80%a2%e7%94%b2%e7%ac%ac26%e5%b1%86%e5%82%91%e5%87%ba%e7%b3%bb%e5%8f%8b%ef%bc%88%e6%93%98%e5%8a%83%e9%95%b7/'},
   ]},
   {id:'che',col:'eng',name:'化學工程學系',url:'https://che.fcu.edu.tw/news/',news:[
     {d:'2026.05.23',t:'逢甲化工系執行TEEP計畫案，接待全球優秀青年來臺交流研究',url:'https://che.fcu.edu.tw/news/2026052301/'},
@@ -992,6 +979,19 @@ const D=[
     {d:'2025.12.11',t:'應用數學系學生勇奪「2025全國智慧製造大數據分析競賽」優等獎',url:'https://apmath.fcu.edu.tw/news/20251211/'},
     {d:'2025.11.06',t:'大魚帶小魚 本系游承書老師榮獲114學年度教學績優教師獎',url:'https://apmath.fcu.edu.tw/news/20251106/'},
     {d:'2025.10.05',t:'逢甲應數出品 品質保證 學生考照率名列前茅',url:'https://apmath.fcu.edu.tw/news/certificate/'},
+  ]},
+  {id:'aero',col:'eng',name:'航太與系統工程學系',url:'https://aero.fcu.edu.tw/news/',news:[
+    {d:'2026.04.27',t:'AIT 台中美國資料中心特別講座：俯瞰地球天際－NASA太空人的視野',url:'https://aero.fcu.edu.tw/news/2026042701/'},
+    {d:'2026.03.09',t:'114-2系友會助學金與急難救助金，開始申請。',url:'https://aero.fcu.edu.tw/news/2026-03-09-01/'},
+    {d:'2026.03.06',t:'LCIA 2026 AI應用落地輔導計畫成果發表會',url:'https://aero.fcu.edu.tw/news/2026-03-06-01/'},
+    {d:'2026.03.03',t:'115學年度「學士生先修碩士班課程」甄選作業',url:'https://aero.fcu.edu.tw/news/2026-03-03-01/'},
+    {d:'2026.02.26',t:'115學年度航太與系統工程學系轉系甄選公告',url:'https://aero.fcu.edu.tw/news/2026-02-26-01-2/'},
+    {d:'2025.10.29',t:'逢甲航太系以「星際能源網路」勇奪2025 Run Space創新組優勝',url:'https://aero.fcu.edu.tw/news/20251027-01/'},
+    {d:'2025.10.20',t:'黃柏文老師榮獲終身優良導師殊榮',url:'https://aero.fcu.edu.tw/news/20251020-01/'},
+    {d:'2025.10.13',t:'114-1系友會助學金與急難救助金，開始申請。',url:'https://aero.fcu.edu.tw/news/2025-10-13-01/'},
+    {d:'2025.10.09',t:'114學年度長榮航太專業實習',url:'https://aero.fcu.edu.tw/news/2025-10-09-01/'},
+    {d:'2025.09.16',t:'航太系特聘教授群',url:'https://aero.fcu.edu.tw/news/20250916-01/'},
+    {d:'2025.08.25',t:'114學年度第1學期課程加退選時程與注意事項',url:'https://aero.fcu.edu.tw/news/20250825-01/'},
   ]},
   {id:'ees',col:'eng',name:'環境工程與科學學系',url:'https://ees.fcu.edu.tw/news/',news:[
   ]},
@@ -1018,7 +1018,21 @@ const D=[
   ]},
   {id:'nze',col:'eng',name:'學士後工程與科學學院淨零智慧永續學士班',url:'https://nze.fcu.edu.tw/news/',news:[
   ]},
-  {id:'iem',col:'eng',name:'產業碩士專班',url:'https://iem.fcu.edu.tw/release/',news:[
+  {id:'iem',col:'eng',name:'創新智慧製造與管理產業碩士專班',url:'https://iem.fcu.edu.tw/release/',news:[
+  ]},
+  {id:'mkt',col:'biz',name:'行銷學系',url:'https://marketing.fcu.edu.tw/news/',news:[
+    {d:'2026.05.04',t:'服務設計實務與應用 北美高端運動品牌-全體通路研究 (行銷管理統籌講座)',url:'https://marketing.fcu.edu.tw/news/%e6%9c%8d%e5%8b%99%e8%a8%ad%e8%a8%88%e5%af%a6%e5%8b%99%e8%88%87%e6%87%89%e7%94%a8-%e5%8c%97%e7%be%8e%e9%ab%98%e7%ab%af%e9%81%8b%e5%8b%95%e5%93%81%e7%89%8c-%e5%85%a8%e9%ab%94%e9%80%9a%e8%b7%af%e7%a0%94/'},
+    {d:'2026.04.29',t:'別再辦沒人來的活動！從0到1打造爆滿活動的關鍵思維',url:'https://marketing.fcu.edu.tw/news/%e5%88%a5%e5%86%8d%e8%be%a6%e6%b2%92%e4%ba%ba%e4%be%86%e7%9a%84%e6%b4%bb%e5%8b%95%ef%bc%81%e5%be%9e0%e5%88%b01%e6%89%93%e9%80%a0%e7%88%86%e6%bb%bf%e6%b4%bb%e5%8b%95%e7%9a%84%e9%97%9c%e9%8d%b5%e6%80%9d/'},
+    {d:'2026.03.31',t:'行銷學系一年級繞場競賽勇奪全校第二名',url:'https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e5%ad%b8%e7%b3%bb%e4%b8%80%e5%b9%b4%e7%b4%9a%e7%b9%9e%e5%a0%b4%e7%ab%b6%e8%b3%bd%e5%8b%87%e5%a5%aa%e5%85%a8%e6%a0%a1%e7%ac%ac%e4%ba%8c%e5%90%8d/'},
+    {d:'2026.03.30',t:'布施帆海~勇闖2026第12屆探索台灣120h競賽',url:'https://marketing.fcu.edu.tw/news/%e5%b8%83%e6%96%bd%e5%b8%86%e6%b5%b7%e5%8b%87%e9%97%962026%e7%ac%ac12%e5%b1%86%e6%8e%a2%e7%b4%a2%e5%8f%b0%e7%81%a3120h/'},
+    {d:'2026.01.02',t:'逢甲行銷系第16屆20歲成年禮革新祝福：戶外攝影棚',url:'https://marketing.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac16%e5%b1%8620%e6%ad%b2%e6%88%90%e5%b9%b4%e7%a6%ae%e9%9d%a9%e6%96%b0%e7%a5%9d%e7%a6%8f%ef%bc%9a%e6%88%b6%e5%a4%96%e6%94%9d%e5%bd%b1%e6%a3%9a/'},
+    {d:'2025.12.30',t:'永續中的日常，日常中的永續：第十六屆行銷系影展從共感走向行動',url:'https://marketing.fcu.edu.tw/news/%e6%b0%b8%e7%ba%8c%e4%b8%ad%e7%9a%84%e6%97%a5%e5%b8%b8%ef%bc%8c%e6%97%a5%e5%b8%b8%e4%b8%ad%e7%9a%84%e6%b0%b8%e7%ba%8c%ef%bc%9a%e7%ac%ac%e5%8d%81%e5%85%ad%e5%b1%86%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%bd%b1/'},
+    {d:'2025.12.09',t:'逢甲行銷系畢業專題《拼映成行》16 組實戰策展亮點帶你一次看！',url:'https://marketing.fcu.edu.tw/news/fcu-marketing-graduation-project-%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c/'},
+    {d:'2025.12.01',t:'第16屆行銷影展即將登場！年輕視角詮釋永續日常',url:'https://marketing.fcu.edu.tw/news/%e7%ac%ac16%e5%b1%86%e8%a1%8c%e9%8a%b7%e5%bd%b1%e5%b1%95%e5%8d%b3%e5%b0%87%e7%99%bb%e5%a0%b4%ef%bc%81%e5%b9%b4%e8%bc%95%e8%a6%96%e8%a7%92%e8%a9%ae%e9%87%8b%e6%b0%b8%e7%ba%8c%e6%97%a5%e5%b8%b8/'},
+    {d:'2025.11.25',t:'美學與產品創意課堂以「煖」為題　在湯席中品味素樸侘寂之美',url:'https://marketing.fcu.edu.tw/news/%e7%be%8e%e5%ad%b8%e8%88%87%e7%94%a2%e5%93%81%e5%89%b5%e6%84%8f%e8%aa%b2%e5%a0%82%e4%bb%a5%e3%80%8c%e7%85%96%e3%80%8d%e7%82%ba%e9%a1%8c%e3%80%80%e5%9c%a8%e6%b9%af%e5%b8%ad%e4%b8%ad%e5%93%81%e5%91%b3/'},
+    {d:'2025.10.27',t:'奧美廣告 x 松菸文創  全球行銷碩士班實地探索廣告與文創產業脈動',url:'https://marketing.fcu.edu.tw/news/%e5%a5%a7%e7%be%8e%e5%bb%a3%e5%91%8a-x-%e6%9d%be%e8%8f%b8%e6%96%87%e5%89%b5-%e5%85%a8%e7%90%83%e8%a1%8c%e9%8a%b7%e7%a2%a9%e5%a3%ab%e7%8f%ad%e5%af%a6%e5%9c%b0%e6%8e%a2%e7%b4%a2%e5%bb%a3%e5%91%8a/'},
+    {d:'2025.09.30',t:'大學生畢業專題做什麼？逢甲行銷系第14屆「拼映成行」成果展帶你揭曉！',url:'https://marketing.fcu.edu.tw/news/%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c%e5%81%9a%e4%bb%80%e9%ba%bc%ef%bc%9f%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac14%e5%b1%86%e3%80%8c%e6%8b%bc%e6%98%a0%e6%88%90%e8%a1%8c%e3%80%8d%e6%88%90/'},
+    {d:'2025.09.04',t:'行銷系在幹嘛？逢甲行銷新鮮人成長營帶你來看 4 年課程縮影',url:'https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%9c%a8%e5%b9%b9%e5%98%9b/'},
   ]},
   {id:'acct',col:'biz',name:'會計學系',url:'https://acct.fcu.edu.tw/news/',news:[
     {d:'2026.03.17',t:'115學年度會計學系 學士生先修碩士班課程申請作業',url:'https://acct.fcu.edu.tw/news/2024_03_01/'},
@@ -1028,28 +1042,6 @@ const D=[
   ]},
   {id:'itra',col:'biz',name:'國際經營與貿易學系',url:'https://itra.fcu.edu.tw/news/',news:[
     {d:'2026.05.25',t:'國際生華語演說暨歌唱比賽決賽'},
-  ]},
-  {id:'biba',col:'biz',name:'國際企業管理全英語學士班',url:'https://biba.fcu.edu.tw/news/',news:[
-    {d:'2026.06.24',t:'2026 畢業典禮圓滿劃下句點🎓',url:'https://biba.fcu.edu.tw/news/2026-%e7%95%a2%e6%a5%ad%e5%85%b8%e7%a6%ae%e5%9c%93%e6%bb%bf%e5%8a%83%e4%b8%8b%e5%8f%a5%e9%bb%9e/'},
-    {d:'2026.06.24',t:'【學長姐經驗分享】周煥凱學長回母校啦！',url:'https://biba.fcu.edu.tw/news/%e3%80%90%e5%ad%b8%e9%95%b7%e5%a7%90%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab%e3%80%91%e5%91%a8%e7%85%a5%e5%87%b1%e5%ad%b8%e9%95%b7%e5%9b%9e%e6%af%8d%e6%a0%a1%e5%95%a6%ef%bc%81/'},
-    {d:'2026.06.24',t:'115學年度大學申請入學第二階段指定項目甄試圓滿結束！',url:'https://biba.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%a4%a7%e5%ad%b8%e7%94%b3%e8%ab%8b%e5%85%a5%e5%ad%b8%e7%ac%ac%e4%ba%8c%e9%9a%8e%e6%ae%b5%e6%8c%87%e5%ae%9a%e9%a0%85%e7%9b%ae%e7%94%84%e8%a9%a6%e5%9c%93%e6%bb%bf/'},
-    {d:'2026.06.24',t:'「產業巡禮」課程企業參訪：森耀能源股份有限公司',url:'https://biba.fcu.edu.tw/news/%e3%80%8c%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e3%80%8d%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa/'},
-    {d:'2026.06.24',t:'【學長姐經驗分享】許銘勝學長回母校啦！',url:'https://biba.fcu.edu.tw/news/%e3%80%90%e5%ad%b8%e9%95%b7%e5%a7%90%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab%e3%80%91%e8%a8%b1%e9%8a%98%e5%8b%9d%e5%ad%b8%e9%95%b7%e5%9b%9e%e6%af%8d%e6%a0%a1%e5%95%a6%ef%bc%81/'},
-    {d:'2026.06.24',t:'2026 BIBA NIGHT',url:'https://biba.fcu.edu.tw/news/2026-biba-night/'},
-    {d:'2026.06.24',t:'BIBA 撞球比賽',url:'https://biba.fcu.edu.tw/news/biba-%e6%92%9e%e7%90%83%e6%af%94%e8%b3%bd/'},
-    {d:'2026.06.24',t:'BIBA x ILV 文化交流之夜',url:'https://biba.fcu.edu.tw/news/biba-x-ilv-%e6%96%87%e5%8c%96%e4%ba%a4%e6%b5%81%e4%b9%8b%e5%a4%9c/'},
-    {d:'2026.04.22',t:'「產業巡禮」課程企業參訪-萬年清環境工程股份有限公司',url:'https://biba.fcu.edu.tw/news/%e3%80%8c%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e3%80%8d%e8%aa%b2%e7%a8%8b%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa-%e8%90%ac%e5%b9%b4%e6%b8%85%e7%92%b0%e5%a2%83%e5%b7%a5%e7%a8%8b%e8%82%a1%e4%bb%bd%e6%9c%89/'},
-    {d:'2026.04.22',t:'阿德萊德大學Q&A說明會',url:'https://biba.fcu.edu.tw/news/%e9%98%bf%e5%be%b7%e8%90%8a%e5%be%b7%e5%a4%a7%e5%ad%b8%e6%a0%a1%e4%bb%a3%e8%a1%a8%e4%be%86%e8%a8%aa/'},
-    {d:'2026.04.17',t:'產業巡禮課程：ECCT 執行長 Freddie Höglund 親授企業演講',url:'https://biba.fcu.edu.tw/news/%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e8%aa%b2%e7%a8%8b%e7%89%b9%e9%82%80-ecct-%e5%9f%b7%e8%a1%8c%e9%95%b7-freddie-hoglund-%e5%85%88%e7%94%9f%e9%80%b2%e8%a1%8c%e4%bc%81%e6%a5%ad%e5%b0%88%e9%a1%8c/'},
-    {d:'2026.01.09',t:'114學年度-國際交流體驗課程合作學校介紹',url:'https://biba.fcu.edu.tw/news/114%e5%ad%b8%e5%b9%b4%e5%ba%a6-%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81%e9%ab%94%e9%a9%97%e8%aa%b2%e7%a8%8b%e5%90%88%e4%bd%9c%e5%ad%b8%e6%a0%a1%e4%bb%8b%e7%b4%b9/'},
-    {d:'2026.01.08',t:'2025 BIBA聖誕派對',url:'https://biba.fcu.edu.tw/news/2025-biba%e8%81%96%e8%aa%95%e6%b4%be%e5%b0%8d/'},
-    {d:'2025.12.22',t:'Michal Fliegel副主任參與國立中興大學人文社會科學前瞻研究中心研討會',url:'https://biba.fcu.edu.tw/news/michal-fliegel%e5%89%af%e4%b8%bb%e4%bb%bb%e5%8f%83%e8%88%87%e5%9c%8b%e7%ab%8b%e4%b8%ad%e8%88%88%e5%a4%a7%e5%ad%b8%e4%ba%ba%e6%96%87%e7%a4%be%e6%9c%83%e7%a7%91%e5%ad%b8%e5%89%8d%e7%9e%bb%e7%a0%94/'},
-    {d:'2025.12.22',t:'Michal Fliegel 副主任出席政治大學國際事務學院國際學術研討會',url:'https://biba.fcu.edu.tw/news/biba-%e5%89%af%e4%b8%bb%e4%bb%bb-michal-fliegel-%e6%95%99%e6%8e%88%e5%87%ba%e5%b8%ad%e6%94%bf%e6%b2%bb%e5%a4%a7%e5%ad%b8%e5%9c%8b%e9%9a%9b%e4%ba%8b%e5%8b%99%e5%ad%b8%e9%99%a2%e5%9c%8b%e9%9a%9b/'},
-    {d:'2025.12.22',t:'BIBA 萬聖節派對',url:'https://biba.fcu.edu.tw/news/biba-%e8%90%ac%e8%81%96%e7%af%80%e6%b4%be%e5%b0%8d/'},
-    {d:'2025.12.22',t:'BIBA 睡衣派對活動',url:'https://biba.fcu.edu.tw/news/biba-%e7%9d%a1%e8%a1%a3%e6%b4%be%e5%b0%8d%e6%b4%bb%e5%8b%95%e5%9b%9e%e9%a1%a7/'},
-    {d:'2025.09.24',t:'2025年新鮮人成長營《Hello, World!》圓滿落幕',url:'https://biba.fcu.edu.tw/news/%f0%9f%93%a2-2025%e5%b9%b4%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8ahello-world%e3%80%8b%e5%9c%93%e6%bb%bf%e8%90%bd%e5%b9%95/'},
-    {d:'2025.09.24',t:'2025《韓國中央大學》暑期短期交流BIBA學生分享',url:'https://biba.fcu.edu.tw/news/%f0%9f%93%a22025%e3%80%8a%e9%9f%93%e5%9c%8b%e4%b8%ad%e5%a4%ae%e5%a4%a7%e5%ad%b8%e3%80%8b%e6%9a%91%e6%9c%9f%e7%9f%ad%e6%9c%9f%e4%ba%a4%e6%b5%81biba%e5%ad%b8%e7%94%9f%e5%88%86%e4%ba%ab%ef%bc%81/'},
-    {d:'2025.09.24',t:'恭賀BIBA學程吳宜玲同學榮獲教育部學海飛颺獎學金！',url:'https://biba.fcu.edu.tw/news/%e6%81%ad%e8%b3%80biba%e5%ad%b8%e7%a8%8b%e5%90%b3%e5%ae%9c%e7%8e%b2%e5%90%8c%e5%ad%b8%e6%a6%ae%e7%8d%b2%e6%95%99%e8%82%b2%e9%83%a8%e5%ad%b8%e6%b5%b7%e9%a3%9b%e9%a2%ba%e7%8d%8e%e5%ad%b8%e9%87%91/'},
   ]},
   {id:'pf',col:'biz',name:'財稅學系',url:'https://pf.fcu.edu.tw/news/',news:[
   ]},
@@ -1076,19 +1068,27 @@ const D=[
     {d:'2025.12.09',t:'企管系研究生簡英軒榮獲國科會補助研究生出席國際學術會議',url:'https://ba.fcu.edu.tw/news/2025-11-30/'},
     {d:'2025.08.12',t:'企管系師生在「2025臺灣文博會」展現CDIO教學成果',url:'https://ba.fcu.edu.tw/news/2025-08-12/'},
   ]},
-  {id:'mkt',col:'biz',name:'行銷學系',url:'https://marketing.fcu.edu.tw/news/',news:[
-    {d:'2026.05.04',t:'服務設計實務與應用 北美高端運動品牌-全體通路研究 (行銷管理統籌講座)',url:'https://marketing.fcu.edu.tw/news/%e6%9c%8d%e5%8b%99%e8%a8%ad%e8%a8%88%e5%af%a6%e5%8b%99%e8%88%87%e6%87%89%e7%94%a8-%e5%8c%97%e7%be%8e%e9%ab%98%e7%ab%af%e9%81%8b%e5%8b%95%e5%93%81%e7%89%8c-%e5%85%a8%e9%ab%94%e9%80%9a%e8%b7%af%e7%a0%94/'},
-    {d:'2026.04.29',t:'別再辦沒人來的活動！從0到1打造爆滿活動的關鍵思維',url:'https://marketing.fcu.edu.tw/news/%e5%88%a5%e5%86%8d%e8%be%a6%e6%b2%92%e4%ba%ba%e4%be%86%e7%9a%84%e6%b4%bb%e5%8b%95%ef%bc%81%e5%be%9e0%e5%88%b01%e6%89%93%e9%80%a0%e7%88%86%e6%bb%bf%e6%b4%bb%e5%8b%95%e7%9a%84%e9%97%9c%e9%8d%b5%e6%80%9d/'},
-    {d:'2026.03.31',t:'行銷學系一年級繞場競賽勇奪全校第二名',url:'https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e5%ad%b8%e7%b3%bb%e4%b8%80%e5%b9%b4%e7%b4%9a%e7%b9%9e%e5%a0%b4%e7%ab%b6%e8%b3%bd%e5%8b%87%e5%a5%aa%e5%85%a8%e6%a0%a1%e7%ac%ac%e4%ba%8c%e5%90%8d/'},
-    {d:'2026.03.30',t:'布施帆海~勇闖2026第12屆探索台灣120h競賽',url:'https://marketing.fcu.edu.tw/news/%e5%b8%83%e6%96%bd%e5%b8%86%e6%b5%b7%e5%8b%87%e9%97%962026%e7%ac%ac12%e5%b1%86%e6%8e%a2%e7%b4%a2%e5%8f%b0%e7%81%a3120h/'},
-    {d:'2026.01.02',t:'逢甲行銷系第16屆20歲成年禮革新祝福：戶外攝影棚',url:'https://marketing.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac16%e5%b1%8620%e6%ad%b2%e6%88%90%e5%b9%b4%e7%a6%ae%e9%9d%a9%e6%96%b0%e7%a5%9d%e7%a6%8f%ef%bc%9a%e6%88%b6%e5%a4%96%e6%94%9d%e5%bd%b1%e6%a3%9a/'},
-    {d:'2025.12.30',t:'永續中的日常，日常中的永續：第十六屆行銷系影展從共感走向行動',url:'https://marketing.fcu.edu.tw/news/%e6%b0%b8%e7%ba%8c%e4%b8%ad%e7%9a%84%e6%97%a5%e5%b8%b8%ef%bc%8c%e6%97%a5%e5%b8%b8%e4%b8%ad%e7%9a%84%e6%b0%b8%e7%ba%8c%ef%bc%9a%e7%ac%ac%e5%8d%81%e5%85%ad%e5%b1%86%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%bd%b1/'},
-    {d:'2025.12.09',t:'逢甲行銷系畢業專題《拼映成行》16 組實戰策展亮點帶你一次看！',url:'https://marketing.fcu.edu.tw/news/fcu-marketing-graduation-project-%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c/'},
-    {d:'2025.12.01',t:'第16屆行銷影展即將登場！年輕視角詮釋永續日常',url:'https://marketing.fcu.edu.tw/news/%e7%ac%ac16%e5%b1%86%e8%a1%8c%e9%8a%b7%e5%bd%b1%e5%b1%95%e5%8d%b3%e5%b0%87%e7%99%bb%e5%a0%b4%ef%bc%81%e5%b9%b4%e8%bc%95%e8%a6%96%e8%a7%92%e8%a9%ae%e9%87%8b%e6%b0%b8%e7%ba%8c%e6%97%a5%e5%b8%b8/'},
-    {d:'2025.11.25',t:'美學與產品創意課堂以「煖」為題　在湯席中品味素樸侘寂之美',url:'https://marketing.fcu.edu.tw/news/%e7%be%8e%e5%ad%b8%e8%88%87%e7%94%a2%e5%93%81%e5%89%b5%e6%84%8f%e8%aa%b2%e5%a0%82%e4%bb%a5%e3%80%8c%e7%85%96%e3%80%8d%e7%82%ba%e9%a1%8c%e3%80%80%e5%9c%a8%e6%b9%af%e5%b8%ad%e4%b8%ad%e5%93%81%e5%91%b3/'},
-    {d:'2025.10.27',t:'奧美廣告 x 松菸文創  全球行銷碩士班實地探索廣告與文創產業脈動',url:'https://marketing.fcu.edu.tw/news/%e5%a5%a7%e7%be%8e%e5%bb%a3%e5%91%8a-x-%e6%9d%be%e8%8f%b8%e6%96%87%e5%89%b5-%e5%85%a8%e7%90%83%e8%a1%8c%e9%8a%b7%e7%a2%a9%e5%a3%ab%e7%8f%ad%e5%af%a6%e5%9c%b0%e6%8e%a2%e7%b4%a2%e5%bb%a3%e5%91%8a/'},
-    {d:'2025.09.30',t:'大學生畢業專題做什麼？逢甲行銷系第14屆「拼映成行」成果展帶你揭曉！',url:'https://marketing.fcu.edu.tw/news/%e7%95%a2%e6%a5%ad%e5%b0%88%e9%a1%8c%e5%81%9a%e4%bb%80%e9%ba%bc%ef%bc%9f%e9%80%a2%e7%94%b2%e8%a1%8c%e9%8a%b7%e7%b3%bb%e7%ac%ac14%e5%b1%86%e3%80%8c%e6%8b%bc%e6%98%a0%e6%88%90%e8%a1%8c%e3%80%8d%e6%88%90/'},
-    {d:'2025.09.04',t:'行銷系在幹嘛？逢甲行銷新鮮人成長營帶你來看 4 年課程縮影',url:'https://marketing.fcu.edu.tw/news/%e8%a1%8c%e9%8a%b7%e7%b3%bb%e5%9c%a8%e5%b9%b9%e5%98%9b/'},
+  {id:'biba',col:'biz',name:'國際企業管理全英語學士學位學程',url:'https://biba.fcu.edu.tw/news/',news:[
+    {d:'2026.06.24',t:'2026 畢業典禮圓滿劃下句點🎓',url:'https://biba.fcu.edu.tw/news/2026-%e7%95%a2%e6%a5%ad%e5%85%b8%e7%a6%ae%e5%9c%93%e6%bb%bf%e5%8a%83%e4%b8%8b%e5%8f%a5%e9%bb%9e/'},
+    {d:'2026.06.24',t:'【學長姐經驗分享】周煥凱學長回母校啦！',url:'https://biba.fcu.edu.tw/news/%e3%80%90%e5%ad%b8%e9%95%b7%e5%a7%90%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab%e3%80%91%e5%91%a8%e7%85%a5%e5%87%b1%e5%ad%b8%e9%95%b7%e5%9b%9e%e6%af%8d%e6%a0%a1%e5%95%a6%ef%bc%81/'},
+    {d:'2026.06.24',t:'115學年度大學申請入學第二階段指定項目甄試圓滿結束！',url:'https://biba.fcu.edu.tw/news/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%a4%a7%e5%ad%b8%e7%94%b3%e8%ab%8b%e5%85%a5%e5%ad%b8%e7%ac%ac%e4%ba%8c%e9%9a%8e%e6%ae%b5%e6%8c%87%e5%ae%9a%e9%a0%85%e7%9b%ae%e7%94%84%e8%a9%a6%e5%9c%93%e6%bb%bf/'},
+    {d:'2026.06.24',t:'「產業巡禮」課程企業參訪：森耀能源股份有限公司',url:'https://biba.fcu.edu.tw/news/%e3%80%8c%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e3%80%8d%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa/'},
+    {d:'2026.06.24',t:'【學長姐經驗分享】許銘勝學長回母校啦！',url:'https://biba.fcu.edu.tw/news/%e3%80%90%e5%ad%b8%e9%95%b7%e5%a7%90%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab%e3%80%91%e8%a8%b1%e9%8a%98%e5%8b%9d%e5%ad%b8%e9%95%b7%e5%9b%9e%e6%af%8d%e6%a0%a1%e5%95%a6%ef%bc%81/'},
+    {d:'2026.06.24',t:'2026 BIBA NIGHT',url:'https://biba.fcu.edu.tw/news/2026-biba-night/'},
+    {d:'2026.06.24',t:'BIBA 撞球比賽',url:'https://biba.fcu.edu.tw/news/biba-%e6%92%9e%e7%90%83%e6%af%94%e8%b3%bd/'},
+    {d:'2026.06.24',t:'BIBA x ILV 文化交流之夜',url:'https://biba.fcu.edu.tw/news/biba-x-ilv-%e6%96%87%e5%8c%96%e4%ba%a4%e6%b5%81%e4%b9%8b%e5%a4%9c/'},
+    {d:'2026.04.22',t:'「產業巡禮」課程企業參訪-萬年清環境工程股份有限公司',url:'https://biba.fcu.edu.tw/news/%e3%80%8c%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e3%80%8d%e8%aa%b2%e7%a8%8b%e4%bc%81%e6%a5%ad%e5%8f%83%e8%a8%aa-%e8%90%ac%e5%b9%b4%e6%b8%85%e7%92%b0%e5%a2%83%e5%b7%a5%e7%a8%8b%e8%82%a1%e4%bb%bd%e6%9c%89/'},
+    {d:'2026.04.22',t:'阿德萊德大學Q&A說明會',url:'https://biba.fcu.edu.tw/news/%e9%98%bf%e5%be%b7%e8%90%8a%e5%be%b7%e5%a4%a7%e5%ad%b8%e6%a0%a1%e4%bb%a3%e8%a1%a8%e4%be%86%e8%a8%aa/'},
+    {d:'2026.04.17',t:'產業巡禮課程：ECCT 執行長 Freddie Höglund 親授企業演講',url:'https://biba.fcu.edu.tw/news/%e7%94%a2%e6%a5%ad%e5%b7%a1%e7%a6%ae%e8%aa%b2%e7%a8%8b%e7%89%b9%e9%82%80-ecct-%e5%9f%b7%e8%a1%8c%e9%95%b7-freddie-hoglund-%e5%85%88%e7%94%9f%e9%80%b2%e8%a1%8c%e4%bc%81%e6%a5%ad%e5%b0%88%e9%a1%8c/'},
+    {d:'2026.01.09',t:'114學年度-國際交流體驗課程合作學校介紹',url:'https://biba.fcu.edu.tw/news/114%e5%ad%b8%e5%b9%b4%e5%ba%a6-%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81%e9%ab%94%e9%a9%97%e8%aa%b2%e7%a8%8b%e5%90%88%e4%bd%9c%e5%ad%b8%e6%a0%a1%e4%bb%8b%e7%b4%b9/'},
+    {d:'2026.01.08',t:'2025 BIBA聖誕派對',url:'https://biba.fcu.edu.tw/news/2025-biba%e8%81%96%e8%aa%95%e6%b4%be%e5%b0%8d/'},
+    {d:'2025.12.22',t:'Michal Fliegel副主任參與國立中興大學人文社會科學前瞻研究中心研討會',url:'https://biba.fcu.edu.tw/news/michal-fliegel%e5%89%af%e4%b8%bb%e4%bb%bb%e5%8f%83%e8%88%87%e5%9c%8b%e7%ab%8b%e4%b8%ad%e8%88%88%e5%a4%a7%e5%ad%b8%e4%ba%ba%e6%96%87%e7%a4%be%e6%9c%83%e7%a7%91%e5%ad%b8%e5%89%8d%e7%9e%bb%e7%a0%94/'},
+    {d:'2025.12.22',t:'Michal Fliegel 副主任出席政治大學國際事務學院國際學術研討會',url:'https://biba.fcu.edu.tw/news/biba-%e5%89%af%e4%b8%bb%e4%bb%bb-michal-fliegel-%e6%95%99%e6%8e%88%e5%87%ba%e5%b8%ad%e6%94%bf%e6%b2%bb%e5%a4%a7%e5%ad%b8%e5%9c%8b%e9%9a%9b%e4%ba%8b%e5%8b%99%e5%ad%b8%e9%99%a2%e5%9c%8b%e9%9a%9b/'},
+    {d:'2025.12.22',t:'BIBA 萬聖節派對',url:'https://biba.fcu.edu.tw/news/biba-%e8%90%ac%e8%81%96%e7%af%80%e6%b4%be%e5%b0%8d/'},
+    {d:'2025.12.22',t:'BIBA 睡衣派對活動',url:'https://biba.fcu.edu.tw/news/biba-%e7%9d%a1%e8%a1%a3%e6%b4%be%e5%b0%8d%e6%b4%bb%e5%8b%95%e5%9b%9e%e9%a1%a7/'},
+    {d:'2025.09.24',t:'2025年新鮮人成長營《Hello, World!》圓滿落幕',url:'https://biba.fcu.edu.tw/news/%f0%9f%93%a2-2025%e5%b9%b4%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8ahello-world%e3%80%8b%e5%9c%93%e6%bb%bf%e8%90%bd%e5%b9%95/'},
+    {d:'2025.09.24',t:'2025《韓國中央大學》暑期短期交流BIBA學生分享',url:'https://biba.fcu.edu.tw/news/%f0%9f%93%a22025%e3%80%8a%e9%9f%93%e5%9c%8b%e4%b8%ad%e5%a4%ae%e5%a4%a7%e5%ad%b8%e3%80%8b%e6%9a%91%e6%9c%9f%e7%9f%ad%e6%9c%9f%e4%ba%a4%e6%b5%81biba%e5%ad%b8%e7%94%9f%e5%88%86%e4%ba%ab%ef%bc%81/'},
+    {d:'2025.09.24',t:'恭賀BIBA學程吳宜玲同學榮獲教育部學海飛颺獎學金！',url:'https://biba.fcu.edu.tw/news/%e6%81%ad%e8%b3%80biba%e5%ad%b8%e7%a8%8b%e5%90%b3%e5%ae%9c%e7%8e%b2%e5%90%8c%e5%ad%b8%e6%a6%ae%e7%8d%b2%e6%95%99%e8%82%b2%e9%83%a8%e5%ad%b8%e6%b5%b7%e9%a3%9b%e9%a2%ba%e7%8d%8e%e5%ad%b8%e9%87%91/'},
   ]},
   {id:'bce',col:'biz',name:'商學學士學位學程',url:'https://bce.fcu.edu.tw/news/',news:[
     {d:'2026.06.18',t:'商聚青春・進向未來 - 2026畢業典禮圓滿落幕',url:'https://bce.fcu.edu.tw/news/%e5%95%86%e8%81%9a%e9%9d%92%e6%98%a5%e3%83%bb%e9%80%b2%e5%90%91%e6%9c%aa%e4%be%86-2026%e7%95%a2%e6%a5%ad%e5%85%b8%e7%a6%ae%e5%9c%93%e6%bb%bf%e8%90%bd%e5%b9%95/'},
@@ -1097,13 +1097,41 @@ const D=[
     {d:'2025.11.05',t:'114學年度商進新生滿月暨萬聖節活動',url:'https://bce.fcu.edu.tw/news/114%e5%95%86%e5%ad%b8%e5%ad%b8%e7%a8%8b%e6%ad%a1%e6%85%b6%e6%96%b0%e7%94%9f%e6%bb%bf%e6%9c%88%e6%9a%a8%e8%90%ac%e8%81%96%e7%af%80%e5%90%8c%e6%a8%82%e6%b4%bb%e5%8b%95/'},
     {d:'2025.09.19',t:'逢甲大學商學學士學位學程114年度新鮮人成長營活動',url:'https://bce.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%95%86%e5%ad%b8%e5%ad%b8%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b114%e5%b9%b4%e5%ba%a6%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e6%b4%bb/'},
   ]},
-  {id:'econlaw',col:'biz',name:'財經法律研究所',url:'https://econlaw.fcu.edu.tw/news/',news:[
-  ]},
   {id:'bm',col:'biz',name:'商學專業碩士在職學位學程',url:'https://www.bm.fcu.edu.tw/最新消息',extHost:1,news:[
   ]},
   {id:'bphd',col:'biz',name:'商學博士學位學程',url:'https://www.bphd.fcu.edu.tw/最新消息',extHost:1,news:[
   ]},
+  {id:'econlaw',col:'biz',name:'財經法律研究所',url:'https://econlaw.fcu.edu.tw/news/',news:[
+  ]},
   {id:'globalmarketing',col:'biz',name:'全球行銷碩士班',url:'https://www.globalmarketing.fcu.edu.tw/',extHost:1,news:[
+  ]},
+  {id:'archschool',col:'arch',name:'建築專業學院',url:'https://archschool.fcu.edu.tw/news/',news:[
+    {d:'2026.04.02',t:'義起共創未來：文化、創意與永續的臺義跨國設計盛典',url:'https://archschool.fcu.edu.tw/news/%e7%be%a9%e8%b5%b7%e5%85%b1%e5%89%b5%e6%9c%aa%e4%be%86%ef%bc%9a%e6%96%87%e5%8c%96%e3%80%81%e5%89%b5%e6%84%8f%e8%88%87%e6%b0%b8%e7%ba%8c%e7%9a%84%e8%87%ba%e7%be%a9%e8%b7%a8%e5%9c%8b%e8%a8%ad%e8%a8%88/'},
+    {d:'2026.03.10',t:'逢甲大學建築專業學院傑出校友日 以「AI書屋」競賽展現建築跨域創新能量',url:'https://archschool.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%88%e6%a5%ad%e5%ad%b8%e9%99%a2%e5%82%91%e5%87%ba%e6%a0%a1%e5%8f%8b%e6%97%a5-%e4%bb%a5%e3%80%8cai%e6%9b%b8%e5%b1%8b%e3%80%8d%e7%ab%b6/'},
+    {d:'2025.11.24',t:'義大利五大名校「聯合訪臺創紀錄」 逢甲大學簽署四校MOU',url:'https://archschool.fcu.edu.tw/news/%e7%be%a9%e5%a4%a7%e5%88%a9%e4%ba%94%e5%a4%a7%e5%90%8d%e6%a0%a1%e3%80%8c%e8%81%af%e5%90%88%e8%a8%aa%e8%87%ba%e5%89%b5%e7%b4%80%e9%8c%84%e3%80%8d-%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e7%b0%bd%e7%bd%b2/'},
+  ]},
+  {id:'id',col:'arch',name:'室內設計學士學位學程',url:'https://id.fcu.edu.tw/news/',news:[
+    {d:'2026.07.27',t:'逢甲室設國際共學：品牌空間設計轉型，學生提案驚艷米蘭',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%9c%8b%e9%9a%9b%e5%85%b1%e5%ad%b8%ef%bc%9a%e5%93%81%e7%89%8c%e7%a9%ba%e9%96%93%e8%a8%ad%e8%a8%88%e8%bd%89%e5%9e%8b%ef%bc%8c%e5%ad%b8%e7%94%9f%e6%8f%90%e6%a1%88/'},
+    {d:'2026.06.27',t:'逢甲室設師生赴日飯店實務營，設計裝修跨域學習',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%b8%ab%e7%94%9f%e8%b5%b4%e6%97%a5%e9%a3%af%e5%ba%97%e5%af%a6%e5%8b%99%e7%87%9f%ef%bc%8c%e8%a8%ad%e8%a8%88%e8%a3%9d%e4%bf%ae%e8%b7%a8%e5%9f%9f%e5%ad%b8/'},
+    {d:'2026.06.24',t:'走進有溫度的樂齡日常 室內設計學位學程學生思索福祉科技的人文尺度',url:'https://id.fcu.edu.tw/news/%e8%b5%b0%e9%80%b2%e6%9c%89%e6%ba%ab%e5%ba%a6%e7%9a%84%e6%a8%82%e9%bd%a1%e6%97%a5%e5%b8%b8-%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e5%ad%b8%e7%94%9f%e6%80%9d%e7%b4%a2/'},
+    {d:'2026.06.23',t:'逢甲室設AI應用班，一條龍教學引領產業新局',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%adai%e6%87%89%e7%94%a8%e7%8f%ad%ef%bc%8c%e4%b8%80%e6%a2%9d%e9%be%8d%e6%95%99%e5%ad%b8%e5%bc%95%e9%a0%98%e7%94%a2%e6%a5%ad%e6%96%b0%e5%b1%80/'},
+    {d:'2026.06.23',t:'逢甲室設x義大利五校：臺義文創永續設計盛典',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%adx%e7%be%a9%e5%a4%a7%e5%88%a9%e4%ba%94%e6%a0%a1%ef%bc%9a%e8%87%ba%e7%be%a9%e6%96%87%e5%89%b5%e6%b0%b8%e7%ba%8c%e8%a8%ad%e8%a8%88%e7%9b%9b%e5%85%b8/'},
+    {d:'2026.06.13',t:'逢甲建築主辦38屆建築研討會 Mecanoo助室設生接軌國際',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%bb%ba%e7%af%89%e4%b8%bb%e8%be%a648%e5%b1%86%e7%a0%94%e8%a8%8e%e6%9c%83-mecanoo%e5%8a%a9%e5%ae%a4%e8%a8%ad%e7%94%9f%e6%8e%a5%e8%bb%8c%e5%9c%8b%e9%9a%9b/'},
+    {d:'2026.06.06',t:'逢甲室設引領永續AI，學生趙辰慈成最年輕LEED GA',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%bc%95%e9%a0%98%e6%b0%b8%e7%ba%8cai%ef%bc%8c%e5%ad%b8%e7%94%9f%e8%b6%99%e8%be%b0%e6%85%88%e6%88%90%e6%9c%80%e5%b9%b4%e8%bc%95leed-ga/'},
+    {d:'2026.06.04',t:'逢甲室內設計：競賽驅動專業，櫻花廚具助實習。',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%ef%bc%9a%e7%ab%b6%e8%b3%bd%e9%a9%85%e5%8b%95%e5%b0%88%e6%a5%ad%ef%bc%8c%e6%ab%bb%e8%8a%b1%e5%bb%9a%e5%85%b7%e5%8a%a9%e5%af%a6%e7%bf%92%e3%80%82/'},
+    {d:'2026.06.04',t:'逢甲室設進修部畢設：築夢學子綻放設計光芒',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e9%80%b2%e4%bf%ae%e9%83%a8%e7%95%a2%e8%a8%ad%ef%bc%9a%e7%af%89%e5%a4%a2%e5%ad%b8%e5%ad%90%e7%b6%bb%e6%94%be%e8%a8%ad%e8%a8%88%e5%85%89%e8%8a%92/'},
+    {d:'2026.06.02',t:'半畝塘江文淵逢甲演講：建築之「道」與「定位」',url:'https://id.fcu.edu.tw/news/%e5%8d%8a%e7%95%9d%e5%a1%98%e6%b1%9f%e6%96%87%e6%b7%b5%e9%80%a2%e7%94%b2%e6%bc%94%e8%ac%9b%ef%bc%9a%e5%bb%ba%e7%af%89%e4%b9%8b%e3%80%8c%e9%81%93%e3%80%8d%e8%88%87%e3%80%8c%e5%ae%9a%e4%bd%8d%e3%80%8d/'},
+    {d:'2026.06.02',t:'逢甲室設參訪大燁照明，學用合一提升學生競爭力',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%8f%83%e8%a8%aa%e5%a4%a7%e7%87%81%e7%85%a7%e6%98%8e%ef%bc%8c%e5%ad%b8%e7%94%a8%e5%90%88%e4%b8%80%e6%8f%90%e5%8d%87%e5%ad%b8%e7%94%9f%e7%ab%b6%e7%88%ad%e5%8a%9b/'},
+    {d:'2026.04.23',t:'逢甲大學室內設計學程攜手德廚精品廚電 深化智慧廚居設計教育　產學合作成果亮眼並接軌國際競賽',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e6%94%9c%e6%89%8b%e5%be%b7%e5%bb%9a%e7%b2%be%e5%93%81%e5%bb%9a%e9%9b%bb%e6%b7%b1%e5%8c%96%e6%99%ba%e6%85%a7/'},
+    {d:'2026.04.02',t:'教育部認可國際競賽肯定　學生作品登上國際舞台',url:'https://id.fcu.edu.tw/news/%e6%95%99%e8%82%b2%e9%83%a8%e8%aa%8d%e5%8f%af%e5%9c%8b%e9%9a%9b%e7%ab%b6%e8%b3%bd%e8%82%af%e5%ae%9a%e3%80%80%e5%ad%b8%e7%94%9f%e4%bd%9c%e5%93%81%e7%99%bb%e4%b8%8a%e5%9c%8b%e9%9a%9b%e8%88%9e%e5%8f%b0/'},
+    {d:'2026.03.10',t:'逢甲大學建築專業學院傑出校友日 以「AI書屋」競賽展現建築跨域創新能量',url:'https://id.fcu.edu.tw/news/760/'},
+    {d:'2026.03.10',t:'逢甲大學室內設計學程與德廚集團攜手合作   在大坪數高端住宅設計中導入頂級廚具實務教學',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e8%88%87%e5%be%b7%e5%bb%9a%e9%9b%86%e5%9c%98%e6%94%9c%e6%89%8b%e5%90%88%e4%bd%9c-%e5%9c%a8%e5%a4%a7/'},
+    {d:'2026.01.21',t:'捷報｜逢甲大學建築專業學院室內設計學程兼任教師劉守書榮獲國家建築金獎雙項大獎',url:'https://id.fcu.edu.tw/news/%e6%8d%b7%e5%a0%b1%ef%bd%9c%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%88%e6%a5%ad%e5%ad%b8%e9%99%a2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e5%85%bc%e4%bb%bb%e6%95%99/'},
+    {d:'2025.12.01',t:'鄭月妹教授「尚水」獲國際A\' Design Award銅牌，為台中捷運增添藝術光彩',url:'https://id.fcu.edu.tw/news/%e9%84%ad%e6%9c%88%e5%a6%b9%e6%95%99%e6%8e%88%e3%80%8c%e5%b0%9a%e6%b0%b4%e3%80%8d%e7%8d%b2%e5%9c%8b%e9%9a%9ba-design-award%e9%8a%85%e7%89%8c%ef%bc%8c%e7%82%ba%e5%8f%b0%e4%b8%ad%e6%8d%b7%e9%81%8b/'},
+    {d:'2025.12.01',t:'隈研吾領銜國際建築大師 齊聚逢甲共善樓 激盪設計新思維',url:'https://id.fcu.edu.tw/news/%e9%9a%88%e7%a0%94%e5%90%be%e9%a0%98%e9%8a%9c%e5%9c%8b%e9%9a%9b%e5%bb%ba%e7%af%89%e5%a4%a7%e5%b8%ab-%e9%bd%8a%e8%81%9a%e9%80%a2%e7%94%b2%e5%85%b1%e5%96%84%e6%a8%93-%e6%bf%80%e7%9b%aa%e8%a8%ad%e8%a8%88/'},
+    {d:'2025.11.19',t:'113年度建築/室內設計新鮮人成長營「一建忠勤」',url:'https://id.fcu.edu.tw/news/113%e5%b9%b4%e5%ba%a6%e5%bb%ba%e7%af%89-%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8c%e4%b8%80%e5%bb%ba%e5%bf%a0%e5%8b%a4%e3%80%8d/'},
+    {d:'2025.11.06',t:'逢甲建築114級畢業展《欸___在哪？》以設計提問空間與未來 2025.06.19',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%bb%ba%e7%af%89114%e7%b4%9a%e7%95%a2%e6%a5%ad%e5%b1%95%e3%80%8a%e6%ac%b8___%e5%9c%a8%e5%93%aa%ef%bc%9f%e3%80%8b%e4%bb%a5%e8%a8%ad%e8%a8%88%e6%8f%90%e5%95%8f%e7%a9%ba%e9%96%93/'},
+    {d:'2025.10.29',t:'從台灣出發 送暖印尼 逢甲大學建築小書屋跨國教育行動登上當地頭版 ​2025.07.28',url:'https://id.fcu.edu.tw/news/%e5%be%9e%e5%8f%b0%e7%81%a3%e5%87%ba%e7%99%bc-%e9%80%81%e6%9a%96%e5%8d%b0%e5%b0%bc-%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%8f%e6%9b%b8%e5%b1%8b%e8%b7%a8%e5%9c%8b%e6%95%99%e8%82%b2/'},
   ]},
   {id:'rmi',col:'fin',name:'風險管理與保險學系',url:'https://rmi.fcu.edu.tw/news/',news:[
     {d:'2026.06.06',t:'歡送畢業生－115級系辦畢業典禮',url:'https://rmi.fcu.edu.tw/news/%e6%ad%a1%e9%80%81%e7%95%a2%e6%a5%ad%e7%94%9f%ef%bc%8d115%e7%b4%9a%e7%b3%bb%e8%be%a6%e7%95%a2%e6%a5%ad%e5%85%b8%e7%a6%ae/'},
@@ -1149,18 +1177,6 @@ const D=[
     {d:'2025.11.11',t:'逢甲大學金融學院學士班與財務工程與精算學士學位學程企業參訪 深度探索金融科技與產業趨勢',url:'https://upfc.fcu.edu.tw/news/1141107/'},
     {d:'2025.10.09',t:'【新鮮人成長營暨專題活動】引領新生以創意與科技探索普惠金融',url:'https://upfc.fcu.edu.tw/news/%e3%80%90%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e6%9a%a8%e5%b0%88%e9%a1%8c%e6%b4%bb%e5%8b%95%e3%80%91%e5%bc%95%e9%a0%98%e6%96%b0%e7%94%9f%e4%bb%a5%e5%89%b5%e6%84%8f%e8%88%87%e7%a7%91/'},
   ]},
-  {id:'smd',col:'mgt',name:'經營管理學院',url:'https://smd.fcu.edu.tw/news/',news:[
-    {d:'2026.06.13',t:'逢甲大學EMBA 第二屆「全球企業領袖班」結業典禮🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-%e7%ac%ac%e4%ba%8c%e5%b1%86%e3%80%8c%e5%85%a8%e7%90%83%e4%bc%81%e6%a5%ad%e9%a0%98%e8%a2%96%e7%8f%ad%e3%80%8d%e7%b5%90%e6%a5%ad%e5%85%b8%e7%a6%ae%f0%9f%8e%89/'},
-    {d:'2026.06.07',t:'✨【逢甲大學EMBA 113級畢業】✨',url:'https://smd.fcu.edu.tw/news/%e2%9c%a8%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-113%e7%b4%9a%e7%95%a2%e6%a5%ad%e3%80%91%e2%9c%a8/'},
-    {d:'2026.04.25',t:'菁英聚力，榮耀二十',url:'https://smd.fcu.edu.tw/news/%e8%8f%81%e8%8b%b1%e8%81%9a%e5%8a%9b%ef%bc%8c%e6%a6%ae%e8%80%80%e4%ba%8c%e5%8d%81/'},
-    {d:'2026.04.18',t:'逢甲大學EMBA第六屆博觀講堂結業囉~🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e7%ac%ac%e5%85%ad%e5%b1%86%e5%8d%9a%e8%a7%80%e8%ac%9b%e5%a0%82%e7%b5%90%e6%a5%ad%e5%9b%89%f0%9f%8e%89%f0%9f%8e%89%f0%9f%8e%89/'},
-    {d:'2026.03.20',t:'【人生像做麵包 需要時間發酵】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e4%ba%ba%e7%94%9f%e5%83%8f%e5%81%9a%e9%ba%b5%e5%8c%85-%e9%9c%80%e8%a6%81%e6%99%82%e9%96%93%e7%99%bc%e9%85%b5%e3%80%91/'},
-    {d:'2025.11.23',t:'【逢甲大學EMBA 2025產業論文寫作研討會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-2025%e7%94%a2%e6%a5%ad%e8%ab%96%e6%96%87%e5%af%ab%e4%bd%9c%e7%a0%94%e8%a8%8e%e6%9c%83%e3%80%91/'},
-    {d:'2025.11.02',t:'【逢甲大學EMBA 115招生說明會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-115%e6%8b%9b%e7%94%9f%e8%aa%aa%e6%98%8e%e6%9c%83%e3%80%91/'},
-    {d:'2025.10.09',t:'經營管理碩士在職學位學程「數位創新管理組」與「文化創意產業管理組」116學年度停招暨學生修課權益說明會',url:'https://smd.fcu.edu.tw/news/%e7%b6%93%e7%87%9f%e7%ae%a1%e7%90%86%e7%a2%a9%e5%a3%ab%e5%9c%a8%e8%81%b7%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e3%80%8c%e6%95%b8%e4%bd%8d%e5%89%b5%e6%96%b0%e7%ae%a1%e7%90%86%e7%b5%84%e3%80%8d%e8%88%87/'},
-    {d:'2025.09.27',t:'逢甲EMBA溫情奉茶 傳遞感恩與尊師情誼',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2emba%e6%ba%ab%e6%83%85%e5%a5%89%e8%8c%b6-%e5%82%b3%e9%81%9e%e6%84%9f%e6%81%a9%e8%88%87%e5%b0%8a%e5%b8%ab%e6%83%85%e8%aa%bc/'},
-    {d:'2025.09.07',t:'逢甲大學EMBA舉辦新生共善營 以「大好・共善・同樂」開啟學習新旅程',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e8%88%89%e8%be%a6%e6%96%b0%e7%94%9f%e5%85%b1%e5%96%84%e7%87%9f-%e4%bb%a5%e3%80%8c%e5%a4%a7%e5%a5%bd%e3%83%bb%e5%85%b1%e5%96%84%e3%83%bb%e5%90%8c%e6%a8%82/'},
-  ]},
   {id:'pmpf',col:'fin',name:'金融碩士在職學位學程',url:'https://www.pmpf.fcu.edu.tw/announcements',extHost:1,news:[
     {d:'2025.10.31',t:'114學年度研究生學位論文延後公開申請',url:'https://www.pmpf.fcu.edu.tw/announcements20251031-2'},
     {d:'2025.10.31',t:'114學年度論文考試審查申請',url:'https://www.pmpf.fcu.edu.tw/announcements20251031'},
@@ -1203,11 +1219,11 @@ const D=[
     {d:'2025.09.12',t:'逢甲大學外國語文學系專業實習申請相關注意事項',url:'https://fll.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%a4%96%e5%9c%8b%e8%aa%9e%e6%96%87%e5%ad%b8%e7%b3%bb%e5%b0%88%e6%a5%ad%e5%af%a6%e7%bf%92%e7%94%b3%e8%ab%8b%e7%9b%b8%e9%97%9c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a0%85/'},
     {d:'2025.08.20',t:'外文系課程地圖　專業課程分組一覽表',url:'https://fll.fcu.edu.tw/news/coursemap/'},
   ]},
-  {id:'gipp',col:'hum',name:'公共事務與社會創新研究所',url:'https://gipp.fcu.edu.tw/news/',news:[
-    {d:'2025.11.07',t:'115碩專班簡章',url:'https://gipp.fcu.edu.tw/news/115%e7%a2%a9%e5%b0%88%e7%8f%ad%e7%b0%a1%e7%ab%a0/'},
-  ]},
   {id:'csi',col:'hum',name:'文化與社會創新碩士學位學程',url:'https://csi.fcu.edu.tw/news/',news:[
     {d:'2025.09.11',t:'文社-指導教授認定書',url:'https://csi.fcu.edu.tw/news/%e6%96%87%e7%a4%be-%e6%8c%87%e5%b0%8e%e6%95%99%e6%8e%88%e8%aa%8d%e5%ae%9a%e6%9b%b8/'},
+  ]},
+  {id:'gipp',col:'hum',name:'公共事務與社會創新研究所',url:'https://gipp.fcu.edu.tw/news/',news:[
+    {d:'2025.11.07',t:'115碩專班簡章',url:'https://gipp.fcu.edu.tw/news/115%e7%a2%a9%e5%b0%88%e7%8f%ad%e7%b0%a1%e7%ab%a0/'},
   ]},
   {id:'ee',col:'ece',name:'電機工程學系',url:'https://ee.fcu.edu.tw/news/',news:[
   ]},
@@ -1335,38 +1351,26 @@ const D=[
   ]},
   {id:'mcd',col:'con',name:'建設碩士在職學位學程',url:'https://mcd.fcu.edu.tw/news/',news:[
   ]},
+  {id:'imsc',col:'con',name:'智慧城市碩士學位學程',url:'https://imsc.fcu.edu.tw/news-list/',news:[
+  ]},
   {id:'gche',col:'con',name:'建設規劃與工程博士學位學程',url:'https://gche.fcu.edu.tw/news/',news:[
     {d:'2025.12.10',t:'114學年度金廈移地教學--跨域實作深化學術與視野',url:'https://gche.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e8%a8%ad%e8%a6%8f%e5%8a%83%e8%88%87%e5%b7%a5%e7%a8%8b%e5%8d%9a%e5%a3%ab%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e9%87%91%e5%bb%88%e7%a7%bb%e5%9c%b0%e6%95%99/'},
   ]},
-  {id:'imsc',col:'con',name:'智慧城市碩士學位學程',url:'https://imsc.fcu.edu.tw/news-list/',news:[
+  {id:'smd',col:'mgt',name:'經營管理學院',url:'https://smd.fcu.edu.tw/news/',news:[
+    {d:'2026.06.13',t:'逢甲大學EMBA 第二屆「全球企業領袖班」結業典禮🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-%e7%ac%ac%e4%ba%8c%e5%b1%86%e3%80%8c%e5%85%a8%e7%90%83%e4%bc%81%e6%a5%ad%e9%a0%98%e8%a2%96%e7%8f%ad%e3%80%8d%e7%b5%90%e6%a5%ad%e5%85%b8%e7%a6%ae%f0%9f%8e%89/'},
+    {d:'2026.06.07',t:'✨【逢甲大學EMBA 113級畢業】✨',url:'https://smd.fcu.edu.tw/news/%e2%9c%a8%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-113%e7%b4%9a%e7%95%a2%e6%a5%ad%e3%80%91%e2%9c%a8/'},
+    {d:'2026.04.25',t:'菁英聚力，榮耀二十',url:'https://smd.fcu.edu.tw/news/%e8%8f%81%e8%8b%b1%e8%81%9a%e5%8a%9b%ef%bc%8c%e6%a6%ae%e8%80%80%e4%ba%8c%e5%8d%81/'},
+    {d:'2026.04.18',t:'逢甲大學EMBA第六屆博觀講堂結業囉~🎉🎉🎉',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e7%ac%ac%e5%85%ad%e5%b1%86%e5%8d%9a%e8%a7%80%e8%ac%9b%e5%a0%82%e7%b5%90%e6%a5%ad%e5%9b%89%f0%9f%8e%89%f0%9f%8e%89%f0%9f%8e%89/'},
+    {d:'2026.03.20',t:'【人生像做麵包 需要時間發酵】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e4%ba%ba%e7%94%9f%e5%83%8f%e5%81%9a%e9%ba%b5%e5%8c%85-%e9%9c%80%e8%a6%81%e6%99%82%e9%96%93%e7%99%bc%e9%85%b5%e3%80%91/'},
+    {d:'2025.11.23',t:'【逢甲大學EMBA 2025產業論文寫作研討會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-2025%e7%94%a2%e6%a5%ad%e8%ab%96%e6%96%87%e5%af%ab%e4%bd%9c%e7%a0%94%e8%a8%8e%e6%9c%83%e3%80%91/'},
+    {d:'2025.11.02',t:'【逢甲大學EMBA 115招生說明會】',url:'https://smd.fcu.edu.tw/news/%e3%80%90%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba-115%e6%8b%9b%e7%94%9f%e8%aa%aa%e6%98%8e%e6%9c%83%e3%80%91/'},
+    {d:'2025.10.09',t:'經營管理碩士在職學位學程「數位創新管理組」與「文化創意產業管理組」116學年度停招暨學生修課權益說明會',url:'https://smd.fcu.edu.tw/news/%e7%b6%93%e7%87%9f%e7%ae%a1%e7%90%86%e7%a2%a9%e5%a3%ab%e5%9c%a8%e8%81%b7%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e3%80%8c%e6%95%b8%e4%bd%8d%e5%89%b5%e6%96%b0%e7%ae%a1%e7%90%86%e7%b5%84%e3%80%8d%e8%88%87/'},
+    {d:'2025.09.27',t:'逢甲EMBA溫情奉茶 傳遞感恩與尊師情誼',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2emba%e6%ba%ab%e6%83%85%e5%a5%89%e8%8c%b6-%e5%82%b3%e9%81%9e%e6%84%9f%e6%81%a9%e8%88%87%e5%b0%8a%e5%b8%ab%e6%83%85%e8%aa%bc/'},
+    {d:'2025.09.07',t:'逢甲大學EMBA舉辦新生共善營 以「大好・共善・同樂」開啟學習新旅程',url:'https://smd.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8emba%e8%88%89%e8%be%a6%e6%96%b0%e7%94%9f%e5%85%b1%e5%96%84%e7%87%9f-%e4%bb%a5%e3%80%8c%e5%a4%a7%e5%a5%bd%e3%83%bb%e5%85%b1%e5%96%84%e3%83%bb%e5%90%8c%e6%a8%82/'},
   ]},
-  {id:'archschool',col:'arch',name:'建築專業學院',url:'https://archschool.fcu.edu.tw/news/',news:[
-    {d:'2026.04.02',t:'義起共創未來：文化、創意與永續的臺義跨國設計盛典',url:'https://archschool.fcu.edu.tw/news/%e7%be%a9%e8%b5%b7%e5%85%b1%e5%89%b5%e6%9c%aa%e4%be%86%ef%bc%9a%e6%96%87%e5%8c%96%e3%80%81%e5%89%b5%e6%84%8f%e8%88%87%e6%b0%b8%e7%ba%8c%e7%9a%84%e8%87%ba%e7%be%a9%e8%b7%a8%e5%9c%8b%e8%a8%ad%e8%a8%88/'},
-    {d:'2026.03.10',t:'逢甲大學建築專業學院傑出校友日 以「AI書屋」競賽展現建築跨域創新能量',url:'https://archschool.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%88%e6%a5%ad%e5%ad%b8%e9%99%a2%e5%82%91%e5%87%ba%e6%a0%a1%e5%8f%8b%e6%97%a5-%e4%bb%a5%e3%80%8cai%e6%9b%b8%e5%b1%8b%e3%80%8d%e7%ab%b6/'},
-    {d:'2025.11.24',t:'義大利五大名校「聯合訪臺創紀錄」 逢甲大學簽署四校MOU',url:'https://archschool.fcu.edu.tw/news/%e7%be%a9%e5%a4%a7%e5%88%a9%e4%ba%94%e5%a4%a7%e5%90%8d%e6%a0%a1%e3%80%8c%e8%81%af%e5%90%88%e8%a8%aa%e8%87%ba%e5%89%b5%e7%b4%80%e9%8c%84%e3%80%8d-%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e7%b0%bd%e7%bd%b2/'},
+  {id:'aita',col:'cre',name:'人工智慧技術與應用學士學位學程',url:'https://aita.fcu.edu.tw/news/',news:[
   ]},
-  {id:'id',col:'arch',name:'室內設計學士學位學程',url:'https://id.fcu.edu.tw/news/',news:[
-    {d:'2026.07.27',t:'逢甲室設國際共學：品牌空間設計轉型，學生提案驚艷米蘭',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%9c%8b%e9%9a%9b%e5%85%b1%e5%ad%b8%ef%bc%9a%e5%93%81%e7%89%8c%e7%a9%ba%e9%96%93%e8%a8%ad%e8%a8%88%e8%bd%89%e5%9e%8b%ef%bc%8c%e5%ad%b8%e7%94%9f%e6%8f%90%e6%a1%88/'},
-    {d:'2026.06.27',t:'逢甲室設師生赴日飯店實務營，設計裝修跨域學習',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%b8%ab%e7%94%9f%e8%b5%b4%e6%97%a5%e9%a3%af%e5%ba%97%e5%af%a6%e5%8b%99%e7%87%9f%ef%bc%8c%e8%a8%ad%e8%a8%88%e8%a3%9d%e4%bf%ae%e8%b7%a8%e5%9f%9f%e5%ad%b8/'},
-    {d:'2026.06.24',t:'走進有溫度的樂齡日常 室內設計學位學程學生思索福祉科技的人文尺度',url:'https://id.fcu.edu.tw/news/%e8%b5%b0%e9%80%b2%e6%9c%89%e6%ba%ab%e5%ba%a6%e7%9a%84%e6%a8%82%e9%bd%a1%e6%97%a5%e5%b8%b8-%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e4%bd%8d%e5%ad%b8%e7%a8%8b%e5%ad%b8%e7%94%9f%e6%80%9d%e7%b4%a2/'},
-    {d:'2026.06.23',t:'逢甲室設AI應用班，一條龍教學引領產業新局',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%adai%e6%87%89%e7%94%a8%e7%8f%ad%ef%bc%8c%e4%b8%80%e6%a2%9d%e9%be%8d%e6%95%99%e5%ad%b8%e5%bc%95%e9%a0%98%e7%94%a2%e6%a5%ad%e6%96%b0%e5%b1%80/'},
-    {d:'2026.06.23',t:'逢甲室設x義大利五校：臺義文創永續設計盛典',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%adx%e7%be%a9%e5%a4%a7%e5%88%a9%e4%ba%94%e6%a0%a1%ef%bc%9a%e8%87%ba%e7%be%a9%e6%96%87%e5%89%b5%e6%b0%b8%e7%ba%8c%e8%a8%ad%e8%a8%88%e7%9b%9b%e5%85%b8/'},
-    {d:'2026.06.13',t:'逢甲建築主辦38屆建築研討會 Mecanoo助室設生接軌國際',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%bb%ba%e7%af%89%e4%b8%bb%e8%be%a648%e5%b1%86%e7%a0%94%e8%a8%8e%e6%9c%83-mecanoo%e5%8a%a9%e5%ae%a4%e8%a8%ad%e7%94%9f%e6%8e%a5%e8%bb%8c%e5%9c%8b%e9%9a%9b/'},
-    {d:'2026.06.06',t:'逢甲室設引領永續AI，學生趙辰慈成最年輕LEED GA',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%bc%95%e9%a0%98%e6%b0%b8%e7%ba%8cai%ef%bc%8c%e5%ad%b8%e7%94%9f%e8%b6%99%e8%be%b0%e6%85%88%e6%88%90%e6%9c%80%e5%b9%b4%e8%bc%95leed-ga/'},
-    {d:'2026.06.04',t:'逢甲室內設計：競賽驅動專業，櫻花廚具助實習。',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%ef%bc%9a%e7%ab%b6%e8%b3%bd%e9%a9%85%e5%8b%95%e5%b0%88%e6%a5%ad%ef%bc%8c%e6%ab%bb%e8%8a%b1%e5%bb%9a%e5%85%b7%e5%8a%a9%e5%af%a6%e7%bf%92%e3%80%82/'},
-    {d:'2026.06.04',t:'逢甲室設進修部畢設：築夢學子綻放設計光芒',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e9%80%b2%e4%bf%ae%e9%83%a8%e7%95%a2%e8%a8%ad%ef%bc%9a%e7%af%89%e5%a4%a2%e5%ad%b8%e5%ad%90%e7%b6%bb%e6%94%be%e8%a8%ad%e8%a8%88%e5%85%89%e8%8a%92/'},
-    {d:'2026.06.02',t:'半畝塘江文淵逢甲演講：建築之「道」與「定位」',url:'https://id.fcu.edu.tw/news/%e5%8d%8a%e7%95%9d%e5%a1%98%e6%b1%9f%e6%96%87%e6%b7%b5%e9%80%a2%e7%94%b2%e6%bc%94%e8%ac%9b%ef%bc%9a%e5%bb%ba%e7%af%89%e4%b9%8b%e3%80%8c%e9%81%93%e3%80%8d%e8%88%87%e3%80%8c%e5%ae%9a%e4%bd%8d%e3%80%8d/'},
-    {d:'2026.06.02',t:'逢甲室設參訪大燁照明，學用合一提升學生競爭力',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%ae%a4%e8%a8%ad%e5%8f%83%e8%a8%aa%e5%a4%a7%e7%87%81%e7%85%a7%e6%98%8e%ef%bc%8c%e5%ad%b8%e7%94%a8%e5%90%88%e4%b8%80%e6%8f%90%e5%8d%87%e5%ad%b8%e7%94%9f%e7%ab%b6%e7%88%ad%e5%8a%9b/'},
-    {d:'2026.04.23',t:'逢甲大學室內設計學程攜手德廚精品廚電 深化智慧廚居設計教育　產學合作成果亮眼並接軌國際競賽',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e6%94%9c%e6%89%8b%e5%be%b7%e5%bb%9a%e7%b2%be%e5%93%81%e5%bb%9a%e9%9b%bb%e6%b7%b1%e5%8c%96%e6%99%ba%e6%85%a7/'},
-    {d:'2026.04.02',t:'教育部認可國際競賽肯定　學生作品登上國際舞台',url:'https://id.fcu.edu.tw/news/%e6%95%99%e8%82%b2%e9%83%a8%e8%aa%8d%e5%8f%af%e5%9c%8b%e9%9a%9b%e7%ab%b6%e8%b3%bd%e8%82%af%e5%ae%9a%e3%80%80%e5%ad%b8%e7%94%9f%e4%bd%9c%e5%93%81%e7%99%bb%e4%b8%8a%e5%9c%8b%e9%9a%9b%e8%88%9e%e5%8f%b0/'},
-    {d:'2026.03.10',t:'逢甲大學建築專業學院傑出校友日 以「AI書屋」競賽展現建築跨域創新能量',url:'https://id.fcu.edu.tw/news/760/'},
-    {d:'2026.03.10',t:'逢甲大學室內設計學程與德廚集團攜手合作   在大坪數高端住宅設計中導入頂級廚具實務教學',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e8%88%87%e5%be%b7%e5%bb%9a%e9%9b%86%e5%9c%98%e6%94%9c%e6%89%8b%e5%90%88%e4%bd%9c-%e5%9c%a8%e5%a4%a7/'},
-    {d:'2026.01.21',t:'捷報｜逢甲大學建築專業學院室內設計學程兼任教師劉守書榮獲國家建築金獎雙項大獎',url:'https://id.fcu.edu.tw/news/%e6%8d%b7%e5%a0%b1%ef%bd%9c%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%88%e6%a5%ad%e5%ad%b8%e9%99%a2%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e5%ad%b8%e7%a8%8b%e5%85%bc%e4%bb%bb%e6%95%99/'},
-    {d:'2025.12.01',t:'鄭月妹教授「尚水」獲國際A\' Design Award銅牌，為台中捷運增添藝術光彩',url:'https://id.fcu.edu.tw/news/%e9%84%ad%e6%9c%88%e5%a6%b9%e6%95%99%e6%8e%88%e3%80%8c%e5%b0%9a%e6%b0%b4%e3%80%8d%e7%8d%b2%e5%9c%8b%e9%9a%9ba-design-award%e9%8a%85%e7%89%8c%ef%bc%8c%e7%82%ba%e5%8f%b0%e4%b8%ad%e6%8d%b7%e9%81%8b/'},
-    {d:'2025.12.01',t:'隈研吾領銜國際建築大師 齊聚逢甲共善樓 激盪設計新思維',url:'https://id.fcu.edu.tw/news/%e9%9a%88%e7%a0%94%e5%90%be%e9%a0%98%e9%8a%9c%e5%9c%8b%e9%9a%9b%e5%bb%ba%e7%af%89%e5%a4%a7%e5%b8%ab-%e9%bd%8a%e8%81%9a%e9%80%a2%e7%94%b2%e5%85%b1%e5%96%84%e6%a8%93-%e6%bf%80%e7%9b%aa%e8%a8%ad%e8%a8%88/'},
-    {d:'2025.11.19',t:'113年度建築/室內設計新鮮人成長營「一建忠勤」',url:'https://id.fcu.edu.tw/news/113%e5%b9%b4%e5%ba%a6%e5%bb%ba%e7%af%89-%e5%ae%a4%e5%85%a7%e8%a8%ad%e8%a8%88%e6%96%b0%e9%ae%ae%e4%ba%ba%e6%88%90%e9%95%b7%e7%87%9f%e3%80%8c%e4%b8%80%e5%bb%ba%e5%bf%a0%e5%8b%a4%e3%80%8d/'},
-    {d:'2025.11.06',t:'逢甲建築114級畢業展《欸___在哪？》以設計提問空間與未來 2025.06.19',url:'https://id.fcu.edu.tw/news/%e9%80%a2%e7%94%b2%e5%bb%ba%e7%af%89114%e7%b4%9a%e7%95%a2%e6%a5%ad%e5%b1%95%e3%80%8a%e6%ac%b8___%e5%9c%a8%e5%93%aa%ef%bc%9f%e3%80%8b%e4%bb%a5%e8%a8%ad%e8%a8%88%e6%8f%90%e5%95%8f%e7%a9%ba%e9%96%93/'},
-    {d:'2025.10.29',t:'從台灣出發 送暖印尼 逢甲大學建築小書屋跨國教育行動登上當地頭版 ​2025.07.28',url:'https://id.fcu.edu.tw/news/%e5%be%9e%e5%8f%b0%e7%81%a3%e5%87%ba%e7%99%bc-%e9%80%81%e6%9a%96%e5%8d%b0%e5%b0%bc-%e9%80%a2%e7%94%b2%e5%a4%a7%e5%ad%b8%e5%bb%ba%e7%af%89%e5%b0%8f%e6%9b%b8%e5%b1%8b%e8%b7%a8%e5%9c%8b%e6%95%99%e8%82%b2/'},
+  {id:'aitm',col:'cre',name:'人工智慧科技與管理碩士學位學程',url:'https://aitm.fcu.edu.tw/news/',news:[
   ]},
   {id:'istm',col:'istm',name:'國際科技與管理學院',url:'https://istm.fcu.edu.tw/news/',news:[
     {d:'2026.05.22',t:'澳洲新南威爾斯大學（UNSW）Stephen Goddard教授來訪國際學院，率師生共赴台北新一代設計展並舉辦專屬工作坊',url:'https://istm.fcu.edu.tw/news/%e6%be%b3%e6%b4%b2%e6%96%b0%e5%8d%97%e5%a8%81%e7%88%be%e6%96%af%e5%a4%a7%e5%ad%b8%ef%bc%88unsw%ef%bc%89stephen-goddard%e6%95%99%e6%8e%88%e4%be%86%e8%a8%aa%e5%9c%8b%e9%9a%9b%e5%ad%b8%e9%99%a2%ef%bc%8c/'},
@@ -1390,10 +1394,6 @@ const D=[
     {d:'2025.10.31',t:'10月9日，英國諾丁漢大學來訪國際學院',url:'https://istm.fcu.edu.tw/news/10%e6%9c%889%e6%97%a5%ef%bc%8c%e8%8b%b1%e5%9c%8b%e8%ab%be%e4%b8%81%e6%bc%a2%e5%a4%a7%e5%ad%b8%e4%be%86%e8%a8%aa%e5%9c%8b%e9%9a%9b%e5%ad%b8%e9%99%a2/'},
   ]},
   {id:'pmp',col:'gen',name:'全校國際生大一不分系學士班',url:'https://pmp.fcu.edu.tw/news/',news:[
-  ]},
-  {id:'aita',col:'cre',name:'人工智慧技術與應用學士學位學程',url:'https://aita.fcu.edu.tw/news/',news:[
-  ]},
-  {id:'aitm',col:'cre',name:'人工智慧科技與管理碩士學位學程',url:'https://aitm.fcu.edu.tw/news/',news:[
   ]},
 ];
 
@@ -1562,22 +1562,6 @@ function sel(id){
           <td class="stk-ttl"><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
           <td class="stk-date" style="font-size:11px;color:#888780;">${esc(p.date)}</td>
           <td class="stk-pv" style="text-align:right;font-weight:700;color:#185FA5;">${p.pv.toLocaleString()}</td>
-        </tr>`).join('')}
-      </tbody></table>
-    </div>
-    <div class="tbl-wrap tbl-stack sec-cold" style="margin-bottom:.9rem;">
-      <div class="tbl-hdr"><i class="ti ti-trending-down"></i><span>冷門新聞頁面 Top ${GA4_FCU.coldPages.length}（依瀏覽次數，由低到高）</span></div>
-      <table><thead><tr>
-        <th style="width:28px;text-align:center;">#</th>
-        <th>標題</th>
-        <th style="width:90px;">發布時間</th>
-        <th style="width:100px;text-align:right;">瀏覽次數</th>
-      </tr></thead><tbody>
-        ${GA4_FCU.coldPages.map((p,i)=>`<tr>
-          <td class="stk-rk" style="text-align:center;color:#B4B2A9;font-size:11px;">${i+1}</td>
-          <td class="stk-ttl"><a href="${esc(safeUrl(s.url.replace(/\/news\/?$/,'')+p.path))}" target="_blank" rel="noopener noreferrer" class="ttl" style="text-decoration:none;color:#1a1a18;">${esc(p.title)}</a></td>
-          <td class="stk-date" style="font-size:11px;color:#888780;">${esc(p.date)}</td>
-          <td class="stk-pv" style="text-align:right;font-weight:700;color:#E24B4A;">${p.pv.toLocaleString()}</td>
         </tr>`).join('')}
       </tbody></table>
     </div>`;
