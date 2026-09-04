@@ -50,6 +50,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
 .mn{flex:1;overflow-y:auto;padding:1.1rem 1.4rem;background:#f0efe9;}
 .empty{text-align:center;padding:5rem 2rem;color:#B4B2A9;font-size:14px;}
 .empty i{font-size:28px;display:block;margin-bottom:.6rem;}
+.empty-note{max-width:560px;margin:1.6rem auto 0;padding-top:1rem;border-top:1px solid #e2e0d8;display:flex;gap:7px;text-align:left;font-size:12.5px;line-height:1.8;color:#A9A79F;}
+.empty .empty-note i{font-size:14px;margin:2px 0 0;flex-shrink:0;color:#C3C1B8;}
 
 /* ── Cards ── */
 .card{background:#fff;border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem;border:1px solid #e5e4dc;}
@@ -166,6 +168,42 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
 .tab.on{color:#C8102E;border-bottom-color:#C8102E;}
 .tab-panel{display:none;}
 .tab-panel.on{display:block;}
+/* ==ADMIT_CSS_START== */
+/* -- 招生一覽表頁 -- */
+.sb-nav{padding:.55rem 0 .2rem;}
+.di.nav-item{border-radius:8px;margin:0 .55rem;padding:.45rem .6rem;background:#fff;border:1px solid #e2e0d8;border-left:1px solid #e2e0d8;}
+.di.nav-item:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.di.nav-item.act{background:#fff;color:#C8102E;border-color:#C8102E;font-weight:700;}
+.di.nav-item i{font-size:15px;}
+.adm-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.adm-chip{background:#f7f6f1;border:1px solid #e5e4dc;border-radius:9px;padding:8px 12px;min-width:104px;}
+.adm-chip .k{font-size:11px;color:#888780;font-weight:700;display:block;}
+.adm-chip .v{font-size:20px;font-weight:800;color:#C8102E;line-height:1.2;}
+.adm-chip .u{font-size:11px;color:#888780;margin-left:2px;font-weight:600;}
+.adm-tools{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:.8rem;}
+.adm-search{flex:1;min-width:180px;max-width:280px;padding:6px 10px;font-size:13px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;color:#1a1a18;font-family:inherit;}
+.adm-search:focus{outline:none;border-color:#C8102E;}
+.adm-f{padding:5px 11px;font-size:12px;font-weight:700;border:1px solid #d3d1c7;border-radius:14px;background:#fff;color:#5F5E5A;cursor:pointer;font-family:inherit;}
+.adm-f:hover{background:#f0efe9;}
+.adm-f.on{background:#C8102E;border-color:#C8102E;color:#fff;}
+.adm-wrap{overflow-x:auto;}
+.adm-tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:560px;}
+.adm-tbl th{font-size:11.5px;font-weight:700;color:#5F5E5A;background:#f7f6f1;padding:6px;border-bottom:1px solid #dddcd4;text-align:center;white-space:nowrap;}
+.adm-tbl th.grp{color:#fff;background:#C8102E;font-size:11px;letter-spacing:.04em;}
+.adm-tbl th.grp.ext{background:#534AB7;}
+.adm-tbl th.n,.adm-tbl td.n{text-align:left;}
+.adm-tbl td{padding:6px;border-bottom:1px solid #f0efe9;text-align:center;}
+.adm-tbl tbody tr:hover{background:#faf9f4;}
+.adm-y{color:#16a34a;font-weight:800;font-size:14px;}
+.adm-dash{color:#dcdad0;}
+.adm-lnk{color:#185FA5;text-decoration:none;cursor:pointer;}
+.adm-lnk:hover{text-decoration:underline;}
+.adm-tag{font-size:10px;font-weight:700;color:#534AB7;background:#EEEDFE;border-radius:8px;padding:1px 6px;margin-left:5px;white-space:nowrap;}
+.adm-empty{padding:1.6rem;text-align:center;color:#B4B2A9;font-size:13px;}
+.adm-src{font-size:11.5px;color:#888780;line-height:1.7;}
+.adm-miss{font-size:12.5px;color:#5F5E5A;line-height:1.9;}
+.adm-miss span{display:inline-block;background:#f7f6f1;border:1px solid #e5e4dc;border-radius:7px;padding:1px 8px;margin:0 5px 5px 0;}
+/* ==ADMIT_CSS_END== */
 </style>
 </head>
 <body>
@@ -216,6 +254,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
     <div class="empty">
       <i class="ti ti-arrow-left"></i>
       請從左側選擇學系
+      <div class="empty-note"><i class="ti ti-info-circle"></i><span>AI 評估偶有侷限，仍需借重專業判斷，待人工確認建議適切無誤後再著手優化。</span></div>
     </div>
   </div>
 </div>
@@ -228,6 +267,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Mic
    總分只轉換為等級 A(81–100)／B(61–80)／C(0–60) 對外呈現，
    不顯示原始總分數字；子項細分仍保留分數以利具體改善追蹤。
 ═══════════════════════════════════════════════════════ */
+/* ==ADMIT_DATA_START== */
+const ADMIT_115 = {"year":"115","types":[{"k":"b","n":"學士班","g":"日間學制"},{"k":"m","n":"碩士班","g":"日間學制"},{"k":"d","n":"博士班","g":"日間學制"},{"k":"ce","n":"進修學士班","g":"進修學制"},{"k":"ec","n":"碩士在職專班","g":"進修學制"}],"colleges":[{"name":"工程與科學學院","units":[{"n":"纖維與複合材料學系","did":"fcm","p":["b","m","d"],"note":""},{"n":"機械與電腦輔助工程學系(含機械工程碩士班)","did":"mcae","p":["b","m"],"note":""},{"n":"工業工程與系統管理學系","did":"inde","p":["b","m","d"],"note":""},{"n":"智能製造與工程管理碩士在職學位學程","did":"imem","p":["ec"],"note":""},{"n":"化學工程學系","did":"che","p":["b","m","d"],"note":""},{"n":"航太與系統工程學系","did":"aero","p":["b","m"],"note":""},{"n":"機械與航空工程博士學位學程","did":"mae","p":["d"],"note":""},{"n":"電聲碩士學位學程","did":"earmp","p":["m"],"note":""},{"n":"綠色能源科技碩士學位學程","did":"gest","p":["m"],"note":""},{"n":"精密系統設計學士學位學程","did":"psd","p":["b"],"note":""},{"n":"應用數學系","did":"apmath","p":["b"],"note":""},{"n":"數據科學碩士學位學程","did":"ds","p":["m"],"note":""},{"n":"環境工程與科學學系","did":"ees","p":["b","m","d"],"note":""},{"n":"材料科學與工程學系","did":"mse","p":["b","m","d"],"note":""},{"n":"光電科學與工程學系","did":"photonics","p":["b","m"],"note":""},{"n":"太空系統工程碩士學位學程","did":"space","p":["m"],"note":""}]},{"name":"商學院","units":[{"n":"商學博士學位學程","did":"bphd","p":["d"],"note":""},{"n":"會計學系","did":"acct","p":["b","m"],"note":""},{"n":"國際經營與貿易學系","did":"itra","p":["b","m"],"note":""},{"n":"國際企業管理全英語學士學位學程","did":"biba","p":["b"],"note":""},{"n":"財稅學系","did":"pf","p":["b","m"],"note":""},{"n":"合作經濟暨社會事業經營學系","did":"coop","p":["b","m"],"note":""},{"n":"統計學系(含統計與精算碩士班)","did":"stat","p":["b","m"],"note":""},{"n":"經濟學系","did":"econ","p":["b","m"],"note":""},{"n":"企業管理學系","did":"ba","p":["b","m"],"note":""},{"n":"財經法律研究所","did":"econlaw","p":["m","ec"],"note":""},{"n":"商學進修學士學位學程","did":"bce","p":["ce"],"note":""},{"n":"行銷學系(含全球行銷碩士班)","did":"marketing","p":["b","m"],"note":""},{"n":"商學專業碩士在職學位學程","did":"bm","p":["ec"],"note":""}]},{"name":"國際科技與管理學院","units":[{"n":"澳洲墨爾本皇家理工大學商學與創新雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"美國加州聖荷西州立大學商學大數據分析雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"美國加州聖荷西州立大學電機工程雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"美國加州舊金山州立大學資訊工程雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"澳洲昆士蘭商學雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"澳洲蒙納許大學資訊工程雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"澳洲昆士蘭電機工程雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"澳洲新南威爾斯大學設計雙學士學位學程","did":"istm","p":["b"],"note":""},{"n":"國際雙學士學位學程","did":"istm","p":["b"],"note":"對內招生"}]},{"name":"金融學院","units":[{"n":"金融博士學位學程","did":"fphd","p":["d"],"note":""},{"n":"金融碩士在職學位學程","did":"pmpf","p":["ec"],"note":""},{"n":"風險管理與保險學系","did":"rmi","p":["b","m"],"note":""},{"n":"財務金融學系","did":"fina","p":["b","m"],"note":""},{"n":"財務工程與精算學士學位學程","did":"bpfeas","p":["b"],"note":""},{"n":"金融學院學士班","did":"upfc","p":["b"],"note":""}]},{"name":"人文社會學院","units":[{"n":"中國文學系","did":"cl","p":["b","m","d"],"note":""},{"n":"外國語文學系(含英語文研究碩士班)","did":"fll","p":["b","m"],"note":""},{"n":"文化與社會創新碩士學位學程","did":"csi","p":["m"],"note":""},{"n":"社會創新暨永續碩士在職學位學程","did":"gipp","p":["ec"],"note":""}]},{"name":"資訊電機學院","units":[{"n":"資訊工程學系","did":"iecs","p":["b","m","d"],"note":""},{"n":"電機工程學系","did":"ee","p":["b","m"],"note":""},{"n":"電子工程學系","did":"fcuece","p":["b","m"],"note":""},{"n":"自動控制工程學系","did":"auto","p":["b","m"],"note":""},{"n":"資訊電機學院學士班","did":"upiee","p":["b"],"note":""},{"n":"通訊工程學系","did":"ce","p":["b","m"],"note":""},{"n":"資訊電機工程碩士在職學位學程","did":"miee","p":["ec"],"note":""},{"n":"電機與通訊工程博士學位學程","did":"gece","p":["d"],"note":""},{"n":"資通訊與電控產業碩士專班","did":"rdms","p":["m"],"note":""},{"n":"資訊工程學系學士後專班","did":"pbiecs","p":["b"],"note":""},{"n":"資通安全碩士學位學程","did":"ics","p":["m"],"note":""}]},{"name":"建設學院","units":[{"n":"土木工程學系","did":"civil","p":["b","m"],"note":""},{"n":"水利工程與資源保育學系","did":"he","p":["b","m"],"note":""},{"n":"都市計畫與空間資訊學系","did":"up","p":["b","m"],"note":""},{"n":"運輸與物流學系","did":"tl","p":["b","m"],"note":""},{"n":"土地管理學系","did":"lm","p":["b","m"],"note":""},{"n":"建設碩士在職學位學程","did":"mcd","p":["ec"],"note":""},{"n":"建設規劃與工程博士學位學程","did":"gche","p":["d"],"note":""},{"n":"土木工程學系營建工程與管理進修學士班","did":"civil","p":["ce"],"note":""},{"n":"專案管理碩士在職學位學程","did":"mppm","p":["ec"],"note":""}]},{"name":"建築專業學院","units":[{"n":"建築專業學院學士班","did":"archschool","p":["b"],"note":""},{"n":"建築學士學位學程","did":"archschool","p":["b"],"note":"對內招生"},{"n":"室內設計學士學程","did":"id","p":["b"],"note":""},{"n":"建築碩士學位學程","did":"archschool","p":["m"],"note":""},{"n":"室內設計進修學士班","did":"id","p":["ce"],"note":""}]},{"name":"創能學院","units":[{"n":"人工智慧技術與應用學士學位學程","did":"aita","p":["b"],"note":""},{"n":"人工智慧科技與管理碩士學位學程","did":"aitm","p":["m"],"note":""}]},{"name":"經營管理學院","units":[{"n":"經營管理碩士在職學位學程經營管理組","did":"smd","p":["ec"],"note":""},{"n":"經營管理碩士在職學位學程高階管理組","did":"smd","p":["ec"],"note":""},{"n":"經營管理碩士在職學位學程數位創新管理組","did":"smd","p":["ec"],"note":""},{"n":"經營管理碩士在職學位學程文化創意產業管理組","did":"smd","p":["ec"],"note":""},{"n":"經營管理碩士在職學位學程建築產業管理組","did":"smd","p":["ec"],"note":""}]}]};
+/* ==ADMIT_DATA_END== */
 const SUBS = [
   {id:'a1', name:'A1 特色與核心內容完整度', max:20, grp:'A'},
   {id:'a2', name:'A2 文案轉譯品質',        max:20, grp:'A'},
@@ -1167,49 +1209,6 @@ const DEPTS = [
     {name:'校園新聞(全校relay版)', url:'https://nze.fcu.edu.tw/news-list/', notes:'「逢甲精選」「單位新聞」雙頁籤並陳，此路徑列出內容多為全校relay，與/news/呈現內容一致，皆非本學程自建。'},
     {name:'校園活動', url:'https://nze.fcu.edu.tw/events-list/', notes:'全校relay活動(創能學院工作坊/NVIDIA DLI講座/全校TA選拔)，非本學程自建活動。'},
     {name:'校園公告', url:'https://nze.fcu.edu.tw/announcements-list/', notes:'全校性行政公告(繳費/暑期上班時間/行事曆)，非本學程自建公告。'},
-  ]
-},
-{id:'iem', college:'工程與科學學院', name:'創新智慧製造與管理產業碩士專班', url:'https://iem.fcu.edu.tw/', eval_date:'2026-08-11（v6.0首輪為首頁頂層導覽掃描；同日以首頁全連結掃描複查補齊7項先前遺漏之次級導覽頁）', evaluated:true, overall:61,
-  a1:14,a2:11,a3:7,a4:0,a5:2,a6:1, b1:8,b2:8,b3:4,b4:6,b5:0,
-  priority_issues:[
-    '招生頁唯一的招生連結(碩士班考試入學)標示報名日期為「110年4月7日～110年5月5日」(即2021年，已逾5年)，且連結本身確認404，考生完全無法透過此頁取得任何有效招生資訊',
-    '師資頁7位教師(含專班主任)完全未提供任何大頭照，B5師資照片掛零',
-    '/news/頁面本身404，新聞與活動(/release/)頁「校園新聞」區塊全數為「逢甲精選」relay內容，本學程未建立任何自有新聞管道，A4新聞即時性掛零',
-    '複查新增：「學習Q&A」頁內文仍以「110學年度本碩士班採面試筆試同時進行」作答，與招生頁同樣停留在2021年的過時資訊，顯示全站對外資訊更新落後非單一頁面問題',
-  ],
-  highlights:[
-    '產研頁列出2項具體真實產學合作案例(與暹勁公司合作晶圓切割機、與萊億興業合作橡膠鞋底打膠機)，皆有實體機台成果並置於逢甲工科院地下室，具高可信度',
-    '首頁背景圖確認為真實課堂與機台製作活動照，未發現庫存圖',
-    '成員頁與師資頁揭露之專班主任(徐瑞宏)聯絡資訊一致，可交叉驗證',
-    '複查新增：碩士專業頁具體列出課程配置(專題討論一二三/智慧管理專題研討/高等機械設計專題/自動化設計專題/電腦輔助製造系統/校外專業實習一二三等)，並具體說明產業生活助學金金額(依合作廠商每年1-5萬元)',
-    '複查新增：學研環境頁揭露與imem等學程共享之多間特色空間(快速成形打樣實驗室/精密機械產業發展中心/企業聯網應用實驗室，含FANUC機器人技術與MagneMotion獨立臺車系統/賜昌鞋履智慧製造實驗室等)，設備描述具體。',
-  ],
-  pain_points:[
-    '招生資訊嚴重過時且失效，是目前已評估工程與科學學院學程中最嚴重的招生資訊落後案例',
-    '師資頁完全無教師照片，且無研究專長以外的更多背景資訊',
-    '完全缺乏自有新聞發布管道，/news/直接404',
-    '產研內容僅2項，數量偏少，未能充分展現學程整體研發量能',
-  ],
-  quick_fixes:[
-    '立即更新招生連結至115學年度現行招生資訊，並移除已失效的110學年度舊連結',
-    '師資頁補齊7位教師大頭照',
-    '建立/news/頁面並發布至少1-2則以本專班為主體的單位新聞',
-    '一併更新「學習Q&A」頁中同樣過時的110學年度招生資訊',
-  ],
-  page_notes:[
-    {name:'首頁', url:'https://iem.fcu.edu.tw/', notes:'背景圖為真實課堂與機台製作活動照(機器人製造基地、上課紀錄)，未發現庫存圖'},
-    {name:'招生', url:'https://iem.fcu.edu.tw/apply-master/', notes:'🚩唯一連結標示110學年度(2021年)報名日期，且該連結(national_list/110master_industr/)確認404'},
-    {name:'綜覽', url:'https://iem.fcu.edu.tw/about/', notes:'[A1] 就學即就業定位，合作企業橫跨機械/半導體/電子/商管等大型企業，一般生成績達企業要求可獲企業獎學金，內容偏概述性、無具名企業或個案。'},
-    {name:'學研環境', url:'https://iem.fcu.edu.tw/environmenta/', notes:'[A1,A6] 與工科院/商學院共享多間特色空間，含快速成形打樣實驗室/精密機械產業發展中心/數位轉型研究中心/企業聯網應用實驗室(FANUC機器人技術+MagneMotion獨立臺車系統)/CNC工具機加工實習室/賜昌鞋履智慧製造實驗室/跨領域智慧製造與系統整合場域/Autodesk Design Studio，設備描述具體。'},
-    {name:'特色亮點', url:'https://iem.fcu.edu.tw/feature/', notes:'企業主管專題講座/專案實際操演/企業實習3項特色描述，皆為概述性文字，無具名企業或講師案例。'},
-    {name:'歡迎', url:'https://iem.fcu.edu.tw/greeting/', notes:'「主任的話」未署名，提及2020年新冠疫情背景下自動化產業與企業系統管理需求增加之課程設計脈絡。'},
-    {name:'碩士專業', url:'https://iem.fcu.edu.tw/master/', notes:'[A1,A3] 課程配置具體(專題討論一二三/智慧管理專題研討/高等機械設計專題/自動化設計專題/電腦輔助製造系統/產業系統實務/國際經營管理/校外專業實習一二三)，產業生活助學金依合作廠商每年1-5萬元。'},
-    {name:'學習Q&A', url:'https://iem.fcu.edu.tw/qa/', notes:'🚩內容仍以「110學年度本碩士班採面試筆試同時進行」作答，與招生頁同樣過時，強化了「招生資訊嚴重過時」此優先改善事項的證據。'},
-    {name:'產研', url:'https://iem.fcu.edu.tw/product/', notes:'2項具體產學合作案例(暹勁公司晶圓切割機、萊億興業橡膠鞋底打膠機)，有實體機台成果佐證，但數量偏少'},
-    {name:'師資', url:'https://iem.fcu.edu.tw/teacherma/', notes:'🚩7位教師(含專班主任徐瑞宏)完全無大頭照，僅列文字聯絡資訊與研究專長'},
-    {name:'新聞與活動', url:'https://iem.fcu.edu.tw/release/', notes:'🚩/news/本身404；本頁「校園新聞」區塊5則全數標示「逢甲精選」relay內容，無自建新聞'},
-    {name:'成員', url:'https://iem.fcu.edu.tw/members/', notes:'專班主任徐瑞宏聯絡資訊與師資頁一致，惟僅列信箱與分機，無辦公室地址'},
-    {name:'生活(空白頁)', url:'https://iem.fcu.edu.tw/生活/', notes:'🚩僅有標題「生活」，無任何本文內容。'},
   ]
 },
 {id:'marketing', college:'商學院', name:'行銷學系', url:'https://marketing.fcu.edu.tw/', eval_date:'2026-08-11（首輪為首頁頂層導覽掃描；同日以首頁全連結掃描複查補齊5項先前遺漏之次級導覽頁，內容多為relay確認或空白子選單頁，未發現足以調整分數之新證據）', evaluated:true, overall:85,
@@ -3442,8 +3441,138 @@ function pct(v,mx){return Math.round(v/mx*100);}
 ═══════════════════════════════════════════════════════ */
 let radarChart = null;
 
+/* ==ADMIT_JS_START== */
+/* =======================================================
+   115 學年度招生系所一覽表
+   ADMIT_115.colleges[].units[].p = 該單位招生的學制：
+   b 學士班／m 碩士班／d 博士班／ce 進修學士班／ec 碩士在職專班
+   did = 對應健檢儀表板 DEPTS.id（多個學程共用一個網站時會重複）
+======================================================= */
+let admQ = '', admF = '';
+
+function admCount(k){
+  let n = 0;
+  ADMIT_115.colleges.forEach(c=>c.units.forEach(u=>{ if(u.p.indexOf(k)>=0) n++; }));
+  return n;
+}
+function admUnits(){
+  let n = 0;
+  ADMIT_115.colleges.forEach(c=>{ n += c.units.length; });
+  return n;
+}
+function admMatch(u){
+  if(admF && u.p.indexOf(admF) < 0) return false;
+  if(admQ && u.n.toLowerCase().indexOf(admQ) < 0) return false;
+  return true;
+}
+
+function selectAdmit(){
+  document.querySelectorAll('.di').forEach(e=>e.classList.remove('act'));
+  const el = document.getElementById('di-__admit');
+  if(el) el.classList.add('act');
+  closeSidebar();
+  renderAdmit();
+}
+
+function renderAdmit(){
+  const chips = ADMIT_115.types.map(t=>
+    '<div class="adm-chip"><span class="k">' + esc(t.n) + '</span><span class="v">' + admCount(t.k) + '</span><span class="u">個單位</span></div>'
+  ).join('');
+  const filters = [{k:'',n:'全部'}].concat(ADMIT_115.types).map(t=>
+    '<button class="adm-f' + (admF===t.k?' on':'') + '" data-admf="' + esc(t.k) + '">' + esc(t.n) + '</button>'
+  ).join('');
+  document.getElementById('mn').innerHTML =
+  '<div class="card">' +
+    '<div class="dept-hd">' +
+      '<div class="score-circle" style="background:#534AB7;font-size:15px;line-height:1.2;text-align:center;">' + esc(ADMIT_115.year) + '<br><small>學年度</small></div>' +
+      '<div class="dept-info">' +
+        '<div class="college-tag">招生資料</div>' +
+        '<h2>' + esc(ADMIT_115.year) + '學年度招生系所一覽表</h2>' +
+        '<div class="adm-src">共 ' + ADMIT_115.colleges.length + ' 個學院、' + admUnits() + ' 個招生單位（同一單位可同時招收多種學制）<br>資料來源：逢甲大學 ' + esc(ADMIT_115.year) + ' 學年度招生系所一覽表；點選單位名稱可跳至該單位的網站健檢結果</div>' +
+      '</div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="card">' +
+    '<div class="card-title"><i class="ti ti-chart-bar"></i> 各學制招生單位數</div>' +
+    '<div class="adm-chips">' + chips + '</div>' +
+  '</div>' +
+  '<div class="adm-tools">' +
+    '<input class="adm-search" id="adm-q" type="search" placeholder="搜尋系所／學位學程..." value="' + esc(admQ) + '">' +
+    filters +
+  '</div>' +
+  '<div id="adm-body"></div>';
+
+  document.querySelectorAll('[data-admf]').forEach(b=>{
+    b.addEventListener('click',()=>{ admF = b.getAttribute('data-admf'); renderAdmit(); });
+  });
+  const q = document.getElementById('adm-q');
+  q.addEventListener('input',()=>{
+    admQ = q.value.trim().toLowerCase();
+    renderAdmitBody();
+  });
+  renderAdmitBody();
+}
+
+function renderAdmitBody(){
+  const head = '<tr><th class="n" rowspan="2">系、所、學位學程</th><th class="grp" colspan="3">日間學制</th><th class="grp ext" colspan="2">進修學制</th></tr>' +
+               '<tr>' + ADMIT_115.types.map(t=>'<th>' + esc(t.n) + '</th>').join('') + '</tr>';
+  let html = '', shown = 0;
+  ADMIT_115.colleges.forEach(c=>{
+    const units = c.units.filter(admMatch);
+    if(!units.length) return;
+    shown += units.length;
+    const rows = units.map(u=>{
+      const d = u.did ? DEPTS.find(x=>x.id===u.did) : null;
+      const nameHtml = d
+        ? '<a class="adm-lnk" data-admdid="' + esc(u.did) + '">' + esc(u.n) + '</a>'
+        : esc(u.n);
+      const note = u.note ? '<span class="adm-tag">' + esc(u.note) + '</span>' : '';
+      const cells = ADMIT_115.types.map(t=>
+        u.p.indexOf(t.k)>=0 ? '<td><span class="adm-y">✓</span></td>' : '<td><span class="adm-dash">–</span></td>'
+      ).join('');
+      return '<tr><td class="n">' + nameHtml + note + '</td>' + cells + '</tr>';
+    }).join('');
+    html += '<div class="card">' +
+      '<div class="card-title"><i class="ti ti-building-bank"></i> ' + esc(c.name) + '　<span style="color:#B4B2A9;font-weight:600;">' + units.length + ' 個單位</span></div>' +
+      '<div class="adm-wrap"><table class="adm-tbl"><thead>' + head + '</thead><tbody>' + rows + '</tbody></table></div>' +
+    '</div>';
+  });
+  if(!shown){
+    html = '<div class="card"><div class="adm-empty"><i class="ti ti-search-off" style="font-size:24px;display:block;margin-bottom:.5rem;"></i>沒有符合條件的招生單位</div></div>';
+  }
+
+  /* 健檢儀表板中有、但招生一覽表未列出的單位 */
+  const admDids = {};
+  ADMIT_115.colleges.forEach(c=>c.units.forEach(u=>{ if(u.did) admDids[u.did]=1; }));
+  const missing = DEPTS.filter(d=>!admDids[d.id]);
+  if(missing.length){
+    html += '<div class="card">' +
+      '<div class="card-title"><i class="ti ti-info-circle"></i> 未列於 ' + esc(ADMIT_115.year) + ' 學年度招生一覽表的單位（' + missing.length + '）</div>' +
+      '<div class="adm-miss">' + missing.map(d=>'<span>' + esc(d.name) + '</span>').join('') + '</div>' +
+      '<div class="adm-src" style="margin-top:6px;">這些單位設有網站並列入健檢，但未出現在 ' + esc(ADMIT_115.year) + ' 學年度招生系所一覽表中。</div>' +
+    '</div>';
+  }
+
+  document.getElementById('adm-body').innerHTML = html;
+  document.querySelectorAll('[data-admdid]').forEach(a=>{
+    a.addEventListener('click',()=>selectDept(a.getAttribute('data-admdid')));
+  });
+}
+
+function admitNav(body){
+  const wrap = document.createElement('div');
+  wrap.className = 'sb-nav';
+  const el = document.createElement('div');
+  el.className = 'di nav-item'; el.id = 'di-__admit';
+  el.innerHTML = '<i class="ti ti-school"></i><div class="di-n">' + esc(ADMIT_115.year) + '學年度招生系所一覽表</div>';
+  el.onclick = selectAdmit;
+  wrap.appendChild(el);
+  body.appendChild(wrap);
+}
+/* ==ADMIT_JS_END== */
 function buildSidebar(){
   const body = document.getElementById('sb-body');
+  admitNav(body);
   const colleges = [...new Set(DEPTS.map(d=>d.college))];
   colleges.forEach(col=>{
     const depts = DEPTS.filter(d=>d.college===col);
