@@ -5,58 +5,58 @@
 <title>新聞/訊息公告英譯小幫手｜逢甲大學秘書處公共事務組</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f0efe9;color:#1a1a18;font-size:17px;line-height:1.5;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f0efe9;color:#1a1a18;font-size:22.1px;line-height:1.5;}
 .layout{display:flex;height:100vh;}
 
 /* ── Sidebar ── */
 .sb{width:256px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
 .sb-hdr{padding:1rem 1.1rem .75rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
 .sb-logo{display:flex;align-items:center;gap:9px;margin-bottom:.5rem;}
-.sb-logo i{font-size:22px;color:#534AB7;}
-.sb-t{font-size:16px;font-weight:700;color:#1a1a18;line-height:1.3;}
-.sb-m{font-size:12.5px;color:#888780;margin-top:4px;line-height:1.65;}
-.sb-btn{display:block;width:100%;margin-top:9px;padding:7px 0;font-size:13px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;}
+.sb-logo i{font-size:28.6px;color:#534AB7;}
+.sb-t{font-size:20.8px;font-weight:700;color:#1a1a18;line-height:1.3;}
+.sb-m{font-size:16.2px;color:#888780;margin-top:4px;line-height:1.65;}
+.sb-btn{display:block;width:100%;margin-top:9px;padding:7px 0;font-size:16.9px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;}
 .sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
 .sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
-.col-h{padding:.6rem 1.1rem .2rem;font-size:12px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
+.col-h{padding:.6rem 1.1rem .2rem;font-size:15.6px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.08em;margin-top:4px;}
 .di{display:flex;align-items:center;gap:8px;padding:.4rem 1.1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
 .di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
 .di.act{background:#fff;color:#185FA5;border-left-color:#185FA5;font-weight:700;}
-.di-n{font-size:15px;line-height:1.35;}
+.di-n{font-size:19.5px;line-height:1.35;}
 .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
 
 /* ── Main area ── */
 .mn{flex:1;overflow-y:auto;padding:1.25rem 1.6rem;background:#f0efe9;}
 .card{background:#fff;border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;border:1px solid #e5e4dc;}
-.dn{font-size:22px;font-weight:700;color:#1a1a18;}
-.ds{font-size:13px;color:#888780;margin-top:4px;}
+.dn{font-size:28.6px;font-weight:700;color:#1a1a18;}
+.ds{font-size:16.9px;color:#888780;margin-top:4px;}
 .ds a{color:#185FA5;text-decoration:none;}
 .ds a:hover{text-decoration:underline;}
-.ubdg{display:inline-block;font-size:12.5px;padding:4px 13px;background:#EAF3DE;color:#3B6D11;border-radius:99px;margin-top:7px;font-weight:600;}
+.ubdg{display:inline-block;font-size:16.2px;padding:4px 13px;background:#EAF3DE;color:#3B6D11;border-radius:99px;margin-top:7px;font-weight:600;}
 
 /* ── Stat grid ── */
 .sg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:.9rem;}
 .sc{background:#fff;border-radius:10px;padding:.8rem .6rem;text-align:center;border:1px solid #e5e4dc;}
-.sv{font-size:28px;font-weight:700;line-height:1.1;}
-.sl{font-size:12.5px;color:#888780;margin-top:5px;line-height:1.4;}
+.sv{font-size:36.4px;font-weight:700;line-height:1.1;}
+.sl{font-size:16.2px;color:#888780;margin-top:5px;line-height:1.4;}
 
 /* ── Progress bar ── */
-.pb-r{display:flex;justify-content:space-between;font-size:13.5px;color:#5F5E5A;margin-bottom:.45rem;}
+.pb-r{display:flex;justify-content:space-between;font-size:17.6px;color:#5F5E5A;margin-bottom:.45rem;}
 .pb-bg{height:15px;background:#ebe9e0;border-radius:8px;overflow:hidden;}
 .pb-f{height:100%;border-radius:8px;background:#E9A23B;transition:width .6s ease;}
-.pb-n{font-size:13px;color:#5F5E5A;margin-top:.4rem;}
+.pb-n{font-size:16.9px;color:#5F5E5A;margin-top:.4rem;}
 
 /* ── Table ── */
 .tbl-wrap{background:#fff;border-radius:12px;overflow:clip;border:1px solid #e5e4dc;}
-.tbl-hdr{padding:.7rem 1.2rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:14px;font-weight:700;color:#1a1a18;display:flex;align-items:center;gap:8px;}
-table{width:100%;border-collapse:collapse;font-size:14.5px;}
-th{padding:.55rem 1rem;font-size:13px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;position:sticky;top:0;z-index:2;}
+.tbl-hdr{padding:.7rem 1.2rem;background:#f7f6f1;border-bottom:1px solid #e5e4dc;font-size:18.2px;font-weight:700;color:#1a1a18;display:flex;align-items:center;gap:8px;}
+table{width:100%;border-collapse:collapse;font-size:18.9px;}
+th{padding:.55rem 1rem;font-size:16.9px;font-weight:700;color:#888780;text-align:left;border-bottom:1px solid #e5e4dc;background:#f7f6f1;position:sticky;top:0;z-index:2;}
 td{padding:.6rem 1rem;border-bottom:1px solid #eceae0;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:#faf9f6;}
-.ttl{color:#1a1a18;cursor:pointer;line-height:1.45;font-size:14.5px;}
+.ttl{color:#1a1a18;cursor:pointer;line-height:1.45;font-size:18.9px;}
 .ttl:hover{color:#185FA5;text-decoration:underline;}
-.gb{display:inline-block;font-size:12.5px;padding:3px 10px;border-radius:6px;font-weight:700;}
+.gb{display:inline-block;font-size:16.2px;padding:3px 10px;border-radius:6px;font-weight:700;}
 .gg{background:#EAF3DE;color:#3B6D11;}
 .gn{background:#FAEEDA;color:#854F0B;}
 .gw{background:#FAECE7;color:#993C1D;}
@@ -65,18 +65,18 @@ tr:hover td{background:#faf9f6;}
 /* ── Score bars ── */
 .sbrs{display:flex;flex-direction:column;gap:4px;min-width:130px;}
 .sbr{display:flex;align-items:center;gap:5px;}
-.sbl{font-size:11.5px;color:#888780;width:60px;}
+.sbl{font-size:15px;color:#888780;width:60px;}
 .sbb{flex:1;height:8px;background:#ebe9e0;border-radius:4px;overflow:hidden;}
 .sbf{height:100%;border-radius:4px;}
-.sbv{font-size:11.5px;color:#5F5E5A;width:26px;text-align:right;}
-.stot{font-size:20px;font-weight:800;color:#854F0B;min-width:36px;text-align:right;}
+.sbv{font-size:15px;color:#5F5E5A;width:26px;text-align:right;}
+.stot{font-size:26px;font-weight:800;color:#854F0B;min-width:36px;text-align:right;}
 
 /* ── Misc ── */
-.empty{text-align:center;padding:4rem;color:#B4B2A9;font-size:15px;}
+.empty{text-align:center;padding:4rem;color:#B4B2A9;font-size:19.5px;}
 .legend{display:flex;gap:14px;margin-bottom:.9rem;flex-wrap:wrap;}
-.leg-i{display:flex;align-items:center;gap:6px;font-size:13px;color:#5F5E5A;}
-.topbar{display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #dddcd4;padding:.7rem 1.6rem;flex-shrink:0;font-size:13px;color:#888780;}
-.topbar strong{color:#1a1a18;font-size:15px;}
+.leg-i{display:flex;align-items:center;gap:6px;font-size:16.9px;color:#5F5E5A;}
+.topbar{display:flex;align-items:center;gap:10px;background:#fff;border-bottom:1px solid #dddcd4;padding:.7rem 1.6rem;flex-shrink:0;font-size:16.9px;color:#888780;}
+.topbar strong{color:#1a1a18;font-size:19.5px;}
 
 /* ── 手機版（≤768px）：側欄化為抽屜、表格橫向滑動、間距縮小 ── */
 .sb-toggle{display:none;}
@@ -86,43 +86,43 @@ tr:hover td{background:#faf9f6;}
 .more-btn{display:none;}
 .to-top{display:none;}
 @media (max-width:768px){
-  body{font-size:15px;}
+  body{font-size:19.5px;}
   .layout{height:100dvh;}
   .sb{position:fixed;top:0;left:0;bottom:0;z-index:60;width:min(80vw,280px);transform:translateX(-105%);transition:transform .25s ease;box-shadow:4px 0 18px rgba(0,0,0,.18);}
   .sb.open{transform:none;}
   .sb.open+.sb-backdrop{display:block;position:fixed;inset:0;z-index:55;background:rgba(20,20,18,.4);}
-  .sb-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #d3d1c7;border-radius:8px;background:#fff;color:#1a1a18;font-size:18px;cursor:pointer;flex-shrink:0;}
-  .topbar{padding:.5rem .7rem;font-size:11px;gap:6px;flex-wrap:nowrap;overflow:hidden;white-space:nowrap;}
+  .sb-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid #d3d1c7;border-radius:8px;background:#fff;color:#1a1a18;font-size:23.4px;cursor:pointer;flex-shrink:0;}
+  .topbar{padding:.5rem .7rem;font-size:14.3px;gap:6px;flex-wrap:nowrap;overflow:hidden;white-space:nowrap;}
   /* 手機版只保留統計起迄，其餘資訊在各頁內已有 */
   .topbar span:nth-child(n+4){display:none;}
   .mn{padding:.8rem .7rem;}
   .card{padding:.9rem .8rem;}
-  .dn{font-size:18px;}
+  .dn{font-size:23.4px;}
   .sg{grid-template-columns:repeat(2,1fr)!important;gap:7px;}
   .sc{padding:.6rem .4rem;}
   .card>div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;}
   .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .tbl-wrap table{min-width:680px;}
-  table{font-size:12.5px;}
-  th,td{padding:.45rem .55rem;font-size:12.5px;}
-  .tbl-hdr{padding:.6rem .8rem;font-size:12.5px;}
-  .sbl{width:52px;font-size:10.5px;}
+  table{font-size:16.2px;}
+  th,td{padding:.45rem .55rem;font-size:16.2px;}
+  .tbl-hdr{padding:.6rem .8rem;font-size:16.2px;}
+  .sbl{width:52px;font-size:13.7px;}
   .sbrs{min-width:110px;}
   .sg-swipe{display:flex!important;clear:both;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:2px;scroll-snap-type:x proximity;scrollbar-width:none;-ms-overflow-style:none;}
   .sg-swipe::-webkit-scrollbar{display:none;}
   .sg-swipe .sc{flex:0 0 44%;min-width:132px;scroll-snap-align:start;}
   .sg-ga4 .sc-users{display:none;}
-  .swipe-hint{display:flex;clear:both;justify-content:flex-end;align-items:center;gap:3px;font-size:10.5px;color:#B4B2A9;margin:2px 0 4px;}
-  .legend{gap:6px 10px;font-size:10.5px;margin-bottom:.6rem;}
+  .swipe-hint{display:flex;clear:both;justify-content:flex-end;align-items:center;gap:3px;font-size:13.7px;color:#B4B2A9;margin:2px 0 4px;}
+  .legend{gap:6px 10px;font-size:13.7px;margin-bottom:.6rem;}
   .leg-i{white-space:nowrap;}
   /* 觸控目標放大至 44px 建議值 */
   .sb .di{padding-top:.5rem;padding-bottom:.5rem;min-height:44px;}
   .sb-btn{padding:11px 0;min-height:44px;}
   /* 分批顯示按鈕 */
-  .more-btn{display:block;width:100%;padding:12px;min-height:44px;border:none;border-top:1px solid #eceae0;background:#faf9f6;color:#185FA5;font-size:13px;font-weight:600;cursor:pointer;}
+  .more-btn{display:block;width:100%;padding:12px;min-height:44px;border:none;border-top:1px solid #eceae0;background:#faf9f6;color:#185FA5;font-size:16.9px;font-weight:600;cursor:pointer;}
   .more-btn:disabled{color:#B4B2A9;}
   /* 回頂按鈕 */
-  .to-top{position:fixed;right:14px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #d3d1c7;background:#fff;color:#185FA5;font-size:19px;box-shadow:0 2px 10px rgba(0,0,0,.16);display:none;align-items:center;justify-content:center;z-index:50;cursor:pointer;}
+  .to-top{position:fixed;right:14px;bottom:18px;width:44px;height:44px;border-radius:50%;border:1px solid #d3d1c7;background:#fff;color:#185FA5;font-size:24.7px;box-shadow:0 2px 10px rgba(0,0,0,.16);display:none;align-items:center;justify-content:center;z-index:50;cursor:pointer;}
   .to-top.show{display:flex;}
   /* ── 表格轉卡片式堆疊（熱門/冷門新聞、校級新聞列表）── */
   /* 卡片式列表不需橫向捲動；保留 overflow 會使 overflow-y 變 hidden，吸頂標題失效 */
@@ -133,22 +133,22 @@ tr:hover td{background:#faf9f6;}
   .tbl-stack tr{display:block;padding:.6rem .8rem;border-bottom:1px solid #eceae0;}
   .tbl-stack tr:last-child{border-bottom:none;}
   .tbl-stack td{display:inline;border:none!important;padding:0!important;text-align:left!important;white-space:normal!important;background:none!important;}
-  .tbl-stack .stk-rk{color:#B4B2A9;font-size:11px;}
+  .tbl-stack .stk-rk{color:#B4B2A9;font-size:14.3px;}
   .tbl-stack .stk-rk::after{content:'.';margin-right:4px;}
-  .tbl-stack .stk-ttl{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .tbl-stack .stk-ttl{font-size:17.6px;font-weight:600;color:#1a1a18;}
   .tbl-stack .stk-ttl a{color:inherit;}
   .tbl-stack .stk-ttl::after{content:'';display:block;height:4px;}
-  .tbl-stack .stk-date{font-size:11.5px;color:#888780;}
+  .tbl-stack .stk-date{font-size:15px;color:#888780;}
   .tbl-stack .stk-date::before{content:'發佈 ';color:#B4B2A9;}
   .tbl-stack .stk-nn{margin-left:8px;}
   /* 各學系總覽：卡片式，系名一行、數字一行、燈號固定右上 */
   .ov-stack tr{position:relative;padding-right:2rem;}
-  .ov-stack .ov-name{font-size:13.5px;font-weight:600;color:#1a1a18;}
+  .ov-stack .ov-name{font-size:17.6px;font-weight:600;color:#1a1a18;}
   .ov-stack .ov-name::after{content:'';display:block;height:5px;}
-  .ov-stack .ov-n::before{content:'新聞 ';color:#888780;font-size:11px;font-weight:400;}
-  .ov-stack .ov-sch::before{content:'\3000校網 ';color:#888780;font-size:11px;font-weight:400;}
-  .ov-stack .ov-self::before{content:'\3000自建 ';color:#888780;font-size:11px;font-weight:400;}
-  .ov-stack .ov-nn::before{content:'\3000非新聞 ';color:#888780;font-size:11px;font-weight:400;}
+  .ov-stack .ov-n::before{content:'新聞 ';color:#888780;font-size:14.3px;font-weight:400;}
+  .ov-stack .ov-sch::before{content:'\3000校網 ';color:#888780;font-size:14.3px;font-weight:400;}
+  .ov-stack .ov-self::before{content:'\3000自建 ';color:#888780;font-size:14.3px;font-weight:400;}
+  .ov-stack .ov-nn::before{content:'\3000非新聞 ';color:#888780;font-size:14.3px;font-weight:400;}
   .ov-stack .ov-dot{position:absolute;right:.8rem;top:.75rem;}
   /* 三類列表以色帶區分，捲動時容易辨識目前所在區塊 */
   .sec-hot .tbl-hdr{background:#EDF7F3;border-left:4px solid #1D9E75;color:#0F6E56;}
@@ -158,18 +158,18 @@ tr:hover td{background:#faf9f6;}
   .sec-cold,.sec-news{margin-top:1.1rem;}
   /* 區塊標題捲動時吸附在頂端 */
   .sec-hot .tbl-hdr,.sec-cold .tbl-hdr,.sec-news .tbl-hdr{position:sticky;top:0;z-index:3;}
-  .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:11px;font-weight:700;margin-left:5px;vertical-align:middle;}
-  .tbl-stack .stk-pv{font-size:12px;font-weight:700;margin-left:12px;}
-  .tbl-stack .stk-pv::before{content:'瀏覽 ';color:#B4B2A9;font-size:11.5px;font-weight:400;}
-  .tbl-stack .stk-pv::after{content:' 次';color:#B4B2A9;font-size:11.5px;font-weight:400;}
+  .tbl-stack .nn-lbl{display:inline;color:#E24B4A;font-size:14.3px;font-weight:700;margin-left:5px;vertical-align:middle;}
+  .tbl-stack .stk-pv{font-size:15.6px;font-weight:700;margin-left:12px;}
+  .tbl-stack .stk-pv::before{content:'瀏覽 ';color:#B4B2A9;font-size:15px;font-weight:400;}
+  .tbl-stack .stk-pv::after{content:' 次';color:#B4B2A9;font-size:15px;font-weight:400;}
   .tbl-stack .stk-tags{display:block;margin-top:4px;max-width:none!important;}
-  .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:11px!important;}
+  .tbl-stack .stk-tags span{margin:2px 4px 2px 0!important;padding:1px 6px!important;font-size:14.3px!important;}
   .tbl-stack .stk-grade{display:block;margin-top:4px;}
   .tbl-stack .stk-badge{margin-right:8px;}
   .tbl-stack .stk-score{display:block;margin-top:3px;}
   .tbl-stack .stk-score-inner{justify-content:flex-start!important;flex-wrap:wrap;row-gap:4px;}
   .tbl-stack .sbrs{width:auto;min-width:0!important;flex:1 1 auto;}
-  .tbl-stack .sbl{width:52px!important;font-size:10.5px!important;}
+  .tbl-stack .sbl{width:52px!important;font-size:13.7px!important;}
 }
 </style>
 <style>
@@ -177,7 +177,7 @@ tr:hover td{background:#faf9f6;}
 body{background:#f0efe9;}
 .page{max-width:860px;margin:0 auto;padding:1.1rem .9rem 3rem;}
 .pg-hd{display:flex;align-items:center;gap:10px;margin-bottom:1rem;flex-wrap:wrap;}
-.pg-hd .bk{margin-left:auto;font-size:12px;padding:8px 14px;background:#fff;border:1px solid #d3d1c7;
+.pg-hd .bk{margin-left:auto;font-size:15.6px;padding:8px 14px;background:#fff;border:1px solid #d3d1c7;
   border-radius:7px;text-decoration:none;color:#5F5E5A;min-height:40px;display:inline-flex;align-items:center;gap:5px;}
 @media (max-width:768px){
   .page{padding:.8rem .7rem 3rem;}
@@ -189,8 +189,8 @@ body{background:#f0efe9;}
 <div class="page">
   <div class="pg-hd">
     <div>
-      <div style="font-size:19px;font-weight:700;color:#1a1a18;"><i class="ti ti-language" style="color:#534AB7;"></i> 新聞/訊息公告英譯小幫手</div>
-      <div style="font-size:11.5px;color:#888780;margin-top:2px;">逢甲大學秘書處公共事務組</div>
+      <div style="font-size:24.7px;font-weight:700;color:#1a1a18;"><i class="ti ti-language" style="color:#534AB7;"></i> 新聞/訊息公告英譯小幫手</div>
+      <div style="font-size:15px;color:#888780;margin-top:2px;">逢甲大學秘書處公共事務組</div>
     </div>
   </div>
   <div id="mn"></div>
@@ -203,41 +203,41 @@ function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'
 function render(){
   let h=`
     <div class="card">
-      <div style="font-size:17px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-language" style="color:#534AB7;"></i> 新聞/訊息公告英譯小幫手</div>
-      <div style="font-size:12.5px;color:#888780;line-height:1.6;">貼上中文新聞稿 → 自動比對逢甲大學雙語詞彚庫（共 ${GLOSSARY.length.toLocaleString()} 筆專有名詞：單位組織、人名、職稱、建築物）→ 產生提示詞 → 複製貼到免費的 AI 聊天室翻譯。完全免費，不需要任何帳號設定。</div>
+      <div style="font-size:22.1px;font-weight:700;color:#1a1a18;margin-bottom:4px;"><i class="ti ti-language" style="color:#534AB7;"></i> 新聞/訊息公告英譯小幫手</div>
+      <div style="font-size:16.2px;color:#888780;line-height:1.6;">貼上中文新聞稿 → 自動比對逢甲大學雙語詞彚庫（共 ${GLOSSARY.length.toLocaleString()} 筆專有名詞：單位組織、人名、職稱、建築物）→ 產生提示詞 → 複製貼到免費的 AI 聊天室翻譯。完全免費，不需要任何帳號設定。</div>
     </div>
     <div class="card">
-      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：貼上中文新聞稿</div>
-      <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿內容..."></textarea>
-      <button onclick="buildTranslatorPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;">
+      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：貼上中文新聞稿</div>
+      <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:18.2px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿內容..."></textarea>
+      <button onclick="buildTranslatorPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:18.2px;font-weight:600;cursor:pointer;">
         <i class="ti ti-wand"></i> 搜尋詞彚庫並產生提示詞
       </button>
     </div>
     <div class="card" id="tMatchCard" style="display:none;">
-      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;"><i class="ti ti-list-search" style="color:#1D9E75;"></i> 比對到的詞彚庫專有名詞</div>
-      <div id="tMatchList" style="font-size:12.5px;color:#5F5E5A;line-height:1.9;"></div>
+      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;"><i class="ti ti-list-search" style="color:#1D9E75;"></i> 比對到的詞彚庫專有名詞</div>
+      <div id="tMatchList" style="font-size:16.2px;color:#5F5E5A;line-height:1.9;"></div>
     </div>
     <div class="card" id="tOutputCard" style="display:none;">
-      <div style="font-size:13px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
-      <textarea id="tOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:12.5px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
+      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
+      <textarea id="tOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:16.2px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
-        <button onclick="copyTranslatorPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;">
+        <button onclick="copyTranslatorPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:16.9px;font-weight:600;cursor:pointer;">
           <i class="ti ti-copy"></i> 複製提示詞
         </button>
-        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:16.9px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Gemini
         </a>
-        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:16.9px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Claude
         </a>
-        <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:16.9px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 ChatGPT
         </a>
-        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:13px;color:#5F5E5A;text-decoration:none;">
+        <a href="https://copilot.microsoft.com" target="_blank" rel="noopener noreferrer" style="padding:8px 16px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;font-size:16.9px;color:#5F5E5A;text-decoration:none;">
           <i class="ti ti-external-link"></i> 開啟 Copilot
         </a>
       </div>
-      <div id="tCopyMsg" style="font-size:12px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
+      <div id="tCopyMsg" style="font-size:15.6px;color:#1D9E75;margin-top:6px;display:none;">已複製到剪貼簿！</div>
     </div>`;
   document.getElementById('mn').innerHTML=h;
 }
