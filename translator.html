@@ -207,7 +207,7 @@ function render(){
       <div style="font-size:16.2px;color:#888780;line-height:1.6;">貼上中文新聞稿/訊息公告內容 → 自動比對逢甲大學雙語詞彙庫（共 ${GLOSSARY.length.toLocaleString()} 筆專有名詞：單位組織、人名、職稱、建築物）→ 產生提示詞 → 複製貼到免費的 AI 聊天室翻譯。完全免費，不需要任何帳號設定。</div>
     </div>
     <div class="card">
-      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：貼上中文新聞稿</div>
+      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：中文新聞稿/訊息公告內容</div>
       <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:18.2px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿內容..."></textarea>
       <button onclick="buildTranslatorPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:18.2px;font-weight:600;cursor:pointer;">
         <i class="ti ti-wand"></i> 搜尋詞彚庫並產生提示詞
@@ -244,7 +244,7 @@ function render(){
 function buildTranslatorPrompt(){
   const content=document.getElementById('tContent').value.trim();
   if(content.length<5){
-    alert('請貼上中文新聞稿內容');
+    alert('請貼上中文新聞稿/訊息公告內容');
     return;
   }
 
