@@ -208,13 +208,22 @@ function render(){
     </div>
     <div class="card">
       <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第一步：中文新聞稿/訊息公告內容</div>
-      <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:18.2px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿內容..."></textarea>
+      <div style="margin-bottom:10px;">
+        <label for="tType" style="font-size:16.2px;color:#5F5E5A;margin-right:6px;">文件類型</label>
+        <select id="tType" style="padding:6px 10px;border:1px solid #d3d1c7;border-radius:6px;font-size:16.2px;font-family:inherit;">
+          <option value="auto">自動判斷</option>
+          <option value="新聞稿">新聞稿</option>
+          <option value="活動">活動訊息</option>
+          <option value="公告">公告</option>
+        </select>
+      </div>
+      <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:18.2px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿／活動訊息／公告內容..."></textarea>
       <button onclick="buildTranslatorPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:18.2px;font-weight:600;cursor:pointer;">
-        <i class="ti ti-wand"></i> 搜尋詞彚庫並產生提示詞
+        <i class="ti ti-wand"></i> 搜尋詞彙庫並產生提示詞
       </button>
     </div>
     <div class="card" id="tMatchCard" style="display:none;">
-      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;"><i class="ti ti-list-search" style="color:#1D9E75;"></i> 比對到的詞彚庫專有名詞</div>
+      <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;"><i class="ti ti-list-search" style="color:#1D9E75;"></i> 比對到的詞彙庫專有名詞</div>
       <div id="tMatchList" style="font-size:16.2px;color:#5F5E5A;line-height:1.9;"></div>
     </div>
     <div class="card" id="tOutputCard" style="display:none;">
@@ -241,14 +250,71 @@ function render(){
     </div>`;
   document.getElementById('mn').innerHTML=h;
 }
+// 依文件類型套用不同寫法規則（選「自動判斷」時三類全放，交由 AI 判斷）
+const TYPE_RULES={
+'新聞稿':`▍新聞稿寫法
+- 以高等教育工作者的程度與角度撰寫，使用正式但易讀的學術新聞英文，避免口語化，也避免過度生硬的官方公文體，符合國際大學新聞稿的慣用語氣與寫作風格。
+- 第一行為英文標題（原文無標題時，依內容擬定）。
+- 導言先交代最重要的人、事、時、地；中文重複的修辭與口號可精簡，但不得刪去任何事實。
+- 引述須保留原意，並清楚標明說話者。`,
+'活動':`▍活動訊息寫法
+- 語氣正式但親切，可以用 you 直接對讀者說話，讓國際學生與外籍人士願意參加。
+- 結構：英文標題 → 1–2 段活動介紹（目的、亮點、適合對象）→ 活動資訊。
+- 活動資訊以「項目: 內容」逐行列出，例如 Date、Time、Venue、Speaker、Eligibility、Registration、Deadline、Contact，只列出原文有的項目。
+- 原文有報名方式時，結尾以一句話提醒讀者報名並附上期限。`,
+'公告':`▍公告寫法
+- 語氣清楚、精確、中性，不加任何宣傳性修辭。
+- 結構：英文標題（直接說明公告事項）→ 首段說明公告目的與適用對象 → 規定、流程與應備文件。
+- 規定、流程與應備文件依原文順序以 1. 2. 3. 編號列出，每一條都必須完整保留，不可合併或省略。
+- 精確反映原文的強制程度：「應、須、必須」譯為 must 或 are required to；「得、可」譯為 may；「不得」譯為 may not 或 must not。`
+};
+
+function buildPromptText(content,type,glossaryLines){
+  const label=type==='auto'?'稿件':(type==='活動'?'活動訊息':type);
+  const typeLine=type==='auto'
+    ?'文件類型：請先依內容判斷屬於新聞稿、活動訊息或公告，再採用下方對應的寫法。'
+    :`文件類型：${label}`;
+  const rules=type==='auto'?Object.values(TYPE_RULES).join('\n\n'):TYPE_RULES[type];
+  return `你是一位具備高等教育背景的專業翻譯人員，熟悉國際大學對外英文溝通的寫作慣例。請將以下逢甲大學中文${label}翻譯成適合國際讀者（國際學生、外籍教職員、海外姊妹校與校友）閱讀的英文${label}。
+
+${typeLine}
+
+【翻譯原則】
+1. 專有名詞優先：以下是從逢甲大學官方雙語詞彙庫中比對到、本篇文章內出現的專有名詞（單位組織、人事、職稱、建築物等），翻譯時「必須」採用以下對照表的英文版本，不可自行另譯：
+${glossaryLines||'（本文未比對到詞彙庫中的專有名詞）'}
+
+2. 對照表使用補充：
+   - 長短詞條重疊時（例如「副校長」與「校長」），以原文實際出現的完整詞為準。
+   - Dean、Director、Chief 等通用職稱，須寫出所屬單位，例如教務長寫成 Dean of the Office of Academic Affairs（單位名稱同樣以對照表為準）。
+
+3. 事實零誤差：人名、職稱、數字、日期、時間、地點、金額、名額、資格條件與截止期限必須與原文完全一致，不得增刪、推測或補充原文沒有的資訊。
+
+4. 若文中出現詞彙庫未列出的人名、職稱或單位名稱，請依英文新聞慣例合理翻譯（人名可用漢語拼音，格式與對照表一致：名在前、姓在後，雙字名以連字號連接，例如 Cheng-Shu Kao；原文已附英文名者以原文為準），並維持全文用語前後一致。
+
+5. 日期與時間：民國年換算為西元年（115年 → 2026）；學年度寫成 2026-27 academic year，第1學期為 Fall semester、第2學期為 Spring semester；日期寫成 Oct. 5, 2026，時間寫成 2:00–4:00 p.m.；原文有星期才寫，不要自行推算；線上活動或跨國報名的時間加註 (Taiwan time, UTC+8)。
+
+6. 聯絡資訊：電子郵件、網址與報名連結原樣保留；電話寫成國際格式，例如 +886-4-2451-7250 ext. XXXX（XXXX 依原文分機填入）。
+
+${rules}
+
+【輸出規定】
+直接輸出翻譯後的英文全文，不要包含 markdown 符號（例如 #、**、-、*），也不需附上中文原文或額外說明。需要條列時，使用 1. 2. 3. 編號或「項目: 內容」逐行列出。
+
+──────────
+
+以下是中文${label}原文：
+
+${content}`;
+}
+
 function buildTranslatorPrompt(){
   const content=document.getElementById('tContent').value.trim();
   if(content.length<5){
-    alert('請貼上中文新聞稿/訊息公告內容');
+    alert('請貼上中文新聞稿／活動訊息／公告內容');
     return;
   }
 
-  // 比對詞彚庫：找出文章中出現的所有詞條（同一中文詞若有多個官方英文版本，全部保留）
+  // 比對詞彙庫：找出文章中出現的所有詞條（同一中文詞若有多個官方英文版本，全部保留）
   const matchedMap=new Map();
   GLOSSARY.forEach(g=>{
     if(g.zh.length>=2&&content.includes(g.zh)){
@@ -268,31 +334,17 @@ function buildTranslatorPrompt(){
       return `<div style="margin-bottom:4px;"><strong>${esc(m.zh)}</strong> → ${esc(ens)}</div>`;
     }).join('');
   } else {
-    matchList.innerHTML='<span style="color:#B4B2A9;">未比對到詞彚庫中的專有名詞</span>';
+    matchList.innerHTML='<span style="color:#B4B2A9;">未比對到詞彙庫中的專有名詞</span>';
   }
   matchCard.style.display='block';
 
   const glossaryLines=matches.map(m=>{
     const ens=m.variants.map(v=>v[1]);
-    const enText=ens.length>1?(ens.join('／')+'（官方詞彚庫有多個版本，請依文意選用最合適者）'):ens[0];
+    const enText=ens.length>1?(ens.join('／')+'（官方詞彙庫有多個版本，請依文意選用最合適者）'):ens[0];
     return m.zh+' = '+enText;
   }).join('\n');
 
-  const prompt=`你是一位具備高等教育背景的專業新聞翻譯人員，請將以下逢甲大學中文新聞稿翻譯成適合國際讀者閱讀的英文新聞稿。
-
-【翻譯原則】
-1. 專有名詞優先：以下是從逢甲大學官方雙語詞彚庫中比對到、本篇文章內出現的專有名詞（單位組織、人事、職稱、建築物等），翻譯時「必須」採用以下對照表的英文版本，不可自行另譯：
-${glossaryLines||'（本文未比對到詞彚庫中的專有名詞）'}
-
-2. 語氣與用字：請以高等教育工作者的程度與角度撰寫，使用正式但易讀的學術新聞英文，避免口語化，也避免過度生硬的官方公文體，符合國際大學新聞稿的慣用語氣與寫作風格。
-3. 若文中出現詞彚庫未列出的人名、職稱或單位名稱，請依英文新聞慣例合理翻譯（人名可用漢語拼音），並維持全文用語前後一致。
-4. 直接輸出翻譯後的英文新聞稿全文，不要包含 markdown 符號，也不需附上中文原文或額外說明。
-
-──────────
-
-以下是中文新聞稿原文：
-
-${content}`;
+  const prompt=buildPromptText(content,document.getElementById('tType').value,glossaryLines);
 
   document.getElementById('tOutput').value=prompt;
   document.getElementById('tOutputCard').style.display='block';
