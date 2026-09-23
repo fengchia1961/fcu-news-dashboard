@@ -218,6 +218,9 @@ function render(){
         </select>
       </div>
       <textarea id="tContent" rows="10" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:18.2px;font-family:inherit;resize:vertical;" placeholder="請貼上完整的中文新聞稿／活動訊息／公告內容..."></textarea>
+      <div style="font-size:16.2px;color:#5F5E5A;margin:12px 0 4px;font-weight:600;">活動／計畫名稱的正式英譯（選填）</div>
+      <div style="font-size:15px;color:#888780;margin-bottom:6px;line-height:1.6;">文中若有主辦單位訂有正式英文名稱的活動、計畫、競賽或獎項，請每行填一筆「中文名稱 = 英文名稱」。沒填的名稱，AI 會自行翻譯並標示【待確認】。</div>
+      <textarea id="tNames" rows="3" style="width:100%;padding:8px;border:1px solid #d3d1c7;border-radius:6px;font-size:16.2px;font-family:inherit;resize:vertical;" placeholder="例如：Young飛全球行動計畫 = Global Youth Action Plan"></textarea>
       <button onclick="buildTranslatorPrompt()" style="margin-top:12px;padding:9px 18px;background:#534AB7;color:#fff;border:none;border-radius:7px;font-size:18.2px;font-weight:600;cursor:pointer;">
         <i class="ti ti-wand"></i> 搜尋詞彙庫並產生提示詞
       </button>
@@ -229,6 +232,9 @@ function render(){
     <div class="card" id="tOutputCard" style="display:none;">
       <div style="font-size:16.9px;font-weight:700;color:#5F5E5A;margin-bottom:8px;">第二步：複製提示詞，貼到免費 AI 聊天室</div>
       <textarea id="tOutput" readonly rows="10" style="width:100%;padding:10px;border:1px solid #d3d1c7;border-radius:6px;font-size:16.2px;font-family:inherit;background:#f7f6f1;resize:vertical;"></textarea>
+      <div style="margin-top:10px;padding:10px 12px;border:1px solid #E24B4A;border-radius:7px;background:#FCEBEB;color:#A32D2D;font-size:16.2px;line-height:1.6;">
+        <i class="ti ti-alert-triangle"></i> 發布前請檢查：AI 譯文中標有【待確認：…】的活動／計畫名稱是 AI 自行翻譯的，請確認主辦單位是否有正式英文名稱，改正後刪除標示。
+      </div>
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">
         <button onclick="copyTranslatorPrompt()" style="padding:8px 16px;background:#1D9E75;color:#fff;border:none;border-radius:7px;font-size:16.9px;font-weight:600;cursor:pointer;">
           <i class="ti ti-copy"></i> 複製提示詞
@@ -269,7 +275,7 @@ const TYPE_RULES={
 - 精確反映原文的強制程度：「應、須、必須」譯為 must 或 are required to；「得、可」譯為 may；「不得」譯為 may not 或 must not。`
 };
 
-function buildPromptText(content,type,glossaryLines){
+function buildPromptText(content,type,glossaryLines,nameLines){
   const label=type==='auto'?'稿件':(type==='活動'?'活動訊息':type);
   const typeLine=type==='auto'
     ?'文件類型：請先依內容判斷屬於新聞稿、活動訊息或公告，再採用下方對應的寫法。'
@@ -291,14 +297,18 @@ ${glossaryLines||'（本文未比對到詞彙庫中的專有名詞）'}
 
 4. 若文中出現詞彙庫未列出的人名、職稱或單位名稱，請依英文新聞慣例合理翻譯（人名可用漢語拼音，格式與對照表一致：名在前、姓在後，雙字名以連字號連接，例如 Cheng-Shu Kao；原文已附英文名者以原文為準），並維持全文用語前後一致。
 
-5. 日期與時間：民國年換算為西元年（115年 → 2026）；學年度寫成 2026-27 academic year，第1學期為 Fall semester、第2學期為 Spring semester；日期寫成 Oct. 5, 2026，時間寫成 2:00–4:00 p.m.；原文有星期才寫，不要自行推算；線上活動或跨國報名的時間加註 (Taiwan time, UTC+8)。
+5. 活動、計畫、競賽與獎項的正式名稱：
+${nameLines?'以下是上稿者提供的正式英文名稱，「必須」採用，不可自行另譯（年度依第6點換算）：\n'+nameLines+'\n':''}   - 原文中上稿者未提供英譯、由政府機關、校外機構或本校主辦的活動、計畫、競賽、獎項正式名稱，請依英文慣例翻譯，並在英文名稱後面緊接加上【待確認：中文原名】，例如 XXX Program【待確認：XXX計畫】，方便上稿者核對正式英譯。
+   - 同一名稱在全文只需在第一次出現時標示。一般性的描述（例如「新生典禮」「演講」）不需標示。
 
-6. 聯絡資訊：電子郵件、網址與報名連結原樣保留；電話寫成國際格式，例如 +886-4-2451-7250 ext. XXXX（XXXX 依原文分機填入）。
+6. 日期與時間：民國年換算為西元年（115年 → 2026）；學年度寫成 2026-27 academic year，第1學期為 Fall semester、第2學期為 Spring semester；日期寫成 Oct. 5, 2026，時間寫成 2:00–4:00 p.m.；原文有星期才寫，不要自行推算；線上活動或跨國報名的時間加註 (Taiwan time, UTC+8)。
+
+7. 聯絡資訊：電子郵件、網址與報名連結原樣保留；電話寫成國際格式，例如 +886-4-2451-7250 ext. XXXX（XXXX 依原文分機填入）。
 
 ${rules}
 
 【輸出規定】
-直接輸出翻譯後的英文全文，不要包含 markdown 符號（例如 #、**、-、*），也不需附上中文原文或額外說明。需要條列時，使用 1. 2. 3. 編號或「項目: 內容」逐行列出。
+直接輸出翻譯後的英文全文，不要包含 markdown 符號（例如 #、**、-、*），也不需附上中文原文或額外說明（第5點的【待確認】標示除外）。需要條列時，使用 1. 2. 3. 編號或「項目: 內容」逐行列出。
 
 ──────────
 
@@ -344,7 +354,13 @@ function buildTranslatorPrompt(){
     return m.zh+' = '+enText;
   }).join('\n');
 
-  const prompt=buildPromptText(content,document.getElementById('tType').value,glossaryLines);
+  // 上稿者提供的活動／計畫正式英譯：每行「中文 = 英文」（全形＝也可）
+  const nameLines=document.getElementById('tNames').value.split('\n')
+    .map(l=>l.replace('＝','=').split('=').map(s=>s.trim()))
+    .filter(p=>p.length===2&&p[0]&&p[1])
+    .map(p=>p[0]+' = '+p[1]).join('\n');
+
+  const prompt=buildPromptText(content,document.getElementById('tType').value,glossaryLines,nameLines);
 
   document.getElementById('tOutput').value=prompt;
   document.getElementById('tOutputCard').style.display='block';
