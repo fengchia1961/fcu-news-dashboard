@@ -13,21 +13,23 @@ from PIL import Image
 HERE = pathlib.Path(__file__).parent
 IMG = HERE / "img"
 
-# 來源檔 -> (left, top, right, bottom)，座標以 1280x720 原圖為準
+# 輸出檔名 -> (來源檔, (left, top, right, bottom))，座標以 1280x720 原圖為準
 CROPS = {
-    "p04": (230,  25, 1035, 695),   # Google 搜尋結果：去掉左右大留白與右下角 QR
-    "p03": (  0,   0, 1280, 712),   # ChatGPT 工工系：整張，只去掉底部白邊
-    "p13": ( 48, 105,  665, 445),   # 我追問 → AI 承認寫錯 + 實際情況表
-    "p12": ( 35, 292,  838, 680),   # EMBA 首頁大圖（去掉舊標題與紅色警示列）
-    "p18": ( 42, 130, 1198, 232),   # 會計系紅色警示列（說明文字在投影片上另外排版，不用截圖）
-    "p08": ( 28, 140, 1256, 640),   # 健檢儀表板畫面（去掉舊標題與網址）
-    "p09": ( 33, 122, 1218, 620),   # 對話式開發左右兩張對話截圖
+    "c04":  ("p04", (230,  25, 1035, 695)),  # Google 搜尋結果：去掉左右大留白與右下角 QR
+    "c03":  ("p03", (  0,   0, 1280, 712)),  # ChatGPT 工工系：整張，只去掉底部白邊
+    "c13":  ("p13", ( 48, 105,  665, 445)),  # 我追問 → AI 承認寫錯 + 實際情況表
+    "c18":  ("p18", ( 42, 130, 1198, 232)),  # 會計系紅色警示列
+    "c08":  ("p08", ( 28, 140, 1256, 640)),  # 健檢儀表板畫面（去掉舊標題與網址）
+    "c09":  ("p09", ( 33, 122, 1218, 620)),  # 對話式開發左右兩張對話截圖
+    # 電子系教與學空間（案例一）
+    "c11a": ("p11", ( 35, 155, 1115, 192)),  # 健檢主要問題第 2 條：7 個場域 4 個僅有名稱
+    "c11b": ("p11", (765, 312, 1243, 638)),  # 「電子學實驗室」場域實際呈現
 }
 
-for name, box in CROPS.items():
-    src = Image.open(IMG / f"{name}.png").convert("RGB")
+for name, (src_name, box) in CROPS.items():
+    src = Image.open(IMG / f"{src_name}.png").convert("RGB")
     out = src.crop(box)
-    dst = IMG / f"c{name[1:]}.png"
+    dst = IMG / f"{name}.png"
     out.save(dst, optimize=True)
     w, h = out.size
     print(f"{dst.name:>10}  {w}x{h}  aspect {w/h:.3f}")
