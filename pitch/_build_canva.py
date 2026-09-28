@@ -43,6 +43,17 @@ style = re.sub(r"#notes[^{]*\{[^}]*\}", "", style)
 style = re.sub(r"#grid[^{]*\{[^}]*\}", "", style)
 style = re.sub(r"@media print\{.*?\n\}", "", style, flags=re.S)
 
+# ── Canva 轉檔器不吃的效果，在這裡改掉（只影響 canva.html，不動 index.html）──
+style += """
+/* Canva 匯入修正 */
+.hl{background:none;color:var(--orange);font-weight:700}          /* 螢光底色會變成實心色塊 */
+.chip{padding:12px 24px;font-size:15px;line-height:1.6;border-radius:26px}  /* 膠囊太窄會爆字 */
+ul.bul{list-style:disc;padding-left:24px}                          /* ::before 方塊會跑位 */
+ul.bul li{padding-left:0}
+ul.bul li::before{display:none}
+.step::after{display:none}                                         /* 箭頭三角轉不過去 */
+"""
+
 # ── 取出 22 頁 ──────────────────────────────────────────────────
 pages = re.findall(r'(<section class="slide[^"]*"[^>]*data-notes="(.*?)">)(.*?)</section>',
                    src, re.S)

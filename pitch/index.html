@@ -109,10 +109,10 @@ strong{color:var(--red-b)}
 }
 .shot.tall{aspect-ratio:4/3}
 .shot.wide{aspect-ratio:16/7}
-.shot img{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transform:scale(var(--z,1)) translate(var(--x,0),var(--y,0));
-}
+/* 圖已在 _crop_shots.py 實體裁好，這裡不再用 transform 裁切 ——
+   transform 匯入 Canva 時不會被正確轉換，圖會跑掉。 */
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff}
+.shot.cap-fit{box-shadow:none;border:none;background:transparent}
 .cap{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6}
 .cap b{color:var(--red-b)}
 
@@ -288,7 +288,7 @@ Google 的 AI 摘要覆蓋率已經到 43%，AI 模式的造訪次數一年從 1
       </ul>
     </div>
     <div>
-      <figure class="shot tall"><img src="img/p04.png" style="--z:1.42;--x:-1%;--y:-8%"></figure>
+      <figure class="shot" style="aspect-ratio:1.201"><img src="img/c04.png" alt=""></figure>
       <div class="cap">資料來源：ETtoday AI 科技（2026.07.29）、換日線 Crossing（2025.07.21）</div>
     </div>
   </div>
@@ -307,7 +307,7 @@ Google 的 AI 摘要覆蓋率已經到 43%，AI 模式的造訪次數一年從 1
   <p class="sub">答案不差，但它引用的來源——不是我們的網站</p>
   <div class="split wide-left">
     <div>
-      <figure class="shot wide"><img src="img/p03.png" style="--z:1.06;--x:0;--y:0"></figure>
+      <figure class="shot" style="aspect-ratio:1.798"><img src="img/c03.png" alt=""></figure>
     </div>
     <div>
       <div class="card" style="border-left:5px solid var(--red-b)">
@@ -461,7 +461,7 @@ AI 寫『學習場域頁除麵包屑與標題外完全空白』，我點進去�
   <div class="kicker">協作的樣子</div>
   <h2>看不懂的，我直接問它；它查錯了，會改</h2>
   <div class="split wide-left">
-    <div><figure class="shot wide"><img src="img/p13.png" style="--z:1.42;--x:-9%;--y:5%"></figure></div>
+    <div><figure class="shot" style="aspect-ratio:1.815"><img src="img/c13.png" alt=""></figure></div>
     <div>
       <div class="card"><div class="lbl">我追問</div><p style="color:var(--ink)">「這個是指這一頁，請用白話文說，裡面有照片啊。」</p></div>
       <div class="card" style="margin-top:14px;border-left:5px solid var(--red-b)"><div class="lbl">它重查後回覆</div><p style="color:var(--ink)">「你說得對——照片確實有，而且有 87 張。原本那句『無任何內文或圖片』寫錯了，應該修正。」</p></div>
@@ -493,7 +493,7 @@ AI 寫『學習場域頁除麵包屑與標題外完全空白』，我點進去�
   <h2>87 張照片，0 個字</h2>
   <p class="sub">smd.fcu.edu.tw/learnspace/ — 看起來最豐富的一頁，對 AI 來說是空白頁</p>
   <div class="split">
-    <div><figure class="shot"><img src="img/p12.png" style="--z:1.5;--x:-12%;--y:9%"></figure></div>
+    <div><figure class="shot" style="aspect-ratio:2.070"><img src="img/c12.png" alt=""></figure></div>
     <div>
       <div class="cols c3" style="gap:14px">
         <div class="card"><div class="stat"><div class="n" style="font-size:40px">87</div><div class="t">張輪播照片</div></div></div>
@@ -521,18 +521,19 @@ AI 寫『學習場域頁除麵包屑與標題外完全空白』，我點進去�
 高中生用手機滑到底，看到的就是那 11 個死掉的連結。">
   <div class="kicker">案例二 ‧ 會計學系</div>
   <h2>表面沒壞，頁尾全壞</h2>
-  <div class="split wide-left">
-    <div>
-      <figure class="shot wide"><img src="img/p18.png" style="--z:1.5;--x:0;--y:-16%"></figure>
-      <div class="cap">AI 健檢結果原文：招生頁 <b>11 個管道連結</b>全部指向已下架的 national_list/114*、113* 舊路徑，逐一實測<b>全數 404</b>。</div>
-    </div>
-    <div>
-      <p style="font-size:19px;line-height:1.8">我差一點以為 AI 錯了。<br>進會計系看——招生都連到校網，沒有 404 啊。</p>
-      <p style="font-size:19px;line-height:1.8;margin-top:14px"><strong>結果往下看，footer。</strong></p>
-      <div class="card" style="margin-top:16px;border-left:5px solid var(--red-b)">
-        <p style="color:var(--ink);font-size:17.5px">只要是曾經做過的頁面，它沒被刪除，<strong>AI 都可以找得到</strong>。</p>
+  <figure class="shot" style="aspect-ratio:11.333;margin:0 0 8px"><img src="img/c18.png" alt="AI 健檢結果：會計學系招生頁 11 個管道連結全數 404"></figure>
+  <div class="cap" style="margin-bottom:22px">AI 健檢結果原文 — 招生頁 <b>11 個管道連結</b>全部指向已下架的 national_list/114*、113* 舊路徑，逐一實測<b>全數 404</b>。</div>
+  <div class="body" style="justify-content:flex-start">
+    <div class="cols c2" style="gap:30px;align-items:start">
+      <div>
+        <p style="font-size:20px;line-height:1.85">我差一點以為 AI 錯了。<br>進會計系看——招生都連到校網，沒有 404 啊。</p>
+        <p style="font-size:20px;line-height:1.85;margin-top:12px"><strong>結果往下看，footer。</strong></p>
+        <p style="margin-top:14px;font-size:16.5px;color:var(--muted)">人看網站看主選單；AI 把整頁包含頁尾全部讀完。高中生滑到底，看到的就是那 11 個死連結。</p>
       </div>
-      <p style="margin-top:16px;font-size:16px;color:var(--muted)">人看網站看主選單；AI 把整頁包含頁尾全部讀完。高中生滑到底，看到的就是那 11 個死連結。</p>
+      <div class="card" style="border-left:5px solid var(--red-b)">
+        <div class="lbl">這句話請記住</div>
+        <p style="color:var(--ink);font-size:19px;line-height:1.85">只要是曾經做過的頁面，它沒被刪除，<strong>AI 都可以找得到</strong>。</p>
+      </div>
     </div>
   </div>
   <div class="foot"><span>三個真實案例</span><span class="pg"></span></div>
@@ -698,7 +699,7 @@ og:image 是 LINE、FB 分享出去的預覽縮圖，空著就是一張空白卡
   <div class="kicker">附錄 A ‧ 備援畫面</div>
   <h2>學系網站健檢儀表板 v6.0</h2>
   <div class="body">
-    <figure class="shot wide"><img src="img/p08.png" style="--z:1.3;--x:0;--y:9%"></figure>
+    <figure class="shot" style="aspect-ratio:2.456"><img src="img/c08.png" alt=""></figure>
     <div class="cap">fengchia1961.github.io/check/ — 側欄依學院分組；每系含健檢總覽、頁面查核紀錄、評分標準三個分頁。</div>
   </div>
   <div class="foot"><span>附錄</span><span class="pg"></span></div>
@@ -711,7 +712,7 @@ og:image 是 LINE、FB 分享出去的預覽縮圖，空著就是一張空白卡
   <div class="kicker">附錄 B ‧ 備援畫面</div>
   <h2>對話式開發的實際畫面</h2>
   <div class="body">
-    <figure class="shot wide"><img src="img/p09.png" style="--z:1.25;--x:0;--y:6%"></figure>
+    <figure class="shot" style="aspect-ratio:2.380"><img src="img/c09.png" alt=""></figure>
     <div class="cap">左：指定角色、評分標準與待查網址。右：AI 逐步執行並回報，最後產出可直接開啟的 HTML 儀表板。</div>
   </div>
   <div class="foot"><span>附錄</span><span class="pg"></span></div>
