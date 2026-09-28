@@ -47,7 +47,9 @@ style = re.sub(r"@media print\{.*?\n\}", "", style, flags=re.S)
 style += """
 /* Canva 匯入修正 */
 .hl{background:none;color:var(--orange);font-weight:700}          /* 螢光底色會變成實心色塊 */
-.chip{padding:12px 24px;font-size:15px;line-height:1.6;border-radius:26px}  /* 膠囊太窄會爆字 */
+/* 膠囊：Canva 把文字和外框拆成兩個元素、文字會頂到左上角爆出來，索性只留文字 */
+.chip,.slide.dark .chip{background:none;border:none;padding:0;font-size:17px;letter-spacing:.14em}
+.chips{gap:30px}
 ul.bul{list-style:disc;padding-left:24px}                          /* ::before 方塊會跑位 */
 ul.bul li{padding-left:0}
 ul.bul li::before{display:none}
