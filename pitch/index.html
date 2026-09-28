@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI領航簡報｜秘書處公共事務組</title>
+<meta name="description" content="從網站健檢、新聞監測到議題行銷——逢甲大學秘書處公共事務組與 AI 協作成果簡報">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#761623;        /* 逢甲紅（深） */
+  --red-b:#A82838;      /* 逢甲紅（亮） */
+  --orange:#F08050;     /* 輔助橘 */
+  --ink:#303030;
+  --paper:#FAF7F5;
+  --warm:#E6E1DD;
+  --line:rgba(48,48,48,.14);
+  --muted:#6E6461;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;background:#1a1012;color:var(--ink);
+  font-family:var(--sans);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+
+/* ---------- stage ---------- */
+#stage{position:relative;width:1280px;height:720px;transform-origin:center center;flex:none}
+.slide{
+  position:absolute;inset:0;background:var(--paper);
+  padding:56px 72px;display:none;flex-direction:column;
+  overflow:hidden;
+}
+.slide.on{display:flex}
+.slide.dark{background:var(--red);color:#fff}
+.slide.dark .kicker{color:var(--orange)}
+.slide.warm{background:var(--warm)}
+
+/* ---------- type ---------- */
+.kicker{
+  font-family:var(--mono);font-size:13px;letter-spacing:.22em;
+  color:var(--red-b);text-transform:uppercase;margin:0 0 14px;
+  display:flex;align-items:center;gap:12px;
+}
+.kicker::before{content:"";width:28px;height:2px;background:currentColor;flex:none}
+h1{font-family:var(--serif);font-weight:900;font-size:62px;line-height:1.16;margin:0 0 18px;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.25;margin:0 0 6px;letter-spacing:-.01em}
+h3{font-family:var(--serif);font-weight:700;font-size:23px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:20px;line-height:1.7;color:var(--muted);margin:0 0 26px;max-width:940px}
+.slide.dark .sub{color:rgba(255,255,255,.82)}
+p{font-size:18px;line-height:1.8;margin:0 0 12px}
+strong{color:var(--red-b)}
+.slide.dark strong{color:var(--orange)}
+.hl{background:linear-gradient(transparent 58%,rgba(240,128,80,.42) 58%);padding:0 2px}
+
+/* ---------- layout helpers ---------- */
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.cols{display:grid;gap:26px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid;grid-template-columns:1.06fr .94fr;gap:34px;align-items:center;flex:1;min-height:0}
+.split.wide-left{grid-template-columns:1.35fr .65fr}
+
+/* ---------- cards ---------- */
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card.flat{background:rgba(255,255,255,.55)}
+.slide.dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff}
+.card .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--red-b);margin-bottom:8px}
+.slide.dark .card .lbl{color:var(--orange)}
+.card p{font-size:16.5px;line-height:1.75;margin:0;color:var(--muted)}
+.slide.dark .card p{color:rgba(255,255,255,.8)}
+
+/* ---------- stat ---------- */
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .n{font-family:var(--serif);font-weight:900;font-size:56px;line-height:1;color:var(--red-b);letter-spacing:-.02em}
+.slide.dark .stat .n{color:#fff}
+.stat .n small{font-size:22px;font-weight:700;margin-left:4px}
+.stat .t{font-size:15px;color:var(--muted);line-height:1.5;margin-top:8px}
+.slide.dark .stat .t{color:rgba(255,255,255,.72)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:stretch}
+.step{position:relative;padding:26px 28px 26px 30px;background:#fff;border:1px solid var(--line)}
+.step:first-child{border-radius:14px 0 0 14px}
+.step:last-child{border-radius:0 14px 14px 0}
+.step+.step{border-left:none}
+.step .no{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--orange);font-weight:700;margin-bottom:10px}
+.step h3{font-size:21px;margin-bottom:10px}
+.step p{font-size:15.5px;color:var(--muted);line-height:1.7;margin:0}
+.step::after{
+  content:"";position:absolute;right:-9px;top:50%;width:16px;height:16px;
+  transform:translateY(-50%) rotate(45deg);background:#fff;
+  border-top:1px solid var(--line);border-right:1px solid var(--line);z-index:2;
+}
+.step:last-child::after{display:none}
+
+/* ---------- screenshot frame ---------- */
+.shot{
+  position:relative;overflow:hidden;border-radius:12px;background:#fff;
+  border:1px solid var(--line);box-shadow:0 14px 34px rgba(60,20,25,.13);
+  aspect-ratio:16/9;
+}
+.shot.tall{aspect-ratio:4/3}
+.shot.wide{aspect-ratio:16/7}
+.shot img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(var(--z,1)) translate(var(--x,0),var(--y,0));
+}
+.cap{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6}
+.cap b{color:var(--red-b)}
+
+/* ---------- quote / prompt ---------- */
+.prompt{
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--red-b);
+  border-radius:0 12px 12px 0;padding:24px 28px;font-size:19px;line-height:1.85;
+}
+.prompt .who{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--red-b);margin-bottom:12px}
+.prompt ol{margin:10px 0 0;padding-left:22px}
+.prompt li{margin-bottom:6px}
+
+/* ---------- list ---------- */
+ul.bul{list-style:none;padding:0;margin:0}
+ul.bul li{position:relative;padding-left:26px;font-size:18px;line-height:1.8;margin-bottom:12px}
+ul.bul li::before{content:"";position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:2px;background:var(--orange)}
+
+/* ---------- chips / links ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.chip{
+  font-family:var(--mono);font-size:12.5px;padding:6px 13px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);background:#fff;
+}
+.slide.dark .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)}
+.url{font-family:var(--mono);font-size:13px;color:var(--red-b);word-break:break-all}
+.slide.dark .url{color:var(--orange)}
+
+/* ---------- QR ---------- */
+.qr{width:150px;flex:none;text-align:center}
+.qr .box{width:150px;height:150px;background:#fff;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center}
+.qr .box canvas,.qr .box img{width:100%!important;height:100%!important;display:block}
+.qr .fallback{font-family:var(--mono);font-size:10px;color:var(--ink);line-height:1.4;word-break:break-all;padding:6px}
+.qr .lab{font-size:12.5px;margin-top:9px;color:rgba(255,255,255,.75)}
+.slide:not(.dark) .qr .lab{color:var(--muted)}
+
+/* ---------- chrome ---------- */
+.foot{
+  position:absolute;left:72px;right:72px;bottom:24px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:rgba(48,48,48,.4);
+}
+.slide.dark .foot{color:rgba(255,255,255,.42)}
+.slide.cover .foot,.slide.section .foot{display:none}
+#bar{position:fixed;left:0;top:0;height:3px;background:var(--orange);z-index:50;transition:width .25s ease}
+#hud{
+  position:fixed;right:16px;bottom:14px;z-index:50;display:flex;gap:8px;align-items:center;
+  font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.55);
+}
+#hud button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  border-radius:6px;padding:5px 9px;cursor:pointer;
+}
+#hud button:hover{color:#fff;background:rgba(255,255,255,.16)}
+
+/* ---------- notes ---------- */
+#notes{
+  position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;z-index:60;
+  background:#14090b;color:#f0e6e4;border-top:2px solid var(--red-b);
+  padding:18px 26px 22px;display:none;
+}
+#notes.on{display:block}
+#notes h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--orange);margin:0 0 10px}
+#notes .txt{font-size:15.5px;line-height:1.85;white-space:pre-wrap;max-width:1100px}
+
+/* ---------- overview ---------- */
+#grid{
+  position:fixed;inset:0;z-index:70;background:rgba(20,9,11,.97);overflow:auto;padding:28px;display:none;
+  grid-template-columns:repeat(5,1fr);gap:14px;align-content:start;
+}
+#grid.on{display:grid}
+#grid .g{
+  aspect-ratio:16/9;border-radius:8px;border:1px solid rgba(255,255,255,.14);
+  background:var(--paper);color:var(--ink);cursor:pointer;padding:12px;overflow:hidden;
+  font-family:var(--serif);font-weight:700;font-size:15px;line-height:1.35;position:relative;
+}
+#grid .g.d{background:var(--red);color:#fff}
+#grid .g span{position:absolute;right:8px;bottom:6px;font-family:var(--mono);font-size:10px;opacity:.5;font-weight:400}
+#grid .g:hover{outline:2px solid var(--orange)}
+
+@media print{
+  body{display:block;background:#fff;overflow:visible}
+  #stage{transform:none!important;width:100%;height:auto}
+  .slide{position:relative;display:flex!important;page-break-after:always;width:1280px;height:720px}
+  #hud,#bar,#notes,#grid{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<div id="stage">
+
+<!-- 1 ─────────────────────────────── COVER -->
+<section class="slide dark cover" data-notes="開場（15 秒）：
+各位委員好，我是秘書處公共事務組。
+這份簡報不是一個構想，是已經上線、每天在用的東西。
+今天講三件事：為什麼要做、怎麼做到的、以及成果和接下來怎麼走。">
+  <div class="body" style="justify-content:center">
+    <div style="display:flex;align-items:flex-end;gap:48px">
+      <div style="flex:1">
+        <div class="kicker">AI 領航 ‧ 智慧校務實作創新競賽</div>
+        <h1>從網站健檢、新聞監測<br>到議題行銷</h1>
+        <p class="sub" style="font-size:22px;margin-bottom:22px">不會寫程式的行政人員，<span class="hl" style="color:#fff">用對話做出 3 個儀表板、2 個內容小幫手、6 個議題網站</span></p>
+        <div class="chips">
+          <span class="chip">網站健檢</span><span class="chip">新聞監測</span><span class="chip">議題行銷</span>
+        </div>
+      </div>
+      <div class="qr">
+        <div class="box" data-qr="https://fengchia1961.github.io/ai-pitch/"></div>
+        <div class="lab">全部成果一次看<br>秘書處公共事務組</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 ─────────────────────────────── 成果數字牆 -->
+<section class="slide dark" data-notes="數字牆（40 秒）：
+先講結論。這些不是規劃中，是已經產出的量。
+28 個系所網站、約 600 頁，逐頁看過；70 個系所的招生連結逐條點過；74 個系所的新聞每天監測。
+最右下角那個數字最重要——外包費用 0 元、額外主機 0 台。
+這裡每一個數字後面都有可以點開的網址，等一下會給。">
+  <div class="kicker">RESULTS ‧ 截至 2026.09</div>
+  <h2 style="color:#fff">先講結論：已經產出的量</h2>
+  <p class="sub">全部由本組同仁與 AI 對話完成，未外包、未申請額外 IT 資源</p>
+  <div class="body">
+    <div class="cols c4" style="gap:22px">
+      <div class="card"><div class="stat"><div class="n">28<small>站</small></div><div class="t">系所網站深度健檢報告<br>涵蓋 7 個學院</div></div></div>
+      <div class="card"><div class="stat"><div class="n">608<small>頁</small></div><div class="t">逐頁人工＋AI 檢視<br>桌機與手機各走一次</div></div></div>
+      <div class="card"><div class="stat"><div class="n">70<small>系所</small></div><div class="t">招生連結逐條實測<br>對照 115 學年度招生一覽</div></div></div>
+      <div class="card"><div class="stat"><div class="n">74<small>系所</small></div><div class="t">新聞發布情況監測<br>可比較、可追蹤</div></div></div>
+    </div>
+    <div class="cols c4" style="gap:22px;margin-top:22px">
+      <div class="card"><div class="stat"><div class="n">2,117<small>條</small></div><div class="t">英譯詞彙庫<br>職稱與人名官方用字</div></div></div>
+      <div class="card"><div class="stat"><div class="n">6<small>個</small></div><div class="t">已上線議題網站<br>對外可查、可被搜尋</div></div></div>
+      <div class="card"><div class="stat"><div class="n">0<small>元</small></div><div class="t">外包設計與工程費用</div></div></div>
+      <div class="card"><div class="stat"><div class="n">0<small>台</small></div><div class="t">額外主機<br>GitHub Pages 免費部署</div></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>秘書處公共事務組</span><span class="pg"></span></div>
+</section>
+
+<!-- 3 ─────────────────────────────── SECTION 01 -->
+<section class="slide dark section" data-notes="轉場（5 秒）：先說為什麼要做這件事。">
+  <div class="body" style="justify-content:center">
+    <div class="kicker">01 / 04</div>
+    <h1 style="font-size:72px">為什麼要做</h1>
+    <p class="sub" style="font-size:24px">搜尋的規則換了，我們的網站還停在舊規則上</p>
+  </div>
+</section>
+
+<!-- 4 ─────────────────────────────── 搜尋規則變了 -->
+<section class="slide" data-notes="（40 秒）
+第一件事：找答案的方式變了。
+Google 的 AI 摘要覆蓋率已經到 43%，AI 模式的造訪次數一年從 1.26 億次長到 2.79 億次。
+意思是：使用者看到答案就走了，不一定會點進我們的網站。
+那 AI 的答案從哪裡來？從它抓得到、看得懂的網頁來。
+所以網站好不好，已經不只是『好不好看』的問題。">
+  <div class="kicker">現況</div>
+  <h2>大家找答案的方式，已經換了</h2>
+  <p class="sub">使用者看到摘要就走了。答案長什麼樣，取決於 AI 抓到什麼</p>
+  <div class="split">
+    <div>
+      <div class="cols c2" style="gap:18px">
+        <div class="card"><div class="stat"><div class="n">43<small>%</small></div><div class="t">Google 搜尋結果出現 AI 摘要的覆蓋率</div></div></div>
+        <div class="card"><div class="stat"><div class="n">2.79<small>億</small></div><div class="t">AI 模式月造訪次數（前一年為 1.26 億）</div></div></div>
+      </div>
+      <ul class="bul" style="margin-top:24px">
+        <li>摘要直接給答案 → <strong>點擊進站的機會變少</strong></li>
+        <li>沒被寫進網頁的成果，<strong>AI 就當作不存在</strong></li>
+        <li>網站從「給人看的型錄」變成「餵給 AI 的原料」</li>
+      </ul>
+    </div>
+    <div>
+      <figure class="shot tall"><img src="img/p04.png" style="--z:1.42;--x:-1%;--y:-8%"></figure>
+      <div class="cap">資料來源：ETtoday AI 科技（2026.07.29）、換日線 Crossing（2025.07.21）</div>
+    </div>
+  </div>
+  <div class="foot"><span>為什麼要做</span><span class="pg"></span></div>
+</section>
+
+<!-- 5 ─────────────────────────────── AI 怎麼講我們 -->
+<section class="slide" data-notes="（45 秒）— 這頁最有說服力，講慢一點
+我實際去問 AI：『逢甲大學工工系好嗎？』
+它回答得很完整，看起來也不差。
+但請看右邊——它引用的 12 個資料來源裡面，是輔仁大學的頁面、Collego、PTT 2013 年的文章、Dcard 的『後悔來逢甲讀研究所』。
+系網自己的內容，排在很後面，甚至沒被引用。
+這就是我們的處境：我們在講的話，AI 沒聽到；別人在講我們的話，AI 全部聽到了。">
+  <div class="kicker">實測</div>
+  <h2>我問 AI：「逢甲大學工工系好嗎？」</h2>
+  <p class="sub">答案不差，但它引用的來源——不是我們的網站</p>
+  <div class="split wide-left">
+    <div>
+      <figure class="shot wide"><img src="img/p03.png" style="--z:1.06;--x:0;--y:0"></figure>
+    </div>
+    <div>
+      <div class="card" style="border-left:5px solid var(--red-b)">
+        <div class="lbl">它引用的 12 個來源</div>
+        <p style="color:var(--ink);font-size:17px">輔仁大學資工系頁面<br>Collego 選系平台<br>PTT 2013 年的板文<br>Dcard「後悔來逢甲讀研究所」<br>Dcard「想聽大家對工工的看法」</p>
+      </div>
+      <p style="margin-top:20px;font-size:19px;line-height:1.75"><strong>我們的官網，不在前面。</strong><br>不是內容不好，是<span class="hl">沒有寫成 AI 讀得到的樣子</span>。</p>
+    </div>
+  </div>
+  <div class="foot"><span>為什麼要做</span><span class="pg"></span></div>
+</section>
+
+<!-- 6 ─────────────────────────────── Ask AI 主張 -->
+<section class="slide dark" data-notes="（20 秒）— 這是本組的主張，一句話講完就換頁
+所以我們的立場是這一句：
+精彩成果別鎖在硬碟和自己的腦子裡。放上網站，讓逢甲的成果成為 AI 的標準答案。
+要做到這件事，第一步是先知道：我們現在的網站，到底長什麼樣子。">
+  <div class="body" style="justify-content:center">
+    <div class="kicker">ASK AI</div>
+    <h1 style="font-size:58px">當大家從問 Google<br>變成問 AI，AI 認識我們嗎？</h1>
+    <p class="sub" style="font-size:23px;max-width:880px;margin-top:22px">精彩成果別鎖在硬碟和自己的腦子裡。放上網站，<br>讓逢甲的成果和亮點成為 <strong>AI 的標準／參考答案</strong>。</p>
+  </div>
+</section>
+
+<!-- 7 ─────────────────────────────── SECTION 02 -->
+<section class="slide dark section" data-notes="轉場（5 秒）：接下來是委員最想知道的——一個不會寫程式的人，怎麼做出這些東西。">
+  <div class="body" style="justify-content:center">
+    <div class="kicker">02 / 04</div>
+    <h1 style="font-size:72px">怎麼做到的</h1>
+    <p class="sub" style="font-size:24px">不會寫程式的行政人員，用三個步驟完成</p>
+  </div>
+</section>
+
+<!-- 8 ─────────────────────────────── 三步驟方法 -->
+<section class="slide warm" data-notes="（50 秒）— 核心方法頁。後面每一個案例都會回到這三步，委員聽三次就記住了
+整套做法只有三步。
+第一步，訂標準：什麼叫做好的系網？我們和 AI 一起寫出評分標準 v6.0，分成內容與圖像兩大面向。標準是人訂的，不是 AI 訂的。
+第二步，AI 逐頁查：把標準和網址丟給 AI，它桌機、手機各走一次，逐頁比對。這是人工做不完的量。
+第三步，人工抽檢：AI 不一定全對，我們抽檢後才發布。這點等一下我會專門講。
+關鍵在於——標準一旦寫下來，就可以重複用、可以換角度用，也可以在學系改完之後再查一次。">
+  <div class="kicker">METHOD</div>
+  <h2>整套做法只有三步</h2>
+  <p class="sub">標準由人訂、查核由 AI 做、發布前由人抽檢</p>
+  <div class="body">
+    <div class="steps">
+      <div class="step">
+        <div class="no">STEP 01</div>
+        <h3>人訂標準</h3>
+        <p>與 AI 共同寫出《學系網站健檢評分標準 v6.0》：內容面（特色、師資、招生、出路）與圖像面（真實性、品質、圖說）兩大面向，逐項配分。</p>
+      </div>
+      <div class="step">
+        <div class="no">STEP 02</div>
+        <h3>AI 逐頁查</h3>
+        <p>把標準、網址清單與呈現格式交給 AI，桌機 1024×768 與手機 375×812 各走一次，逐頁比對並產出證據。</p>
+      </div>
+      <div class="step">
+        <div class="no">STEP 03</div>
+        <h3>人工抽檢</h3>
+        <p>本組同仁抽檢 AI 的判讀，確認後才發布給學系。標準與結果都可重複執行，優化後能再檢視一次。</p>
+      </div>
+    </div>
+    <div class="cols c3" style="margin-top:26px;gap:22px">
+      <div class="card flat"><div class="lbl">換角度就換一份報告</div><p>同一個網站，可以用「高中生視角」「家長視角」「在職報考者視角」分別評分。</p></div>
+      <div class="card flat"><div class="lbl">標準內建成技能包</div><p>品牌規範、新聞 SOP、英譯詞彙庫做成 fcu-brand-kit、fcu-news-toolkit，不必每次重講。</p></div>
+      <div class="card flat"><div class="lbl">免費上線</div><p>成果以 GitHub Pages 部署，不需申請主機或 IT 資源，改完即時生效。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>怎麼做到的</span><span class="pg"></span></div>
+</section>
+
+<!-- 9 ─────────────────────────────── Before / Now -->
+<section class="slide" data-notes="（35 秒）
+跟以前的差別在這裡。
+以前也做健檢，靠人一頁一頁看，憑經驗判斷，產出是截圖加上作法建議。
+一個人看完 28 個網站 600 頁，不可能。而且每次看的標準都不太一樣。
+現在是：同樣逐站逐頁，但由 AI 執行；依據是寫下來的評分標準，可以換角度、可以複查；產出是一份問題清單加上具體怎麼改。">
+  <div class="kicker">BEFORE / NOW</div>
+  <h2>差別不在「有沒有做」，在「能不能重複做」</h2>
+  <div class="body">
+    <div class="cols c2" style="gap:30px">
+      <div>
+        <div class="card" style="background:#F1EDEA;border-style:dashed">
+          <div class="lbl" style="color:var(--muted)">以前 ｜ 人工健檢</div>
+          <div style="margin-top:14px">
+            <h3 style="font-size:19px;color:var(--muted)">怎麼看</h3><p>逐站逐頁，靠人工瀏覽</p>
+            <h3 style="font-size:19px;color:var(--muted);margin-top:16px">依據</h3><p>憑經驗判斷</p>
+            <h3 style="font-size:19px;color:var(--muted);margin-top:16px">產出</h3><p>截圖＋作法建議</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="border-left:5px solid var(--red-b)">
+          <div class="lbl">現在 ｜ AI 健檢</div>
+          <div style="margin-top:14px">
+            <h3 style="font-size:19px">怎麼看</h3><p style="color:var(--ink)">逐站逐頁，由 AI 自動檢視；桌機與手機各一次</p>
+            <h3 style="font-size:19px;margin-top:16px">依據</h3><p style="color:var(--ink)">明確定義與評分標準，可針對不同角度、不同需求重跑</p>
+            <h3 style="font-size:19px;margin-top:16px">產出</h3><p style="color:var(--ink)">問題清單＋優化建議與作法，可線上追蹤</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>怎麼做到的</span><span class="pg"></span></div>
+</section>
+
+<!-- 10 ─────────────────────────────── 一句話指令 -->
+<section class="slide warm" data-notes="（40 秒）— 委員會想拍照，停久一點
+我怎麼跟 AI 協作？就是這樣講話而已，沒有程式碼。
+這是我真正下的指令，原文照貼。
+我給它三樣東西：一個附件（現有的健檢檔）、一個範圍（70 個系所對照 115 學年度招生一覽）、三個明確要求。
+重點在第三點——『呈現方式請參考附件』。我不必描述版面，它照著既有格式做，所以每份報告長得都一樣。
+這頁就是整份簡報的答案：不用學程式，要學的是把要求講清楚。">
+  <div class="kicker">我怎麼跟 AI 協作</div>
+  <h2>沒有程式碼，只有一段把話講清楚的指令</h2>
+  <div class="split">
+    <div>
+      <div class="prompt">
+        <div class="who">ME → AI ‧ 原文照貼</div>
+        請用附件中，目前網站健檢的 70 個學系／所／學位學程，對照 115 學年度招生系所一覽表中的招生學制，檢視該網站中之招生頁面：
+        <ol>
+          <li>是否有相對應之招生連結</li>
+          <li>請檢視該網站的招生頁面，是否能讓瀏覽者在<strong>二個點擊內</strong>找得到</li>
+          <li>呈現方式請參考附件，另外提供一頁健檢報告</li>
+        </ol>
+      </div>
+    </div>
+    <div>
+      <ul class="bul">
+        <li><strong>給附件</strong>：既有的 health-check.html，它自己讀</li>
+        <li><strong>給範圍</strong>：70 個系所、115 學年度招生一覽</li>
+        <li><strong>給格式</strong>：「參考附件」＝每份報告長得一樣</li>
+        <li><strong>給判準</strong>：「二個點擊內找得到」是可驗證的，不是「好不好用」</li>
+      </ul>
+      <div class="card flat" style="margin-top:18px">
+        <div class="lbl">產出</div>
+        <p style="color:var(--ink)">admission-link-check.html — 一頁式招生連結健檢報告，與儀表板同風格，瀏覽器直接開。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>怎麼做到的</span><span class="pg"></span></div>
+</section>
+
+<!-- 11 ─────────────────────────────── 看不懂就問 -->
+<section class="slide" data-notes="（35 秒）
+還有一件事很重要：看不懂的，我直接問它。
+AI 寫『學習場域頁除麵包屑與標題外完全空白』，我點進去一看——明明有照片啊，我差點以為它寫錯。
+我就把網址貼回去說：『這個是指這一頁，請用白話文說，裡面有照片啊』。
+它重新查一次，然後承認我說得對，並且把真實情況列出來：照片有 87 張，文字 0 個字，圖說完全沒有，照片是用 CSS 背景圖貼的、不是 img 標籤。
+然後用白話解釋三件事：人進去看不懂、Google 抓到只有四個字、視障者完全讀不到。
+——這就是協作。它會查，我會追問，錯了會改。">
+  <div class="kicker">協作的樣子</div>
+  <h2>看不懂的，我直接問它；它查錯了，會改</h2>
+  <div class="split wide-left">
+    <div><figure class="shot wide"><img src="img/p13.png" style="--z:1.42;--x:-9%;--y:5%"></figure></div>
+    <div>
+      <div class="card"><div class="lbl">我追問</div><p style="color:var(--ink)">「這個是指這一頁，請用白話文說，裡面有照片啊。」</p></div>
+      <div class="card" style="margin-top:14px;border-left:5px solid var(--red-b)"><div class="lbl">它重查後回覆</div><p style="color:var(--ink)">「你說得對——照片確實有，而且有 87 張。原本那句『無任何內文或圖片』寫錯了，應該修正。」</p></div>
+      <p style="margin-top:18px;font-size:17px;color:var(--muted)">它接著列出實測：照片 87 張、文字 <strong>0 個字</strong>、圖說 0、全頁唯一的 img 是裝飾白色圓球。</p>
+    </div>
+  </div>
+  <div class="foot"><span>怎麼做到的</span><span class="pg"></span></div>
+</section>
+
+<!-- 12 ─────────────────────────────── SECTION 03 -->
+<section class="slide dark section" data-notes="轉場（5 秒）：接下來三個案例，是 AI 找出來、人工確認過的真實問題。">
+  <div class="body" style="justify-content:center">
+    <div class="kicker">03 / 04</div>
+    <h1 style="font-size:72px">三個真實案例</h1>
+    <p class="sub" style="font-size:24px">人工看不完、看不出來，但確實影響招生的問題</p>
+  </div>
+</section>
+
+<!-- 13 ─────────────────────────────── 案例一 EMBA -->
+<section class="slide" data-notes="（40 秒）
+案例一，經營管理學院 EMBA 的『學習場域』頁。
+畫面很漂亮，87 張照片跑馬燈輪播。
+但整頁正文 0 個字、0 則圖說。
+對報考者來說：他看到一串教室照片滑過去，但不知道那是哪間教室、幾坪、有什麼設備、能做什麼課程。
+對 Google 和 AI 來說：這頁只有『學習場域』四個字，排名基本上不用指望。
+對視障者來說：螢幕報讀軟體讀不到背景圖，這頁是全白的。
+同一頁，三種讀者，三種失分。">
+  <div class="kicker">案例一 ‧ 經營管理學院 EMBA</div>
+  <h2>87 張照片，0 個字</h2>
+  <p class="sub">smd.fcu.edu.tw/learnspace/ — 看起來最豐富的一頁，對 AI 來說是空白頁</p>
+  <div class="split">
+    <div><figure class="shot"><img src="img/p12.png" style="--z:1.5;--x:-12%;--y:9%"></figure></div>
+    <div>
+      <div class="cols c3" style="gap:14px">
+        <div class="card"><div class="stat"><div class="n" style="font-size:40px">87</div><div class="t">張輪播照片</div></div></div>
+        <div class="card"><div class="stat"><div class="n" style="font-size:40px">0</div><div class="t">個正文文字</div></div></div>
+        <div class="card"><div class="stat"><div class="n" style="font-size:40px">0</div><div class="t">則圖說</div></div></div>
+      </div>
+      <ul class="bul" style="margin-top:20px">
+        <li><strong>對報考者</strong>：不知道那是哪間教室、有什麼設備</li>
+        <li><strong>對搜尋引擎</strong>：全頁只有四個字，排名無從談起</li>
+        <li><strong>對視障者</strong>：CSS 背景圖讀不到，等同全白</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>三個真實案例</span><span class="pg"></span></div>
+</section>
+
+<!-- 14 ─────────────────────────────── 案例二 會計系 -->
+<section class="slide" data-notes="（45 秒）— 這頁是全場最有衝擊力的，務必講完整
+案例二。AI 說：會計系招生頁 11 個管道連結全部指向已下架的舊路徑，逐一實測全數 404。
+我第一個反應是——它是不是查錯了？我自己點進會計系，招生都連到校網，沒有 404 啊。
+結果，往下看，footer。
+那些舊連結還掛在頁尾。頁面沒刪，連結沒清，所以還在。
+人看網站會看主選單；AI 會把整頁、包括頁尾，全部讀過一次。
+這句話請委員記住：<只要是曾經做過的頁面，它沒被刪除，AI 都找得到>。
+高中生用手機滑到底，看到的就是那 11 個死掉的連結。">
+  <div class="kicker">案例二 ‧ 會計學系</div>
+  <h2>表面沒壞，頁尾全壞</h2>
+  <div class="split wide-left">
+    <div>
+      <figure class="shot wide"><img src="img/p18.png" style="--z:1.5;--x:0;--y:-16%"></figure>
+      <div class="cap">AI 健檢結果原文：招生頁 <b>11 個管道連結</b>全部指向已下架的 national_list/114*、113* 舊路徑，逐一實測<b>全數 404</b>。</div>
+    </div>
+    <div>
+      <p style="font-size:19px;line-height:1.8">我差一點以為 AI 錯了。<br>進會計系看——招生都連到校網，沒有 404 啊。</p>
+      <p style="font-size:19px;line-height:1.8;margin-top:14px"><strong>結果往下看，footer。</strong></p>
+      <div class="card" style="margin-top:16px;border-left:5px solid var(--red-b)">
+        <p style="color:var(--ink);font-size:17.5px">只要是曾經做過的頁面，它沒被刪除，<strong>AI 都可以找得到</strong>。</p>
+      </div>
+      <p style="margin-top:16px;font-size:16px;color:var(--muted)">人看網站看主選單；AI 把整頁包含頁尾全部讀完。高中生滑到底，看到的就是那 11 個死連結。</p>
+    </div>
+  </div>
+  <div class="foot"><span>三個真實案例</span><span class="pg"></span></div>
+</section>
+
+<!-- 15 ─────────────────────────────── 案例三 通病 -->
+<section class="slide warm" data-notes="（40 秒）
+案例三是全校的通病，不是單一系的問題。
+健檢報告上寫：首頁及各子頁 meta description、og:image 全部空值。
+這兩個詞行政同仁看不懂，我就直接問 AI「這是什麼、為什麼重要」。
+Meta description 是 Google 搜尋結果下面那兩行字——那是我們唯一能自己決定對陌生人說什麼的免費版位，空著就由 Google 亂抓。
+og:image 是 LINE、FB 分享出去的預覽縮圖，空著就是一張空白卡片。
+影響有多大？搜尋點擊率差距 1.5 到 2 倍。
+修起來要多久？後台打字，每頁 2 到 3 分鐘。
+這是投報率最高的一項。">
+  <div class="kicker">案例三 ‧ 全校通病</div>
+  <h2>兩個欄位空白，招生就少一半點擊</h2>
+  <div class="card" style="background:rgba(168,40,56,.07);border-color:rgba(168,40,56,.3);margin-bottom:24px">
+    <p style="color:var(--red-b);font-size:17px;font-family:var(--mono)">⚑ 健檢結果：首頁及各子頁 meta description、og:image 全部空值 [A6]</p>
+  </div>
+  <div class="body" style="justify-content:flex-start">
+    <div class="cols c3">
+      <div class="card">
+        <div class="lbl">META DESCRIPTION</div>
+        <h3>搜尋結果的那兩行</h3>
+        <p>Google 搜尋結果標題下面的說明文字。這是唯一能由我們自己決定「對陌生人說什麼」的免費版位；空著就由 Google 自行抓取。</p>
+      </div>
+      <div class="card">
+        <div class="lbl">OG:IMAGE</div>
+        <h3>分享出去的那張圖</h3>
+        <p>LINE、FB 分享時的預覽縮圖，建議 1200×630。現況全站 6 頁全部空白，分享出去就是一張空白卡片。</p>
+      </div>
+      <div class="card" style="border-left:5px solid var(--red-b)">
+        <div class="lbl">為什麼值得做</div>
+        <p style="color:var(--ink)">直接影響招生，搜尋點擊率差距可達 <strong>1.5 至 2 倍</strong>；修改只需後台打字，每頁 <strong>2 至 3 分鐘</strong>。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>三個真實案例</span><span class="pg"></span></div>
+</section>
+
+<!-- 16 ─────────────────────────────── SECTION 04 -->
+<section class="slide dark section" data-notes="轉場（5 秒）：最後講成果清單、品質怎麼顧，以及接下來怎麼走。">
+  <div class="body" style="justify-content:center">
+    <div class="kicker">04 / 04</div>
+    <h1 style="font-size:72px">成果與下一步</h1>
+    <p class="sub" style="font-size:24px">已上線的工具、品質控管方式，以及可複製的路徑</p>
+  </div>
+</section>
+
+<!-- 17 ─────────────────────────────── 成果清單 -->
+<section class="slide" data-notes="（50 秒）
+這是目前已經上線、每天在用的清單。
+三個儀表板：學系網站健檢、各系所新聞監測、學生愛分享。
+兩個內容小幫手：新聞撰寫、以及新聞與公告英譯——英譯那個內建 2,117 條官方詞彙，職稱和人名不會再各寫各的。
+六個議題網站，對外可以被搜尋、被 AI 讀到。
+全部都在這個網址底下，委員現在就可以掃碼點開。
+【簡報前請補上 6 個議題網站的名稱與網址】">
+  <div class="kicker">DELIVERABLES ‧ 全部已上線</div>
+  <h2>3 個儀表板、2 個內容小幫手、6 個議題網站</h2>
+  <div class="body">
+    <div class="split" style="gap:38px">
+      <div>
+        <h3 style="color:var(--red-b);margin-bottom:12px">儀表板</h3>
+        <div class="card" style="margin-bottom:10px"><h3 style="font-size:18px">學系網站健檢儀表板 v6.0</h3><p>70 系所／28 站深度報告，含健檢總覽、頁面查核紀錄、評分標準</p><div class="url">fengchia1961.github.io/check/</div></div>
+        <div class="card" style="margin-bottom:10px"><h3 style="font-size:18px">各系所新聞監測儀表板</h3><p>74 系所新聞發布追蹤，可比較、可排序</p><div class="url">fengchia1961.github.io/fcu-news-dashboard/</div></div>
+        <div class="card"><h3 style="font-size:18px">學生愛分享儀表板</h3><p>學生分享文章與觸及成效彙整</p><div class="url">…/fcu-news-dashboard/student-share.html</div></div>
+      </div>
+      <div>
+        <h3 style="color:var(--red-b);margin-bottom:12px">內容小幫手</h3>
+        <div class="card" style="margin-bottom:10px"><h3 style="font-size:18px">新聞撰寫小幫手</h3><p>內建本組新聞 SOP 與標題規則</p></div>
+        <div class="card" style="margin-bottom:16px"><h3 style="font-size:18px">新聞／訊息公告英譯小幫手</h3><p>內建 <strong>2,117 條</strong>官方職稱與人名詞彙庫（2026.09.23 版）</p></div>
+        <h3 style="color:var(--red-b);margin-bottom:12px">議題網站 ‧ 6 個</h3>
+        <div class="card flat"><p style="color:var(--ink)">「看得見、摸得到的 AI」等 6 個議題網站已上線<br><span style="color:var(--muted)">※ 簡報前請補上其餘 5 個名稱與網址</span></p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>成果與下一步</span><span class="pg"></span></div>
+</section>
+
+<!-- 18 ─────────────────────────────── 品質控管 -->
+<section class="slide warm" data-notes="（40 秒）— 這頁是加分頁，不要跳過，委員一定會問「AI 會不會亂講」
+委員一定會問：AI 會不會亂講？
+會。所以我們用三道關卡。
+第一，標準是人訂的——評分標準 v6.0 是秘書處寫的，不是 AI 自由心證。
+第二，AI 查完之後本組人工抽檢，確認後才發布。像剛剛那個 87 張照片的例子，就是我追問之後它自己修正的。
+第三，全部留存證據——每一條結論都附網址和原文，學系可以自己點開驗證。
+而且因為標準是寫下來的，學系改完之後我們可以再跑一次，前後對照。
+這比人工健檢更可稽核，不是更不可稽核。">
+  <div class="kicker">QUALITY CONTROL</div>
+  <h2>AI 不一定全對——所以我們設了三道關卡</h2>
+  <p class="sub">標準由人訂、結果由人抽檢、證據全部留存可回查</p>
+  <div class="body">
+    <div class="cols c3">
+      <div class="card"><div class="lbl">關卡一 ‧ 標準由人訂</div><h3>評分標準 v6.0</h3><p>由秘書處撰寫並與 AI 共同校對，逐項配分。AI 依標準執行，不做自由心證。</p></div>
+      <div class="card"><div class="lbl">關卡二 ‧ 人工抽檢</div><h3>發布前一定看過</h3><p>本組同仁抽檢 AI 判讀；有疑義就追問，AI 重查後修正（如 EMBA 87 張照片案例）。</p></div>
+      <div class="card"><div class="lbl">關卡三 ‧ 證據留存</div><h3>每條結論都可回查</h3><p>結論皆附網址與原文摘錄，學系可自行點開驗證；標準可重跑，優化前後能對照。</p></div>
+    </div>
+    <div class="card flat" style="margin-top:24px;border-left:5px solid var(--red-b)">
+      <p style="color:var(--ink);font-size:17.5px">因為標準寫下來了，所以這套健檢<strong>比人工健檢更可稽核</strong>：同一份標準，任何人、任何時間跑，結果都能比對。</p>
+    </div>
+  </div>
+  <div class="foot"><span>成果與下一步</span><span class="pg"></span></div>
+</section>
+
+<!-- 19 ─────────────────────────────── 未來三步 -->
+<section class="slide" data-notes="（45 秒）
+接下來三步。
+第一步，會後就做：把這 28 站的健檢結果提供給網站業務同仁，逐一確認、進行優化。
+第二步，建立節奏：依不同時間和需求設定查核標準與時間，給學系固定的修正期，期後再請 AI 複查，確認是否已優化。
+第三步，把健檢獨立成平台：學系直接線上勾選『已優化／已更新』或標註『這是系統架構問題』，也可以線上提需求和發問，由本組回覆協助。
+從『我們查、我們通知』，變成『學系自己看得到進度、自己回報』。">
+  <div class="kicker">ROADMAP</div>
+  <h2>接下來三步</h2>
+  <div class="body">
+    <div class="steps">
+      <div class="step">
+        <div class="no">會後即行</div>
+        <h3>逐系確認與優化</h3>
+        <p>28 站健檢結果提供網站業務同仁，逐一確認後進行優化；本組提供具體改法與範例。</p>
+      </div>
+      <div class="step">
+        <div class="no">建立節奏</div>
+        <h3>定期複檢</h3>
+        <p>依不同時間與需求設定查核標準與時程，給學系固定修正期；期後由 AI 複查，確認是否已修正。</p>
+      </div>
+      <div class="step">
+        <div class="no">平台化</div>
+        <h3>線上回報系統</h3>
+        <p>健檢獨立成平台：學系線上勾選「已優化／已更新」或標註「系統架構問題」，並可線上提問，由本組回覆協助。</p>
+      </div>
+    </div>
+    <div class="cols c2" style="margin-top:26px;gap:22px">
+      <div class="card flat"><div class="lbl">可複製性</div><p style="color:var(--ink)">方法與評分標準可直接移植到其他單位網站、活動網站、招生專頁；換的是標準，不是工具。</p></div>
+      <div class="card flat"><div class="lbl">成本</div><p style="color:var(--ink)">無外包費、無額外主機。行政同仁即可維運，交接時交付的是「標準文件」而非「程式碼」。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>成果與下一步</span><span class="pg"></span></div>
+</section>
+
+<!-- 20 ─────────────────────────────── 結尾 -->
+<section class="slide dark cover" data-notes="收尾（15 秒）：
+一句話結束：我們讓逢甲的成果，變成 AI 找得到、講得出來的答案。
+所有成果都在這個網址，歡迎委員現在就掃碼點開。謝謝。">
+  <div class="body" style="justify-content:center">
+    <div style="display:flex;align-items:center;gap:56px">
+      <div style="flex:1">
+        <div class="kicker">THANK YOU</div>
+        <h1 style="font-size:52px">讓逢甲的成果，<br>成為 AI 找得到的答案</h1>
+        <p class="sub" style="font-size:20px;margin-top:20px">秘書處公共事務組 ‧ 與 AI 協作成果<br><span class="url" style="font-size:15px">https://fengchia1961.github.io/ai-pitch/</span></p>
+      </div>
+      <div class="qr">
+        <div class="box" data-qr="https://fengchia1961.github.io/ai-pitch/"></div>
+        <div class="lab">掃碼看全部成果</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 ─────────────────────────────── 附錄 A：儀表板實景 -->
+<section class="slide" data-notes="附錄（備援）：如果委員問「儀表板長什麼樣」，翻到這頁，不要開瀏覽器。
+左側是 7 個學院、28 個系所的側欄；上方是四軸雷達圖與逐項配分；下方是優點與問題清單，每條都附網址。">
+  <div class="kicker">附錄 A ‧ 備援畫面</div>
+  <h2>學系網站健檢儀表板 v6.0</h2>
+  <div class="body">
+    <figure class="shot wide"><img src="img/p08.png" style="--z:1.3;--x:0;--y:9%"></figure>
+    <div class="cap">fengchia1961.github.io/check/ — 側欄依學院分組；每系含健檢總覽、頁面查核紀錄、評分標準三個分頁。</div>
+  </div>
+  <div class="foot"><span>附錄</span><span class="pg"></span></div>
+</section>
+
+<!-- 22 ─────────────────────────────── 附錄 B：對話式開發 -->
+<section class="slide" data-notes="附錄（備援）：如果委員問「你到底怎麼做的、給我看畫面」，翻到這頁。
+左邊是我下的指令，右邊是它一邊執行一邊回報，最後直接產出一個 HTML 檔案放到桌面。
+整段沒有任何一行程式碼是我寫的。">
+  <div class="kicker">附錄 B ‧ 備援畫面</div>
+  <h2>對話式開發的實際畫面</h2>
+  <div class="body">
+    <figure class="shot wide"><img src="img/p09.png" style="--z:1.25;--x:0;--y:6%"></figure>
+    <div class="cap">左：指定角色、評分標準與待查網址。右：AI 逐步執行並回報，最後產出可直接開啟的 HTML 儀表板。</div>
+  </div>
+  <div class="foot"><span>附錄</span><span class="pg"></span></div>
+</section>
+
+</div><!-- /#stage -->
+
+<div id="hud">
+  <button data-act="prev">◀</button>
+  <span id="cnt">1 / 22</span>
+  <button data-act="next">▶</button>
+  <button data-act="notes">講稿 N</button>
+  <button data-act="grid">總覽 O</button>
+</div>
+
+<div id="notes"><h4>SPEAKER NOTES</h4><div class="txt"></div></div>
+<div id="grid"></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, notesOn=false;
+  var stage=document.getElementById('stage');
+  var cnt=document.getElementById('cnt'), bar=document.getElementById('bar');
+  var notes=document.getElementById('notes'), notesTxt=notes.querySelector('.txt');
+  var grid=document.getElementById('grid');
+
+  slides.forEach(function(s,n){
+    var pg=s.querySelector('.pg'); if(pg) pg.textContent=String(n+1).padStart(2,'0');
+  });
+
+  function fit(){
+    var pad = notesOn ? 0.60 : 0.94;
+    var k=Math.min(window.innerWidth/1280, window.innerHeight*pad/720);
+    stage.style.transform='scale('+k+')';
+    if(notesOn) stage.style.marginBottom=(720*k*0.55)+'px'; else stage.style.marginBottom='0';
+  }
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){ s.classList.toggle('on',k===i); });
+    cnt.textContent=(i+1)+' / '+slides.length;
+    bar.style.width=((i+1)/slides.length*100)+'%';
+    notesTxt.textContent=slides[i].getAttribute('data-notes')||'（本頁無講稿）';
+    try{ location.hash=i+1; }catch(e){}
+  }
+  function toggleNotes(){ notesOn=!notesOn; notes.classList.toggle('on',notesOn); fit(); }
+  function buildGrid(){
+    grid.innerHTML='';
+    slides.forEach(function(s,n){
+      var h=s.querySelector('h1,h2');
+      var d=document.createElement('div');
+      d.className='g'+(s.classList.contains('dark')?' d':'');
+      d.innerHTML=(h?h.textContent.replace(/\s+/g,' ').slice(0,28):'—')+'<span>'+String(n+1).padStart(2,'0')+'</span>';
+      d.onclick=function(){ grid.classList.remove('on'); show(n); };
+      grid.appendChild(d);
+    });
+  }
+  function toggleGrid(){ if(!grid.children.length) buildGrid(); grid.classList.toggle('on'); }
+
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '){ e.preventDefault(); show(i+1); }
+    else if(k==='ArrowLeft'||k==='PageUp'){ e.preventDefault(); show(i-1); }
+    else if(k==='Home'){ show(0); } else if(k==='End'){ show(slides.length-1); }
+    else if(k==='n'||k==='N'){ toggleNotes(); }
+    else if(k==='o'||k==='O'){ toggleGrid(); }
+    else if(k==='f'||k==='F'){ if(!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+    else if(k==='Escape'){ grid.classList.remove('on'); }
+  });
+  stage.addEventListener('click',function(e){
+    if(e.clientX < window.innerWidth*0.28) show(i-1); else show(i+1);
+  });
+  document.getElementById('hud').addEventListener('click',function(e){
+    var a=e.target.getAttribute('data-act'); if(!a) return;
+    e.stopPropagation();
+    if(a==='next') show(i+1); if(a==='prev') show(i-1);
+    if(a==='notes') toggleNotes(); if(a==='grid') toggleGrid();
+  });
+  window.addEventListener('resize',fit);
+
+  // QR：載得到就畫 QR，載不到就顯示網址，簡報不會開天窗
+  var qrBoxes=[].slice.call(document.querySelectorAll('[data-qr]'));
+  function qrFallback(){
+    qrBoxes.forEach(function(b){
+      if(b.children.length) return;
+      var d=document.createElement('div'); d.className='fallback';
+      d.textContent=b.getAttribute('data-qr').replace(/^https?:\/\//,'');
+      b.appendChild(d);
+    });
+  }
+  var sc=document.createElement('script');
+  sc.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  sc.onload=function(){
+    try{
+      qrBoxes.forEach(function(b){
+        new QRCode(b,{text:b.getAttribute('data-qr'),width:280,height:280,
+          colorDark:'#761623',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+      });
+    }catch(e){ qrFallback(); }
+  };
+  sc.onerror=qrFallback;
+  document.head.appendChild(sc);
+  setTimeout(qrFallback,2500);
+
+  var start=parseInt((location.hash||'').replace('#',''),10);
+  show(isNaN(start)?0:start-1);
+  fit();
+})();
+</script>
+</body>
+</html>
