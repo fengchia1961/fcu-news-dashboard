@@ -54,6 +54,9 @@ ul.bul{list-style:disc;padding-left:24px}                          /* ::before �
 ul.bul li{padding-left:0}
 ul.bul li::before{display:none}
 .step::after{display:none}                                         /* 箭頭三角轉不過去 */
+/* 表格裡的「大工程／小工程」標籤和膠囊同一個毛病：色塊和文字會被拆開、文字掉到左上角 */
+.tag,.tag.big{background:none;padding:0;margin-right:7px;font-weight:700;color:var(--muted)}
+.tag.big{color:var(--red-b)}
 """
 
 # ── 取出 22 頁 ──────────────────────────────────────────────────
