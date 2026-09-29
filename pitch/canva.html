@@ -125,6 +125,15 @@ ul.bul{list-style:none;padding:0;margin:0}
 ul.bul li{position:relative;padding-left:26px;font-size:18px;line-height:1.8;margin-bottom:12px}
 ul.bul li::before{content:"";position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:2px;background:var(--orange)}
 
+/* ---------- table ---------- */
+.tbl{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.tr{display:grid;grid-template-columns:1.05fr .85fr 1.4fr;align-items:center}
+.tr>div{padding:9px 18px;font-size:16px;line-height:1.5}
+.tr+.tr{border-top:1px solid var(--line)}
+.tr.th>div{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:var(--red-b);background:rgba(168,40,56,.06);padding-top:9px;padding-bottom:9px}
+.tag{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--muted);border-radius:5px;padding:2px 9px;margin-right:8px}
+.tag.big{background:var(--red-b)}
+
 /* ---------- chips / links ---------- */
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .chip{
@@ -588,35 +597,31 @@ og:image 是 LINE、FB 分享出去的預覽縮圖，空著就是一張空白卡
   </div>
   <div class="foot"><span>成果與下一步</span><span class="pg">18</span></div>
 </section>
-<section class="slide" data-document-role="page" data-label="接下來三步" data-speaker-notes="（45 秒）
-接下來三步。
-第一步，會後就做：把這 28 站的健檢結果提供給網站業務同仁，逐一確認、進行優化。
-第二步，建立節奏：依不同時間和需求設定查核標準與時間，給學系固定的修正期，期後再請 AI 複查，確認是否已優化。
-第三步，把健檢獨立成平台：學系直接線上勾選『已優化／已更新』或標註『這是系統架構問題』，也可以線上提需求和發問，由本組回覆協助。
-從『我們查、我們通知』，變成『學系自己看得到進度、自己回報』。">
+<section class="slide" data-document-role="page" data-label="從一次性健檢，變成每年在跑的制度" data-speaker-notes="（55 秒）
+最後講接下來怎麼走。重點是：這不是做完一次就結束的專案，是要變成每年在跑的制度。
+第一，標準先修對再釋出。評分標準 v6.0 是本組跟 AI 一起訂的，複查期間我們自己發現，有部分網站 AI 沒有完成全站二層的逐頁檢查。所以標準調整後會再重跑一次全面檢視，才正式釋出完整資料。
+第二，人工確認才算數。AI 查核結果不保證全數正確，評估也偶有偏限，還是要借重業務同仁的專業判斷——確認建議適切無誤之後，才據以著手優化。
+第三，學系自己線上回報。健檢會獨立成專屬模組，學系可以直接勾選處理狀態、標註這是系統架構層面的問題，也可以線上提需求和發問，由本組回覆。
+第四，保留歷史資料。從時間軸看得出來一個系是逐步改善還是退步，而不是只憑單一時間點判斷。
+中間這張表是查核的節奏：跟招生處這些單位合作，依不同時期的業務需求分別設定標準和時程。大工程跟小工程分開跑，學系才不會一次被壓垮。">
   <div class="kicker">ROADMAP</div>
-  <h2>接下來三步</h2>
+  <h2>從一次性健檢，變成每年在跑的制度</h2>
   <div class="body">
-    <div class="steps">
-      <div class="step">
-        <div class="no">會後即行</div>
-        <h3>逐系確認與優化</h3>
-        <p>28 站健檢結果提供網站業務同仁，逐一確認後進行優化；本組提供具體改法與範例。</p>
-      </div>
-      <div class="step">
-        <div class="no">建立節奏</div>
-        <h3>定期複檢</h3>
-        <p>依不同時間與需求設定查核標準與時程，給學系固定修正期；期後由 AI 複查，確認是否已修正。</p>
-      </div>
-      <div class="step">
-        <div class="no">平台化</div>
-        <h3>線上回報系統</h3>
-        <p>健檢獨立成平台：學系線上勾選「已優化／已更新」或標註「系統架構問題」，並可線上提問，由本組回覆協助。</p>
-      </div>
+    <div class="cols c4" style="gap:16px">
+      <div class="card"><div class="lbl">01 ‧ 先修標準</div><h3 style="font-size:19px">修對了再釋出</h3><p>複查發現部分網站未完成二層逐頁檢查。標準調整後重跑一次全面檢視，再正式釋出。</p></div>
+      <div class="card"><div class="lbl">02 ‧ 人工把關</div><h3 style="font-size:19px">確認過才算數</h3><p>AI 查核不保證全數正確。經業務同仁確認建議適切無誤後，才據以優化。</p></div>
+      <div class="card"><div class="lbl">03 ‧ 線上化</div><h3 style="font-size:19px">學系自己回報</h3><p>獨立為專屬模組：線上勾選處理狀態、標註系統架構問題、提問，由本組回覆。</p></div>
+      <div class="card"><div class="lbl">04 ‧ 留下紀錄</div><h3 style="font-size:19px">保留歷史看趨勢</h3><p>保留各期資料，從時間軸看出是逐步改善或退步，而非憑單一時間點判斷。</p></div>
     </div>
-    <div class="cols c2" style="margin-top:26px;gap:22px">
-      <div class="card flat"><div class="lbl">可複製性</div><p style="color:var(--ink)">方法與評分標準可直接移植到其他單位網站、活動網站、招生專頁；換的是標準，不是工具。</p></div>
-      <div class="card flat"><div class="lbl">成本</div><p style="color:var(--ink)">無外包費、無額外主機。行政同仁即可維運，交接時交付的是「標準文件」而非「程式碼」。</p></div>
+    <div style="margin-top:16px">
+      <h3 style="font-size:20px;margin-bottom:4px">分階段查核：定標準、定時程</h3>
+      <p style="font-size:15.5px;color:var(--muted);margin-bottom:12px">與招生處等單位合作，依不同時期業務需求設定標準與時程；固定時間公布結果，修正期滿由 AI 複查確認。</p>
+      <div class="tbl">
+        <div class="tr th"><div>查核類型</div><div>規模／時程</div><div>查核重點</div></div>
+        <div class="tr"><div>全站內容與視覺優化</div><div><span class="tag big">大工程</span>需較長時間</div><div>全站資訊完整性、視覺一致性與使用體驗</div></div>
+        <div class="tr"><div>學年度招生連結</div><div><span class="tag">小工程</span>短時間完成</div><div>招生連結是否到位、位置是否顯著</div></div>
+        <div class="tr"><div>申請入學招生連結與圖檔</div><div><span class="tag">小工程</span>短時間完成</div><div>是否依招生處規定完成網站更新</div></div>
+      </div>
     </div>
   </div>
   <div class="foot"><span>成果與下一步</span><span class="pg">19</span></div>

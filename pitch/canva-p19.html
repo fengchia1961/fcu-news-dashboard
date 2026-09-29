@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>AI領航簡報｜秘書處公共事務組（Canva 匯入版）</title>
+<meta name="description" content="從網站健檢、新聞監測到議題行銷——逢甲大學秘書處公共事務組與 AI 協作成果簡報，16:9 靜態版，供 Canva 匯入。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#761623;        /* 逢甲紅（深） */
+  --red-b:#A82838;      /* 逢甲紅（亮） */
+  --orange:#F08050;     /* 輔助橘 */
+  --ink:#303030;
+  --paper:#FAF7F5;
+  --warm:#E6E1DD;
+  --line:rgba(48,48,48,.14);
+  --muted:#6E6461;
+  --serif:'Noto Serif TC',serif;
+  --sans:'Noto Sans TC',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans)}
+
+/* ---------- stage ---------- */
+#stage{position:relative;width:1280px;margin:0 auto}
+.slide{
+  position:relative;width:1280px;height:720px;background:var(--paper);
+  padding:56px 72px;display:none;flex-direction:column;
+  overflow:hidden;
+}
+.slide{display:flex}
+.slide.dark{background:var(--red);color:#fff}
+.slide.dark .kicker{color:var(--orange)}
+.slide.warm{background:var(--warm)}
+
+/* ---------- type ---------- */
+.kicker{
+  font-family:var(--mono);font-size:13px;letter-spacing:.22em;
+  color:var(--red-b);text-transform:uppercase;margin:0 0 14px;
+  display:flex;align-items:center;gap:12px;
+}
+.kicker::before{content:"";width:28px;height:2px;background:currentColor;flex:none}
+h1{font-family:var(--serif);font-weight:900;font-size:62px;line-height:1.16;margin:0 0 18px;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:900;font-size:40px;line-height:1.25;margin:0 0 6px;letter-spacing:-.01em}
+h3{font-family:var(--serif);font-weight:700;font-size:23px;line-height:1.35;margin:0 0 8px}
+.sub{font-size:20px;line-height:1.7;color:var(--muted);margin:0 0 26px;max-width:940px}
+.slide.dark .sub{color:rgba(255,255,255,.82)}
+p{font-size:18px;line-height:1.8;margin:0 0 12px}
+strong{color:var(--red-b)}
+.slide.dark strong{color:var(--orange)}
+.hl{background:linear-gradient(transparent 58%,rgba(240,128,80,.42) 58%);padding:0 2px}
+
+/* ---------- layout helpers ---------- */
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center}
+.cols{display:grid;gap:26px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid;grid-template-columns:1.06fr .94fr;gap:34px;align-items:center;flex:1;min-height:0}
+.split.wide-left{grid-template-columns:1.35fr .65fr}
+
+/* ---------- cards ---------- */
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card.flat{background:rgba(255,255,255,.55)}
+.slide.dark .card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff}
+.card .lbl{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;color:var(--red-b);margin-bottom:8px}
+.slide.dark .card .lbl{color:var(--orange)}
+.card p{font-size:16.5px;line-height:1.75;margin:0;color:var(--muted)}
+.slide.dark .card p{color:rgba(255,255,255,.8)}
+
+/* ---------- stat ---------- */
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .n{font-family:var(--serif);font-weight:900;font-size:56px;line-height:1;color:var(--red-b);letter-spacing:-.02em}
+.slide.dark .stat .n{color:#fff}
+.stat .n small{font-size:22px;font-weight:700;margin-left:4px}
+.stat .t{font-size:15px;color:var(--muted);line-height:1.5;margin-top:8px}
+.slide.dark .stat .t{color:rgba(255,255,255,.72)}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:stretch}
+.step{position:relative;padding:26px 28px 26px 30px;background:#fff;border:1px solid var(--line)}
+.step:first-child{border-radius:14px 0 0 14px}
+.step:last-child{border-radius:0 14px 14px 0}
+.step+.step{border-left:none}
+.step .no{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--orange);font-weight:700;margin-bottom:10px}
+.step h3{font-size:21px;margin-bottom:10px}
+.step p{font-size:15.5px;color:var(--muted);line-height:1.7;margin:0}
+.step::after{
+  content:"";position:absolute;right:-9px;top:50%;width:16px;height:16px;
+  transform:translateY(-50%) rotate(45deg);background:#fff;
+  border-top:1px solid var(--line);border-right:1px solid var(--line);z-index:2;
+}
+.step:last-child::after{display:none}
+
+/* ---------- screenshot frame ---------- */
+.shot{
+  position:relative;overflow:hidden;border-radius:12px;background:#fff;
+  border:1px solid var(--line);box-shadow:0 14px 34px rgba(60,20,25,.13);
+  aspect-ratio:16/9;
+}
+.shot.tall{aspect-ratio:4/3}
+.shot.wide{aspect-ratio:16/7}
+/* 圖已在 _crop_shots.py 實體裁好，這裡不再用 transform 裁切 ——
+   transform 匯入 Canva 時不會被正確轉換，圖會跑掉。 */
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff}
+.shot.cap-fit{box-shadow:none;border:none;background:transparent}
+.cap{font-size:14px;color:var(--muted);margin-top:10px;line-height:1.6}
+.cap b{color:var(--red-b)}
+
+/* ---------- quote / prompt ---------- */
+.prompt{
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--red-b);
+  border-radius:0 12px 12px 0;padding:24px 28px;font-size:19px;line-height:1.85;
+}
+.prompt .who{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--red-b);margin-bottom:12px}
+.prompt ol{margin:10px 0 0;padding-left:22px}
+.prompt li{margin-bottom:6px}
+
+/* ---------- list ---------- */
+ul.bul{list-style:none;padding:0;margin:0}
+ul.bul li{position:relative;padding-left:26px;font-size:18px;line-height:1.8;margin-bottom:12px}
+ul.bul li::before{content:"";position:absolute;left:0;top:13px;width:9px;height:9px;border-radius:2px;background:var(--orange)}
+
+/* ---------- table ---------- */
+.tbl{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.tr{display:grid;grid-template-columns:1.05fr .85fr 1.4fr;align-items:center}
+.tr>div{padding:9px 18px;font-size:16px;line-height:1.5}
+.tr+.tr{border-top:1px solid var(--line)}
+.tr.th>div{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:var(--red-b);background:rgba(168,40,56,.06);padding-top:9px;padding-bottom:9px}
+.tag{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--muted);border-radius:5px;padding:2px 9px;margin-right:8px}
+.tag.big{background:var(--red-b)}
+
+/* ---------- chips / links ---------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.chip{
+  font-family:var(--mono);font-size:12.5px;padding:6px 13px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);background:#fff;
+}
+.slide.dark .chip{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85)}
+.url{font-family:var(--mono);font-size:13px;color:var(--red-b);word-break:break-all}
+.slide.dark .url{color:var(--orange)}
+
+/* ---------- QR ---------- */
+.qr{width:150px;flex:none;text-align:center}
+.qr .box{width:150px;height:150px;background:#fff;border-radius:10px;padding:8px;display:flex;align-items:center;justify-content:center}
+.qr .box canvas,.qr .box img{width:100%!important;height:100%!important;display:block}
+.qr .fallback{font-family:var(--mono);font-size:10px;color:var(--ink);line-height:1.4;word-break:break-all;padding:6px}
+.qr .lab{font-size:12.5px;margin-top:9px;color:rgba(255,255,255,.75)}
+.slide:not(.dark) .qr .lab{color:var(--muted)}
+
+/* ---------- chrome ---------- */
+.foot{
+  position:absolute;left:72px;right:72px;bottom:24px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;color:rgba(48,48,48,.4);
+}
+.slide.dark .foot{color:rgba(255,255,255,.42)}
+.slide.cover .foot,.slide.section .foot{display:none}
+
+
+
+
+
+/* ---------- notes ---------- */
+
+
+
+
+
+/* ---------- overview ---------- */
+
+
+
+
+
+
+
+
+
+/* Canva 匯入修正 */
+.hl{background:none;color:var(--orange);font-weight:700}          /* 螢光底色會變成實心色塊 */
+/* 膠囊：Canva 把文字和外框拆成兩個元素、文字會頂到左上角爆出來，索性只留文字 */
+.chip,.slide.dark .chip{background:none;border:none;padding:0;font-size:17px;letter-spacing:.14em}
+.chips{gap:30px}
+ul.bul{list-style:disc;padding-left:24px}                          /* ::before 方塊會跑位 */
+ul.bul li{padding-left:0}
+ul.bul li::before{display:none}
+.step::after{display:none}                                         /* 箭頭三角轉不過去 */
+</style>
+</head>
+<body>
+<div id="stage">
+<section class="slide" data-document-role="page" data-label="從一次性健檢，變成每年在跑的制度" data-speaker-notes="（55 秒）
+最後講接下來怎麼走。重點是：這不是做完一次就結束的專案，是要變成每年在跑的制度。
+第一，標準先修對再釋出。評分標準 v6.0 是本組跟 AI 一起訂的，複查期間我們自己發現，有部分網站 AI 沒有完成全站二層的逐頁檢查。所以標準調整後會再重跑一次全面檢視，才正式釋出完整資料。
+第二，人工確認才算數。AI 查核結果不保證全數正確，評估也偶有偏限，還是要借重業務同仁的專業判斷——確認建議適切無誤之後，才據以著手優化。
+第三，學系自己線上回報。健檢會獨立成專屬模組，學系可以直接勾選處理狀態、標註這是系統架構層面的問題，也可以線上提需求和發問，由本組回覆。
+第四，保留歷史資料。從時間軸看得出來一個系是逐步改善還是退步，而不是只憑單一時間點判斷。
+中間這張表是查核的節奏：跟招生處這些單位合作，依不同時期的業務需求分別設定標準和時程。大工程跟小工程分開跑，學系才不會一次被壓垮。">
+  <div class="kicker">ROADMAP</div>
+  <h2>從一次性健檢，變成每年在跑的制度</h2>
+  <div class="body">
+    <div class="cols c4" style="gap:16px">
+      <div class="card"><div class="lbl">01 ‧ 先修標準</div><h3 style="font-size:19px">修對了再釋出</h3><p>複查發現部分網站未完成二層逐頁檢查。標準調整後重跑一次全面檢視，再正式釋出。</p></div>
+      <div class="card"><div class="lbl">02 ‧ 人工把關</div><h3 style="font-size:19px">確認過才算數</h3><p>AI 查核不保證全數正確。經業務同仁確認建議適切無誤後，才據以優化。</p></div>
+      <div class="card"><div class="lbl">03 ‧ 線上化</div><h3 style="font-size:19px">學系自己回報</h3><p>獨立為專屬模組：線上勾選處理狀態、標註系統架構問題、提問，由本組回覆。</p></div>
+      <div class="card"><div class="lbl">04 ‧ 留下紀錄</div><h3 style="font-size:19px">保留歷史看趨勢</h3><p>保留各期資料，從時間軸看出是逐步改善或退步，而非憑單一時間點判斷。</p></div>
+    </div>
+    <div style="margin-top:16px">
+      <h3 style="font-size:20px;margin-bottom:4px">分階段查核：定標準、定時程</h3>
+      <p style="font-size:15.5px;color:var(--muted);margin-bottom:12px">與招生處等單位合作，依不同時期業務需求設定標準與時程；固定時間公布結果，修正期滿由 AI 複查確認。</p>
+      <div class="tbl">
+        <div class="tr th"><div>查核類型</div><div>規模／時程</div><div>查核重點</div></div>
+        <div class="tr"><div>全站內容與視覺優化</div><div><span class="tag big">大工程</span>需較長時間</div><div>全站資訊完整性、視覺一致性與使用體驗</div></div>
+        <div class="tr"><div>學年度招生連結</div><div><span class="tag">小工程</span>短時間完成</div><div>招生連結是否到位、位置是否顯著</div></div>
+        <div class="tr"><div>申請入學招生連結與圖檔</div><div><span class="tag">小工程</span>短時間完成</div><div>是否依招生處規定完成網站更新</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>成果與下一步</span><span class="pg">19</span></div>
+</section>
+</div>
+</body>
+</html>

@@ -110,3 +110,15 @@ doc = f"""<!DOCTYPE html>
 
 (HERE / "canva.html").write_text(doc, encoding="utf-8")
 print(f"canva.html 已產生：{len(pages)} 頁")
+
+# 只輸出指定頁：python _build_canva.py 19
+# 用途是單獨匯入某一頁到 Canva，再用 merge-designs 併進既有簡報，
+# 這樣不會動到使用者已經在 Canva 手改過的其他頁。
+import sys
+want = [int(a) for a in sys.argv[1:] if a.isdigit()]
+if want:
+    picked = [out[n-1] for n in want if 1 <= n <= len(out)]
+    one = doc.replace(chr(10).join(out), chr(10).join(picked))
+    name = "canva-p" + "-".join(str(n) for n in want) + ".html"
+    (HERE / name).write_text(one, encoding="utf-8")
+    print(f"{name} 已產生：{len(picked)} 頁（第 {', '.join(map(str, want))} 頁）")
