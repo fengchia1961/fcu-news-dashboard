@@ -43,7 +43,7 @@ FACE_BLUR_BAD = 10.0                          # 臉部 Laplacian 變異數（縮
 TOP_GAP_MIN = 0.0                             # 臉框上緣距頂端 = 0% 才算頭太貼頂（2026-10-02 使用者定調）
 MIN_SIDE = 200                                # 原圖短邊低於此值視為解析度過低
 MIN_FACE_PX = 90                              # 臉在原圖的寬度低於此值，卡片上看不清五官
-THUMB_W = 84                                  # 內嵌縮圖寬度（臉部裁切）
+THUMB_W = 56                                  # 內嵌縮圖寬度（臉部裁切）；放大會讓 health-check.html 暴肥
 
 # 師資職稱排序原則（公共事務組提供，2026-10-02）。名單與選單都該照這個順序排。
 TITLE_ORDER = [
@@ -183,7 +183,7 @@ def make_thumb(rgb, face):
         box = ((w - s) // 2, 0, (w - s) // 2 + s, s)
     crop = rgb.crop(box).resize((THUMB_W, THUMB_W), Image.LANCZOS)
     buf = io.BytesIO()
-    crop.save(buf, 'JPEG', quality=62, optimize=True)
+    crop.save(buf, 'JPEG', quality=58, optimize=True)
     return base64.b64encode(buf.getvalue()).decode('ascii')
 
 

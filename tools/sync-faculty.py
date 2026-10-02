@@ -45,9 +45,9 @@ CSS = '''/* ==FACULTY_CSS_START== */
 .fa-tbl tr:hover td{background:#fcfcfa;}
 .fa-tbl tr.bad td{background:#FDF6F6;}
 .fa-tbl tr.bad:hover td{background:#FBEFEF;}
-.fa-th{width:62px;}
-.fa-img{width:54px;height:54px;border-radius:7px;object-fit:cover;border:1px solid #e5e4dc;display:block;background:#f0efe8;}
-.fa-noimg{width:54px;height:54px;border-radius:7px;border:1px dashed #E1B4B4;display:flex;align-items:center;justify-content:center;font-size:11.5px;color:#b91c1c;background:#FDECEC;text-align:center;line-height:1.2;}
+.fa-th{width:54px;}
+.fa-img{width:46px;height:46px;border-radius:7px;object-fit:cover;border:1px solid #e5e4dc;display:block;background:#f0efe8;}
+.fa-noimg{width:46px;height:46px;border-radius:7px;border:1px dashed #E1B4B4;display:flex;align-items:center;justify-content:center;font-size:11.5px;color:#b91c1c;background:#FDECEC;text-align:center;line-height:1.2;}
 .fa-nm{font-weight:700;color:#1a1a18;white-space:nowrap;}
 .fa-nm a{color:#185FA5;text-decoration:none;}
 .fa-nm a:hover{text-decoration:underline;}
@@ -285,7 +285,7 @@ function renderFaculty(d){
     </tr></thead><tbody>${shown.map(faRow).join('')}</tbody></table>
     <div class="fa-sub" style="margin-top:10px;">
       資料來源：<a href="${esc(safeUrl(f.url))}" target="_blank" rel="noopener noreferrer">${esc(f.url)} ↗</a>
-      ｜縮圖為臉部裁切後的縮圖，點姓名可開啟該師資的個人頁。
+      ｜縮圖為臉部裁切後的 56px 小圖，僅供快速掃視；要細看請點姓名開啟該師資的個人頁。
       ｜紅底列代表照片或個人頁內容有待處理事項。
     </div>
   </div>`;
