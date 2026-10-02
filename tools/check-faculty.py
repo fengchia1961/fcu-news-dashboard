@@ -46,6 +46,25 @@ MIN_FACE_PX = 90                              # 臉在原圖的寬度低於此�
 THUMB_W = 56                                  # 內嵌縮圖寬度（臉部裁切）；放大會讓 health-check.html 暴肥
 
 # 師資職稱排序原則（公共事務組提供，2026-10-02）。名單與選單都該照這個順序排。
+# 中文標籤 → job_title 的正確對應（取自全校 68 系選單的多數用法）。
+# 某一系的連結與這張表不符，表示那條連結設錯，點進去會看到別類師資或空白。
+LABEL_JOBTITLE = {
+    '講座教授': 'Chair Professor',
+    '特約講座': 'Adjunct Chair Professor',
+    '特聘教授': 'Distinguished Professor',
+    '專任教授': 'Professor',
+    '專任副教授': 'Associate Professor',
+    '專任助理教授': 'Assistant Professor',
+    '專任講師': 'Lecturer',
+    '客座教授': 'Visiting Professor',
+    '研究副教授': 'Research Associate Professor',
+    '研究助理教授': 'Research Assistant Professor',
+    '兼任教授': 'Adjunct Professor',
+    '兼任副教授': 'Adjunct Associate Professor',
+    '兼任助理教授': 'Adjunct Assistant Professor',
+    '兼任講師': 'Adjunct Lecturer',
+}
+
 TITLE_ORDER = [
     '何宜武先生學術講座', '高人言先生學術講座', '春雨講座', '生日講座',
     '榮譽特聘講座', '特聘講座', '講座教授', '特約講座',
@@ -237,6 +256,25 @@ def fetch_detail(tid):
 #   例：工工系有一位特約講座，選單就要有「特約講座」的連結。
 #   選單是伺服器端輸出的，直接抓首頁 HTML 即可（不像照片與個人頁要走 API）。
 # ══════════════════════════════════════════════════════════════════
+# 非教學人員與已離職者不列入師資查核。
+#   有些系網把師資頁與成員頁合在一起（資工系就把行政人員、退休／離職教師一起列），
+#   算進師資會灌大人數、也會讓職稱比對出現一堆排序原則沒收錄的項目。
+#   排除的人會另外記錄下來，儀表板上會寫明排除了誰，不是悄悄丟掉。
+DEPARTED_PAT = re.compile(r'離職|退休|卸任|留職停薪')
+NON_TEACHING = {'助理', '研究助理', '專案助理', '組員', '技士', '技佐', '技術員',
+                '書記', '幹事', '專員', '秘書', '工友', '職員', '行政人員', '約僱人員'}
+
+
+def is_teaching(job):
+    """判斷這個職稱算不算師資。沒寫職稱的保留，交給人工看。"""
+    j = (job or '').strip()
+    if not j:
+        return True
+    if DEPARTED_PAT.search(j):
+        return False
+    return j not in NON_TEACHING
+
+
 def txt(el):
     """取元素文字。部分系網是 Vue 樣板，內容會被解析成 TemplateString，
     get_text() 會回空字串，要退回 .string（2026-10-02 經管學院踩到）。"""
@@ -259,20 +297,21 @@ def scrape_home(base):
     items, listing = [], None
     if html:
         soup = BeautifulSoup(html, 'html.parser')
-        by_q = {}
+        # 以「畫面上看到的標籤」去重，不能用 job_title——有的系網兩個不同項目
+        # 指到同一個 job_title（材料系的專任/兼任助理教授就是），用 job_title
+        # 去重會把其中一項當成重複丟掉，變成誤報「選單缺某類別」。
+        by_t = {}
         for a in soup.find_all('a', href=True):
             if 'job_title=' not in a['href']:
                 continue
             href = urljoin(root + '/', a['href'])
             q = unquote(re.search(r'job_title=([^&]*)', href).group(1).replace('+', ' ')).strip()
             t = a.get_text(' ', strip=True)
-            if q not in by_q:
-                by_q[q] = {'t': t, 'q': q}
-            elif t and not by_q[q]['t']:
-                by_q[q]['t'] = t          # 手機版那份有時抓不到文字，補回中文標籤
+            if t and t not in by_t:
+                by_t[t] = {'t': t, 'q': q}
             if listing is None:
                 listing = href.split('?')[0]
-        items = list(by_q.values())
+        items = list(by_t.values())
         if listing is None:
             for a in soup.find_all('a', href=True):
                 if re.search(r'/(teachers|faculty)/?$', a['href']):
@@ -315,12 +354,21 @@ def compare_menu(menu, rows):
     base = {'counts': counts, 'cats': cats, 'unknown': unknown,
             'listOk': list_ok, 'listBad': list_bad}
     if menu is None:
-        return dict(base, ok=0, items=[], missing=[], extra=[],
+        return dict(base, ok=0, items=[], missing=[], extra=[], clash=[],
                     menuOk=1, menuBad=None, note='抓不到首頁，無法比對選單')
     labels = [m['t'].strip() for m in menu if m['t'].strip()]
     menu_ok, menu_bad = check_order(labels)
+    # 連結設錯：標籤對應的 job_title 與全校通用對照不符，
+    # 點進去會列出別類師資（或因網址打錯而空白）。
+    clash = []
+    for m in menu:
+        t, q = m['t'].strip(), (m.get('q') or '').strip()
+        want = LABEL_JOBTITLE.get(t)
+        if t and q and want and q != want:
+            clash.append({'t': t, 'q': q, 'want': want,
+                          'as': next((k for k, v in LABEL_JOBTITLE.items() if v == q), '')})
     unknown = sorted(set(unknown) | {t for t in labels if rank_of(t) == 99})
-    return dict(base, ok=1, items=menu, unknown=unknown,
+    return dict(base, ok=1, items=menu, unknown=unknown, clash=clash,
                 missing=[c for c in cats if c not in labels],
                 extra=[l for l in labels if l not in counts],
                 menuOk=menu_ok, menuBad=menu_bad,
@@ -491,7 +539,11 @@ def run(dept):
             if rows:
                 break
     if not rows:
-        return [], menu, '', ''
+        return [], menu, '', '', []
+    dropped = [{'name': r['name'], 'job': r['job']} for r in rows if not is_teaching(r['job'])]
+    rows = [r for r in rows if is_teaching(r['job'])]
+    if not rows:
+        return [], menu, '', '', dropped
     out = []
     for r in rows:
         photo = analyse_photo(fetch_image(r['pic']) if r.get('pic')
@@ -521,7 +573,7 @@ def run(dept):
             'issues': issues,
             'notes': notes,
         })
-    return out, menu, listing, how
+    return out, menu, listing, how, dropped
 
 
 def main():
@@ -547,7 +599,7 @@ def main():
         d = by_id[t]
         print('[%d/%d] 查核 %s %s …' % (n, len(targets), t, d['name']), flush=True)
         try:
-            rows, menu, listing, how = run(d)
+            rows, menu, listing, how, dropped = run(d)
         except Exception as e:
             print('   ⚠ 查核失敗（%s: %s），已略過，其餘學系繼續' % (type(e).__name__, e))
             continue
@@ -565,16 +617,21 @@ def main():
         ne = sum(1 for r in rows if r['detail']['ok'] and not r['detail']['edu'])
         nc = sum(1 for r in rows if not r['detail']['ok'])
         menu = compare_menu(menu, rows)
-        data[t] = {'name': d['name'], 'url': listing, 'how': how,
+        data[t] = {'name': d['name'], 'url': listing, 'how': how, 'dropped': dropped,
                    'home': d['url'].rstrip('/') + '/',
                    'checked': time.strftime('%Y-%m-%d'), 'rows': rows, 'menu': menu}
-        print('   師資 %d 位｜無照片 %d｜照片有疑慮 %d｜個人頁缺專長 %d｜缺學歷 %d%s'
+        print('   師資 %d 位｜無照片 %d｜照片有疑慮 %d｜個人頁缺專長 %d｜缺學歷 %d%s%s'
               % (len(rows), np_, pi, ns, ne,
-                 '｜無個人頁可查 %d' % nc if nc else ''))
+                 '｜無個人頁可查 %d' % nc if nc else '',
+                 '｜已排除非教學／離職 %d 位（%s）' % (len(dropped),
+                     '、'.join(sorted({x['job'] for x in dropped}))) if dropped else ''))
         mn = data[t]['menu']
         print('   師資類別 %d 種｜選單二階 %d 項｜選單缺 %s｜選單多 %s'
               % (len(mn['cats']), len(mn['items']),
                  '、'.join(mn['missing']) or '無', '、'.join(mn['extra']) or '無'))
+        for c in mn.get('clash', []):
+            print('   ⚠ 選單連結設錯：「%s」指向 %s%s（應為 %s）'
+                  % (c['t'], c['q'], '＝' + c['as'] + '的篩選' if c['as'] else '', c['want']))
         print('   名單排序 %s｜選單排序 %s%s'
               % ('✓' if mn['listOk'] else '✗ %s 排在 %s 之後' % (mn['listBad']['cur'], mn['listBad']['prev']),
                  '✓' if mn['menuOk'] else '✗ %s 排在 %s 之後' % (mn['menuBad']['cur'], mn['menuBad']['prev']),

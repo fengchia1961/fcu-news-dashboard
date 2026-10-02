@@ -64,6 +64,9 @@ CSS = '''/* ==FACULTY_CSS_START== */
 .fa-iss .sev{color:#b91c1c;font-weight:700;}
 .fa-iss .dim{color:#888780;}
 .fa-sub{font-size:13px;color:#888780;line-height:1.7;}
+.fa-drop{background:#f7f6f1;border:1px solid #e5e4dc;border-radius:9px;padding:10px 13px;margin-top:11px;font-size:13px;color:#5F5E5A;line-height:1.9;}
+.fa-drop-i{display:inline-block;background:#fff;border:1px solid #e5e4dc;border-radius:7px;padding:2px 9px;margin:2px 4px 2px 0;font-size:12.5px;white-space:nowrap;}
+.fa-drop-i span{color:#B4B2A9;margin-left:5px;font-size:11.5px;}
 .fa-pend{background:#FDF8EC;border:1px solid #F2DCA8;border-radius:9px;padding:14px 16px;font-size:15.5px;color:#5F5E5A;line-height:1.85;}
 /* 師資類別 vs 選單結構 */
 .fa-mn{display:flex;gap:7px;flex-wrap:wrap;margin-top:4px;}
@@ -182,6 +185,10 @@ function faMenuCard(f){
   const ord = (ok, bad, what) => ok
     ? `<span class="fa-cat ok">✓ <b>${what}</b>符合排序原則</span>`
     : `<span class="fa-cat miss">✕ <b>${what}</b>未依排序原則：${esc(bad.cur)} 排在 ${esc(bad.prev)} 之後</span>`;
+  const clash = (m.clash||[]).length ? `<div class="fa-mn-bad">
+      <b>選單連結設錯 ${m.clash.length} 條</b>（點進去會看到別類師資或空白）：<br>
+      ${m.clash.map(c=>`「${esc(c.t)}」目前連到 <code>${esc(c.q)}</code>${c.as?`，也就是<b>${esc(c.as)}</b>的篩選`:''}，應為 <code>${esc(c.want)}</code>`).join('<br>')}
+    </div>` : '';
   const unk = (m.unknown||[]).length
     ? `<div class="fa-mn-h">排序原則未收錄的職稱（請人工確認擺放位置）</div>
        <div class="fa-mn">${m.unknown.map(t=>`<span class="fa-cat ext">？ <b>${esc(t)}</b></span>`).join('')}</div>`
@@ -195,12 +202,14 @@ function faMenuCard(f){
     <div class="fa-mn">${catPills || '<span class="fa-cat">（查無師資）</span>'}</div>
     ${extPills ? `<div class="fa-mn-h">選單有、但本系沒有這類師資</div><div class="fa-mn">${extPills}</div>` : ''}
     ${verdict}
+    ${clash}
     <div class="fa-mn-h">排序是否符合排序原則</div>
     <div class="fa-mn">${ord(m.listOk, m.listBad, '師資名單')}${labels.length ? ord(m.menuOk, m.menuBad, '選單二階') : ''}</div>
     ${unk}
     <div class="fa-sub" style="margin-top:10px;">
       比對方式：抓取${f.home ? `<a href="${esc(safeUrl(f.home))}" target="_blank" rel="noopener noreferrer">系網首頁 ↗</a>` : '系網首頁'}導覽選單中「師資」底下帶
-      <code>job_title</code> 參數的二階連結，與師資名單上實際出現的職稱逐一對照；
+      <code>job_title</code> 參數的二階連結，與師資名單上實際出現的職稱逐一對照
+      （以畫面上看到的標籤比對，並檢查每條連結的 <code>job_title</code> 是否與全校通用對照相符）；
       排序依公共事務組的師資職稱排序原則（何宜武先生學術講座 → … → 兼任講師，共 25 級）檢查名單與選單的先後順序。
     </div>
   </div>`;
@@ -283,6 +292,12 @@ function renderFaculty(d){
       <th class="fa-sp" title="師資個人頁顯示的學歷（取最高學歷）">學歷</th>
       <th>照片判讀</th>
     </tr></thead><tbody>${shown.map(faRow).join('')}</tbody></table>
+    ${(f.dropped||[]).length ? `<div class="fa-drop">
+      <i class="ti ti-user-minus"></i> 已排除 <b>${f.dropped.length}</b> 位非教學人員或已離職者，不計入上列統計：
+      ${f.dropped.map(x=>`<span class="fa-drop-i">${esc(x.name)}<span>${esc(x.job||'')}</span></span>`).join('')}
+      <div style="margin-top:6px;color:#888780;">本系網把師資與成員名單列在同一頁，行政人員（技士、書記、組員、助理等）
+      與標示離職／退休者不屬師資查核範圍。若判斷有誤，請告知公共事務組調整。</div>
+    </div>` : ''}
     <div class="fa-sub" style="margin-top:10px;">
       資料來源：<a href="${esc(safeUrl(f.url))}" target="_blank" rel="noopener noreferrer">${esc(f.url)} ↗</a>
       ｜縮圖為臉部裁切後的 56px 小圖，僅供快速掃視；要細看請點姓名開啟該師資的個人頁。
