@@ -1,0 +1,3479 @@
+{
+ "checked": "2026-10-01",
+ "results": {
+  "fcm": [
+   {
+    "name": "纖維與複合材料學系",
+    "site": "https://fcm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 31,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://fcm.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://fcm.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 7,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://fcm.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://fcm.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://fcm.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://fcm.fcu.edu.tw/?s=",
+     "https://fcm.fcu.edu.tw/undergraduate/",
+     "https://fcm.fcu.edu.tw/graduate/",
+     "https://fcm.fcu.edu.tw/faculty/",
+     "https://fcm.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://fcm.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://fcm.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://fcm.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://fcm.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Assistant+Professor",
+     "https://fcm.fcu.edu.tw/research/"
+    ],
+    "college": "工程與科學學院",
+    "did": "fcm"
+   }
+  ],
+  "mcae": [
+   {
+    "name": "機械與電腦輔助工程學系(含機械工程碩士班)",
+    "site": "https://mcae.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 64,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "特殊選才 最新招生資訊",
+      "src": "https://mcae.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "四技技優外加",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://mcae.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://mcae.fcu.edu.tw/?s=",
+     "https://mcae.fcu.edu.tw/undergraduate/",
+     "https://mcae.fcu.edu.tw/graduate/",
+     "https://mcae.fcu.edu.tw/research/",
+     "https://mcae.fcu.edu.tw/openeducationalresources/",
+     "https://mcae.fcu.edu.tw/faculty/",
+     "https://mcae.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://mcae.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://mcae.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://mcae.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "mcae"
+   }
+  ],
+  "inde": [
+   {
+    "name": "工業工程與系統管理學系",
+    "site": "https://inde.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 77,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://inde.fcu.edu.tw/admissions_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 14,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://inde.fcu.edu.tw/admissions_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發 最新招生資訊",
+      "src": "https://inde.fcu.edu.tw/admissions_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 7,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://inde.fcu.edu.tw/admissions_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://inde.fcu.edu.tw/admissions/",
+     "https://inde.fcu.edu.tw/admissions_undergraduate/",
+     "https://inde.fcu.edu.tw/admissions_graduate/"
+    ],
+    "subPages": [
+     "https://inde.fcu.edu.tw/?s=",
+     "https://inde.fcu.edu.tw/study/",
+     "https://inde.fcu.edu.tw/undergraduate/",
+     "https://inde.fcu.edu.tw/graduate/",
+     "https://inde.fcu.edu.tw/internship/",
+     "https://inde.fcu.edu.tw/teachers/",
+     "https://inde.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://inde.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "inde"
+   }
+  ],
+  "che": [
+   {
+    "name": "化學工程學系",
+    "site": "https://che.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 62,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply",
+      "t": "個人申請 最新招生資訊",
+      "src": "https://che.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 24,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam",
+      "t": "考試分發 最新招生資訊",
+      "src": "https://che.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 22,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star",
+      "t": "繁星推薦 最新招生資訊",
+      "src": "https://che.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview",
+      "t": "四技二專甄選 最新招生資訊",
+      "src": "https://che.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special",
+      "t": "大學特殊選才 最新招生資訊",
+      "src": "https://che.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://che.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://che.fcu.edu.tw/?s=",
+     "https://che.fcu.edu.tw/undergraduate/",
+     "https://che.fcu.edu.tw/graduate/",
+     "https://che.fcu.edu.tw/qa_graduate/",
+     "https://che.fcu.edu.tw/research/",
+     "https://che.fcu.edu.tw/teachers/",
+     "https://che.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://che.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://che.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://che.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "che"
+   }
+  ],
+  "aero": [
+   {
+    "name": "航太與系統工程學系",
+    "site": "https://aero.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 74,
+      "url": "https://www.fcu.edu.tw/apply/",
+      "t": "大學個人申請 最新招生資訊",
+      "src": "https://aero.fcu.edu.tw/admission/",
+      "s": "wk",
+      "why": "僅連全校招生總覽頁"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/apply/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://aero.fcu.edu.tw/admission/",
+      "s": "wk",
+      "why": "僅連全校招生總覽頁"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/apply/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://aero.fcu.edu.tw/admission/",
+      "s": "wk",
+      "why": "僅連全校招生總覽頁"
+     },
+     {
+      "n": "四技技優",
+      "q": 3,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://aero.fcu.edu.tw/admission/"
+    ],
+    "subPages": [
+     "https://aero.fcu.edu.tw/?s=",
+     "https://aero.fcu.edu.tw/undergraduate/",
+     "https://aero.fcu.edu.tw/graduate/",
+     "https://aero.fcu.edu.tw/accelerated-bachelors-masters-program/",
+     "https://aero.fcu.edu.tw/internship/",
+     "https://aero.fcu.edu.tw/teachers/",
+     "https://aero.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://aero.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://aero.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://aero.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "aero"
+   }
+  ],
+  "psd": [
+   {
+    "name": "精密系統設計學士學位學程",
+    "site": "https://psd.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 28,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 最新招生資訊(詳細請點連結)",
+      "src": "https://psd.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊(詳細請點連結)",
+      "src": "https://psd.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 7,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "繁星推薦 最新招生資訊(詳細請點連結)",
+      "src": "https://psd.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊(詳細請點連結)",
+      "src": "https://psd.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "特殊選才 最新招生資訊(詳細請點連結)",
+      "src": "https://psd.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://psd.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://psd.fcu.edu.tw/?s=",
+     "https://psd.fcu.edu.tw",
+     "https://psd.fcu.edu.tw/%e5%ad%b8%e7%bf%92/",
+     "https://psd.fcu.edu.tw/undergraduate/",
+     "https://psd.fcu.edu.tw/about/teachers/",
+     "https://psd.fcu.edu.tw/about/teachers/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://psd.fcu.edu.tw/about/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://psd.fcu.edu.tw/about/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://psd.fcu.edu.tw/about/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://psd.fcu.edu.tw/about/teachers/?offset=0&limit=12&job_title=Assistant+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "psd"
+   }
+  ],
+  "apmath": [
+   {
+    "name": "應用數學系",
+    "site": "https://apmath.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 65,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "個人申請入學 最新招生資訊",
+      "src": "https://apmath.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 13,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "考試分發入學 最新招生資訊",
+      "src": "https://apmath.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "繁星入學推薦 最新招生資訊",
+      "src": "https://apmath.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://apmath.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://apmath.fcu.edu.tw/?s=",
+     "https://apmath.fcu.edu.tw/undergraduate/",
+     "https://apmath.fcu.edu.tw/teachers/",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Professor",
+     "https://apmath.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Associate+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "apmath"
+   }
+  ],
+  "ees": [
+   {
+    "name": "環境工程與科學學系",
+    "site": "https://ees.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 71,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 最新招生資訊",
+      "src": "https://ees.fcu.edu.tw/apply-undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://ees.fcu.edu.tw/apply-undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://ees.fcu.edu.tw/apply-undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "大學特殊選才 最新招生資訊",
+      "src": "https://ees.fcu.edu.tw/apply-undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://ees.fcu.edu.tw/apply-undergraduate/",
+     "https://ees.fcu.edu.tw/apply-master/",
+     "https://ees.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://ees.fcu.edu.tw/?s=",
+     "https://ees.fcu.edu.tw/undergraduate/",
+     "https://ees.fcu.edu.tw/master/",
+     "https://ees.fcu.edu.tw/research-fields/",
+     "https://ees.fcu.edu.tw/research-highlights/",
+     "https://ees.fcu.edu.tw/research_lab/",
+     "https://ees.fcu.edu.tw/teachers/",
+     "https://ees.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://ees.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "ees"
+   }
+  ],
+  "mse": [
+   {
+    "name": "材料科學與工程學系",
+    "site": "https://mse.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 70,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 最新招生資訊",
+      "src": "https://mse.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 23,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://mse.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 19,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://mse.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://mse.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://mse.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://mse.fcu.edu.tw/?s=",
+     "https://mse.fcu.edu.tw/professional/",
+     "https://mse.fcu.edu.tw/mater-professional/",
+     "https://mse.fcu.edu.tw/internship/",
+     "https://mse.fcu.edu.tw/faculty/",
+     "https://mse.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://mse.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://mse.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://mse.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor"
+    ],
+    "college": "工程與科學學院",
+    "did": "mse"
+   }
+  ],
+  "photonics": [
+   {
+    "name": "光電科學與工程學系",
+    "site": "https://photonics.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 72,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "個人申請 最新招生資訊",
+      "src": "https://photonics.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 29,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "考試分發 最新招生資訊",
+      "src": "https://photonics.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "繁星推薦 最新招生資訊",
+      "src": "https://photonics.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://photonics.fcu.edu.tw/admissions/",
+     "https://photonics.fcu.edu.tw/qa/"
+    ],
+    "subPages": [
+     "https://photonics.fcu.edu.tw/?s=",
+     "https://photonics.fcu.edu.tw/form/",
+     "https://photonics.fcu.edu.tw/undergraduate-studies/",
+     "https://photonics.fcu.edu.tw/graduate-studies/",
+     "https://photonics.fcu.edu.tw/feature/",
+     "https://photonics.fcu.edu.tw/computer-hologram/",
+     "https://photonics.fcu.edu.tw/optical-coating/",
+     "https://photonics.fcu.edu.tw/optical-design/",
+     "https://photonics.fcu.edu.tw/optoelectronic-semiconductors/"
+    ],
+    "college": "工程與科學學院",
+    "did": "photonics"
+   }
+  ],
+  "acct": [
+   {
+    "name": "會計學系",
+    "site": "https://acct.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 85,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 33,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "分發入學",
+      "q": 20,
+      "url": "https://www.fcu.edu.tw/national_list/114college_exam/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "四技甄選",
+      "q": 19,
+      "url": "https://www.fcu.edu.tw/national_list/114college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/national_list/114college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "四技技優",
+      "q": 1,
+      "url": "https://www.fcu.edu.tw/national_list/114college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊",
+      "src": "https://acct.fcu.edu.tw/apply/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "四技技優外加",
+      "q": 5,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 加入逢甲會計",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/",
+     "https://www.fcu.edu.tw/national_list/114college_exam/",
+     "https://www.fcu.edu.tw/national_list/114college_s42_interview/",
+     "https://www.fcu.edu.tw/national_list/114college_special/",
+     "https://www.fcu.edu.tw/national_list/114college_s42_skill/"
+    ],
+    "pages": [
+     "https://acct.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://acct.fcu.edu.tw/?s=",
+     "https://acct.fcu.edu.tw/undergraduate/",
+     "https://acct.fcu.edu.tw/graduate/",
+     "https://acct.fcu.edu.tw/%e5%ad%b8%e7%94%9f%e6%a6%ae%e8%ad%bd/",
+     "https://acct.fcu.edu.tw/qa/",
+     "https://acct.fcu.edu.tw/research/",
+     "https://acct.fcu.edu.tw/%e6%95%99%e5%b8%ab%e7%a0%94%e7%a9%b6%e8%a8%88%e7%95%ab%e6%a6%82%e8%a6%bd/",
+     "https://acct.fcu.edu.tw/faculty/",
+     "https://acct.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://acct.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Visiting+Professor"
+    ],
+    "college": "商學院",
+    "did": "acct"
+   }
+  ],
+  "itra": [
+   {
+    "name": "國際經營與貿易學系",
+    "site": "https://itra.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 88,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://itra.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 30,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://itra.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 20,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "四技甄選",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://itra.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://itra.fcu.edu.tw/recruit/",
+     "https://itra.fcu.edu.tw/share-detail/?id=52335"
+    ],
+    "subPages": [
+     "https://itra.fcu.edu.tw/?s=",
+     "https://itra.fcu.edu.tw/teachers/",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Assistant+Professor",
+     "https://itra.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Lecturer",
+     "https://itra.fcu.edu.tw/undergraduate/"
+    ],
+    "college": "商學院",
+    "did": "itra"
+   }
+  ],
+  "biba": [
+   {
+    "name": "國際企業管理全英語學士學位學程",
+    "site": "https://biba.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 30,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply",
+      "t": "115僑生及港澳生單獨招生",
+      "src": "https://biba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam",
+      "t": "115大學申請入學",
+      "src": "https://biba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star",
+      "t": "115大學繁星推薦",
+      "src": "https://biba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://biba.fcu.edu.tw/apply/",
+     "https://biba.fcu.edu.tw/events-detail/?id=9678422FEBC24DDBA45120A362C894F0"
+    ],
+    "subPages": [
+     "https://biba.fcu.edu.tw/en",
+     "https://biba.fcu.edu.tw/?s=",
+     "https://biba.fcu.edu.tw",
+     "https://biba.fcu.edu.tw/undergraduate/",
+     "https://biba.fcu.edu.tw/curriculum/",
+     "https://biba.fcu.edu.tw/%e5%ad%b8%e9%95%b7%e5%a7%90%e5%ad%b8%e7%bf%92%e7%b6%93%e9%a9%97%e5%88%86%e4%ba%ab/",
+     "https://biba.fcu.edu.tw/internationalexchange/",
+     "https://biba.fcu.edu.tw/doubledegreeschools/",
+     "https://biba.fcu.edu.tw/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%8f%9b/",
+     "https://biba.fcu.edu.tw/doubledegreesharing/"
+    ],
+    "college": "商學院",
+    "did": "biba"
+   }
+  ],
+  "pf": [
+   {
+    "name": "財稅學系",
+    "site": "https://pf.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 63,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生訊息",
+      "src": "https://pf.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 20,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生訊息",
+      "src": "https://pf.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生訊息",
+      "src": "https://pf.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發入學",
+      "src": "https://pf.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生訊息",
+      "src": "https://pf.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://pf.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://pf.fcu.edu.tw/?s=",
+     "https://pf.fcu.edu.tw/undergraduate/",
+     "https://pf.fcu.edu.tw/graduate/",
+     "https://pf.fcu.edu.tw/pfshare/",
+     "https://pf.fcu.edu.tw/teachers/",
+     "https://pf.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://pf.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://pf.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://pf.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://pf.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Lecturer"
+    ],
+    "college": "商學院",
+    "did": "pf"
+   }
+  ],
+  "coop": [
+   {
+    "name": "合作經濟暨社會事業經營學系",
+    "site": "https://coop.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "繁星推薦",
+      "q": 15,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://coop.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "申請入學",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://coop.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://coop.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://coop.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學入學分發 最新招生資訊",
+      "src": "https://coop.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 4,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "四技技優外加",
+      "q": 3,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://coop.fcu.edu.tw/apply/",
+     "https://coop.fcu.edu.tw/apply-undergraduate/",
+     "https://coop.fcu.edu.tw/apply-graduate/",
+     "https://coop.fcu.edu.tw/events-detail/?id=9678422FEBC24DDBA45120A362C894F0"
+    ],
+    "subPages": [
+     "https://coop.fcu.edu.tw/?s=",
+     "https://coop.fcu.edu.tw/learning/",
+     "https://coop.fcu.edu.tw/undergraduate/",
+     "https://coop.fcu.edu.tw/graduate/",
+     "https://coop.fcu.edu.tw/%e5%ad%b8%e7%94%9f%e9%9d%a2%e9%9d%a2%e8%a7%80/",
+     "https://coop.fcu.edu.tw/faculty/",
+     "https://coop.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://coop.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor"
+    ],
+    "college": "商學院",
+    "did": "coop"
+   }
+  ],
+  "stat": [
+   {
+    "name": "統計學系(含統計與精算碩士班)",
+    "site": "https://stat.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 68,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 詳細資料連結",
+      "src": "https://stat.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 17,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 詳細資料連結",
+      "src": "https://stat.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發入學 詳細資料連結",
+      "src": "https://stat.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://stat.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://stat.fcu.edu.tw/?s=",
+     "https://stat.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://stat.fcu.edu.tw/%e7%a2%a9%e5%8d%9a%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://stat.fcu.edu.tw/sascert/",
+     "https://stat.fcu.edu.tw/release/",
+     "https://stat.fcu.edu.tw/news-list/",
+     "https://stat.fcu.edu.tw/events-list/",
+     "https://stat.fcu.edu.tw/announcements-list/",
+     "https://stat.fcu.edu.tw/share-list/",
+     "https://stat.fcu.edu.tw/teachers/"
+    ],
+    "college": "商學院",
+    "did": "stat"
+   }
+  ],
+  "econ": [
+   {
+    "name": "經濟學系",
+    "site": "https://econ.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 66,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學",
+      "src": "https://econ.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 18,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星入學推薦",
+      "src": "https://econ.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發",
+      "src": "https://econ.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 5,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "大學特殊選才",
+      "src": "https://econ.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://econ.fcu.edu.tw/apply/",
+     "https://econ.fcu.edu.tw/events-detail/?id=9678422FEBC24DDBA45120A362C894F0"
+    ],
+    "subPages": [
+     "https://econ.fcu.edu.tw/?s=",
+     "https://econ.fcu.edu.tw/study/",
+     "https://econ.fcu.edu.tw/undergraduate/",
+     "https://econ.fcu.edu.tw/graduate/",
+     "https://econ.fcu.edu.tw/teachers/",
+     "https://econ.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://econ.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://econ.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://econ.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://econ.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "商學院",
+    "did": "econ"
+   }
+  ],
+  "ba": [
+   {
+    "name": "企業管理學系",
+    "site": "https://ba.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 56,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://ba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 20,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://ba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://ba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://ba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://ba.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 2,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://ba.fcu.edu.tw/apply/",
+     "https://ba.fcu.edu.tw/116ba_master_interview/",
+     "https://ba.fcu.edu.tw/event-list/?id=9678422FEBC24DDBA45120A362C894F0"
+    ],
+    "subPages": [
+     "https://ba.fcu.edu.tw/?s=",
+     "https://ba.fcu.edu.tw/undergraduate/",
+     "https://ba.fcu.edu.tw/graduate/",
+     "https://ba.fcu.edu.tw/research/",
+     "https://ba.fcu.edu.tw/tbpj/",
+     "https://ba.fcu.edu.tw/research-plan/",
+     "https://ba.fcu.edu.tw/faculty/",
+     "https://ba.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://ba.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://ba.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor"
+    ],
+    "college": "商學院",
+    "did": "ba"
+   }
+  ],
+  "marketing": [
+   {
+    "name": "行銷學系(含全球行銷碩士班)",
+    "site": "https://marketing.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 81,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 最新招生資訊",
+      "src": "https://marketing.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://marketing.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://marketing.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://marketing.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://marketing.fcu.edu.tw/?s=",
+     "https://marketing.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e7%8f%ad%e6%8b%9b%e7%94%9f/",
+     "https://marketing.fcu.edu.tw/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81-2/",
+     "https://marketing.fcu.edu.tw/%e5%9c%8b%e9%9a%9b%e4%ba%a4%e6%b5%81/",
+     "https://marketing.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://marketing.fcu.edu.tw/teachers/",
+     "https://marketing.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://marketing.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://marketing.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://marketing.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Associate+Professor"
+    ],
+    "college": "商學院",
+    "did": "marketing"
+   }
+  ],
+  "istm": [
+   {
+    "name": "澳洲墨爾本皇家理工大學商學與創新雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 15,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "美國加州聖荷西州立大學商學大數據分析雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 12,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "美國加州聖荷西州立大學電機工程雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 13,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "美國加州舊金山州立大學資訊工程雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "澳洲昆士蘭商學雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "澳洲蒙納許大學資訊工程雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 13,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "澳洲昆士蘭電機工程雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   },
+   {
+    "name": "澳洲新南威爾斯大學設計雙學士學位學程",
+    "site": "https://istm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/national_list/114college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     },
+     {
+      "n": "學系單招",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/istm_dualdegree/",
+      "t": "2025.11.06 網路報名－114.11.7(五)上午 9 時~115.6.8(一)晚上 12 時",
+      "src": "https://istm.fcu.edu.tw/independentenrollment/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 4,
+      "url": "https://www.fcu.edu.tw/national_list/114college-star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://istm.fcu.edu.tw/recruit/",
+      "s": "bad",
+      "why": "HTTP 404"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [
+     "https://www.fcu.edu.tw/national_list/114college_apply/",
+     "https://www.fcu.edu.tw/national_list/114college-star/"
+    ],
+    "pages": [
+     "https://istm.fcu.edu.tw/recruit/",
+     "https://istm.fcu.edu.tw/independentenrollment/",
+     "https://istm.fcu.edu.tw/news/20240930_1/",
+     "https://istm.fcu.edu.tw/news/20240326_3/"
+    ],
+    "subPages": [
+     "https://istm.fcu.edu.tw/en",
+     "https://istm.fcu.edu.tw/?s=",
+     "https://istm.fcu.edu.tw/thresholdtuitionfee/",
+     "https://istm.fcu.edu.tw/%e6%96%b0%e7%94%9f%e5%b0%88%e5%8d%80/",
+     "https://istm.fcu.edu.tw/2024istmteam/",
+     "https://istm.fcu.edu.tw/academics/",
+     "https://istm.fcu.edu.tw/uqee/",
+     "https://istm.fcu.edu.tw/unswds/",
+     "https://istm.fcu.edu.tw/uq/"
+    ],
+    "college": "國際科技與管理學院",
+    "did": "istm"
+   }
+  ],
+  "rmi": [
+   {
+    "name": "風險管理與保險學系",
+    "site": "https://rmi.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 68,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://rmi.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 15,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://rmi.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://rmi.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://rmi.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://rmi.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://rmi.fcu.edu.tw/?s=",
+     "https://rmi.fcu.edu.tw/undergraduate/",
+     "https://rmi.fcu.edu.tw/graduate/",
+     "https://rmi.fcu.edu.tw/internship/",
+     "https://rmi.fcu.edu.tw/teachers/",
+     "https://rmi.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://rmi.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://rmi.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://rmi.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Professor",
+     "https://rmi.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Associate+Professor"
+    ],
+    "college": "金融學院",
+    "did": "rmi"
+   }
+  ],
+  "fina": [
+   {
+    "name": "財務金融學系",
+    "site": "https://fina.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 100,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 最新招生資訊",
+      "src": "https://fina.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 21,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://fina.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 15,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發 最新招生資訊",
+      "src": "https://fina.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://fina.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專甄選入學 最新招生資訊",
+      "src": "https://fina.fcu.edu.tw/apply/",
+      "s": "wk",
+      "why": "連結與文字不符，實際連往「四技技優」管道頁"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://fina.fcu.edu.tw/apply/",
+     "https://fina.fcu.edu.tw/apply-graduate/",
+     "https://fina.fcu.edu.tw/apply-undergraduate/",
+     "https://fina.fcu.edu.tw/news/recruitment/",
+     "https://fina.fcu.edu.tw/announcements-detail/?id=578590E5B33C4448AA1D8DB2DDBC7D93",
+     "https://fina.fcu.edu.tw/announcements-detail/?id=37B5B74EDE734A41958E59B2871C4A56"
+    ],
+    "subPages": [
+     "https://fina.fcu.edu.tw/?s=",
+     "https://fina.fcu.edu.tw/undergraduate/",
+     "https://fina.fcu.edu.tw/graduate/",
+     "https://fina.fcu.edu.tw/financial-license-map/",
+     "https://fina.fcu.edu.tw/teachers/",
+     "https://fina.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://fina.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://fina.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "金融學院",
+    "did": "fina"
+   }
+  ],
+  "bpfeas": [
+   {
+    "name": "財務工程與精算學士學位學程",
+    "site": "https://bpfeas.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 34,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請入學 最新招生資訊",
+      "src": "https://bpfeas.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://bpfeas.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://bpfeas.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://bpfeas.fcu.edu.tw/admissions/"
+    ],
+    "subPages": [
+     "https://bpfeas.fcu.edu.tw/?s=",
+     "https://bpfeas.fcu.edu.tw",
+     "https://bpfeas.fcu.edu.tw/undergraduate-studies/",
+     "https://bpfeas.fcu.edu.tw/curriculum/",
+     "https://bpfeas.fcu.edu.tw/goldmedalactuary/",
+     "https://bpfeas.fcu.edu.tw/media-reports/",
+     "https://bpfeas.fcu.edu.tw/faculty/",
+     "https://bpfeas.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://bpfeas.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://bpfeas.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "金融學院",
+    "did": "bpfeas"
+   }
+  ],
+  "upfc": [
+   {
+    "name": "金融學院學士班",
+    "site": "https://upfc.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 24,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://upfc.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發 最新招生資訊",
+      "src": "https://upfc.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 6,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://upfc.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://upfc.fcu.edu.tw/apply/",
+     "https://upfc.fcu.edu.tw/stream/"
+    ],
+    "subPages": [
+     "https://upfc.fcu.edu.tw/?s=",
+     "https://upfc.fcu.edu.tw",
+     "https://upfc.fcu.edu.tw/undergraduate/",
+     "https://upfc.fcu.edu.tw/studyqa/",
+     "https://upfc.fcu.edu.tw/teachers/",
+     "https://upfc.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://upfc.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://upfc.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://upfc.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor"
+    ],
+    "college": "金融學院",
+    "did": "upfc"
+   }
+  ],
+  "cl": [
+   {
+    "name": "中國文學系",
+    "site": "https://cl.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 30,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "個人申請 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://cl.fcu.edu.tw/apply_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 7,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "繁星推薦 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://cl.fcu.edu.tw/apply_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學入學考試分發 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://cl.fcu.edu.tw/apply_undergraduate/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 5,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生資訊",
+    "deadLinks": [],
+    "pages": [
+     "https://cl.fcu.edu.tw/apply/",
+     "https://cl.fcu.edu.tw/apply_undergraduate/",
+     "https://cl.fcu.edu.tw/apply_graduate/"
+    ],
+    "subPages": [
+     "https://cl.fcu.edu.tw/?s=",
+     "https://cl.fcu.edu.tw/intro/",
+     "https://cl.fcu.edu.tw/%e6%ad%a1%e8%bf%8e/",
+     "https://cl.fcu.edu.tw/%e6%88%90%e5%93%a1/",
+     "https://cl.fcu.edu.tw/future/",
+     "https://cl.fcu.edu.tw/news/",
+     "https://cl.fcu.edu.tw/%e6%b4%bb%e5%8b%95%e5%88%97%e8%a1%a8/",
+     "https://cl.fcu.edu.tw/%e6%a0%a1%e5%9c%92%e5%85%ac%e5%91%8a%e5%88%97%e8%a1%a8/"
+    ],
+    "college": "人文社會學院",
+    "did": "cl"
+   }
+  ],
+  "fll": [
+   {
+    "name": "外國語文學系(含英語文研究碩士班)",
+    "site": "https://fll.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 50,
+      "url": "https://www.fcu.edu.tw/apply/",
+      "t": "外國學生申請入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://fll.fcu.edu.tw/apply/",
+      "s": "wk",
+      "why": "僅連全校招生總覽頁"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 12,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "分發入學",
+      "q": 9,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "四技甄選",
+      "q": 7,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 5,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://fll.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://fll.fcu.edu.tw/en",
+     "https://fll.fcu.edu.tw/?s=",
+     "https://fll.fcu.edu.tw/undergraduate/",
+     "https://fll.fcu.edu.tw/graduate/",
+     "https://fll.fcu.edu.tw/curriculum/",
+     "https://fll.fcu.edu.tw/scholarship/",
+     "https://fll.fcu.edu.tw/%e5%b8%b8%e8%a6%8b%e5%95%8f%e9%a1%8c/",
+     "https://fll.fcu.edu.tw/faculty/",
+     "https://fll.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://fll.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Visiting+Professor"
+    ],
+    "college": "人文社會學院",
+    "did": "fll"
+   }
+  ],
+  "iecs": [
+   {
+    "name": "資訊工程學系",
+    "site": "https://www.iecs.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 104,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學",
+      "src": "https://www.iecs.fcu.edu.tw/enrollment/college",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 27,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學",
+      "src": "https://www.iecs.fcu.edu.tw/enrollment/college",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 25,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦",
+      "src": "https://www.iecs.fcu.edu.tw/enrollment/college",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 9,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "四技甄選",
+      "q": 7,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "資安學研申請",
+      "q": 5,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生/Admission",
+    "deadLinks": [],
+    "pages": [
+     "https://www.iecs.fcu.edu.tw/enrollment/",
+     "https://www.iecs.fcu.edu.tw/en/foreign/"
+    ],
+    "subPages": [
+     "https://www.iecs.fcu.edu.tw/",
+     "https://www.iecs.fcu.edu.tw/enrollment/college",
+     "https://www.iecs.fcu.edu.tw/enrollment/master",
+     "https://www.iecs.fcu.edu.tw/enrollment/doctor",
+     "https://www.iecs.fcu.edu.tw/about/",
+     "https://www.iecs.fcu.edu.tw/about/resource/",
+     "https://www.iecs.fcu.edu.tw/about/history/",
+     "https://www.iecs.fcu.edu.tw/feedback/",
+     "https://www.iecs.fcu.edu.tw/about/course_plan/"
+    ],
+    "college": "資訊電機學院",
+    "did": "iecs"
+   }
+  ],
+  "ee": [
+   {
+    "name": "電機工程學系",
+    "site": "https://ee.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 70,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://ee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 31,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://ee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 19,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 招生簡章、報名日期等詳細資訊請點連結",
+      "src": "https://ee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://ee.fcu.edu.tw/admissions/"
+    ],
+    "subPages": [
+     "https://ee.fcu.edu.tw/?s=",
+     "https://ee.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://ee.fcu.edu.tw/%e7%a2%a9%e5%a3%ab%e5%b0%88%e6%a5%ad-2/",
+     "https://ee.fcu.edu.tw/teachers/",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Professor",
+     "https://ee.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Associate+Professor"
+    ],
+    "college": "資訊電機學院",
+    "did": "ee"
+   }
+  ],
+  "fcuece": [
+   {
+    "name": "電子工程學系",
+    "site": "https://fcuece.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 76,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "申請入學 最新招生資訊",
+      "src": "https://fcuece.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 19,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "分發入學 最新招生資訊",
+      "src": "https://fcuece.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 17,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "繁星推薦 最新招生資訊",
+      "src": "https://fcuece.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊",
+      "src": "https://fcuece.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://fcuece.fcu.edu.tw/apply/",
+     "https://fcuece.fcu.edu.tw/115%e5%ad%b8%e5%b9%b4%e5%ba%a6%e5%a4%a7%e5%ad%b8%e7%94%b3%e8%ab%8b%e5%85%a5%e5%ad%b8%e6%9b%b8%e5%af%a9%e6%ba%96%e5%82%99%e6%8c%87%e5%bc%95/",
+     "https://fcuece.fcu.edu.tw/announcements-detail/?id=D6A2C4D1398242369323C5AC78D735C5",
+     "https://fcuece.fcu.edu.tw/announcements-detail/?id=0A03B6D1BA514488BB2CFEADBB96932A",
+     "https://fcuece.fcu.edu.tw/announcements-detail/?id=88BD822E583D45C796D8DCD22DC93D4C",
+     "https://fcuece.fcu.edu.tw/announcements-detail/?id=5812587F33DB405697E45C29DDDCE8F3"
+    ],
+    "subPages": [
+     "https://fcuece.fcu.edu.tw/?s=",
+     "https://fcuece.fcu.edu.tw/undergraduate/",
+     "https://fcuece.fcu.edu.tw/graduate/",
+     "https://fcuece.fcu.edu.tw/%e9%81%b8%e8%82%b2%e7%b3%bb%e7%b5%b1collego/",
+     "https://fcuece.fcu.edu.tw/study/",
+     "https://fcuece.fcu.edu.tw/undergraduate-studies/",
+     "https://fcuece.fcu.edu.tw/graduate-studies/",
+     "https://fcuece.fcu.edu.tw/class/",
+     "https://fcuece.fcu.edu.tw/faculty/"
+    ],
+    "college": "資訊電機學院",
+    "did": "fcuece"
+   }
+  ],
+  "auto": [
+   {
+    "name": "自動控制工程學系",
+    "site": "https://auto.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 79,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply",
+      "t": "申請入學 (最新招生資訊)",
+      "src": "https://auto.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 18,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam",
+      "t": "大學考試入學分發 (最新招生資訊)",
+      "src": "https://auto.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 17,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star",
+      "t": "大學繁星入學推薦 (最新招生資訊)",
+      "src": "https://auto.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 6,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://auto.fcu.edu.tw/apply/",
+     "https://auto.fcu.edu.tw/share-detail/?id=52335"
+    ],
+    "subPages": [
+     "https://auto.fcu.edu.tw/?s=",
+     "https://auto.fcu.edu.tw/%e5%ad%b8%e7%bf%92/",
+     "https://auto.fcu.edu.tw/undergraduate/",
+     "https://auto.fcu.edu.tw/graduate/",
+     "https://auto.fcu.edu.tw/faculty/",
+     "https://auto.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Chair+Professor",
+     "https://auto.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://auto.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://auto.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor",
+     "https://auto.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "資訊電機學院",
+    "did": "auto"
+   }
+  ],
+  "upiee": [
+   {
+    "name": "資訊電機學院學士班",
+    "site": "https://upiee.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 80,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://upiee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 21,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://upiee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 15,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://upiee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊",
+      "src": "https://upiee.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 2,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://upiee.fcu.edu.tw/admissions/",
+     "https://upiee.fcu.edu.tw/international_admissions/"
+    ],
+    "subPages": [
+     "https://upiee.fcu.edu.tw/?s=",
+     "https://upiee.fcu.edu.tw",
+     "https://upiee.fcu.edu.tw/%e9%81%b8%e8%82%b2%e7%b3%bb%e7%b5%b1collego/",
+     "https://upiee.fcu.edu.tw/%e5%ad%b8%e7%b3%bb%e5%88%86%e6%b5%81/",
+     "https://upiee.fcu.edu.tw/major/",
+     "https://upiee.fcu.edu.tw/%e5%ad%b8%e7%bf%92qa/",
+     "https://upiee.fcu.edu.tw/%e5%b8%ab%e8%b3%87/",
+     "https://upiee.fcu.edu.tw/%e5%b8%ab%e8%b3%87/?offset=0&limit=12&job_title=Professor",
+     "https://upiee.fcu.edu.tw/%e5%b8%ab%e8%b3%87/?offset=0&limit=12&job_title=Associate+Professor"
+    ],
+    "college": "資訊電機學院",
+    "did": "upiee"
+   }
+  ],
+  "ce": [
+   {
+    "name": "通訊工程學系",
+    "site": "https://ce.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 77,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://ce.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 18,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://ce.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 17,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://ce.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "大學特殊選才 最新招生資訊",
+      "src": "https://ce.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+      "t": "四技二專技優甄審 最新招生資訊",
+      "src": "https://ce.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://ce.fcu.edu.tw/admissions/"
+    ],
+    "subPages": [
+     "https://ce.fcu.edu.tw/?s=",
+     "https://ce.fcu.edu.tw/undergraduate/",
+     "https://ce.fcu.edu.tw/graduate/",
+     "https://ce.fcu.edu.tw/teachers/",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Professor",
+     "https://ce.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Adjunct+Associate+Professor"
+    ],
+    "college": "資訊電機學院",
+    "did": "ce"
+   }
+  ],
+  "civil": [
+   {
+    "name": "土木工程學系",
+    "site": "https://civil.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 59,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 第二階段報名：115.4.8(二)~5.6(三)",
+      "src": "https://civil.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 14,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 報名期限：115.3.11(三)~3.12(四)",
+      "src": "https://civil.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學 最新招生資訊",
+      "src": "https://civil.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 7,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "大學特殊選才 報名已截止",
+      "src": "https://civil.fcu.edu.tw/admissions/",
+      "s": "ok"
+     },
+     {
+      "n": "四技技優",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 3,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "四技技優外加",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://civil.fcu.edu.tw/admissions/",
+     "https://civil.fcu.edu.tw/bachelor-admission/",
+     "https://civil.fcu.edu.tw/master-admission/",
+     "https://civil.fcu.edu.tw/credit-bachelor-admission/"
+    ],
+    "subPages": [
+     "https://civil.fcu.edu.tw/?s=",
+     "https://civil.fcu.edu.tw/ieet/",
+     "https://civil.fcu.edu.tw/bachelor-degree/",
+     "https://civil.fcu.edu.tw/master-degree/",
+     "https://civil.fcu.edu.tw/credit-bachelor-degree/",
+     "https://civil.fcu.edu.tw/freshman-project/",
+     "https://civil.fcu.edu.tw/bim-program-planning-and-professional-talent-training-planning/"
+    ],
+    "college": "建設學院",
+    "did": "civil"
+   }
+  ],
+  "he": [
+   {
+    "name": "水利工程與資源保育學系",
+    "site": "https://he.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 59,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://he.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://he.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發 最新招生資訊",
+      "src": "https://he.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 4,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才 最新招生資訊",
+      "src": "https://he.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://he.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://he.fcu.edu.tw/?s=",
+     "https://he.fcu.edu.tw/future/",
+     "https://he.fcu.edu.tw/%e5%ad%b8%e7%bf%92/",
+     "https://he.fcu.edu.tw/%e5%ad%b8%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://he.fcu.edu.tw/%e7%a2%a9%e5%8d%9a%e5%a3%ab%e5%b0%88%e6%a5%ad/",
+     "https://he.fcu.edu.tw/teachers/",
+     "https://he.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Distinguished+Professor",
+     "https://he.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Professor",
+     "https://he.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Associate+Professor",
+     "https://he.fcu.edu.tw/teachers/?offset=0&limit=12&job_title=Assistant+Professor"
+    ],
+    "college": "建設學院",
+    "did": "he"
+   }
+  ],
+  "up": [
+   {
+    "name": "都市計畫與空間資訊學系",
+    "site": "https://up.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 68,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://up.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 13,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star",
+      "t": "繁星推薦 最新招生資訊",
+      "src": "https://up.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://up.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 5,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview",
+      "t": "四技二專甄選 最新招生資訊",
+      "src": "https://up.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://up.fcu.edu.tw/apply/",
+     "https://up.fcu.edu.tw/apply-graduate/"
+    ],
+    "subPages": [
+     "https://up.fcu.edu.tw/?s=",
+     "https://up.fcu.edu.tw/undergraduate/",
+     "https://up.fcu.edu.tw/graduate/",
+     "https://up.fcu.edu.tw/upsi_urbanrenewal/",
+     "https://up.fcu.edu.tw/fcuccrdp/",
+     "https://up.fcu.edu.tw/internship/",
+     "https://up.fcu.edu.tw/activities-of-international/",
+     "https://up.fcu.edu.tw/faculty/",
+     "https://up.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Distinguished+Professor"
+    ],
+    "college": "建設學院",
+    "did": "up"
+   }
+  ],
+  "tl": [
+   {
+    "name": "運輸與物流學系",
+    "site": "https://tl.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 73,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://tl.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 14,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 最新招生資訊",
+      "src": "https://tl.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 10,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://tl.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "運動績優甄試",
+      "q": 1,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://tl.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://tl.fcu.edu.tw/en",
+     "https://tl.fcu.edu.tw/?s=",
+     "https://tl.fcu.edu.tw/screening/",
+     "https://tl.fcu.edu.tw/undergraduate/",
+     "https://tl.fcu.edu.tw/graduate/",
+     "https://tl.fcu.edu.tw/featured-highlights/",
+     "https://tl.fcu.edu.tw/credit_course/",
+     "https://tl.fcu.edu.tw/research-center/",
+     "https://tl.fcu.edu.tw/off-campus-visit/",
+     "https://tl.fcu.edu.tw/student-competition/"
+    ],
+    "college": "建設學院",
+    "did": "tl"
+   }
+  ],
+  "lm": [
+   {
+    "name": "土地管理學系",
+    "site": "https://lm.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 69,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學",
+      "src": "https://lm.fcu.edu.tw/share-detail/?id=52335",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 16,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學",
+      "src": "https://lm.fcu.edu.tw/share-detail/?id=52335",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 11,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試入學分發",
+      "src": "https://lm.fcu.edu.tw/share-detail/?id=52335",
+      "s": "ok"
+     },
+     {
+      "n": "四技甄選",
+      "q": 4,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 2,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_special/",
+      "t": "學士班特殊選才",
+      "src": "https://lm.fcu.edu.tw/share-detail/?id=52335",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "四技技優外加",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 社團成長 把自己丟進未知裡：在土耳其、日本與泰國，我重新認識了自己的極限｜逢甲國貿系林郁蓁 2026.09.22 剛入學時，我對大學生活的想像多半停留在課本理論與考卷分數上。然而，國貿系豐富的課程結構與實務導向，很快便拉開了我探索生活的帷幕。我漸漸明白，商管學科的價值並不全然存在於講義之中，而是在於如何將這些知識投射到真實、複雜且充滿變數的現實環境裡。 這四年間，我跨出國門走訪土耳其、日本與泰國，再到接下跆拳道社社長承擔團隊營運，每一個階段的選擇，都是一次對自身能力極限的梳理與重新認識。",
+    "deadLinks": [],
+    "pages": [
+     "https://lm.fcu.edu.tw/share-detail/?id=52335"
+    ],
+    "subPages": [
+     "https://lm.fcu.edu.tw/20210806ug00/",
+     "https://lm.fcu.edu.tw/share-detail/?id=34152&lang=zh",
+     "https://lm.fcu.edu.tw/share-detail/?id=32255&lang=zh",
+     "https://lm.fcu.edu.tw/share-detail/?id=2653&lang=zh"
+    ],
+    "college": "建設學院",
+    "did": "lm"
+   }
+  ],
+  "archschool": [
+   {
+    "name": "建築專業學院學士班",
+    "site": "https://archschool.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 61,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學個人申請 詳細資訊請點連結",
+      "src": "https://archschool.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 9,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學考試分發 詳細資訊請點連結",
+      "src": "https://archschool.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "特殊選才",
+      "q": 8,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "四技甄選",
+      "q": 7,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+      "t": "四技二專甄選入學 詳細資訊請點連結",
+      "src": "https://archschool.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 3,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦 詳細資訊請點連結",
+      "src": "https://archschool.fcu.edu.tw/apply/",
+      "s": "ok"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://archschool.fcu.edu.tw/apply/"
+    ],
+    "subPages": [
+     "https://archschool.fcu.edu.tw/?s=",
+     "https://archschool.fcu.edu.tw/news/",
+     "https://archschool.fcu.edu.tw/result/",
+     "https://archschool.fcu.edu.tw/share-list/",
+     "https://archschool.fcu.edu.tw/greeting/",
+     "https://archschool.fcu.edu.tw/staff/",
+     "https://archschool.fcu.edu.tw/%e4%bd%a0%e5%95%8f%e6%88%91%e4%be%86%e7%ad%94/",
+     "https://archschool.fcu.edu.tw/faculty/",
+     "https://archschool.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Adjunct+Chair+Professor",
+     "https://archschool.fcu.edu.tw/faculty/?offset=0&limit=12&job_title=Professor"
+    ],
+    "college": "建築專業學院",
+    "did": "archschool"
+   }
+  ],
+  "id": [
+   {
+    "name": "室內設計學士學程",
+    "site": "https://id.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 21,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "分發入學",
+      "q": 4,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "四技甄選",
+      "q": 4,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 3,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "特殊選才",
+      "q": 3,
+      "s": "nil",
+      "why": "招生頁找不到對應連結"
+     },
+     {
+      "n": "原民申請",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "青年儲蓄四技",
+      "q": 2,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 0,
+    "path": "首頁與導覽列皆無招生入口",
+    "deadLinks": [],
+    "pages": [],
+    "college": "建築專業學院",
+    "did": "id"
+   }
+  ],
+  "aita": [
+   {
+    "name": "人工智慧技術與應用學士學位學程",
+    "site": "https://aita.fcu.edu.tw/",
+    "channels": [
+     {
+      "n": "申請入學",
+      "q": 39,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_apply/",
+      "t": "大學申請入學 最新招生資訊",
+      "src": "https://aita.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "分發入學",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_exam/",
+      "t": "大學分發入學 最新招生資訊",
+      "src": "https://aita.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "繁星推薦",
+      "q": 8,
+      "url": "https://www.fcu.edu.tw/recurit_list/college_star/",
+      "t": "大學繁星推薦入學 最新招生資訊",
+      "src": "https://aita.fcu.edu.tw/recruit/",
+      "s": "ok"
+     },
+     {
+      "n": "資安學研申請",
+      "q": 5,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民繁星",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     },
+     {
+      "n": "原民申請",
+      "q": 1,
+      "s": "ext",
+      "why": "外加名額，併於主管道報名"
+     }
+    ],
+    "clicks": 1,
+    "path": "首頁 → 招生",
+    "deadLinks": [],
+    "pages": [
+     "https://aita.fcu.edu.tw/recruit/",
+     "https://aita.fcu.edu.tw/collego03/",
+     "https://aita.fcu.edu.tw/collego04/"
+    ],
+    "subPages": [
+     "https://aita.fcu.edu.tw/?s=",
+     "https://aita.fcu.edu.tw",
+     "https://aita.fcu.edu.tw/overview/",
+     "https://aita.fcu.edu.tw/welcome/",
+     "https://aita.fcu.edu.tw/cincinnati_dual_degree/",
+     "https://aita.fcu.edu.tw/tsmc_program/",
+     "https://aita.fcu.edu.tw/release/",
+     "https://aita.fcu.edu.tw/announcements-list/",
+     "https://aita.fcu.edu.tw/news-list/",
+     "https://aita.fcu.edu.tw/events-list/"
+    ],
+    "college": "創能學院",
+    "did": "aita"
+   }
+  ]
+ }
+}

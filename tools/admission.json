@@ -1,0 +1,1821 @@
+[
+ {
+  "url": "https://inde.fcu.edu.tw/",
+  "name": "工業工程與系統管理學系",
+  "college": "工程與科學學院",
+  "units": [
+   "工業工程與系統管理學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://inde.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://mcae.fcu.edu.tw/",
+  "name": "機械與電腦輔助工程學系",
+  "college": "工程與科學學院",
+  "units": [
+   "機械與電腦輔助工程學系(含機械工程碩士班)"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://mcae.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://mse.fcu.edu.tw/",
+  "name": "材料科學與工程學系",
+  "college": "工程與科學學院",
+  "units": [
+   "材料科學與工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://mse.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://fcm.fcu.edu.tw/",
+  "name": "纖維與複合材料學系",
+  "college": "工程與科學學院",
+  "units": [
+   "纖維與複合材料學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://fcm.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://che.fcu.edu.tw/",
+  "name": "化學工程學系",
+  "college": "工程與科學學院",
+  "units": [
+   "化學工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://che.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://apmath.fcu.edu.tw/",
+  "name": "應用數學系",
+  "college": "工程與科學學院",
+  "units": [
+   "應用數學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://apmath.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://aero.fcu.edu.tw/",
+  "name": "航太與系統工程學系",
+  "college": "工程與科學學院",
+  "units": [
+   "航太與系統工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   },
+   {
+    "t": "碩士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://aero.fcu.edu.tw/admission/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "招生頁9個管道（繁星／個人申請／分發／轉學／境外生／碩士甄試／考試）全部連往 www.fcu.edu.tw/apply/ 全校總覽頁，無任一連到對應管道頁。"
+ },
+ {
+  "url": "https://ees.fcu.edu.tw/",
+  "name": "環境工程與科學學系",
+  "college": "工程與科學學院",
+  "units": [
+   "環境工程與科學學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://ees.fcu.edu.tw/apply-undergraduate/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://photonics.fcu.edu.tw/",
+  "name": "光電科學與工程學系",
+  "college": "工程與科學學院",
+  "units": [
+   "光電科學與工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://photonics.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://psd.fcu.edu.tw/",
+  "name": "精密系統設計學士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "精密系統設計學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://psd.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://earmp.fcu.edu.tw/",
+  "name": "電聲碩士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "電聲碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://earmp.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 3,
+  "issue": "「甄試入學」誤連至博士班甄試入學頁（dr_interview），與本學程碩士學制不符；境外生3管道連結404。"
+ },
+ {
+  "url": "https://gest.fcu.edu.tw/",
+  "name": "綠色能源科技碩士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "綠色能源科技碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://gest.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 5,
+  "issue": "招生頁5個連結全部失效：本國生甄試／考試入學指向113、112學年度舊路徑，境外生3管道指向已下架的 international_admissions。"
+ },
+ {
+  "url": "https://ds.fcu.edu.tw/",
+  "name": "數據科學碩士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "數據科學碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://www.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://imem.fcu.edu.tw/",
+  "name": "智能製造與工程管理碩士在職學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "智能製造與工程管理碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://imem.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "「碩士在職專班考試入學」連結指向 master_job_115，實測404。"
+ },
+ {
+  "url": "https://mae.fcu.edu.tw/",
+  "name": "機械與航空工程博士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "機械與航空工程博士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://mae.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "境外生「外國學生申請入學」連結404；博士班2管道正確。"
+ },
+ {
+  "url": "https://space.fcu.edu.tw/",
+  "name": "太空系統工程碩士學位學程",
+  "college": "工程與科學學院",
+  "units": [
+   "太空系統工程碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://space.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "招生頁4個管道（甄試／考試入學、海外聯招、僑港澳）全部連往全校總覽頁，未連碩士班對應管道頁。"
+ },
+ {
+  "url": "https://nze.fcu.edu.tw/",
+  "name": "學士後工程與科學學院淨零智慧永續學士班",
+  "college": "工程與科學學院",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁與導覽列皆無招生入口",
+   "url": "",
+   "clicks": "找不到",
+   "cc": "c0"
+  },
+  "dead": 0,
+  "issue": "網站已停用（顯示「多站網路管理員已將這個網站封存或停用」），無法瀏覽；亦未列於115學年度招生系所一覽表。"
+ },
+ {
+  "url": "https://marketing.fcu.edu.tw/",
+  "name": "行銷學系",
+  "college": "商學院",
+  "units": [
+   "行銷學系(含全球行銷碩士班)"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://marketing.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://acct.fcu.edu.tw/",
+  "name": "會計學系",
+  "college": "商學院",
+  "units": [
+   "會計學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   },
+   {
+    "t": "碩士 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://www.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 11,
+  "issue": "招生頁11個管道連結全部指向已下架的 national_list/114*、113* 舊路徑，逐一實測全數404；導覽列「招生」則直接跳離系網連到全校總覽頁。"
+ },
+ {
+  "url": "https://itra.fcu.edu.tw/",
+  "name": "國際經營與貿易學系",
+  "college": "商學院",
+  "units": [
+   "國際經營與貿易學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://itra.fcu.edu.tw/recruit/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://pf.fcu.edu.tw/",
+  "name": "財稅學系",
+  "college": "商學院",
+  "units": [
+   "財稅學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://pf.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://coop.fcu.edu.tw/",
+  "name": "合作經濟暨社會事業經營學系",
+  "college": "商學院",
+  "units": [
+   "合作經濟暨社會事業經營學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://coop.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://stat.fcu.edu.tw/",
+  "name": "統計學系",
+  "college": "商學院",
+  "units": [
+   "統計學系(含統計與精算碩士班)"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://stat.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://econ.fcu.edu.tw/",
+  "name": "經濟學系",
+  "college": "商學院",
+  "units": [
+   "經濟學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://econ.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 2,
+  "issue": "境外生「海外聯招會招生」「僑生及港澳生單獨招生」連結404；「外國學生申請入學(秋季班)」誤連至學士後專班招生頁。"
+ },
+ {
+  "url": "https://ba.fcu.edu.tw/",
+  "name": "企業管理學系",
+  "college": "商學院",
+  "units": [
+   "企業管理學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://ba.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "「陸生招聯會」連結404，其餘管道正確。"
+ },
+ {
+  "url": "https://biba.fcu.edu.tw/",
+  "name": "國際企業管理全英語學士學位學程",
+  "college": "商學院",
+  "units": [
+   "國際企業管理全英語學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://biba.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 3,
+  "issue": "「115大學申請入學」實際連到考試分發頁、「115僑生及港澳生單獨招生」實際連到申請入學頁，標籤與連結錯置；另有3個113學年度舊連結404。"
+ },
+ {
+  "url": "https://bce.fcu.edu.tw/",
+  "name": "商學學士學位學程",
+  "college": "商學院",
+  "units": [
+   "商學進修學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "進修學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://bce.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://www.bm.fcu.edu.tw/",
+  "name": "商學專業碩士在職學位學程",
+  "college": "商學院",
+  "units": [
+   "商學專業碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://www.bm.fcu.edu.tw/招生資訊",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "招生頁僅提供115碩士在職專班招生簡章PDF，無官方招生管道頁連結。"
+ },
+ {
+  "url": "https://www.bphd.fcu.edu.tw/",
+  "name": "商學博士學位學程",
+  "college": "商學院",
+  "units": [
+   "商學博士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "博士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://www.bphd.fcu.edu.tw/招生資訊",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "招生頁僅提供116博士班甄試招生簡章（Google Drive），無官方招生管道頁連結，亦無考試入學管道。"
+ },
+ {
+  "url": "https://econlaw.fcu.edu.tw/",
+  "name": "財經法律研究所",
+  "college": "商學院",
+  "units": [
+   "財經法律研究所"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://econlaw.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "碩士班甄試有官方連結；碩士在職專班僅有自站說明與簡章PDF，無官方招生管道入口。"
+ },
+ {
+  "url": "https://www.globalmarketing.fcu.edu.tw/",
+  "name": "全球行銷碩士班",
+  "college": "商學院",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://globalmarketing.fcu.edu.tw/blank-20",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "115學年度一覽表中併入「行銷學系(含全球行銷碩士班)」，本站獨立維運；招生頁多為歷年榜單與面試時間公告。"
+ },
+ {
+  "url": "https://rmi.fcu.edu.tw/",
+  "name": "風險管理與保險學系",
+  "college": "金融學院",
+  "units": [
+   "風險管理與保險學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://rmi.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://fina.fcu.edu.tw/",
+  "name": "財務金融學系",
+  "college": "金融學院",
+  "units": [
+   "財務金融學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://fina.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://bpfeas.fcu.edu.tw/",
+  "name": "財務工程與精算學士學位學程",
+  "college": "金融學院",
+  "units": [
+   "財務工程與精算學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://bpfeas.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://upfc.fcu.edu.tw/",
+  "name": "金融學院學士班",
+  "college": "金融學院",
+  "units": [
+   "金融學院學士班"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://upfc.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://www.pmpf.fcu.edu.tw/",
+  "name": "金融碩士在職學位學程",
+  "college": "金融學院",
+  "units": [
+   "金融碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://www.pmpf.fcu.edu.tw/admissions",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "招生頁唯一管道連結指向 master_job_115，實測404。"
+ },
+ {
+  "url": "https://www.fphd.fcu.edu.tw/",
+  "name": "金融博士學位學程",
+  "college": "金融學院",
+  "units": [
+   "金融博士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://www.fphd.fcu.edu.tw/admissions",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "博士班甄試入學連結正確；未提供博士班考試入學（dr_exam）管道連結。"
+ },
+ {
+  "url": "https://cl.fcu.edu.tw/",
+  "name": "中國文學系",
+  "college": "人文社會學院",
+  "units": [
+   "中國文學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生資訊",
+   "url": "https://cl.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://fll.fcu.edu.tw/",
+  "name": "外國語文學系",
+  "college": "人文社會學院",
+  "units": [
+   "外國語文學系(含英語文研究碩士班)"
+  ],
+  "levels": [
+   {
+    "t": "學士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://fll.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "學士班僅以文字列出9種管道名稱，只給一個「了解更多」連往全校總覽頁，無個別管道連結；碩士班2管道正確。"
+ },
+ {
+  "url": "https://csi.fcu.edu.tw/",
+  "name": "文化與社會創新碩士學位學程",
+  "college": "人文社會學院",
+  "units": [
+   "文化與社會創新碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://csi.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "招生頁僅有1個113學年度碩士考試入學連結（實測404）與1個Facebook連結，無任何有效招生管道入口。"
+ },
+ {
+  "url": "https://gipp.fcu.edu.tw/",
+  "name": "公共事務與社會創新研究所",
+  "college": "人文社會學院",
+  "units": [
+   "社會創新暨永續碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://gipp.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "「114學年度招生系統網址」連結404；115學年度改連報名系統（admissions-fee），未連官方碩士在職專班招生頁。"
+ },
+ {
+  "url": "https://ee.fcu.edu.tw/",
+  "name": "電機工程學系",
+  "college": "資訊電機學院",
+  "units": [
+   "電機工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://ee.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://fcuece.fcu.edu.tw/",
+  "name": "電子工程學系",
+  "college": "資訊電機學院",
+  "units": [
+   "電子工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://fcuece.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://auto.fcu.edu.tw/",
+  "name": "自動控制工程學系",
+  "college": "資訊電機學院",
+  "units": [
+   "自動控制工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://auto.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://ce.fcu.edu.tw/",
+  "name": "通訊工程學系",
+  "college": "資訊電機學院",
+  "units": [
+   "通訊工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://ce.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://upiee.fcu.edu.tw/",
+  "name": "資訊電機學院學士班",
+  "college": "資訊電機學院",
+  "units": [
+   "資訊電機學院學士班"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://upiee.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://www.iecs.fcu.edu.tw/",
+  "name": "資訊工程學系",
+  "college": "資訊電機學院",
+  "units": [
+   "資訊工程學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 導覽列「招生資訊」",
+   "url": "https://www.iecs.fcu.edu.tw/enrollment/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://miee.fcu.edu.tw/",
+  "name": "資訊電機工程碩士在職學位學程",
+  "college": "資訊電機學院",
+  "units": [
+   "資訊電機工程碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://miee.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "招生頁115學年度報名連結指向 master_job_115，實測404。"
+ },
+ {
+  "url": "https://rdms.fcu.edu.tw/",
+  "name": "產業研發碩士專班",
+  "college": "資訊電機學院",
+  "units": [
+   "資通訊與電控產業碩士專班"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生資訊",
+   "url": "https://rdms.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://bmie.fcu.edu.tw/",
+  "name": "生醫資訊暨生醫工程碩士學位學程",
+  "college": "資訊電機學院",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://bmie.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "未列於115學年度招生系所一覽表；招生頁除導覽連結外無任何招生管道內容。"
+ },
+ {
+  "url": "https://gece.fcu.edu.tw/",
+  "name": "電機與通訊工程博士學位學程",
+  "college": "資訊電機學院",
+  "units": [
+   "電機與通訊工程博士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "博士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://gece.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://pbiecs.fcu.edu.tw/",
+  "name": "資訊工程學系學士後專班",
+  "college": "資訊電機學院",
+  "units": [
+   "資訊工程學系學士後專班"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://www.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://ics.fcu.edu.tw/",
+  "name": "資通安全碩士學位學程",
+  "college": "資訊電機學院",
+  "units": [
+   "資通安全碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生總覽",
+   "url": "https://ics.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://cocd.fcu.edu.tw/",
+  "name": "建設學院",
+  "college": "建設學院",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://www.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "學院層級網站，本身無招生學制；導覽列「招生」直接連往全校總覽頁，無自站招生頁。"
+ },
+ {
+  "url": "https://civil.fcu.edu.tw/",
+  "name": "土木工程學系",
+  "college": "建設學院",
+  "units": [
+   "土木工程學系",
+   "土木工程學系營建工程與管理進修學士班"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "進修學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://civil.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "「暑假轉學生(含進修部)」連結指向113學年度舊路徑，實測404。"
+ },
+ {
+  "url": "https://he.fcu.edu.tw/",
+  "name": "水利工程與資源保育學系",
+  "college": "建設學院",
+  "units": [
+   "水利工程與資源保育學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://he.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://up.fcu.edu.tw/",
+  "name": "都市計畫與空間資訊學系",
+  "college": "建設學院",
+  "units": [
+   "都市計畫與空間資訊學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://up.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://tl.fcu.edu.tw/",
+  "name": "運輸與物流學系",
+  "college": "建設學院",
+  "units": [
+   "運輸與物流學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://tl.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://lm.fcu.edu.tw/",
+  "name": "土地管理學系",
+  "college": "建設學院",
+  "units": [
+   "土地管理學系"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://www.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 2,
+  "issue": "導覽列「招生」主連結指向 www.fcu.edu.tw/admissions/，實測404；系網本身無招生頁（/apply/、/admissions/ 皆404）；碩士班僅連全校總覽頁。"
+ },
+ {
+  "url": "https://mppm.fcu.edu.tw/",
+  "name": "專案管理碩士在職學位學程",
+  "college": "建設學院",
+  "units": [
+   "專案管理碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://mppm.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 1,
+  "issue": "碩士在職專班連結指向 master_job_115，實測404。"
+ },
+ {
+  "url": "https://mcd.fcu.edu.tw/",
+  "name": "建設碩士在職學位學程",
+  "college": "建設學院",
+  "units": [
+   "建設碩士在職學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩專 ✗",
+    "c": "bad",
+    "ti": "連結失效"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://mcd.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 2,
+  "issue": "招生頁2個碩士在職專班連結皆指向 recurit_list/master_job_115/，實測404（現行正確路徑為 recurit_list/master_job/）。"
+ },
+ {
+  "url": "https://imsc.fcu.edu.tw/",
+  "name": "智慧城市碩士學位學程",
+  "college": "建設學院",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://imsc.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "未列於115學年度招生系所一覽表；招生頁「碩士班」「境外生」皆連往全校總覽頁。"
+ },
+ {
+  "url": "https://gche.fcu.edu.tw/",
+  "name": "建設規劃與工程博士學位學程",
+  "college": "建設學院",
+  "units": [
+   "建設規劃與工程博士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "博士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://gche.fcu.edu.tw/%e6%8b%9b%e7%94%9f/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "博士班甄試入學、考試入學皆連往全校總覽頁，未連 dr_interview／dr_exam 對應頁。"
+ },
+ {
+  "url": "https://archschool.fcu.edu.tw/",
+  "name": "建築專業學院",
+  "college": "建築專業學院",
+  "units": [
+   "建築專業學院學士班",
+   "建築學士學位學程",
+   "建築碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   },
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 首頁「招生管道」卡片",
+   "url": "https://archschool.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "導覽列沒有「招生」項目，招生頁僅能由首頁輪播圖與「招生管道」卡片進入。"
+ },
+ {
+  "url": "https://id.fcu.edu.tw/",
+  "name": "室內設計學士學位學程",
+  "college": "建築專業學院",
+  "units": [
+   "室內設計學士學程",
+   "室內設計進修學士班"
+  ],
+  "levels": [
+   {
+    "t": "學士 —",
+    "c": "nil",
+    "ti": "無對應連結"
+   },
+   {
+    "t": "進修學士 —",
+    "c": "nil",
+    "ti": "無對應連結"
+   }
+  ],
+  "path": {
+   "text": "首頁與導覽列皆無招生入口",
+   "url": "",
+   "clicks": "找不到",
+   "cc": "c0"
+  },
+  "dead": 0,
+  "issue": "首頁與導覽列完全沒有任何招生入口，學士學位學程與進修學士班兩學制皆無對應連結；考生須改由建築專業學院網站間接尋找。"
+ },
+ {
+  "url": "https://aita.fcu.edu.tw/",
+  "name": "人工智慧技術與應用學士學位學程",
+  "college": "創能學院",
+  "units": [
+   "人工智慧技術與應用學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://aita.fcu.edu.tw/recruit/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://aitm.fcu.edu.tw/",
+  "name": "人工智慧科技與管理碩士學位學程",
+  "college": "創能學院",
+  "units": [
+   "人工智慧科技與管理碩士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "碩士 ✓",
+    "c": "ok",
+    "ti": "連結正確"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://aitm.fcu.edu.tw/recruit/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": ""
+ },
+ {
+  "url": "https://smd.fcu.edu.tw/",
+  "name": "經營管理學院",
+  "college": "經營管理學院",
+  "units": [
+   "經營管理碩士在職學位學程經營管理組",
+   "經營管理碩士在職學位學程高階管理組",
+   "經營管理碩士在職學位學程數位創新管理組",
+   "經營管理碩士在職學位學程文化創意產業管理組",
+   "經營管理碩士在職學位學程建築產業管理組"
+  ],
+  "levels": [
+   {
+    "t": "碩專 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生資訊",
+   "url": "https://smd.fcu.edu.tw/admissions/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "招生資訊頁內容完整（報考資格／簡章下載／說明會／Q&A），但無任一連往官方碩士在職專班招生頁的連結。"
+ },
+ {
+  "url": "https://istm.fcu.edu.tw/",
+  "name": "國際科技與管理學院",
+  "college": "國際科技與管理學院",
+  "units": [
+   "澳洲墨爾本皇家理工大學商學與創新雙學士學位學程",
+   "美國加州聖荷西州立大學商學大數據分析雙學士學位學程",
+   "美國加州聖荷西州立大學電機工程雙學士學位學程",
+   "美國加州舊金山州立大學資訊工程雙學士學位學程",
+   "澳洲昆士蘭商學雙學士學位學程",
+   "澳洲蒙納許大學資訊工程雙學士學位學程",
+   "澳洲昆士蘭電機工程雙學士學位學程",
+   "澳洲新南威爾斯大學設計雙學士學位學程",
+   "國際雙學士學位學程"
+  ],
+  "levels": [
+   {
+    "t": "學士 △",
+    "c": "wk",
+    "ti": "僅連總覽頁"
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://istm.fcu.edu.tw/recruit/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 5,
+  "issue": "招生頁5個連結失效（113/114學年度舊路徑與雙聯學程專頁），僅2個管道連結有效。"
+ },
+ {
+  "url": "https://pmp.fcu.edu.tw/",
+  "name": "全校國際生大一不分系學士班",
+  "college": "通識教育中心",
+  "units": [],
+  "levels": [
+   {
+    "t": "未列入115一覽表",
+    "c": "na",
+    "ti": ""
+   }
+  ],
+  "path": {
+   "text": "首頁 → 招生",
+   "url": "https://pmp.fcu.edu.tw/apply/",
+   "clicks": "1 次點擊",
+   "cc": "c1"
+  },
+  "dead": 0,
+  "issue": "未列於115學年度招生系所一覽表（全校型國際生專班）；外國學生秋季班管道連結正確。"
+ }
+]

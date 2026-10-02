@@ -1,0 +1,947 @@
+{
+ "built": "2026-10-02 13:24",
+ "depts": {
+  "inde": {
+   "name": "工業工程與系統管理學系",
+   "url": "https://inde.fcu.edu.tw/teachers/",
+   "checked": "2026-10-02",
+   "rows": [
+    {
+     "tid": "T80041",
+     "name": "蕭堯仁",
+     "job": "講座教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T80041&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 647,
+      "h": 970,
+      "facePx": 135,
+      "faceBlur": 110.3,
+      "topGap": 0.212,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 73398,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 7,
+      "nEdu": 3,
+      "specs": [
+       "工業工程與管理",
+       "資源規劃與配置",
+       "供應鏈績效與管理",
+       "專案導入績效與管理",
+       "產業電子化分析與規劃",
+       "品質工程",
+       "預防維護與保養管理"
+      ],
+      "topEdu": "美國奧本大學 / 工業工程系 / 博士",
+      "rich": {
+       "fcuExp": 27,
+       "journal": 45,
+       "conference": 74,
+       "book": 2,
+       "patent": 1,
+       "reward": 45
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T08061",
+     "name": "片山博",
+     "job": "特約講座",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T08061&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 659,
+      "facePx": 292,
+      "faceBlur": 251.6,
+      "topGap": 0.225,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 63616,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "全面生產保全",
+       "Karakuri 改善",
+       "生產管理",
+       "精實管理"
+      ],
+      "topEdu": "早稻田大學 / 工工系 / 博士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T96196",
+     "name": "林棋瑋",
+     "job": "專任教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T96196&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 576,
+      "h": 970,
+      "facePx": 212,
+      "faceBlur": 309.1,
+      "topGap": 0.175,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 46973,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGwAAAgIDAQAAAAAAAAAAAAAAAAEEBQIDBgf/xAA1EAABAwIEBAMGBAcAAAAAAAABAAIDBBEFEiFBBhMxUSJhgRRCcZGhsSMywdEHM1JicuHw/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAMEAQIF/8QAIBEAAwACAQQDAAAAAAAAAAAAAAECAxESITFBUQQiMv/aAAwDAQACEQMRAD8A7FFkJEphyBSQSqDiHiuiwQ8p156q1xCw9P8AI7LAL5C81PH2JVEh5UEETBsAXW9SVubx7iMLGPmoopYx+dwu1ZyRumeiJqjwHiahxsZYHFkwFzE/rby7q6BWmGSEroutAaEXQgDIrErJIoAquIsRdheEzVDP5mjY9L+I7/qvIZ2yVEj5HFzpHuu4k3J+K9D/AIhueaSjjDiGukc4gbkAW+6j8P4NRuoY5ZIy6Vo8RJ+fqlXSkbjh0VGA4PaNrnMB3uRuuhFEzLkLA4HrcKxnitl5eRrbWaBosQ1zTckNHcqKqps9GJmZ6HGY1hD8EqI8Sw8mNjXgvA9w7EeS9DwitbiOHwVTRbmN8QGztwq2qFPXwSUznsfnYWnKbqNwO19JT1VDK65hku34dD9lVhp9mRZ4X6R1Fk7JXTuqCYEIuhAGSRTQUAc5xZTyVTIGRMD3RZpHA7N0CjUNQyPCYrMeWvbrlade5XQ18TjG6SI2kDC30Kq4ohThrADlAtYqPM3y6l2BJztFJPO1kmdtI1jctw/mXPXspEtZUikLmxXsbg6m43W+qELZ42ctznSPsba5RuVKhqYprxiKW1gLOjsB8yl72P1oiYXUTTMvLEwEg5Sw9DtfRTcKpnU9bLUXv7RIWOH9Nhe60UE4zywviEUsZsexGxCtsPjy539zcLvG26WhWVJQ2ybZOySatPPBCEIAd0rppIARN9DuqyujDJbDoRcKxe5rGlznBrRqSTYBcpX4tG7G3Azl1GYxHofC13XMPtdLyxykdhvjRtdHI+pPs8wjdltmLM1koIKnnmPmy7/iX0+QWp8z6OUuDTI3ZaYcaq5arLFTOuToo0XN6LaGm5Mxa6R80hFg5/Uq5iZy42t7DVVmG1Mbq10M7gKsxh4b2be2itlThjS5eyPNe3x9DCYWIWQTycaEIQBAxPGKbDrNkdmlIuI29fXsqKo4rncfwI4mD+67j+ipKqR00z5HnM55uSepKhTNNiW+oG/+05QkgJ+I4viFZG9r6k5XdGNAa0+RsoEUonjD267EHqD2K0xyggtvff4jutbWPjqebER4vzNPvBCA6bA6yNxbTTmw6MJ28lfsgkikLQGlp1Dl5/NLMIyY2NDu5N1Y4PxPiFK9jMQyzU+oDveHbXdSZvj9eUlWPM+1G7Gap9LxZBJA7xRQtv8AM9fmrkcXRMdkmpJAQLkscCPquSxCukkqJamOJpnnNwCdGhIzCdrTYsktZzD1H7p2GPoticrTp6PQKTH8Pqg3LUNjc73ZPCf2Vm119QvKIXeCG+xcwrsOC6/PSexSOJdGMzLnY7ei6c+RZ1OZCxQuAPOZeq0P1BQhVAQZBknaW6eIfXQ/95Lc3fydYIQuPIGYULEGjLG3YyN+pQhFdgRuk1mPktg/VCF0YDgA2T4g+qmYNM+nqoZIzZwc369UIQB6PuhCFMaf/9k="
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 1,
+      "nEdu": 3,
+      "specs": [
+       "產品設計與研發管理"
+      ],
+      "topEdu": "Purdue University / 工業工程學系 / 博士",
+      "rich": {
+       "fcuExp": 8,
+       "journal": 26,
+       "conference": 10,
+       "book": 0,
+       "patent": 1,
+       "reward": 22
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T93146",
+     "name": "王逸琦",
+     "job": "專任教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T93146&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 511,
+      "h": 768,
+      "facePx": 126,
+      "faceBlur": 24.8,
+      "topGap": 0.272,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 66639,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "精實製造/精實企業系統",
+       "供應鏈管理",
+       "系統模擬",
+       "製造程序"
+      ],
+      "topEdu": "美國密西西比州立大學 / 工業工程學系 / 博士",
+      "rich": {
+       "fcuExp": 4,
+       "journal": 56,
+       "conference": 25,
+       "book": 1,
+       "patent": 1,
+       "reward": 11
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [
+      "臉部明顯模糊／失焦（清晰度 25）"
+     ],
+     "notes": []
+    },
+    {
+     "tid": "T97041",
+     "name": "林暘桂",
+     "job": "專任教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T97041&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 768,
+      "h": 1152,
+      "facePx": 195,
+      "faceBlur": 147.2,
+      "topGap": 0.136,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 97954,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 6,
+      "nEdu": 1,
+      "specs": [
+       "生產排程",
+       "最佳化",
+       "作業研究",
+       "系統模擬",
+       "實驗設計",
+       "統計"
+      ],
+      "topEdu": "Arizona State / 工業工程 / 博士",
+      "rich": {
+       "fcuExp": 5,
+       "journal": 24,
+       "conference": 37,
+       "book": 0,
+       "patent": 1,
+       "reward": 26
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T84003",
+     "name": "唐國豪",
+     "job": "專任教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T84003&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 647,
+      "h": 969,
+      "facePx": 128,
+      "faceBlur": 148.5,
+      "topGap": 0.201,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 93442,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "人機介面互動設計",
+       "人因工程",
+       "認知工程與介面設計",
+       "生產與作業管理"
+      ],
+      "topEdu": "美國普渡大學 / 工業工程學系 / 博士",
+      "rich": {
+       "fcuExp": 34,
+       "journal": 20,
+       "conference": 32,
+       "book": 3,
+       "patent": 1,
+       "reward": 13
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T06239",
+     "name": "楊士霆",
+     "job": "專任副教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T06239&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 474,
+      "h": 594,
+      "facePx": 112,
+      "faceBlur": 32.6,
+      "topGap": 0.091,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 61335,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGwAAAAcBAAAAAAAAAAAAAAAAAAECAwQFBgf/xAAvEAABBAEDAgYBBAEFAAAAAAABAAIDEQQSITEFQQYTIlFhcZEUIzJCUgdigbHB/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAECA//EABwRAQADAAMBAQAAAAAAAAAAAAABAhEhMUESMv/aAAwDAQACEQMRAD8A0riBsUgjmrSy3mzwkkWfhYNiLrYhJq04W0NlW9Y6nD0jE82Vpc4mmtB5KAmuFGxwmpsiGIXLOxh/3OAXPM/xNm5hIdIWMPDWbKonnklOqSRx+zZVxRP06w2eKT+ErHfThuiyG/s7/wCQ/wC1yRs74zbHuBHyrTp/ibNxXBskpmhuyx2/4SmgizpkljjhNke3KRh5cWfix5ELrY8XXt8JZHsoWTXwUEsG+eUEwn9qCT9hLrf2STx7IIR33WEz8HK8R+JJ8eJ37cRouPDQNlu3A16eyp/CWO5onyHD1zyFx/JTicERsqSXwnjYBLJS58gUHK6FjBuoBy2PXCTPtR4AHdVfU2tbHWpoob7qJmzaK1xisjpTQToeQPlVc0BicQd6WiyJRrI1A/RVXlxeqzwe6utp9ZXrHi//ANPsypMnEc7dzRI0fXK2tLnvglujxA3etUTwuhkAn6RbtNeiPQOUEsgd6QSNOcew5TZDu+5ThbygWnugEcbkqmyGtxsUguyCwPe0RQGnvJN/ildOb3Kbijb+82QNcHGxe+1BCq9sZgT+b1NsQiniOqhrdq2TeQ+KXJmikhGRoIABdpH2StRjMxC/KkhjFw20PAAGquAsbI92LmvlF00+ohKd1tnCJkxMEhvFZEL28p2oJjJbULvhXmXIyZokaQWkdlVTNa+29ilvKZrwX4UmixurtnyXaGFha01tZ4XQyD7UFziCIy5ceO0WHOa0bcbrpJBqgVW6zmuC0DugjQQlM1CuRSIuHuPymhCw9hSLyWUfSEA657a5F/aiZfqidpO9dksxMHYWidG3Q7SKJSVWcnVLO3p2H04RzyOEpJd6XEFx+h2WUyzhCU+U51UNWq6J7rbfomiCQxxxid128gWFnMrD8skyyte6+wFBGtuMQY3tdCQ3gBMad7SsmYMpt/YTDZdXwApTMtV4e6SIRHmTva5xbcbf8b7/AGtBrFcj8qi8Ndaweqt/TRxujngYPS+vWBtYV35LK3YFeYymdH5jRyUEQx463aCUEEmE/CAO2yOr5RNq9kA24WivsnJPwFCzc/FwG68mZsYI2B5P0OSgB1HHfkYztDzHJWxCwOfjZUT3CR8mx9qUvxL4sfksjgwmPjjErXlzju/Sb47C1a9dnbPjxzsALJGhwPwUWiYVXlj9Di7g7+6bnmBd5DT29Z9h7I87MEZcIyC/ix2UCMVAXH+Uhr/hVFfZKbZ0ViZU2Hlx5OO7RLG62n/z6XSOl+KenZ8UYlyGY+QR6o5DQv4J2K5qBQv2SNKua6yi0u0AkgFoJB3BG4KC4/Dm5kDNEOVNGwf1bIQEFPwf07S5x0pIKCChap8UdRn6fgNfjlrXvdp1EWR9LBSufPIZJXue9x3c42SggtadM7doGZv1CNv9QQKVznTyN8IgNcRon8oHvps7IIJX/UNKfiWUUyQUI29g0Uggq9Zx1InD0j7RABBBNJVBBBBAf//Z"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 1,
+      "nEdu": 2,
+      "specs": [
+       "資料探勘、巨量資料分析、商業智慧、知識管理、企業電子化、行動商務"
+      ],
+      "topEdu": "清華大學 / 工業工程與工程管理學系 / 博士",
+      "rich": {
+       "fcuExp": 2,
+       "journal": 10,
+       "conference": 63,
+       "book": 0,
+       "patent": 1,
+       "reward": 4
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [
+      "頭部太貼近上緣（臉部上緣距頂端僅 9%）",
+      "臉部明顯模糊／失焦（清晰度 33）"
+     ],
+     "notes": []
+    },
+    {
+     "tid": "T97094",
+     "name": "鍾健平",
+     "job": "專任副教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T97094&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 720,
+      "facePx": 121,
+      "faceBlur": 42.9,
+      "topGap": 0.181,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 61203,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAAEDBAUCBv/EACoQAAICAQIEBQUBAQAAAAAAAAECAAMRBCEFEjFBEyJRcYEjMlJhoZHB/8QAGAEBAAMBAAAAAAAAAAAAAAAAAAEDBAL/xAAdEQEAAgMAAwEAAAAAAAAAAAAAARECAyEEEiJB/9oADAMBAAIRAxEAPwD3ojEYEcBR4hCAQxOGtRerCNbUbowMDqGI4QOcQxHCBziEeIQHCEIHFti1IXdgqjckyi2qa7cZVT0Hf5lbjF5OsroJ8gXnI9TmKo5yZTsyrkNWjXGX1K2leRsIrFKiTUbrI9Y9dS5ssVR+zOK5a+4ukSa16WGcvX3Hce000cOoZTkEZBmA1tbbo4JPTE1OFvzafHYHaWa8pnks2/XGPYXYQhLWcsQjhAIGEISxuNU/XS4fjy/2Z73BeQkuU/GsbsZf4743MBsaQAQO+ZU0rAeV8HHrM+c/TdpxrAqtUoz4ejsoAySSQfnrJrrrQ/0kDsVDDn6YMkt1OnRuUMi4HmZjhRIruK6QGrl1FfMRsCfu/QkLIxqKVQNVa6tqEo23JryOX/es1OE6qtPouwFjt5R6yvbqkuryMqR1B7GPg1As1PikfYP72nWM94r24x69bwjgIS9gKEcIBCEISg1dPjUsuPN1X3nnuUb9iJ6czz+twmutQIyjZhnowPUj5lWzG+tPj51NKl1i0gVPpnuWw7kLkfMT1GlPFq0NSn3wT/JcQqycjnaDaegbtcxx2J2EqhruFQIz1i29BW7AZTOcfM2eC1AUtZjdjgewmSSNTeladCcAz0tNa1VqiDCqMCWa4/WXfnz1SCOEJcyFCOEBQnSoWkqpiTQh5SRIrtLXanK65xup7iXMThhgZAz+pNF/ry3E9LqtIS1aCyv8h/0TJGoex+V1Kme8ZVZC23KRvmef1OjoudnrXwsnyg9GEpz1zHcWrXuieZMa/mWoEEgll3HuJ6zh9jtQouIL9M+syK+Hm29EYZXuJoHUK2oSlUytbbuR3/UnVF248iomGlHOVziOWUoEIQkJTpOzCE6clEYQgU9TWHuFbElCMlc7EzvwUKFSo5fSEJ0IhUlKM9YwQpxI6KU5c43MIQStqMTnuYQnMkCEITlL/9k="
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 5,
+      "nEdu": 1,
+      "specs": [
+       "生產與作業管理",
+       "品質經營管理",
+       "企業資源規劃",
+       "智慧生產與系統整合",
+       "系統動力學"
+      ],
+      "topEdu": "逢甲大學 / 工業工程與系統管理 / 博士",
+      "rich": {
+       "fcuExp": 3,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T10242",
+     "name": "周哲維",
+     "job": "專任副教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T10242&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 956,
+      "h": 1349,
+      "facePx": 220,
+      "faceBlur": 162.9,
+      "topGap": 0.152,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 97148,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAAEDBAUHBgII/8QANBAAAQQBAgQEAwYHAQAAAAAAAQACAwQRBRIGITFBEyJhgQdCcTJRkbHR4RQVI1JicqHB/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAEEAwIF/8QAHxEAAgIDAQADAQAAAAAAAAAAAAECAxEhMRITMkFR/9oADAMBAAIRAxEAPwDRQEuF6whMZ5Ua5erUmOfZnjiaAT5nAckzrerV9Hovs2HhoA8oPzHsFi3EXEUutXXzTEhp+zGDyaEAaRP8QtJbKGRue9p6v24AUirxzotgOJsiPbjO8YWJmQnovO9w6oA+j608dmFk0Lw+N4y1w6EJ1ZT8NeKZILUOjWMOhlcfCcT9g9cfQrVhzQAhC8kL3hIQgBvCF6whICRhBSpHjIKAMR4912xq2tTQHcyCs8sjYeWfX3UTTOE7lva+aMxxnnkp2NsmocXPfbYd3jkvae2DyH/FpjWBrByWVs3HSKKq1LbOIPCEDQAHuGE1LwxXjjxjPquysNI7Kt1F8cEW6WRrG+pUznNlPxwX4cNqulO04xXKji10bgeXYjoVr/CGsHXNBrXHkeMQWSgdA8df191nr5IbzHwtdlru+FdfDCV9S7qWlycgNs7PyP8A4qKZtrEukt0EnlcNCSEL0kK2MDzhCVCAH0FKkKAM6/lbW8Z6huxzlEgwOxGVZ6u50URImELR1djJ9h96najRxqrdQB2yB3hSN7Ob2P1C9WabZcuI5jofuU1jbei2tYWGcnp9t9i0Y82sA4zM3blNarFI2y5gDXuHNniDIHsr6KKOKY52ggZLie31VdrVqoTHK2Qu3Hk5rST+CxeXs3wloqIa1wjxJvDdju1hZ+CsdGL6fEcFpjQd8BjcD38w/VJHaBiAHVSabHPuVixpJ34P0JCItqRzOCawzQAgoCFeeaIhCEAPIQhAiDfqiYsdgcjk5UR7XNjAd1xgq4IyoN6MNaC0YCxnH9RRXZyLOTsWWU7GJWyPmnk2RMaOp7c+yZ1KpMInPmmq1nuHQu3lW9mJr5AXNDhnuFAv1QebCG5745rFbRWpf1nNUvHNuYSFjoWEBj2jG71XXcMV2y2XSOGfDGR9VRPhEbtjfvXacP1G1qLHA5dKA4n8gnXHM8mNssJ4LQISpFWRiISoQA8kSpCUCEKjuLbTJRA9sjonlj2g9DjmPrzVXxNxLU0KpI58rHW9p8KHOST2yOwWbcM8XWNI1V1mV7pYLDs2Wf3Z+Yeo/ZPz6R0njZoF1kjHHYCD3a4Kj1A3flaCP9l3bf4TVasc8bmyxSN3Mkae3oVVX9IlaC6L+q0dvm/dSyrnHhTC2D6cVUbK6RxlB3LQNM5UK4/wC5Cy0tmf5CzHYhXfDc0nhGNxJAJ9kU/ZjvWtF+hIClVJICEIQA6Vn3HvE2pULbqVOVsEZbkvYPOfft7IQnHoIzOzNJK9z5Hlzickk5JTWSChC7GzR/hNqNl0tug5+6uxolY0/KScHHotLac9UISZwVuo1IbUrhKwEjkCORVdRibDGAzPmc4k+6ELjC9Gqb84HdJ1Ka1qOo1ZAzZVkDGEA5ILQef4q3BQhNnAqEISA//Z"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 5,
+      "nEdu": 3,
+      "specs": [
+       "智慧製造",
+       "決策分析",
+       "工程資料分析與最佳化",
+       "系統模擬",
+       "智能營運"
+      ],
+      "topEdu": "國立清華大學 / 工業工程與工程管理學系 / 博士",
+      "rich": {
+       "fcuExp": 2,
+       "journal": 11,
+       "conference": 2,
+       "book": 0,
+       "patent": 1,
+       "reward": 2
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T08188",
+     "name": "陳兆衡",
+     "job": "專任副教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T08188&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 643,
+      "h": 970,
+      "facePx": 229,
+      "faceBlur": 255.9,
+      "topGap": 0.18,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 88964,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAAEDBAUGAgf/xAAwEAABAwIFAwIEBgMAAAAAAAABAAIDBBEFEiExQQZRYSJxEzKBoRQkkbHB4TNSYv/EABkBAAMBAQEAAAAAAAAAAAAAAAABAgQDBf/EAB4RAAICAwEBAQEAAAAAAAAAAAABAhEDEiExQTJC/9oADAMBAAIRAxEAPwDXpEqRdiBEJUhQAXSKNWV0FG0GZ4BPyt5KpanqF5JFKwuI2uwWP3upckvSlFvw0d0LN0fV1O6UQ18L6WXuRdh+u4WgjlZKwPjcHNOoINwU00/BNNejqFzdLdMQqEl0IA6SLpIkMRNVUzaankmf8rGlxtz4TyrMaddtPDw+TMfZov8AvZKTpWOK2aRTugfO90s5Jnk+Y/6/8jwF1FSxxnbXupuzbBh33sm9fiA20XnNt9Z6kYpKhmpwqCthIlZc8O5Cg9P1jcLxQ4ZJK8skPozbB39rS05zi1th2WJ6tf8AgsVjqQAHgg7chd8TaZnzJNHoQSpqnlE0McrflkaHD6i6duthiFQkuhIDpIlQgBFU47r8FtnW9RJG+1rfdWyhYpGJIo76Wdv9FGT8s6Ya3VmXhqMleKdsM7TplL3XGqlYjCM7M7c+fYh1h7k8J2AsfWSRhofJGN7bKTiUsUEEL5GZPUGZraG+11ivp6OvKGsEqCYIyYJYXOF8rzfT3UfH8JOMTwR5xGNLutffhWNLGzJnOvaxTeIUks7ad0IIeyQOLg6xA7eb/ZNSd2LRPjLDCiDh9OGgjIwMIO4LdD+ymJqnj+DC1mlxqbdybn7lOrcrrp5kq2deAhCFQjolJdBSJAF1GxEE0xtwQVISOAcCHC4OhCUlaaHF6yTMoyWCFrmvZIC5xcXAHU+65YaOohkjkFQ9jtSHhzh/Ss66ibC0gyOYy5yPA1HhRKRjYWn81nJPIsVia14z1IyjKNomYaWiFovcA6eymiogimjbI4NfIcjL8nt9lXQMcJdDZncqh6vxSPPFRQO9UDviSvB2fw36b+6vBG5HHM1qzdXShZnp/qumrI44K2QR1W2Yj0v834K0wWw88VCEIGdFISgqJiVY2goZ6qQXbEwut3PA/VAHVbW09DA6eqlbFG3l3PgdysVjHXsnqZhsIYNhJKLk+bbD7rMV+J1WJ1LpaqVzyCSATo3wBwoc7tBYajUo+CL/AAitxDGMSP4ipkmeInmNrz6b2vtsrdtCHiGrpgWskF7WuQeR+uiznTVYylxijlePQZMjvZ3p/lbCTF6Kgo6yphJeDMWxRu2c62rh4P8AB7rlkhs1RswtadI2OYs/DKZtPE7849t78xDufPYcLFyPOUm57kkpypqZKiZ8szi+R5u490xfMzgg6rrGKiqRmyTc3fwWmBacx3K1WCdUVVDkinJnpxpY/M0eCsqCQfJT7T2uVaRzZ63SV9PWQNmgla5jvNiPBCF5XG57W2BshGgWevFZbr+pkiwqKJjrMnkIf5AFwP1QhQvRnmt7OIHdOStFvohCa8Aba4sYC02IcLFT61zjMWkmzQA0cDS6EJL9FfyRSbXPZcw/4mnvqhCr6Sds1cbqU3e3CEKkSx1psEIQqEf/2Q=="
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 1,
+      "specs": [
+       "永續製造",
+       "科技管理",
+       "企業永續管理",
+       "EMI 課程"
+      ],
+      "topEdu": "University of Dundee / Manufacturing Engineering / 博士",
+      "rich": {
+       "fcuExp": 5,
+       "journal": 1,
+       "conference": 21,
+       "book": 1,
+       "patent": 1,
+       "reward": 31
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T99056",
+     "name": "丘紀堇",
+     "job": "專任副教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T99056&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 714,
+      "h": 1096,
+      "facePx": 171,
+      "faceBlur": 284.0,
+      "topGap": 0.201,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 101061,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 2,
+      "nEdu": 4,
+      "specs": [
+       "應用藝術與設計",
+       "創意研發"
+      ],
+      "topEdu": "法國巴黎第12大學 / 比較文學 / 博士",
+      "rich": {
+       "fcuExp": 12,
+       "journal": 1,
+       "conference": 8,
+       "book": 3,
+       "patent": 1,
+       "reward": 73
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T10247",
+     "name": "周育樂",
+     "job": "專任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T10247&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 647,
+      "h": 970,
+      "facePx": 124,
+      "faceBlur": 79.3,
+      "topGap": 0.166,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 56808,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "先進製程控制",
+       "生產及排程最佳化",
+       "供應鏈規劃及管理",
+       "智慧製造"
+      ],
+      "topEdu": "國立台灣大學 / 工業工程學研究所 / 博士",
+      "rich": {
+       "fcuExp": 2,
+       "journal": 10,
+       "conference": 26,
+       "book": 0,
+       "patent": 1,
+       "reward": 3
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T90076",
+     "name": "蔡麗珍",
+     "job": "專任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T90076&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 680,
+      "facePx": 221,
+      "faceBlur": 185.9,
+      "topGap": 0.175,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 58118,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 1,
+      "specs": [
+       "人因工程",
+       "人機介面與人機互動",
+       "資料庫設計",
+       "專案管理"
+      ],
+      "topEdu": "國立清華大學 / 工業工程學系 / 博士",
+      "rich": {
+       "fcuExp": 7,
+       "journal": 1,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T86010",
+     "name": "王履梅",
+     "job": "專任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T86010&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 659,
+      "facePx": 202,
+      "faceBlur": 575.4,
+      "topGap": 0.191,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 84231,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 6,
+      "nEdu": 3,
+      "specs": [
+       "數位轉型策略規劃",
+       "資訊系統規劃分析",
+       "資訊服務精實創新",
+       "商業智慧與數據分析",
+       "專案管理",
+       "資訊管理"
+      ],
+      "topEdu": "東海大學 / 工業工程與經營資訊學系 / 博士",
+      "rich": {
+       "fcuExp": 22,
+       "journal": 4,
+       "conference": 2,
+       "book": 0,
+       "patent": 1,
+       "reward": 2
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T90073",
+     "name": "莊文傑",
+     "job": "專任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T90073&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 643,
+      "h": 970,
+      "facePx": 167,
+      "faceBlur": 211.7,
+      "topGap": 0.201,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 47707,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAAECAwQFBgf/xAA0EAABAwIEBAIJAwUAAAAAAAABAAIDBBEFEiExBhNBUSJxFDJCUmGBobHBB9HwIyRjkuH/xAAYAQADAQEAAAAAAAAAAAAAAAAAAQQDAv/EAB0RAAMAAwEBAQEAAAAAAAAAAAABAgMREiExIgT/2gAMAwEAAhEDEQA/AOwQhCZyIhF1jcQcS0WBMHPcXzvF2Qs3I7nsEAbCAV5niPH9dVeGijbSt94nM766KrT8bY3SuAkmjlH+SMa/MWRsej1e6Vcdg/HtFVFseIMNJKfbveM/PcLrYpWSsa+NzXscLtc03BCYEiVNBS3QIVCLoQAxCVIQkBQxrEmYVh01XJrkHhb7zjsF5ZRUlRxJi801VISL5pX/AGA/my7H9TKgx4RTwt3mm1+QP7qnwnQ+jYcC4WdI7M491llrleG+GOq9LUPDtAWBggZoLai6x8d4XEULpII8oGoLdv8Ai7OBpPqgWVjLcZXNDgdCDspFdJllY5a+HjHIkDspab9Fv8KcR1GBzcmYOko3O8cZ3Z8W/t1XUYrwmyZz3UzgzPqGn2HdCO47j9lx/EFLLTzsk5eR4ia2Vp94aFVzaZHUNHr0b2yMa9hu1wBBHUJ6wOCKh1Tw1SOfe7czNTfQFdAFsYBZCVCAGpEqRIDmuOcN9OwyGUWzU0ocbn2TofwmMp2tpMp5rGRAaNZcu+AW1i8TZIGZ75WuJOu+hCqQMzRkF2U21Kmyv9aLcE/jaM2CXludIIZ4nh1rynf6q9V1uSla+9w46gA/TuFSmmjdIW3YIozYv5Z8R7Cy0JKmkkgjiM0QkJszO3TyXH1m3LSIKOoEuaMtqIrO0e+5YD5rN4vbFU0RcHNdJHcOtvay3MK/rvLZGMiczRzSCp5II/SGOMYc1hzAWB1HVG/dnPHmiHhShdh+AUcEgs8MzOHYuN/ytdVMMH9u6xc5nNfkzHXLfRXbKuXtbILnmmhEJbIXRyNQkQkAyePmRObbXosl8VxkuWusQVsrOxGPI4SC9nb26LDNPnRV/Pk0+WZsXpAYGRQMyN8N3O/Cs0clQHEMjgebeqCQU+OoiY31rfBWaKtgBIzC5WMsqfwSNsktS50kfLexve9/mrLRd7QBtuoZ6uPOMhudtNyrVMw5M7hYu6dl1E9UZXfEkjGhjQ0CwCcAlASgKv4QN7exEJ9kJgQWS2S/Iphe4h2RpzDukA6yimhE7PCRcbdiqeGS1FVLM6aQ2bIWNY0Wbpv5q7h8ZZRwtd6wGvncpPVLQ03L2jBrKAPc5pJjd2UFLgZ5maSWzdxbdavEuLwYbDHBy2TVcwJiY42tbdxPQKvQYxEcUhpqmiMMMrbNlMtxm6XHbpfyU7xtPSZUsya20aOH4e1huxpcfeK0XR8s5ewV1rQBYAADoFVnBNYWh17RXI7a6fz4LeMaknvI7GAJQE57eWG3OrtAEWIXZmJZCVCBiAA7qOHxDMdw4tv3shCBFDAhZsA7tc8+ZctKNobmAFgHH7oQkM4PiWITcTOLi7MGtyuBsWadFBWsczDZqhs0vMFMdS8n7oQs6NJ+HoHDlVLW4FQVM5vLLA1zz3Nt1YpQHc+U+u95BPwGgCELUyEeM81z7Emn+qjo3GVlO95JdK0vd53+yEIAuta17QSBdCEIA//Z"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "創新管理",
+       "資訊管理",
+       "電子商務與企業電子化",
+       "企業智慧"
+      ],
+      "topEdu": "愛荷華大學 / 工業工程學系 / 博士",
+      "rich": {
+       "fcuExp": 2,
+       "journal": 9,
+       "conference": 45,
+       "book": 3,
+       "patent": 1,
+       "reward": 4
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T15034",
+     "name": "伍廷蔚",
+     "job": "專任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T15034&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 647,
+      "h": 970,
+      "facePx": 147,
+      "faceBlur": 459.8,
+      "topGap": 0.211,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 93306,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAAEDBAUGAgf/xAA0EAACAgIAAwYEBQIHAAAAAAABAgADBBESIUEFBhMiMVEyYXGRFCNCgcEzsRUWJFKh8PH/xAAYAQEAAwEAAAAAAAAAAAAAAAAAAQIDBP/EAB4RAQACAwADAQEAAAAAAAAAAAABAgMRIRITMSJB/9oADAMBAAIRAxEAPwD0OBixJKxIkDG7bVrUl2AA94He4blVk9sJSx8o4B6lm1/xGl7fxzwkg6PUHckXO4SBi9p4+S5VH83seW5NDbkDqEIQCEIQHZyZ0ZyYEfKvWmssT6CYjvB3gPnSi1xZ04QDr7y6705a0VjygkD3mO7Op/xHtK88HEKuvQn2iZ1G1q18p0Zx83IvZze3oNcQ5EkdRI7Zb0Y9jKQprbpvRBMuv8v5VqMxdE2fQyPk92si2uxONACBr5mV9kNPTZExu2AvhtzFzvor/czc9gdsDJQVWOCx+H3+hnnuV3byK/C8Kz8xDzsPv7w7u5uTj9reBZvaEg/JhzBkxaLfFLUtX69hBiyPi2i6muwejqG+8kCSoWESEB4zhorHUaZ4QyffhRVSLSx0wOgOrASl7t02VdjVWCrhOS+972T6nev2mp7y4QzMZWawoK22COhPL+Yi4NdGFXjJ5RUBwkdCJleXRhj+qK+y9PEOr62ABAbh4SNbO9en2iZGXcyqlRbb18ex66kjLrsIYXsLqQDuuqvTWH/bsnrI2dbx5Nb141lViJpCw8p9PIdf95Ssy6fGY4gvYqKm67kdm0WJP39TKbMfwO8AKBgbFUnlrXruao0WkK1qVIoO9KSST9hK/O7Jpye08S+wnVjrSV6HZ/8AYif0zyVnwb3soMuBjq/xCtd/aTRGMWoU0pWpJCKANn2j4m7jLCEICO0bJisZxIQaykFlLqRvYke862T1ktjK7Mc7ITR10meT5t0YJ7pTN+OCvYVrVdkrzJIH06ypyb89nVkAsXqApQj57MvLs0UJ/qQKx8/SVOV2rjb4RYvF7LzmTsi3EnHuttxh44AsBIPz+cm9nYoyMvF4lJFVni76AgEDf3lEmXa5/plF6E9Zpu72VUENRbVjEHn6GWp2zHLOqtAvpO5wpnQM6HEWESEBu1gvMnUhZGcqeVBxMTrnIt+U1jaJ9ZA8Qvby/TsmFoqmDKa4u7OSCSFA9ABykQWNXbcCeTHjU/sAf7SEL8mrErXHoW1t689nCNb+hjNuZerV/iakq0Tw2JYSFb2PLqNyl67hpS0Vk52hkca65eu+co2VRkG5mBPTU0tdGHnqPFXhc/qRtAzl+7mEp4jxsPZnM5tWjjqiayznjvcx4fhHMk+gk/s93XickjiPL6CO9oPhYYFZ9f011rtj+38mQmvyuFjTTUo/Txk7A6bA6/vNsdJjssst4nkNLj9q3VFduWB6Nzlxjdp03ABjwN1B9JkKRd5haysV6qNR+tm4uU2c+ttqrhhsEEfKEya5jqNBvSEI8UgsfEY+y/xGMT+lYephCFhSPyVhYoLOCOW4QgNLiVcfGo4GPqV5b+sjZ2TkM/4cXutYU/DoE/vCESGsXDprHlXmeZYnZJ+Zkrw1DVgDlvcISUOVH5lkKviWEJA5PxN9TCEIH//Z"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 6,
+      "nEdu": 3,
+      "specs": [
+       "人工智慧與機器學習",
+       "深度學習與資料探勘",
+       "大數據分析與決策支援",
+       "可解釋式人工智慧與預測建模",
+       "效率評估與多準則決策分析",
+       "智慧製造與工業資料分析"
+      ],
+      "topEdu": "雲林科技大學 / 資訊管理系 / 博士",
+      "rich": {
+       "fcuExp": 1,
+       "journal": 1,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T09238",
+     "name": "孟憲明",
+     "job": "兼任教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T09238&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 394,
+      "h": 537,
+      "facePx": 213,
+      "faceBlur": 144.9,
+      "topGap": 0.181,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 56697,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 5,
+      "nEdu": 1,
+      "specs": [
+       "供應鏈管理",
+       "生產管理",
+       "模擬學與系統分析",
+       "品質管理",
+       "專案管理"
+      ],
+      "topEdu": "美國奧克拉荷馬州立大學 / 工業工程與管理學系 / 博士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 3,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T13073",
+     "name": "藍春琪",
+     "job": "兼任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T13073&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 680,
+      "facePx": 224,
+      "faceBlur": 315.0,
+      "topGap": 0.266,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 86713,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 5,
+      "nEdu": 3,
+      "specs": [
+       "人力資源發展與管理",
+       "組織發展與管理",
+       "精實管理職能教育",
+       "企業個案研究",
+       "企業專案輔導"
+      ],
+      "topEdu": "國立彰化師範大學 / 工業教育與技術學系 / 博士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T13017",
+     "name": "陳幼蘭",
+     "job": "兼任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T13017&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 353,
+      "h": 417,
+      "facePx": 223,
+      "faceBlur": 44.3,
+      "topGap": 0.237,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 21428,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "全球供應鏈管理",
+       "專利與知識管理",
+       "創新設計",
+       "3D建模"
+      ],
+      "topEdu": "逢甲大學 / 機械與航空工程博士學位學程 / 博士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T13157",
+     "name": "林少顗",
+     "job": "兼任助理教授",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T13157&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 480,
+      "h": 721,
+      "facePx": 253,
+      "faceBlur": 504.6,
+      "topGap": 0.386,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 74706,
+      "thumb": "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"
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 4,
+      "nEdu": 3,
+      "specs": [
+       "合金開發",
+       "鍍膜",
+       "智慧運搬",
+       "智慧製造"
+      ],
+      "topEdu": "國立中興大學 / 材料科學與工程學系 / 博士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    },
+    {
+     "tid": "T10261",
+     "name": "謝逢祐",
+     "job": "兼任講師",
+     "url": "https://inde.fcu.edu.tw/teachers-detail/?id=T10261&unit_id=CE06",
+     "photo": {
+      "has": 1,
+      "w": 507,
+      "h": 600,
+      "facePx": 237,
+      "faceBlur": 617.3,
+      "topGap": 0.182,
+      "cut": 0,
+      "flat": 0,
+      "bytes": 101683,
+      "thumb": "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCABUAFQDASIAAhEBAxEB/8QAHAABAAEFAQEAAAAAAAAAAAAAAAYCAwQFBwEI/8QANRAAAQMCBAIIBAUFAAAAAAAAAQACAwQRBRIhMQZBBxMiUWFxgZEyQlKxFGKhwdEVI0NTsv/EABgBAQADAQAAAAAAAAAAAAAAAAABAgME/8QAHxEBAQEBAQACAgMAAAAAAAAAAAECEQMSITFRBCJB/9oADAMBAAIRAxEAPwDqqIiAi8c4NaXOIAAuSeS53xJ0nR0szqfBoo6gjQzy3yX8BoT5oOirxfPmKcV41iUjnVGIz2PyRvLGjyAWsjr6qN/WMqZ2SfU2RwPvdSjr6XRcg4S6RquilZT4zK6ppXG3Wu1fH43+YfquuRSMmjZJG4PY8BzXNNwQdiFCVaIiAiIgIiIIB0s426jw6HDYJSySqu6XL/rGlvU/YrkTycm+/NdJ6ZMOkbPQ4lGwlj2mB7uTSDdvvc+y0vDeAQTUgqKxuZxJs3YKLqSJzm6vIhoikNsrHG+1gs2mwirl/wAdvAldHhw2lht1UDR42ufdZLYWs1awD0Wd9f1G8/jz/a5tLgeIsYXdQS0a3XSOifiV1dSHBp2jPRxZon83MvqD5XHovJWNeCCNwtL0dUL6TjmRrR2RTy5vdqtjfy/Knp5zHLHXkRFdkIiICIiCN8etppuH5qaouXydqIAXOZvav5afqo0+lbHTsbZ7omttkj3cVuuO4JSYJYm3JjdGT3C4Jt42+yxYNWrHd+3X54kz39tNRsaJ35I6mAskLDmkLmvtz8vFbKtJZTk53NA3ybq9Jkby7TtlSLONnjsnvVK0mfpqKTqp9WMq45czmh0puCR+y3nCzIoOJJXuaetmp2saQNNyT/yF62Nob4BXcBjzY611rhrCb92h/lWzf7KazPjepiiIt3GIiICIiCxWUsVZA6GduZh9woe+I00skJ3Y4tU3Ub4ohZDLFO34pLh3jbYqm59dbeWuXiO1s0JcYpLuJb8NjqPRWo6iAPa5wLcugJuszsPHJGRRtFxr5rF2SxkMeHRgg3B2W/4dpGR05qS3+5KSA78qjWe7gxtySeSnUIY2JjYrZGizbdyv5z765vbXJxWiItnMIiICoklZE3NI4NHitVLiEziQ0hgP0hYcsjnEkkk95N1PBmVeMEu6ulZ2j87th6LTVraitpXv6wumzEszbd1vVZIZlFzzC8gGRhbyBKnks4S2XqL360HK50TwbObzBV2CGS93TvtzGyu1g/EVlcbAPpyMoaNS0DUnv5+yxKOmqsYuI5TDRg2dI0dp/eG/yue413jrnpm57W0wm1RO58esEWmb63eHgPutrTVE1NO9schaCQ4DlrvosbBS3+lwtbG2LJdhY35SCRZX7XncbbABb5z8Zxzb18r1tosXs4Nmj8y3+FmxVtPMbNkF+46KOns63VQOlyNTyU8VShFH46mVrbNlcAOV0UcFp5IGipPxAdwRFZCsqlumb3REEedC1lZPK0uDnt7Wu97grJ4VjEOChgJIZLK0E72DyP2REpPwyqJojr5Wt+GZvWOH5gQL+32WXvr6oikeHVzQq+aIoFWyIiD/2Q=="
+     },
+     "detail": {
+      "ok": 1,
+      "spec": 1,
+      "edu": 1,
+      "nSpec": 5,
+      "nEdu": 2,
+      "specs": [
+       "Excel應用於企業管理優化",
+       "Excel VBA與資料庫系統串接",
+       "生產排程",
+       "最佳化演算法",
+       "系統模擬"
+      ],
+      "topEdu": "逢甲大學 / 工業工程與系統管理學系 / 碩士",
+      "rich": {
+       "fcuExp": 0,
+       "journal": 0,
+       "conference": 0,
+       "book": 0,
+       "patent": 1,
+       "reward": 0
+      }
+     },
+     "cardSpec": 1,
+     "cardEdu": 1,
+     "issues": [],
+     "notes": []
+    }
+   ]
+  }
+ }
+}

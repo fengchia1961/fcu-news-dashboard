@@ -1,0 +1,412 @@
+{
+ "aero": [
+  {
+   "t": "招生連結待修正：「申請入學」（74 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "wk",
+   "ch": "申請入學",
+   "q": 74
+  },
+  {
+   "t": "招生連結待修正：「繁星推薦」（16 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "wk",
+   "ch": "繁星推薦",
+   "q": 16
+  },
+  {
+   "t": "招生連結待修正：「分發入學」（11 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_exam/",
+   "s": "wk",
+   "ch": "分發入學",
+   "q": 11
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技技優」（3 名）的連結，建議於 aero.fcu.edu.tw/admission 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+   "s": "nil",
+   "ch": "四技技優",
+   "q": 3
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（3 名）的連結，建議於 aero.fcu.edu.tw/admission 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 3
+  }
+ ],
+ "psd": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 psd.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "mse": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 mse.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "photonics": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 photonics.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "acct": [
+  {
+   "t": "招生連結失效：「申請入學」（85 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 85
+  },
+  {
+   "t": "招生連結失效：「繁星推薦」（33 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 33
+  },
+  {
+   "t": "招生連結失效：「分發入學」（20 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_exam），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_exam/",
+   "s": "bad",
+   "ch": "分發入學",
+   "q": 20
+  },
+  {
+   "t": "招生連結失效：「四技甄選」（19 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_s42_interview），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "bad",
+   "ch": "四技甄選",
+   "q": 19
+  },
+  {
+   "t": "招生連結失效：「特殊選才」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_special），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "bad",
+   "ch": "特殊選才",
+   "q": 2
+  },
+  {
+   "t": "招生連結失效：「四技技優」（1 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_s42_skill），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+   "s": "bad",
+   "ch": "四技技優",
+   "q": 1
+  }
+ ],
+ "itra": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「分發入學」（20 名）的連結，建議於 itra.fcu.edu.tw/recruit 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/",
+   "s": "nil",
+   "ch": "分發入學",
+   "q": 20
+  }
+ ],
+ "stat": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（2 名）的連結，建議於 stat.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 2
+  }
+ ],
+ "econ": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（5 名）的連結，建議於 econ.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 5
+  }
+ ],
+ "ba": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（2 名）的連結，建議於 ba.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 2
+  }
+ ],
+ "istm": [
+  {
+   "t": "招生連結失效（澳洲墨爾本皇家理工大學商學與創新雙學士學位學程）：「申請入學」（15 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 15
+  },
+  {
+   "t": "招生連結失效（澳洲墨爾本皇家理工大學商學與創新雙學士學位學程）：「繁星推薦」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 2
+  },
+  {
+   "t": "招生連結失效（美國加州聖荷西州立大學商學大數據分析雙學士學位學程）：「申請入學」（12 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 12
+  },
+  {
+   "t": "招生連結失效（美國加州聖荷西州立大學商學大數據分析雙學士學位學程）：「繁星推薦」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 2
+  },
+  {
+   "t": "招生連結失效（美國加州聖荷西州立大學電機工程雙學士學位學程）：「申請入學」（13 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 13
+  },
+  {
+   "t": "招生連結失效（美國加州聖荷西州立大學電機工程雙學士學位學程）：「繁星推薦」（3 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 3
+  },
+  {
+   "t": "招生連結失效（美國加州舊金山州立大學資訊工程雙學士學位學程）：「申請入學」（8 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 8
+  },
+  {
+   "t": "招生連結失效（美國加州舊金山州立大學資訊工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 4
+  },
+  {
+   "t": "招生連結失效（澳洲昆士蘭商學雙學士學位學程）：「申請入學」（11 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 11
+  },
+  {
+   "t": "招生連結失效（澳洲昆士蘭商學雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 4
+  },
+  {
+   "t": "招生連結失效（澳洲蒙納許大學資訊工程雙學士學位學程）：「申請入學」（13 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 13
+  },
+  {
+   "t": "招生連結失效（澳洲蒙納許大學資訊工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 4
+  },
+  {
+   "t": "招生連結失效（澳洲昆士蘭電機工程雙學士學位學程）：「申請入學」（10 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 10
+  },
+  {
+   "t": "招生連結失效（澳洲昆士蘭電機工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 4
+  },
+  {
+   "t": "招生連結失效（澳洲新南威爾斯大學設計雙學士學位學程）：「申請入學」（8 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "bad",
+   "ch": "申請入學",
+   "q": 8
+  },
+  {
+   "t": "招生連結失效（澳洲新南威爾斯大學設計雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "bad",
+   "ch": "繁星推薦",
+   "q": 4
+  }
+ ],
+ "fina": [
+  {
+   "t": "招生連結待修正：「四技甄選」（5 名）連結與文字不符，實際連往「四技技優」管道頁（現連往 www.fcu.edu.tw/recurit_list/college_s42_skill），位於 fina.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "wk",
+   "ch": "四技甄選",
+   "q": 5
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 fina.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "cl": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（5 名）的連結，建議於 cl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 5
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 cl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "fll": [
+  {
+   "t": "招生連結待修正：「申請入學」（50 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 fll.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "wk",
+   "ch": "申請入學",
+   "q": 50
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「繁星推薦」（12 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "nil",
+   "ch": "繁星推薦",
+   "q": 12
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「分發入學」（9 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/",
+   "s": "nil",
+   "ch": "分發入學",
+   "q": 9
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 7
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（5 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 5
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "iecs": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（9 名）的連結，建議於 www.iecs.fcu.edu.tw/enrollment 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 9
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 www.iecs.fcu.edu.tw/enrollment 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 7
+  }
+ ],
+ "auto": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技技優」（6 名）的連結，建議於 auto.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+   "s": "nil",
+   "ch": "四技技優",
+   "q": 6
+  }
+ ],
+ "upiee": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（2 名）的連結，建議於 upiee.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 2
+  }
+ ],
+ "civil": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 7
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技技優」（1 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/",
+   "s": "nil",
+   "ch": "四技技優",
+   "q": 1
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "he": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 he.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 4
+  }
+ ],
+ "tl": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（2 名）的連結，建議於 tl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 2
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 tl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/",
+   "s": "nil",
+   "ch": "運動績優甄試",
+   "q": 1
+  }
+ ],
+ "lm": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 lm.fcu.edu.tw/share-detail/?id=52335 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 4
+  }
+ ],
+ "archschool": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（8 名）的連結，建議於 archschool.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 8
+  }
+ ],
+ "id": [
+  {
+   "t": "招生連結缺漏：招生頁未提供「申請入學」（21 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_apply/",
+   "s": "nil",
+   "ch": "申請入學",
+   "q": 21
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「分發入學」（4 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/",
+   "s": "nil",
+   "ch": "分發入學",
+   "q": 4
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/",
+   "s": "nil",
+   "ch": "四技甄選",
+   "q": 4
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「繁星推薦」（3 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_star/",
+   "s": "nil",
+   "ch": "繁星推薦",
+   "q": 3
+  },
+  {
+   "t": "招生連結缺漏：招生頁未提供「特殊選才」（3 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/",
+   "s": "nil",
+   "ch": "特殊選才",
+   "q": 3
+  }
+ ]
+}

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' https: data:; connect-src blob:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>逢甲大學 學系網站健檢｜改善建議回饋追蹤表</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" integrity="sha384-hs5SINUk7GPohxRis+rS7grpSWEbtOIJ3sRoseBKg3CDPIKpG55RfSenbvA6ALOt" crossorigin="anonymous">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Microsoft JhengHei',sans-serif;background:#f0efe9;color:#1a1a18;font-size:15px;line-height:1.5;}
+.layout{display:flex;height:100vh;overflow:hidden;}
+
+/* ── Sidebar ── */
+.sb{width:262px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:.85rem 1rem .7rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:8px;margin-bottom:.4rem;}
+.sb-logo i{font-size:20px;color:#C8102E;}
+.sb-t{font-size:14.5px;font-weight:700;color:#1a1a18;line-height:1.35;flex:1;}
+.sb-m{font-size:11.5px;color:#888780;margin-top:3px;line-height:1.6;}
+.sb-close{display:none;background:none;border:none;cursor:pointer;color:#888780;font-size:18px;}
+.sb-btns{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
+.sb-btn{display:flex;align-items:center;gap:6px;width:100%;padding:6px 10px;font-size:12px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;text-decoration:none;transition:background .12s;text-align:left;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-btn.red{color:#C8102E;}
+.sb-btn.red:hover{background:#fff0f2;border-color:#f5a0a8;}
+.sb-btn.on{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
+.sb-search{padding:.55rem .9rem;}
+.sb-search input{width:100%;padding:6px 9px;font-size:12.5px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;}
+.col-h{display:flex;align-items:center;gap:7px;margin-top:10px;padding:.45rem .9rem;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#C8102E 0%,#a00d26 100%);letter-spacing:.03em;}
+.di{display:flex;align-items:center;gap:8px;padding:.35rem 1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
+.di.act{background:#fff;color:#C8102E;border-left-color:#C8102E;font-weight:700;}
+.di-n{font-size:13px;line-height:1.35;flex:1;}
+.di-prog{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:10px;flex-shrink:0;background:#ebe9e0;color:#888780;white-space:nowrap;}
+.di-prog.part{background:#fef3c7;color:#92400e;}
+.di-prog.done{background:#dcfce7;color:#15803d;}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{display:flex;align-items:center;gap:8px;background:#fff;border-bottom:1px solid #dddcd4;padding:.6rem 1.4rem;flex-shrink:0;font-size:12.5px;color:#888780;flex-wrap:wrap;row-gap:4px;}
+.topbar strong{color:#1a1a18;}
+.tb-bar{width:120px;height:7px;background:#ebe9e0;border-radius:4px;overflow:hidden;flex-shrink:0;}
+.tb-bar-f{height:100%;background:linear-gradient(90deg,#16a34a,#15803d);border-radius:4px;transition:width .4s ease;display:block;}
+.mn{flex:1;overflow-y:auto;padding:1.1rem 1.4rem;background:#f0efe9;}
+.hb-btn{display:none;background:none;border:none;font-size:19px;color:#5F5E5A;cursor:pointer;}
+.sb-overlay{display:none;}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem;border:1px solid #e5e4dc;}
+.sec-lbl{font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+.dept-hd{display:flex;align-items:flex-start;gap:14px;}
+.score-circle{width:60px;height:60px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;flex-shrink:0;line-height:1.05;}
+.score-circle small{font-size:8.5px;font-weight:700;opacity:.9;}
+.dept-info h2{font-size:19px;font-weight:700;margin-bottom:3px;}
+.dept-info .college-tag{font-size:11px;color:#C8102E;font-weight:700;margin-bottom:4px;}
+.dept-info .url-link{font-size:12px;color:#185FA5;text-decoration:none;}
+.dept-info .url-link:hover{text-decoration:underline;}
+.hd-actions{display:flex;flex-direction:column;gap:5px;flex-shrink:0;}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;font-size:12px;font-weight:600;border-radius:7px;border:1px solid #d3d1c7;background:#fff;color:#534AB7;cursor:pointer;text-decoration:none;font-family:inherit;transition:background .12s;white-space:nowrap;}
+.btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.btn.primary{background:#C8102E;border-color:#C8102E;color:#fff;}
+.btn.primary:hover{background:#a00d26;border-color:#a00d26;}
+.btn.ghost{color:#888780;}
+.btn.ghost:hover{background:#f0efe9;border-color:#c9c7bd;}
+
+/* ── Filler info ── */
+.filler{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.fld{display:flex;flex-direction:column;gap:3px;}
+.fld label{font-size:11px;font-weight:700;color:#888780;}
+.fld input{padding:6px 9px;font-size:13px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;min-width:160px;}
+.fld input:focus{outline:2px solid #AFA9EC;outline-offset:-1px;}
+.saved-hint{font-size:11.5px;color:#16a34a;display:flex;align-items:center;gap:4px;margin-left:auto;}
+
+/* ── Stats ── */
+.stat-row{display:flex;gap:8px;flex-wrap:wrap;}
+.stat{flex:1;min-width:104px;background:#f7f6f1;border:1px solid #e5e4dc;border-radius:9px;padding:8px 10px;}
+.stat-n{font-size:20px;font-weight:800;line-height:1.1;}
+.stat-l{font-size:11px;color:#888780;margin-top:2px;}
+.st-fixed .stat-n{color:#15803d;}
+.st-prog .stat-n{color:#b45309;}
+.st-cannot .stat-n{color:#991b1b;}
+.st-mis .stat-n{color:#534AB7;}
+.st-todo .stat-n{color:#888780;}
+
+/* ── Item cards ── */
+.it{border:1px solid #e5e4dc;border-radius:10px;margin-bottom:9px;overflow:hidden;background:#fff;}
+.it-hd{display:flex;gap:9px;padding:10px 12px;background:#fefce8;border-bottom:1px solid #f0ead2;}
+.it.pr .it-hd{background:#fef2f2;border-bottom-color:#fecaca;}
+.it-no{font-size:11px;font-weight:800;color:#d97706;background:#fff;border:1px solid #fcd9a8;border-radius:6px;min-width:26px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.it.pr .it-no{color:#b91c1c;border-color:#fecaca;}
+.it-tx{font-size:14px;line-height:1.7;color:#78350f;flex:1;}
+.it.pr .it-tx{color:#7f1d1d;}
+.it-bd{padding:9px 12px;display:grid;grid-template-columns:200px 165px minmax(0,1fr);gap:9px;align-items:start;}
+@media(max-width:1000px){.it-bd{grid-template-columns:1fr 1fr;}.ctl.note{grid-column:1/-1;}}
+@media(max-width:620px){.it-bd{grid-template-columns:1fr;}}
+.ctl{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.ctl label{font-size:11px;font-weight:700;color:#888780;}
+.ctl select,.ctl input,.ctl textarea{width:100%;padding:6px 8px;font-size:12.5px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;color:#1a1a18;}
+.ctl select:focus,.ctl input:focus,.ctl textarea:focus{outline:2px solid #AFA9EC;outline-offset:-1px;}
+.ctl textarea{resize:vertical;height:33px;min-height:33px;line-height:1.5;}
+.ctl .need{border-color:#f59e0b;background:#fffbeb;}
+.hint{font-size:10.5px;color:#b45309;}
+select.s-fixed{background:#f0fdf4;border-color:#86efac;color:#15803d;font-weight:700;}
+select.s-inprogress,select.s-planned{background:#fffbeb;border-color:#fcd34d;color:#92400e;font-weight:700;}
+select.s-cannot,select.s-na{background:#fff1f2;border-color:#fda4af;color:#9f1239;font-weight:700;}
+select.s-misjudge,select.s-exists{background:#EEEDFE;border-color:#AFA9EC;color:#4338ca;font-weight:700;}
+select.a-agree{background:#f0fdf4;border-color:#86efac;color:#15803d;font-weight:700;}
+select.a-partial{background:#fffbeb;border-color:#fcd34d;color:#92400e;font-weight:700;}
+select.a-disagree{background:#fff1f2;border-color:#fda4af;color:#9f1239;font-weight:700;}
+
+.it.ad .it-hd{background:#EEEDFE;border-bottom-color:#d5d2f5;}
+.it.ad .it-no{color:#4338ca;border-color:#d5d2f5;}
+.it.ad .it-tx{color:#312e81;}
+/* ── Reference list ── */
+.ref-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;font-weight:700;color:#534AB7;background:none;border:none;font-family:inherit;padding:0;}
+.ref-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px;}
+.ref-list li{font-size:13.5px;padding:8px 11px 8px 30px;border-radius:8px;position:relative;line-height:1.65;background:#fff1f2;color:#991b1b;}
+.ref-list li::before{content:'⚠';position:absolute;left:9px;}
+
+/* ── Overview table ── */
+.ov-wrap{overflow-x:auto;}
+table.ov{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.ov th,table.ov td{border:1px solid #e5e4dc;padding:6px 8px;text-align:center;}
+table.ov th{background:#f7f6f1;font-size:11.5px;color:#5F5E5A;position:sticky;top:0;}
+table.ov td.nm{text-align:left;white-space:nowrap;}
+table.ov td.nm a{color:#185FA5;text-decoration:none;cursor:pointer;}
+table.ov td.nm a:hover{text-decoration:underline;}
+table.ov tr:hover td{background:#fcfcfa;}
+.mini-bar{width:70px;height:6px;background:#ebe9e0;border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;}
+.mini-bar span{display:block;height:100%;background:#16a34a;}
+
+/* ── Notice ── */
+.notice{background:#EEEDFE;border:1px solid #d5d2f5;border-radius:10px;padding:10px 13px;font-size:12.5px;color:#4338ca;line-height:1.8;display:flex;gap:8px;margin-bottom:.8rem;}
+.notice i{font-size:15px;flex-shrink:0;margin-top:2px;}
+.empty{text-align:center;padding:5rem 2rem;color:#B4B2A9;font-size:14px;}
+.empty i{font-size:28px;display:block;margin-bottom:.6rem;}
+
+.gA{background:#16a34a;}.gB{background:#2563eb;}.gC{background:#dc2626;}
+
+@media(max-width:860px){
+  .sb{position:fixed;left:0;top:0;bottom:0;z-index:40;transform:translateX(-100%);transition:transform .2s;}
+  .sb.open{transform:none;}
+  .sb-close{display:block;}
+  .hb-btn{display:block;}
+  .sb-overlay.on{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:30;}
+  .mn{padding:.9rem;}
+}
+@media print{
+  .sb,.topbar,.hd-actions,.btn,.sb-overlay{display:none !important;}
+  .layout{height:auto;overflow:visible;}
+  .mn{overflow:visible;padding:0;}
+  body{background:#fff;font-size:12px;}
+  .it{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<div class="sb" id="sb">
+  <div class="sb-hdr">
+    <div class="sb-logo">
+      <i class="ti ti-checkup-list"></i>
+      <div class="sb-t">學系網站健檢<br>改善建議回饋追蹤表</div>
+      <button class="sb-close" id="sb-close-btn" aria-label="關閉選單"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="sb-m">秘書處公共事務組｜評分標準 v6.0<br>填寫內容儲存在本機瀏覽器，請記得匯出回傳</div>
+    <div class="sb-btns">
+      <a class="sb-btn red" href="health-check.html"><i class="ti ti-arrow-back-up"></i> 回健檢儀表板</a>
+      <button class="sb-btn" id="btn-overview"><i class="ti ti-table"></i> 全校填寫進度總覽</button>
+      <button class="sb-btn" id="btn-export-all"><i class="ti ti-file-spreadsheet"></i> 匯出全部回覆（CSV）</button>
+      <button class="sb-btn" id="btn-backup"><i class="ti ti-download"></i> 備份全部填寫（JSON）</button>
+      <button class="sb-btn" id="btn-import"><i class="ti ti-upload"></i> 匯入／彙整回覆檔</button>
+      <input type="file" id="file-import" accept=".json,application/json" style="display:none" multiple>
+    </div>
+  </div>
+  <div class="sb-search"><input type="search" id="q" placeholder="搜尋學系名稱…" autocomplete="off"></div>
+  <div class="sb-body" id="sb-body"></div>
+</div>
+<div class="sb-overlay" id="sb-overlay"></div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+  <div class="topbar">
+    <button class="hb-btn" id="hb-btn" aria-label="開啟選單"><i class="ti ti-menu-2"></i></button>
+    <i class="ti ti-tools" style="font-size:13px;color:#C8102E;"></i>
+    全校待回饋事項 <strong id="tb-total">0</strong> 項 ／ 已填 <strong id="tb-done">0</strong> 項
+    <span class="tb-bar"><span class="tb-bar-f" id="tb-bar-f" style="width:0%"></span></span>
+    <span id="tb-pct">0%</span>
+    <span style="margin:0 4px;">｜</span>
+    已修正 <strong id="tb-fixed">0</strong>
+    ／ AI誤判 <strong id="tb-mis">0</strong>
+    ／ 無法修正 <strong id="tb-cannot">0</strong>
+  </div>
+  <div class="mn" id="mn"></div>
+</div>
+
+</div><!-- /layout -->
+
+<script>
+/* ═══ 健檢資料（由 tools/build-tracker.js 從 health-check.html 自動抽出，請勿手改） ═══ */
+const DEPTS = [{"id":"inde","college":"工程與科學學院","name":"工業工程與系統管理學系","url":"https://inde.fcu.edu.tw/","overall":62,"priority_issues":["特色實驗室僅列出1個（からくり實作道場），未達標準「至少2個代表性實驗室」門檻，且配圖之一為WordPress主題預設佔位圖"],"pain_points":["核心課程頁（工程經濟／資料庫設計／模擬學等）皆有白話說明，但均缺「學生作品/成果」與「修畢後可應用方向」與該課程的對應","畢業生月薪數字（學士4.1萬／碩士6.2萬）缺年份與來源，依標準規則不計分","「主任的話」歡迎頁文字未具名，僅能靠照片檔名反查staff頁email才能確認是系主任林棋瑋","地址郵遞區號前後不一致：footer寫407102，overview／staff頁寫407802","首頁meta description為「111學年度大學申請入學書審準備重點指引」，與首頁內容完全無關的過期殘留；其餘內頁description多數缺漏","與相近學系（如資工、機電）的差異化說明未見於首頁或歡迎頁","產研頁六個研究案例皆未具名合作企業（僅稱「與產業界密切合作」）"],"quick_fixes":["在「主任的話」文字中直接加入系主任姓名與職稱，不要只靠照片","更新首頁SEO description，補齊師資／招生等內頁的description欄位","統一footer與內頁的地址郵遞區號（407102或407802擇一）","特色實驗室頁至少再補1個場域（可用產研頁提到的「電子化決策支援實驗室」擴充為獨立介紹），並替換掉佔位圖","核心課程頁每門補一句「修畢後可從事～」與一張學生實作／成果照片，呼應freshman/graduation project既有素材即可","新聞頁優先反映本系自身活動（如FAIM國際研討會、中國工業工程學會年會等已在招生頁提及但未成獨立新聞的內容），而非僅依賴全校relay"]},{"id":"mcae","college":"工程與科學學院","name":"機械與電腦輔助工程學系","url":"https://mcae.fcu.edu.tw/","overall":65,"priority_issues":["60週年系慶頁使用與機械工程／系慶主題完全無關的通用圖庫照片（文具靜物\"Back to School\"風格），已下載確認"],"pain_points":["師資頁34位教師中10位（多集中兼任教師）缺照片，見下方逐頁紀錄之具體姓名與連結","60週年系慶頁至少2張明確通用圖庫照片，與機械系或系慶主題完全無關，已下載確認","research/頁「智慧機械廊道」配圖經確認實為校園中庭空拍，並非實驗室內部設備實景，圖文不符","首頁完全沒有meta description，也沒有og:image（弱於工工系至少有description的情況）","CDIO頁三個模組（新鮮人計畫/深碗課程/跨學期畢業專題）共用同一段泛用文字重複三次，未如工工系的freshman/graduation_project頁附上具體專題名稱與真實課堂照片","核心課程頁（如3D列印技術）同樣缺「學生作品」與「修畢後可應用方向」對應","「系主任的話」歡迎頁文字未具名，與工工系相同缺失模式"],"quick_fixes":["優先向師資頁缺照片的10位兼任教師徵集照片（名單見逐頁紀錄），專任教師已100%有照片","60週年系慶頁替換掉與主題無關的通用圖庫照片，改用系慶活動實拍照","首頁補上meta description與og:image","CDIO頁三模組各自補上具體專題案例名稱與真實課堂/實作照片，比照freshman_project/graduation_project的作法","「系主任的話」文字中直接加入系主任戴國政的姓名","新聞頁優先反映本系教師/學生自身成就（如首頁已有的前2%科學家、立方衛星競賽冠軍等具體素材，可製作為正式新聞稿發布）"]},{"id":"mse","college":"工程與科學學院","name":"材料科學與工程學系","url":"https://mse.fcu.edu.tw/","overall":91,"priority_issues":[],"pain_points":["A1-3核心課程：course/頁僅依3大領域列出課程「名稱」(應用電子學/光電材料學等)，無個別課程白話說明、無逐課程學生作品對應；學生作品實際上集中在另一獨立頁面(result/)而非課程頁本身；複查新增之「實驗課程」與「國科會大專學生研究計畫」頁雖已補上大量學生實作證據，但同樣未與course/課程頁交叉連結","A5-1：apply/頁「境外學生」3個管道(僑生與港澳生/外國學生/大陸地區學生)全部連往www.fcu.edu.tw/apply/總覽頁，而非個別official recurit_list/官方入口頁，不符合白名單具體指向要求","全站(抽查首頁及多個內頁)完全沒有meta description，也沒有og:image","A3-1課程頁與individual說明之間有斷點(見上)"],"quick_fixes":["為course/頁列出的每個課程領域至少挑2-3門代表課程，各補一段白話說明+連結到result/、experiment/、studentsresearch/頁對應的學生專題成果，把已存在的優質素材串起來即可","境外生3招生管道改連官方recurit_list/對應頁面（若無專屬slug，至少個別連到僑生/外國學生專屬公告頁而非總覽頁）","全站補上meta description與og:image（後台各頁SEO欄位填寫即可）"]},{"id":"fcm","college":"工程與科學學院","name":"纖維與複合材料學系","url":"https://fcm.fcu.edu.tw/","overall":85,"priority_issues":[],"pain_points":["A1-3核心課程：undergraduate/頁4門課程有白話說明，但缺學生作品與逐課程出路對應；CDIO頁雖已具體說明新鮮人專題→深碗課程→跨學期畢業專題架構，但仍未逐一連結個別學生實際作品","產研頁發現1張WordPress主題預設佔位圖(default-img-1.jpg)混雜於重點研究配圖中","全站(抽查多頁)無meta description、無og:image"],"quick_fixes":["核心課程頁補上學生作品連結與出路方向對照","替換產研頁的佔位圖為真實研究照片","全站補上meta description與og:image"]},{"id":"che","college":"工程與科學學院","name":"化學工程學系","url":"https://che.fcu.edu.tw/","overall":88,"priority_issues":["environment/頁「環境水化學實驗室」配圖(Water-research-lab.jpg)研判為AI生成／通用圖庫概念圖(手部+回收圖示+城市剪影的合成圖)，並非該實驗室真實照片，與文字內容(廢水處理/高級氧化處理技術)不符"],"pain_points":["A1-3核心課程：undergraduate/頁課程僅依4大領域分類列出方向，缺逐科目白話說明；不過「終端課程專題競賽成果」頁已提供大量具體學生作品，僅是與課程頁彼此未串連，讀者需自行跳頁比對","關於/綜覽頁「系友表現」與50anniversary頁「傑出系友」段落本身為generic敘述(無具名個案卡片)，具名校友(林文智/廖重義/黃正忠)僅零星出現在系慶報導段落中，不易第一眼辨識","全站(抽查首頁及多個內頁)完全沒有meta description，也沒有og:image","environment/頁1張實驗室配圖疑似AI生成/與內容不符(見優先改善)"],"quick_fixes":["在undergraduate/課程頁各領域補上連結指向「終端課程專題競賽成果」頁對應的具體學生作品案例","把50anniversary頁提到的具名傑出系友(林文智/廖重義/黃正忠)整理成獨立系友卡片(仿mse alumni頁格式)，並移一部分到招生頁強化說服力","全站補上meta description與og:image","替換「環境水化學實驗室」的AI生成/圖庫示意圖，改用該實驗室真實設備或學生操作照片"]},{"id":"apmath","college":"工程與科學學院","name":"應用數學系","url":"https://apmath.fcu.edu.tw/","overall":64,"priority_issues":["單位新聞最新一則2025.12.11，距健檢日243天，超過180天標準，找不到90天內的本系新聞","無獨立系友/alumni頁面，A1-5出路資訊之「具名系友案例」與「具名企業」皆缺席"],"pain_points":["🚩A4新聞明顯過期：最新單位新聞2025.12.11「應用數學系學生勇奪2025全國智慧製造大數據分析競賽優等獎」，距健檢日已243天","無獨立系友/alumni頁面，A1-5出路資訊三項僅出路類別泛稱，缺具名企業與系友案例","A1-4學習場域僅1個電腦教室，且無「負責教師」具名對應（非傳統研究實驗室形式）","「主任的話」文字未具名(僅能靠staff頁交叉比對得知系主任黃同瑤)","全站(抽查多頁)無meta description、無og:image"],"quick_fixes":["優先更新單位新聞，把result/project、result/contest頁已有的豐富近期學生成果製作成正式新聞稿發布","「主任的話」文字中直接加入系主任姓名","建立具名系友案例頁面或於首頁補充具名畢業生出路實例","全站補上meta description與og:image"]},{"id":"aero","college":"工程與科學學院","name":"航太與系統工程學系","url":"https://aero.fcu.edu.tw/","overall":84,"priority_issues":["🚩主導覽「招生」連結指向http://www.fcu.edu.tw（校首頁，非https），而非本系自己的/admission/頁；7個招生管道連結全數連往www.fcu.edu.tw/apply/總覽頁，而非個別官方recurit_list/入口頁"],"pain_points":["🚩招生入口連結錯誤（見優先改善），A5-1判0分","A1-3核心課程：undergraduate-studies/頁僅列4大學習方向，無individual課程白話說明頁","師資照片完整性偏低：25位教師僅16位(64%)有照片，缺漏9位皆為兼任教師","複查新增：「系友會」(/aero-alumni/)頁本身除理事長外仍缺其他具名系友案例，30+位傑出系友資料其實存在於另一頁(/overview/)，兩處未整合串連，訪客不易第一時間找到完整系友網絡"],"quick_fixes":["修正主導覽「招生」連結指向本系/admission/頁；7個招生管道改連對應官方recurit_list/頁","為兼任師資補齊照片","核心課程頁補上個別白話說明與學生作品對應","將/overview/頁的傑出系友內容與/aero-alumni/系友會頁整合或互相連結，避免資訊分散兩處"]},{"id":"ees","college":"工程與科學學院","name":"環境工程與科學學系","url":"https://ees.fcu.edu.tw/","overall":77,"priority_issues":["全站校園新聞找不到90天內的更新，最新相關內容(2026.01.27，全校性)距健檢日196天，超過180天標準"],"pain_points":["🚩A4新聞明顯過期：/news/頁最新相關內容2026.01.27(全校性)，距健檢日196天，超過180天標準；本系自身新聞(吳志超老師/廖苑茵同學)雖真實但更早(2024-2025)","「主任的話」文字未具名(僅能靠staff頁交叉比對得知系主任李書安)","系友專區僅列20位系友會理監事姓名+屆別，缺現職/心得，未達A1-5系友案例完整要素","全站(抽查多頁)無meta description、無og:image","複查新增：「系學會」(/sa/)頁僅列111/113/114學年度3個年份標籤，未展開任何具體活動內容"],"quick_fixes":["「主任的話」文字中加入系主任姓名","優先更新校園新聞，把吳志超老師/廖苑茵同學等既有具體成果重新發布或補充更近期案例","系友專區補充現職與心得，仿照材料系alumni頁格式","統一/research_lab/與/environment/兩個同批實驗室頁面的呈現方式，避免資訊分散兩處","「系學會」頁補上各學年度具體活動內容"]},{"id":"photonics","college":"工程與科學學院","name":"光電科學與工程學系","url":"https://photonics.fcu.edu.tw/","overall":80,"priority_issues":["導覽選單中的「系學會」捷徑連結(/sa/)實際上302導向WordPress預設佔位頁/sample-page-2/，並非有效內容，屬導覽連結設定錯誤(真正系學會內容在另一頁/student-associations/)"],"pain_points":["A1-3雖有優於他系的特色領域課程頁，但仍缺「學生作品/成果」與逐課程「出路方向」對應，未達標準要求之完整四要素","A1-5出路資訊：缺量化去向數據與具名合作企業，僅有洪宜君1則校友案例","SEO description/og:image非全站覆蓋(師資頁即缺漏)，A6-2仍判定未達標","/news-list/與/news/為兩個不同版面，/news-list/內容為全校relay，站內新聞入口不統一","複查新增：導覽選單「系學會」快捷連結(/sa/)實際導向WordPress預設Sample Page，屬失效連結","複查新增：「碩士專業」(/graduate/)與(/graduate-studies/)為兩個網址但內容逐字相同，疑似重複頁面未清理","複查新增：/announcements-list/(校園公告)與/events-list/(校園活動)皆為全校relay內容(全校性繳費公告、創能學院工作坊)，非本系自建；/share-list/(學生愛分享)所列心得皆來自電子/材料/經濟等他系學生，非本系自身案例"],"quick_fixes":["為特色領域頁的核心課程各補上一則學生作品/專題成果連結","全站統一補齊meta description與og:image(尤其師資頁)","整理更多具名系友案例充實A1-5","修正或移除導覽選單中失效的/sa/連結，統一改指向/student-associations/","整併/graduate/與/graduate-studies/重複頁面，避免SEO與維護成本重複"]},{"id":"psd","college":"工程與科學學院","name":"精密系統設計學士學位學程","url":"https://psd.fcu.edu.tw/","overall":75,"priority_issues":["單位新聞最新一則2025.10.20，距健檢日326天，遠超過180天標準，找不到90天內的本系新聞","首頁導覽選單中一條連結(http://www.psd.fcu.edu.tw/wSite/mp?mp=350301)實際回傳404 Not Found，屬已失效的舊版CMS殘留連結"],"pain_points":["🚩A4新聞明顯過期：最新單位新聞2025.10.20「2025創新技術博覽會逢甲3金2銀1銅」，距健檢日326天","A1-3核心課程頁本身(精密模具系統設計實務/工具機系統設計實務/精密系統設計)仍僅簡短說明、未附對應學生作品連結——雖然學生作品證據已在project/、遇見逢甲系列等獨立頁面大量存在，但課程頁與作品案例彼此未串連，讀者需自行跳頁比對","「主任的話」文字未具名","師資照片完整性偏低：20位教師15位(75%)有照片","全站(抽查多頁)無meta description、無og:image","複查新增：導覽選單中「學習」(/學習/)與「生活」(/生活/)2個頁面僅有標題與麵包屑，無任何本文內容，屬待補頁面"],"quick_fixes":["優先更新單位新聞，將產研頁既有的具體技術成果(如替和大公司開發齒輪量測技術)撰寫為正式新聞稿","「主任的話」文字中加入主任姓名","補齊缺照教師照片","移除或修正已404的舊版CMS連結(wSite/mp)","在3門核心課程頁各補上一則project/或遇見逢甲系列已有的對應學生作品連結","補上「學習」「生活」2頁的實質內容，或自導覽選單移除"]},{"id":"earmp","college":"工程與科學學院","name":"電聲碩士學位學程","url":"https://earmp.fcu.edu.tw/","overall":80,"priority_issues":["招生頁「甄試入學」連結指向逢甲大學博士班甄試入學頁面(recurit_list/dr_interview/)，非碩士學位學程對應頁面，屬連結層級錯誤；境外生3管道(international_admissions)確認404","單位新聞最新一則為2023.03.13，距今已逾3年，A4新聞即時性掛零(本學程學生近期得獎報導僅見於校網「逢甲精選」relay分頁，非單位自建單位新聞)"],"pain_points":["招生資訊連結層級錯誤與部分404，影響考生查證招生管道","單位自建新聞更新頻率低，近3年無新內容，需仰賴校網「逢甲精選」轉載才呈現近期學生成果"],"quick_fixes":["更正「甄試入學」連結至逢甲大學碩士班甄試入學正確頁面，修復境外生3個連結","將近期學生得獎等已有素材(如IIIC銀牌、聲學學會論文獎)發布為單位新聞，同步提升A4分數"]},{"id":"gest","college":"工程與科學學院","name":"綠色能源科技碩士學位學程","url":"https://gest.fcu.edu.tw/","overall":71,"priority_issues":["招生頁5個「最新招生資訊」連結全部404 — 本國生甄試/考試入學連結(national_list/113mastr_interview/、112mastr_exam/)與境外生3管道(international_admissions/)全部連往不存在頁面，招生資訊完全無法查證","首頁大圖輪播與生活頁使用英文字樣國外庫存圖(如「APPLY NOW」拼圖照、化學課本庫存照、「brainstorming startup ideas」窗貼字庫存照)，與學程主題(綠色能源/氫能)完全無關，嚴重影響網站真實感","單位新聞最新一則為2023.02.14，距今已逾3年，A4新聞即時性掛零"],"pain_points":["招生頁除連結外幾乎無任何文字說明，本國生/境外生管道僅列標題與連結，未轉譯為對考生有吸引力的招生文案","首頁與生活頁大量使用不相關英文庫存圖，未使用學程自有的學生/實驗室/氫能設備照片","新聞與活動內容嚴重過時，近3年無任何單位新聞更新","複查新增：導覽選單中的「關於」上層連結(/關於/)本身404，實際內容分散於/about/、/greeting/等子頁面，需修正父層連結或改為純選單不可點擊"],"quick_fixes":["更新招生頁5個連結至正確的113學年度甄試/考試入學及境外生招生頁面","以現有的清邁皇家大學交換生、生物氫能先導工場等真實素材替換首頁/生活頁的庫存圖","至少每季發布1則單位新聞，維持A4新聞即時性","修正404的「關於」父層連結","將「國際合作與交流」頁的豐富內容提煉重點呈現於首頁，目前這類極具說服力的素材被藏在深層選單中，未發揮應有的招生效益"]},{"id":"ds","college":"工程與科學學院","name":"數據科學碩士學位學程","url":"https://ds.fcu.edu.tw/","overall":74,"priority_issues":["單位新聞最新一則為2025.11.06，距健檢日約278天，仍超過180天門檻，A4新聞即時性掛零；惟此為本院同批學程中發布頻率最健康者(近2年內共6則具體學生競賽新聞)"],"pain_points":["單位新聞雖發布頻率健康，但最新一則距健檢日已278天，略超過180天標準門檻","頁面缺少獨立「產研」與「成員」頁，聯絡窗口與應用數學系共用(apmath@fcu.edu.tw)，未見學程主任具名簽署"],"quick_fixes":["在最新競賽成果之後儘速補發1則單位新聞，即可重新取得A4滿分","於歡迎頁補上學程主任具名簽署，強化治理透明度"]},{"id":"imem","college":"工程與科學學院","name":"智能製造與工程管理碩士在職學位學程","url":"https://imem.fcu.edu.tw/","overall":84,"priority_issues":["「校園新聞」頁面(/news/)呈現內容100%為www.fcu.edu.tw網域的全校relay新聞(如材料系教授獲獎、工科院長團隊獲獎、九州大學交流等)，未見任何一則以「智能製造與工程管理」學程本身為主體的自建新聞，A4新聞即時性掛零且屬結構性問題(非單純過期)"],"pain_points":["本學程完全未建立自有校園新聞內容，/news/頁面純粹relay全校新聞，考生無法透過此頁了解學程近期動態"],"quick_fixes":["比照重點研究頁的技術成果(如機械手臂實驗、鎖模力感測研究)發布至少1-2則以本學程為主體的單位新聞"]},{"id":"mae","college":"工程與科學學院","name":"機械與航空工程博士學位學程","url":"https://mae.fcu.edu.tw/","overall":82,"priority_issues":["「校園新聞」頁面(/news/)的「單位新聞」分頁僅3則，全部連往www.fcu.edu.tw，屬全校relay新聞(崇越論文大賞、APEC YES Challenge、陳永祥博士生獲獎等)，未見以本學程自身網域發布的新聞，A4新聞即時性掛零","招生頁境外生「外國學生申請入學」連結(international_admissions)確認404","複查新增：/welcome/與/about/頁的聯絡email皆為wctsai@fcu.edu.tw，但/staff/(成員)頁載明學程主任為袁長安——姓名與email的英文縮寫(wctsai)不對應，需人工向系所確認現任主任是否為袁長安，或wctsai是舊資料未更新"],"pain_points":["境外生唯一連結404，境外生完全無法透過此頁查證申請管道","首頁輪播圖真實感被無關庫存圖稀釋(約1/3為庫存圖)，削弱整體專業形象","單位新聞完全仰賴relay，本學程近年具體成果未曾以自建新聞形式發布"],"quick_fixes":["修復境外生「外國學生申請入學」連結","以現有18項研究主題與相關實驗室真實照片為素材，替換首頁3張無關庫存圖並發布為單位新聞，一次改善B1與A4","確認現任學程主任姓名，統一/welcome/、/about/與/staff/三頁的聯絡email"]},{"id":"space","college":"工程與科學學院","name":"太空系統工程碩士學位學程","url":"https://space.fcu.edu.tw/","overall":87,"priority_issues":["招生頁4個「最新招生資訊」連結全部僅指向www.fcu.edu.tw/apply/通用招生資訊首頁，並未連到本學程適用的甄試/考試/僑生等specific頁面，可查證性打折扣","單位新聞最新一則為2026.04.28，距健檢日105天，已超過90天全額門檻(尚在180天內，故A4為部分給分)"],"pain_points":["招生頁連結未深入連結至各招生管道專屬頁面，僅提供通用入口，考生需自行在校網內尋找對應資訊","重點研究頁僅有2大類別(火箭系統/衛星系統)，相較同院其他學程內容條列較簡","複查新增：/release/與/share-list/頁「學生愛分享」內容(歐晉華/賴心榆/周子崴/那凱捷)皆掛名「航太系」(航太與系統工程學系)而非本太空碩士學位學程，推測因本學程2023年才設立、目前僅招收研究生、尚無自身學生投稿此欄位，非本學程學生自身心得","複查新增：「生活」「關於」2個導覽頁僅有標題與麵包屑，無任何本文內容"],"quick_fixes":["招生頁4個連結改為個別對應之甄試/考試/僑生/海外聯招專屬頁面，比照其他學程做法","在最新一則單位新聞(2026.04.28)之後，儘速補發新內容以重新取得A4滿分","補上「生活」「關於」2頁的實質內容，或自導覽選單移除"]},{"id":"marketing","college":"商學院","name":"行銷學系","url":"https://marketing.fcu.edu.tw/","overall":85,"priority_issues":[],"pain_points":["產研/產學合作兩頁內容重複，「產研成果報導」僅2則且皆為2021年舊聞，與其他頁面的近期活躍度不成比例","單位新聞最新一則約99天前，剛好超過90天全額門檻"],"quick_fixes":["更新產研成果報導，納入近期(如2026年)的專題成果或講座紀錄，並整併重複的「產研」/「產學合作」頁面","在最新一則新聞(2026.05.04)之後儘速補發新內容以取得A4滿分"]},{"id":"acct","college":"商學院","name":"會計學系","url":"https://acct.fcu.edu.tw/","overall":85,"priority_issues":["招生頁9個「本國生」招生連結(national_list/114college-star、114college_apply、114college_exam等)經抽查3個全部404，加上境外生連結(international_admissions)也確認404，等同整個招生資訊區塊完全失效，是同批學系中最嚴重的技術可查證失敗案例"],"pain_points":["師資照片覆蓋率僅67%(26/39，4頁教師)，後半段頁面覆蓋率明顯下滑(第3頁4/12、第4頁1/3)","招生連結大量404，考生完全無法透過本系網站查證任何招生管道，與內容深度形成強烈反差","複查新增：導覽選單中的「生活」頁(/生活/)僅有標題，無任何本文內容"],"quick_fixes":["修復招生頁全部10個連結，改用經marketing系驗證可行的recurit_list網址格式(而非目前失效的national_list格式)","補齊師資頁第3、4頁尚缺的教師大頭照","補上「生活」頁的實質內容，或自導覽選單移除"]},{"id":"itra","college":"商學院","name":"國際經營與貿易學系","url":"https://itra.fcu.edu.tw/","overall":84,"priority_issues":["校園新聞頁(/news/)雖標示「單位新聞」分頁且有多達12頁分頁，但抽查前2頁共12則全部連往www.fcu.edu.tw，屬relay內容，未發現任何itra.fcu.edu.tw自建網域新聞；消息總覽頁的獨立「校園新聞」小工具確認itra自建文章最新一則僅到2023.06.20，A4新聞即時性掛零"],"pain_points":["自建校園新聞小工具最新僅到2023.06.20，與電子報/研究中心頁呈現的2025年活躍度不成比例"],"quick_fixes":["挑選電子報/研究中心已有的近期素材(如2025中區跨境電商競賽奪牌)以itra.fcu.edu.tw自有網域重新發布為單位新聞"]},{"id":"pf","college":"商學院","name":"財稅學系","url":"https://pf.fcu.edu.tw/","overall":79,"priority_issues":["校園新聞頁(/news/)「單位新聞」分頁抽查前2頁共12則全部連往www.fcu.edu.tw，屬relay內容，未發現pf.fcu.edu.tw自建網域新聞，A4新聞即時性掛零"],"pain_points":["校園新聞完全仰賴relay，本系近3頁分頁皆無自建新聞"],"quick_fixes":["發布至少1則以本系活動(如租稅實習成果、新鮮人專題發表)為主體的單位新聞"]},{"id":"coop","college":"商學院","name":"合作經濟暨社會事業經營學系","url":"https://coop.fcu.edu.tw/","overall":86,"priority_issues":["單位新聞(coop.fcu.edu.tw自建)最新一則為2021年3月(109學年度教師專業成長社群活動)，距今已逾5年，是同批系所中自建新聞最為過時的案例；近期(2026年)與本系相關的新聞(如《大王盃》短影音競賽奪金)僅存在於www.fcu.edu.tw的relay內容中"],"pain_points":["自建新聞嚴重停滯超過5年，與近期(2026年)本系學生實際獲獎等活躍度形成強烈落差"],"quick_fixes":["在coop.fcu.edu.tw網域立即補發近期成果(如《大王盃》短影音競賽奪金)作為單位新聞，喚醒沉寂5年的新聞管道"]},{"id":"stat","college":"商學院","name":"統計學系","url":"https://stat.fcu.edu.tw/","overall":81,"priority_issues":["校園新聞頁(/news/)「單位新聞」分頁抽查第1頁與第6頁(共12則)全部連往www.fcu.edu.tw，屬relay內容(部分確實與統計系相關，如廖筱軒同學EAC-ISBA最佳海報獎)，未發現stat.fcu.edu.tw自建網域新聞，A4新聞即時性掛零；複查另發現news-list/、release/兩處relay版面亦全為全校內容，一致確認無自建新聞","首頁全連結掃描發現一處404：/招生/ (與現行可用的/apply/招生頁並存，屬過期連結)"],"pain_points":["師資照片覆蓋率僅68%(21/31，3頁教師)，第2、3頁覆蓋率明顯偏低","校園新聞完全仰賴relay，無自建網域新聞"],"quick_fixes":["補齊師資頁第2、3頁尚缺的教師大頭照","以現有素材(數據科學工作坊、Kung-Yee Liang講座)在stat.fcu.edu.tw網域發布單位新聞"]},{"id":"econ","college":"商學院","name":"經濟學系","url":"https://econ.fcu.edu.tw/","overall":89,"priority_issues":["招生頁「外國學生申請入學(秋季班)」連結誤植為nze(學士後淨零智慧永續學士班)的招生頁面(post-baccprogadmission1)，與經濟系完全無關，屬內容錯誤連結"],"pain_points":["招生頁存在1個明顯錯置連結(外國學生秋季班誤連到不相關學程頁面)，可能誤導境外考生"],"quick_fixes":["更正「外國學生申請入學(秋季班)」連結至正確的international-fall-semester頁面"]},{"id":"ba","college":"商學院","name":"企業管理學系","url":"https://ba.fcu.edu.tw/","overall":90,"priority_issues":[],"pain_points":["研究成果報導列表雖豐富，但最新一則仍停留在2022年；不過同性質的計畫進度已在「本系計畫執行一覽表」頁延續更新，兩頁未整合串連，訪客不易察覺研究活動其實持續進行"],"quick_fixes":["將「本系計畫執行一覽表」頁與「產學與研究」頁整合或互相連結，讓訪客能看到2023年後仍持續進行的具名研究計畫"]},{"id":"biba","college":"商學院","name":"國際企業管理全英語學士學位學程","url":"https://biba.fcu.edu.tw/","overall":85,"priority_issues":["招生頁多數國內生連結(繁星/申請/分發)因網址缺少結尾斜線(如college_star而非college_star/)導致404，加上舊版113學年度連結(national_list/113college-star等)也已失效，僅境外生連結(/en/international-fall-semester/)確認可正常運作，是同批系所中最特殊的技術性連結失效案例","首頁背景圖使用Pexels庫存圖(2張，含歐洲觀光客情境照)，作為「國際企業管理」全英語學程的首頁素材卻與真實逢甲學生/國際交流無關，略顯諷刺","複查新增：現任主任姓名前後不一致——/staff/頁載明主任為李月仙(信箱cjhuang@)，但/welcome/頁「主任的話」具名簽署為「逢甲大學BIBA主任 黃瓊如」，兩頁所載現任主任姓名不同，需人工向系所查證何者為現任、何者為舊資料未更新"],"pain_points":["師資照片覆蓋率78%(14/18，2頁教師)","招生連結技術性錯誤(缺結尾斜線)導致多數國內生管道無法查證","複查新增：「國際體驗」「學習-3」「生活」3個導覽頁僅有標題與麵包屑，無任何本文內容","複查新增：本次複查所抓取之新頁面內文中皆未偵測到內嵌<img>圖片標籤(可能為此站type-c佈景主題以不同方式載入圖片)，故新增頁面之照片真偽本次僅能以文字內容核實，尚未逐一下載樣本目視確認，與其餘頁面的查核基準不同，待後續人工複核"],"quick_fixes":["修復招生頁連結，統一補上結尾斜線(如college_star/)並移除已失效的113學年度舊連結","以真實逢甲學生/國際交流照片替換首頁2張無關的Pexels庫存圖","確認現任主任姓名並統一/staff/與/welcome/兩頁之資訊","補上「國際體驗」「學習-3」「生活」3頁的實質內容，或自導覽選單移除"]},{"id":"bce","college":"商學院","name":"商學學士學位學程","url":"https://bce.fcu.edu.tw/","overall":78,"priority_issues":[],"pain_points":["師資照片覆蓋率僅62%(16/26，3頁教師)，第3頁明顯偏低","學生事務相關子頁(財務/學務/宿舍)多為全校通用資訊連結，非本學程專屬內容"],"quick_fixes":["補齊師資頁尚缺的教師大頭照，尤其第3頁"]},{"id":"archschool","college":"建築專業學院","name":"建築專業學院","url":"https://archschool.fcu.edu.tw/","overall":63,"priority_issues":["出路資訊完全缺乏可查核證據：全站19個抽查頁面找不到任何年度就業/升學量化數字、具名代表性就職企業或升學學校、具名系友案例（三項出路子項全數0分）[A1-5]","師資照片以職級區分呈現極端落差：專任教授/副教授/助理教授/講師32人抽查全數(100%)為真實base64照片，但兼任教授/副教授/助理教授/講師抽查35人中僅9人(26%)為真實照片，其餘為89字元長度的系統預設圖，兼任助理教授12人中僅1人有真實照[B6]","USR大學社會責任頁（/usr/）除麵包屑與標題外完全空白，無任何內文、圖片或連結"],"pain_points":["ROSOCoop首頁輪播第1張「Muqarna Mutation」(與Michael Hansmeyer合作之招牌大型裝置)背景圖實為主題預設圖default-img-1.jpg，並非該作品實際照片，文字描述與圖片不符","核心課程頁面(建築學士班/學士學位學程/碩士學位學程)多停留在PEO教育目標與學制介紹層級，未見具體課程3門白話說明+學生作品+應用方向之組合，「課程科目表」「課程檢索」皆連至外部系統無法直接查核","apply招生頁、faculty師資頁、news新聞列表頁抽查meta description與og:image均為空值，僅首頁有填寫，SEO覆蓋不一致[A6-2]","學習成果頁(/result/)第1頁作品全數標註110學年度(即2021~2022學年)，未見更近期學年度學生作品置頂","兼任助理教授/兼任講師抽查合計24人中僅3人(12.5%)有真實照片，是全站抽查職級中缺漏比例最高的兩類"],"quick_fixes":["將ROSOCoop首頁輪播第1張換成Muqarna Mutation實際作品照片，取代預設圖","為兼任助理教授/兼任講師補齊真實照片，或至少優先處理仍在職且會被學生接觸到的授課教師","為apply/faculty/news等主要頁面補上meta description與og:image","在「建築學士學位學程」等課程頁補上3門代表性核心課程的白話說明、學生作品或修畢應用方向","補上具名系友出路案例（姓名/現職或就讀學校/心得），並附年度與來源的量化就業去向數字","為USR大學社會責任頁補上實際內容"]},{"id":"id","college":"建築專業學院","name":"室內設計學士學位學程","url":"https://id.fcu.edu.tw/","overall":70,"priority_issues":["導覽選單完全找不到「招生」入口：最新消息/學習/師生作品/室設師資/獎學金與實習/關於，6個一級選單皆非招生相關，首頁輪播與新聞區塊也無招生按鈕，訪客須自行跳轉至archschool.fcu.edu.tw才能找到招生管道[A5-1]"],"pain_points":["課程規劃頁停留在PEO教育目標條列與6大學習範疇概述層級，未見3門代表性核心課程之個別白話說明+學生作品+應用方向組合[A1-3]","出路資訊缺乏量化數字與具名系友案例，僅實習頁的9家合作企業可算部分佐證[A1-5]","首頁meta description空值(og:image已有填寫，是抽查單位中唯一部分符合的)[A6-2]","「師生作品」頁面列出多件命名作品(藥語綠憩/共鳴之館/Golden Hour/凹凸競研所等)，但受限於時間僅驗證首頁1張新聞照片，作品頁本身圖片真實性與品質待後續人工複核"],"quick_fixes":["在首頁或選單新增明確的「招生」入口，直接連結官方recurit_list招生系統","補上首頁meta description","補充3門核心課程的個別詳細介紹","增補具名系友出路案例與年度就業量化數據"]},{"id":"bm","college":"商學院","name":"商學專業碩士在職學位學程","url":"https://www.bm.fcu.edu.tw/","overall":76,"priority_issues":[],"pain_points":["內容呈現偏向正式公告格式，較少故事性/招生文案轉譯","本學程網站採用Google Sites平台，圖片經Google驗證機制保護，無法逐張下載目視確認真偽，B1/B4評分較為保守"],"quick_fixes":["將「首頁」與「最新消息」頁的公告日期同步更新為與活動花絮頁一致的最新狀態，避免不同頁面時效落差造成混淆"]},{"id":"bphd","college":"商學院","name":"商學博士學位學程","url":"https://www.bphd.fcu.edu.tw/","overall":80,"priority_issues":[],"pain_points":["內容呈現偏向正式公告格式，敘事性較弱","本學程網站採用Google Sites平台，圖片經Google驗證機制保護，無法逐張下載目視確認真偽，B1/B4評分較為保守"],"quick_fixes":["可補充更多學生/校友的圖文並茂案例，強化故事性與B2學習情境呈現"]},{"id":"econlaw","college":"商學院","name":"財經法律研究所","url":"https://econlaw.fcu.edu.tw/","overall":83,"priority_issues":["單位新聞(econlaw.fcu.edu.tw自建)最新一則為2025.01.15「2025逢甲大學人權盃辯論賽」，距健檢日已逾575天(超過1年半)，是同批系所中自建新聞最為過時的案例之一"],"pain_points":["師資照片覆蓋率僅59%(10/17，2頁教師)，接近但未達60%門檻","自建新聞嚴重停滯逾1年半，與研究/招生頁的活躍內容形成落差","複查新增：「法律服務」(/internship/)與「法律實作課程」(/internship1/)為兩個網址相近但內容完全不同的頁面(前者為中小學智財宣導、後者為律師事務所實習)，命名方式易使訪客混淆為同一頁"],"quick_fixes":["以現有素材(如20週年研討會、公司治理研究中心活動)在econlaw.fcu.edu.tw網域發布近期單位新聞","補齊師資頁尚缺的教師大頭照","將「法律服務」與「法律實作課程」重新命名以區隔內容差異"]},{"id":"globalmarketing","college":"商學院","name":"全球行銷碩士班","url":"https://www.globalmarketing.fcu.edu.tw/","overall":77,"priority_issues":["首頁影片輪播中混入1支與本學程完全無關的Ed Sheeran音樂錄影帶(Beautiful People)，推測為誤植或忘記移除的測試內容，影響專業形象","網站未見獨立的「師資」頁面或教師大頭照，僅在內文提及部分教師姓名，無法比照其他學系進行B5師資照片覆蓋率評估","導覽選單中的「商店」(/category/all-products)連往Wix電商範本的預設示範頁，內容為「此處是產品」「$85.00」等未清除的假資料，形同虛設且影響專業形象"],"pain_points":["聯絡資訊僅列電話與地址，未見電子信箱或具名聯絡窗口，與WordPress平台學系相比透明度較低","本學程網站採用Wix平台，與院內其他學系網站架構不同，缺乏標準化的師資/新聞頁面","複查新增：「陳芝妤碩士一年畢業旅程」與「碩一陳芝妤一年畢業旅程」為內容幾乎逐字相同的重複頁面(僅結尾具名資訊有無之別)，應整併為一","複查新增：「活動」(/event-list)頁顯示「目前沒有任何活動」，該版位長期閒置未使用","複查新增：「114碩士班面試入學分則」頁內容單薄，僅網路報名日期與1張簡章圖片"],"quick_fixes":["移除首頁影片輪播中的Ed Sheeran音樂錄影帶等無關內容","補充具名聯絡窗口與電子信箱，並考慮增設統一的師資頁面","移除或清空導覽選單中Wix電商範本的「商店」示範頁","整併「陳芝妤」重複的2篇畢業心得頁面"]},{"id":"rmi","college":"金融學院","name":"風險管理與保險學系","url":"https://rmi.fcu.edu.tw/","overall":87,"priority_issues":[],"pain_points":["師資照片覆蓋率61%(17/28，3頁教師)，第2、3頁覆蓋率明顯下滑","首頁背景圖1張確認為無關英文庫存圖(laptop-studying-research-campus-concept)"],"quick_fixes":["補齊師資頁第2、3頁尚缺的教師大頭照","以真實活動照片替換首頁庫存圖"]},{"id":"fina","college":"金融學院","name":"財務金融學系","url":"https://fina.fcu.edu.tw/","overall":85,"priority_issues":["招生頁「境外生」連結指向international_admissions/，與本學期多系共同出現的同一404連結相同"],"pain_points":["師資照片覆蓋率69%(20/29，3頁教師：12/12、8/12、0/5)","首頁背景圖1張確認為Pexels庫存圖(pexels-pixabay-327540-1.jpg)","校園活動頁(events-list/)內容為創能學院全校性活動，非系所自建活動"],"quick_fixes":["修正招生頁「境外生」404連結","補齊師資頁第2、3頁尚缺的教師大頭照","以真實照片替換首頁庫存圖"]},{"id":"bpfeas","college":"金融學院","name":"財務工程與精算學士學位學程","url":"https://bpfeas.fcu.edu.tw/","overall":89,"priority_issues":["「生活」導覽頁(campus-life/)完全空白，僅有標題無任何本文內容"],"pain_points":["師資照片覆蓋率60%(3/5)，專任教師僅1位，多仰賴兼任師資","「生活」導覽頁(campus-life/)完全空白，無任何內容","校園活動頁(events/)內容為創能學院全校性活動，非系所自建活動","首頁「逢甲精選」頁籤與「單位新聞」頁籤內容並陳，2021/2023年舊聞與2026年新聞同時出現在首頁摘要區塊，未細看易誤判為過時"],"quick_fixes":["補齊師資頁尚缺的2位教師大頭照","補上「生活」頁面內容，或移除此導覽項目","首頁新聞摘要區塊建議優先呈現「單位新聞」最新內容而非逢甲精選舊聞"]},{"id":"upfc","college":"金融學院","name":"金融學院學士班","url":"https://upfc.fcu.edu.tw/","overall":79,"priority_issues":["新聞列表頁(/news/)的「單位新聞」頁籤實際顯示的多為www.fcu.edu.tw全校性榮譽獲獎relay內容(Apple認證APP競賽/國語文教學中心等)，真正屬本班自建的文章須點入單篇文章側欄「相關新聞」才能看到，列表頁本身具誤導性"],"pain_points":["學系簡介與特色頁內容偏制式行銷語言，缺乏具體歷史沿革或可獨立查證之學術成果(因成立僅約2年，資歷尚淺)","「生活」導覽項目直接連往www.fcu.edu.tw/community/校級頁面，本班未建置自有生活相關內容"],"quick_fixes":["修正新聞列表頁「單位新聞」頁籤，優先顯示本班自建文章而非全校relay內容","增補學系沿革或成立背景說明，強化可查證性"]},{"id":"pmpf","college":"金融學院","name":"金融碩士在職學位學程","url":"https://www.pmpf.fcu.edu.tw/","overall":53,"priority_issues":["無「校園新聞」或近期活動報導頁面，找不到任何新聞即時性內容，A4掛零；重要公告頁最新一則為2025.10.31(距健檢日約285天)","完全缺乏學生學習情境與成果呈現內容：無實習心得、無系友成功案例(僅描述系友會LINE群組用途，無具名分享)、無獲獎紀錄、無獎學金資訊，B2/B3近乎空白","多個導覽頁(學程介紹/系辦公室/系友會/學生事務)僅為子選單集合頁或聯絡資訊頁，無實質內容本文"],"pain_points":["「學程介紹」「辦學目標」頁內容為制式行銷語句，缺乏具體特色或差異化說明","「系友會」頁僅描述LINE群組用途(\"成員：歷屆學長姐\"、\"用途：提供諮詢選課問題\")，無任何具名系友或成就案例","無任何學生實習、企業參訪、獲獎或獎學金相關內容"],"quick_fixes":["增設校園新聞或活動報導頁面，定期更新在職專班相關活動","補充具名系友成功案例或心得分享，強化B2/B3學習情境呈現","「學程介紹」頁補充具體辦學特色內容，而非僅有聯絡資訊"]},{"id":"fphd","college":"金融學院","name":"金融博士學位學程","url":"https://www.fphd.fcu.edu.tw/","overall":63,"priority_issues":["「學習目標」頁面完全空白，僅有頁首頁尾，無任何本文內容","無「校園新聞」或近期活動報導頁面，A4新聞即時性掛零"],"pain_points":["「學程介紹」「學生事務」頁僅為子選單集合頁，無實質內容","「辦學特色」頁僅條列4句特色文字，缺乏進一步佐證數據","除首頁影片外，缺乏更多具名系友心得或職涯案例的文字內容"],"quick_fixes":["補齊「學習目標」頁空白內容","增設校園新聞或活動報導頁面","增補更多具名系友心得文字內容，強化B2/B3學習情境呈現"]},{"id":"cl","college":"人文社會學院","name":"中國文學系","url":"https://cl.fcu.edu.tw/","overall":72,"priority_issues":["首頁及各子頁meta description、og:description、og:image全部為空值，SEO與社群分享預覽完全缺漏[A6]","除師資照片與2張行銷banner外，全站19個抽查頁面幾乎無任何實景照片——「學習環境」頁以豐富文字描述12處具體空間(人創中心/漢字文化中心/Adobe實作教室/分鹿演座等)，卻沒有任何一張對應照片佐證，僅有系徽logo[B2]"],"pain_points":["「學習環境」頁文字描述12處空間(人創中心、積學堂采銅廳、漢字研究中心、分鹿演座、智慧人本場域、ADOBE專用教室等)完全無照片佐證，僅首圖為系徽logo，是全站內容深度與圖片完整度落差最大的頁面","教師專書出版頁列出10本教師著作(含2本具名系友作品)，全部只有書名/作者/出版資訊/簡介文字，無任何書封圖片","新生看過來(freshman)與家長看過來(freshman-parents)兩頁面雖有8張與20張精美設計圖，但下載檢視確認為通用商業攝影棚人像去背+文字排版之行銷banner風格，非本系真實學生或教學場景照片[B1]","兼任教師4位(朱歧祥/陳俊啟/呂素端/劉梓潔)師資頁仍為系統預設圖teacher-default.jpg"],"quick_fixes":["補上首頁與各子頁meta description、og:image","為「學習環境」頁12處空間各補1-2張實景照片","為4位兼任教師補真實照片","教師專書出版頁補上書封圖片"]},{"id":"fll","college":"人文社會學院","name":"外國語文學系","url":"https://fll.fcu.edu.tw/","overall":75,"priority_issues":["師資25位教師中僅約13位(52%)有真實照片，12位為teacher-default.jpg預設圖，覆蓋率為人文社會學院中偏低者[B5]","畢業公演為系上招牌活動(已辦19屆)，文字詳細介紹4屆劇目(求婚計/貝侯的童話/十七分之一/鏡中靚)，但該頁面完全無一張演出照片，僅系徽logo，是文字與圖片落差最明顯的頁面[B3]"],"pain_points":["師資頁第2、3分頁(兼任教師為主)照片覆蓋率明顯低於第1頁：第1頁12位中10位真實照，第2頁12位中僅3位確定為真實照(另1位為極小異常base64疑似損毀圖檔)，第3頁1位為預設圖","「環境」頁僅條列3處空間(研究小間/圖書室/Writing Lab)文字說明，無任何一張實景照片","「生活」「系學會」頁面文字描述系學會活動與寫作諮詢服務，同樣無配圖佐證","畢業公演(19屆歷史，系上招牌活動)頁面完全無演出照片"],"quick_fixes":["為師資頁12位仍用預設圖的兼任教師補真實照片","畢業公演頁至少為近3屆各補1-2張演出實景照","環境頁(研究小間/圖書室/Writing Lab)各補1張實景照片"]},{"id":"csi","college":"人文社會學院","name":"文化與社會創新碩士學位學程","url":"https://csi.fcu.edu.tw/","overall":61,"priority_issues":["招生頁「報名網址」連結(https://www.fcu.edu.tw/national_list/113mastr_exam/)實測為404死連結——連結本身仍指向113學年度(2024)舊頁面，未更新至115學年度，且該頁已被下架，是招生資訊中最關鍵的失效項目[A5]","「校園新聞」與「校園活動」兩個列表頁面，抽查10則新聞與4則活動全部為逢甲精選/創能學院等全校性relay內容(張真誠院士/旺宏金矽獎/校務評鑑/NVIDIA直播等)，找不到任何一則本學程自身產出的新聞或活動報導，顯示本學程網站近乎零自建即時內容[A4]","首頁及各子頁meta description、og:image全部空值[A6]"],"pain_points":["「產學合作」頁僅1段通用制式文字(「產學合作培育是以在學學生為對象...」)，無任何具體合作企業、案例或成果，是全站內容最空洞的頁面之一[A3]","環境頁描述文物標本室、E化教室、學生研究室等極具特色的空間，卻無一張對應照片——文物標本室本可作為本學程最具識別度的視覺素材，完全未利用[B2]","師資8位中3位(謝銘峯/陳啟正/莊竣傑)為teacher-default.jpg預設圖，佔37.5%","「文物管理與鑑識學分學程」頁面內文除該張海報圖片外幾乎無額外文字說明本學程與主學程的關係、學分抵免規則等"],"quick_fixes":["修正或移除招生頁404的報名網址連結，改置115學年度現行連結","補上首頁與各子頁meta description、og:image","為文物標本室、E化教室等特色空間拍攝實景照片","為3位無照片教師補真實照片","產學合作頁補充具體合作案例"]},{"id":"gipp","college":"人文社會學院","name":"社會創新暨永續碩士在職學位學程","url":"https://gipp.fcu.edu.tw/","overall":39,"priority_issues":["全站12個抽查頁面中，除3位教師大頭照與1張招生講座海報外，找不到任何一張真實現場照片——環境頁僅有2句通用文字描述人言大樓空間，無教室/研究室具體門牌亦無圖片；是本次人文社會學院4個單位中圖片內容最貧乏者[B1,B2,B3]","「校園新聞」頁面雖有「逢甲精選／單位新聞」雙分頁設計，但點擊「單位新聞」分頁後顯示內容與「逢甲精選」完全相同，證實本學程近乎無自建新聞產出；僅能在個別新聞舊網址(如2025.04.28一則清大李堅明博士減碳講座海報)找到零星自建內容，且多為純海報張貼無具體報導文字[A4]"],"pain_points":["環境頁全站最簡略，僅2句通用文字(「本系位於逢甲大學人言大樓...」)，無具體教室門牌、無任何照片，與同院csi至少列出房號的環境頁相比更為空洞","「校友通訊」僅列出4期連結，惟最新一期為第4期(1040313=民國104年3月=2015年)，已逾10年未更新","師資僅3位(所長陳介英+徐偉傑+兼任林浚騰)，規模為人文社會學院4單位中最小；林浚騰為teacher-default.jpg預設圖","「課程專業」頁「課程與規劃」「畢業論文」等區塊僅有「了解更多」空連結按鈕，未見具體課程列表或學分結構展開內容","首頁及各子頁meta description、og:image全部空值[A6]"],"quick_fixes":["建議儀表板同步更新學程名稱為「社會創新暨永續碩士在職學位學程」","環境頁補充具體教室門牌與至少1-2張實景照片","為兼任教師林浚騰補真實照片","補上首頁與各子頁meta description、og:image","更新校友通訊至近期期數"]},{"id":"ee","college":"資訊電機學院","name":"電機工程學系","url":"https://ee.fcu.edu.tw/","overall":58,"priority_issues":["全站抽查11個以上頁面(首頁/學士專業/碩士專業/環境/研究中心/產學合作/系友會/新聞/活動等)，除單一新聞事件外找不到任何學生操作設備、上課實作或教師指導之學習情境照片；環境頁「基礎教學實驗室」4間中3間(智慧能源電機、光電、電波實驗室)配圖經下載檢視確認為完全不相關的pexels免費圖庫照片(檯燈、相機、地鐵手扶梯)，僅光纖光柵寫製實驗室有真實設備照但無人物"],"pain_points":["首頁與五大特色專業(智慧能源/5G-B5G/微波生醫/先進光電/半導體光電)之代表圖片多張為與電機工程無關之免費圖庫照(生醫顯微鏡、PCB特寫)，未見對應各領域之真實實驗室或設備照","研究中心頁2間中心(薄膜暨量測技術發展中心、天線暨微波電路創新研究中心)僅有純文字標題卡圖片，無任何實驗室或研究設備實拍照片","首頁meta description與og:image皆為空值，SEO基本資訊缺漏","歡迎頁系主任的話落款「中華民國一一二年八月一日」(2023.08)，距健檢日已逾3年，非近期內容","A2-2價值主張：網站未說明本系與資訊電機學院內電子/自動控制/通訊等系所之差異定位，僅列自身五大領域"],"quick_fixes":["為五大特色領域與環境頁4間基礎教學實驗室拍攝/更換真實現場照片，取代免費圖庫圖片","補上首頁meta description與og:image","更新系主任歡迎詞內容或至少更新落款時間"]},{"id":"fcuece","college":"資訊電機學院","name":"電子工程學系","url":"https://fcuece.fcu.edu.tw/","overall":79,"priority_issues":[],"pain_points":["歡迎頁系主任歡迎詞具名為劉堂傑，但成員頁與歷任主管頁顯示系主任已於115年8月交接予王馭熊(即健檢當月剛交接)，歡迎詞內容未同步更新，屬時效性落差","教與學空間頁7個場域中，僅半導體實驗室與IC設計實驗室有對應真實設備/操作照片，生醫電子實驗室、電子學實驗室、深碗專題實驗場域、新鮮人專題與AIoT實驗場域4個場域僅有名稱無任何圖文說明","企業實習頁具名合作企業(捷創科技/祥寶科技/奕傑電子/矽品科技/聯詠科技/友達光電/台積電/美律科技)清單本身完整，但列示的實習職缺公告最新為2023年美律實習，已逾3年未更新","畢業出路無具年份來源的量化就業數字，僅泛稱「就業機會高」「好就業」","生活(Campus Life)頁面僅有標題無實質內文，屬空白次級導覽頁"],"quick_fixes":["更新歡迎頁系主任歡迎詞為現任系主任王馭熊具名內容","為生醫電子實驗室、電子學實驗室等4個缺圖場域補充設備照片與說明文字","更新企業實習頁職缺公告至現行學年度"]},{"id":"auto","college":"資訊電機學院","name":"自動控制工程學系","url":"https://auto.fcu.edu.tw/","overall":77,"priority_issues":[],"pain_points":["歡迎頁全文未見系主任署名(經grep原始碼確認廖本義三字未出現於歡迎頁)，僅成員頁有完整資料可交叉查證，與ee/fcuece歡迎頁皆具名形成對比","環境頁「醫學影像實驗室」配圖為Siemens MRI機台之廠商行銷產品圖(白底去背商品照)，非自有設備實拍照片","企業實習頁僅2則企業徵才公告，且皆為2021.04.04，已逾5年未更新，是全站時效性最差的頁面","綜覽頁「未來出路」僅以#hashtag形式列出職稱(#自動化控制工程師#物聯網工程師#機器人工程師)，無具名合作企業或量化就業數字佐證","首頁meta description與og:image皆為空值，SEO基本資訊缺漏(與ee相同問題)"],"quick_fixes":["為歡迎詞補上系主任廖本義具名署名","更新企業實習頁至現行學年度徵才資訊","補上首頁meta description與og:image","「醫學影像實驗室」改用自有設備實拍照片取代廠商行銷圖"]},{"id":"ce","college":"資訊電機學院","name":"通訊工程學系","url":"https://ce.fcu.edu.tw/","overall":82,"priority_issues":[],"pain_points":["自建新聞系統(/news/日期/)最新一篇為2025.12.12，距健檢日已逾8個月未更新，惟站方relay版新聞(/news-list/)仍每日更新，不影響A4計分但反映單位自建內容更新頻率偏低","自建新聞頁「相關新聞」側欄顯示3則舊聞(含2023年Innoserve得獎)卻皆標示為「2026.08.11 12:26~12:26」，時間戳記疑似為系統擷取/生成時間而非真實發布時間，可能誤導訪客判斷新聞時效性","歡迎頁全文未見系主任署名(經查系主任為蔡淵裕，成員頁有完整學經歷)，與ee/fcuece歡迎頁皆具名形成對比","綜覽頁「未來出路」與相近系(電機/電子/自動控制)差異化描述較弱，僅泛稱「大電機領域為基礎、通訊工程為特色」","首頁meta description與og:image皆為空值，SEO基本資訊缺漏","師資頁12位教師中仍有2位使用預設剪影圖，尚未補齊真實照片"],"quick_fixes":["為剩餘2位教師補齊真實大頭照","為歡迎詞補上系主任蔡淵裕具名署名","修正自建新聞頁「相關新聞」側欄之時間戳記顯示邏輯","補上首頁meta description與og:image","恢復自建新聞系統更新頻率，善用InnoServe等競賽成果持續發布具體技術新聞"]},{"id":"upiee","college":"資訊電機學院","name":"資訊電機學院學士班","url":"https://upiee.fcu.edu.tw/","overall":65,"priority_issues":["環境頁僅列出電機/電子/通訊/自控/資訊5系名稱(轉導至各系網站)，本身無任何場域介紹、設備說明或照片，是同批系所中內容最空洞的環境頁"],"pain_points":["首頁與分流講座活動照片全部上傳於2021年(至少4年前)，未見近年(2024-2026)活動照片佐證分流講座/企業參訪/新鮮人專題仍持續辦理","作為非傳統系所之過渡型學程，站上無任何學生專題成果、競賽或量化升學就業數字佐證，僅綜覽頁泛稱「多人考上台清交成研究所」但無具名個案","歡迎頁全文未見系主任署名(經查系主任為陳鏡崑，成員頁有完整學經歷)","企業參訪、新鮮人專題等頁內容僅1-2段簡短描述，缺乏具體梯次時間、參與人數或學生心得等細節","首頁meta description與og:image皆為空值，SEO基本資訊缺漏","師資頁12位教師中仍有6位使用預設剪影圖，未補齊真實照片"],"quick_fixes":["為分流講座、企業參訪、新鮮人專題等活動補充近年(2024-2026)真實照片","為剩餘6位教師補齊真實大頭照","環境頁補充本學士班自身之教學空間介紹（而非僅轉導5系連結）","為歡迎詞補上系主任陳鏡崑具名署名","補上首頁meta description與og:image"]},{"id":"iecs","college":"資訊電機學院","name":"資訊工程學系","url":"https://www.iecs.fcu.edu.tw/","overall":84,"priority_issues":[],"pain_points":["首頁新聞banner至少1張確認為AI生成圖片(檔名為「ChatGPT_Image_2026年8月11日」，張真誠院士新聞用圖)，雖非大量使用但應標示或以真實照片取代","首頁meta標籤完全未設置description與og:image(連空標籤都不存在，比其他5系「標籤存在但為空值」更徹底缺漏)","未見獨立「歡迎詞」頁面格式，系主任資訊僅呈現於系所成員頁(聯絡方式+研究專長)，缺乏傳統面向新生的歡迎文字","抽查首頁與活動banner多為頒獎/得獎合照形式，較少呈現學生實際操作設備、上課或教師指導之學習情境照片","畢業生量化去向資料僅有累積畢業人數(9,900人)，缺乏近年具年份的量化就業率或升學率數字"],"quick_fixes":["補上首頁meta description與og:image標籤","將AI生成的新聞banner圖逐步替換為真實活動照片","在系所介紹或獨立頁面補充面向新生的系主任歡迎文字","補充近年(114/115學年度)具年份來源的量化就業率/升學率數據"]},{"id":"miee","college":"資訊電機學院","name":"資訊電機工程碩士在職學位學程","url":"https://miee.fcu.edu.tw/","overall":45,"priority_issues":["主要專業頁(碩士專業、環境)幾乎沒有真實學習/實作影像；環境頁僅轉導5系連結無自身內容；下載檢視首頁多張輪播圖確認至少4張檔名為「Gemini_Generated_Image」之AI生成圖片，其中1張明確用於冒充「學生小組討論」學習情境(有AI生成特徵浮水印)，另有1張GettyImages庫存科技風格圖，用AI/庫存圖冒充真實學習情境屬重要缺失"],"pain_points":["總覽頁文字明顯有錯字/校對疏漏(\"接有良好的新資、設備、議程、新學\"疑應為\"具有良好的師資、設備、環境、教學\")，影響專業形象","「碩士專業」頁「教學目標」與「課程設計與規劃」兩段文字完全重複貼上，未實際撰寫課程規劃內容","課程設計與規劃頁僅提供各學年度開課清單與必選修科目表之PDF/系統連結，缺乏對代表性核心課程的白話說明","首頁多張輪播圖確認為AI生成(Gemini)或庫存圖(GettyImages)，其中AI生成圖被用於冒充「學生討論」情境，構成對訪客的誤導性呈現","師資頁僅列2位教師(李企桓/林上智)，其中1位仍使用teacher-default.jpg樣板圖無真實照片","新聞頁僅有「逢甲精選」頁籤，無「單位新聞」頁籤，全站新聞完全依賴校網relay，無本學程自建新聞內容"],"quick_fixes":["移除AI生成與庫存圖片，改用真實課程/活動照片，尤其避免以AI圖片冒充學習情境","修正總覽頁文字錯漏字","為「碩士專業」頁重新撰寫課程設計與規劃內容，勿與教學目標段落重複","為剩餘1位教師補齊真實照片","補上首頁meta description與og:image"]},{"id":"rdms","college":"資訊電機學院","name":"資通訊與電控產業碩士專班","url":"https://rdms.fcu.edu.tw/","overall":65,"priority_issues":[],"pain_points":["課程設計與規劃頁僅提供5個學年度必選修科目表PDF連結與課程檢索系統入口，無任何代表性核心課程之白話說明","各系師資頁與環境內容皆僅轉導至資訊/電機/電子/自控/通訊5系連結，本身無獨立場域或課程深入介紹","首頁下載檢視確認至少1張輪播圖為AI生成(Gemini)之「企業握手合作」情境圖，非真實產學簽約或活動照片","無獨立歡迎詞內容，成員頁僅呈現聯絡資訊格式","首頁meta description已填寫(\"畢業即就業，高階科技人才養成班\")，但og:image仍為空值，SEO資訊不完整","首頁新聞區塊連結格式為events-list/?id=...(動態頁面)，與其他系所常見的news-detail/?id=...結構不同，內容能否穩定顯示待後續確認"],"quick_fixes":["為代表性核心課程補充白話說明內容","移除AI生成的握手圖，改用真實產學簽約或企業參訪照片","補上首頁og:image","補充獨立歡迎詞內容"]},{"id":"bmie","college":"資訊電機學院","name":"生醫資訊暨生醫工程碩士學位學程","url":"https://bmie.fcu.edu.tw/","overall":54,"priority_issues":["招生頁明確標示「本學程於112學年度起停招」(碩士班考試入學與甄試入學皆已停招)，但綜覽頁仍寫「本學程目前每學年招收碩士生10位」，兩頁資訊直接矛盾，且全站未見任何說明停招後續安排(如是否併入其他學程)，對訪客造成混淆","主要專業頁(碩士專業/產研)內容空洞：碩士專業頁僅列3個特色課程標題無說明，產研頁完全空白僅有標題"],"pain_points":["招生資訊與綜覽頁招生人數描述矛盾(停招 vs 每學年招10位)，構成重要缺失","碩士專業頁3個特色課程(生物醫學實驗/生醫產業實習/生醫產業參訪)僅列標題無白話說明內容","企業參訪頁僅1則紀錄(2020.10.15彰濱秀傳-亞洲微創手術中心)，企業實習頁僅1則紀錄(2017年慈濟醫院)，皆已逾5年未更新","歡迎頁僅有1句籠統標語(\"21世紀最有價值的主修，歡迎你的加入！\")，無系主任具名、無實質內容","師資頁12位教師中仍有4位使用teacher-default.jpg樣板圖，未補齊真實照片","首頁meta description與og:image皆為空值"],"quick_fixes":["釐清並統一招生狀態說明，移除或更新與現況矛盾的招生人數描述","為3個特色課程補充白話說明內容","更新企業參訪/企業實習紀錄至近年活動","為剩餘4位教師補齊真實照片","補上首頁meta description與og:image"]},{"id":"gece","college":"資訊電機學院","name":"電機與通訊工程博士學位學程","url":"https://gece.fcu.edu.tw/","overall":49,"priority_issues":[],"pain_points":["電機與通訊高階專業頁(核心課程頁)僅提供8個學年度課程規劃架構圖PDF連結，無任何代表性核心課程之白話說明","無獨立實驗室/研究場域頁面，訪客無法了解本學程學生實際使用之研究設施","歡迎頁僅有1句籠統標語(\"加入電通博士學程行列，建構你的人生志業!\")，無主任具名或實質內容","首頁下載檢視確認1張輪播圖為商用stock圖片(\"businessman-putting-his-ideas-in-white-board\")，與電機通訊工程領域無直接關聯","首頁meta description為空值(og:image雖已填寫但description缺漏)","新聞頁具名學生成就(林泓逸OPTIC獎)僅有標題，內文極簡無具體佐證細節","師資頁12位教師中仍有4位使用teacher-default.jpg樣板圖，未補齊真實照片"],"quick_fixes":["為核心課程補充白話說明內容","補充學程共用之研究場域/實驗室介紹頁面","為歡迎詞補上主任具名內容","移除或替換為真實相關圖片取代商用stock圖","補上首頁meta description","為剩餘4位教師補齊真實照片"]},{"id":"pbiecs","college":"資訊電機學院","name":"資訊工程學系學士後專班","url":"https://pbiecs.fcu.edu.tw/","overall":74,"priority_issues":["招生頁「網路報名」為純文字/span元素，經檢視DOM確認無href、無onclick，是完全無法點擊的死UI元素，而非僅是連結失效——訪客看到報名日期(115/03/30-07/02)卻無法從此處實際完成報名動作"],"pain_points":["招生頁主要CTA「網路報名」為死連結(見重要缺失)，是嚴重的招生入口缺失","未見獨立歡迎頁或系主任/專班主任具名歡迎文字","無獨立實驗室/學習場域介紹頁面(雖屬轉職導向專班性質，仍可補充教學空間照片)","缺乏具年份來源的畢業生就業率或升學率量化數據"],"quick_fixes":["修復招生頁「網路報名」按鈕，補上正確連結","補充系主任/專班主任具名歡迎文字","補充近年具體就業/升學量化數據"]},{"id":"ics","college":"資訊電機學院","name":"資通安全碩士學位學程","url":"https://ics.fcu.edu.tw/","overall":78,"priority_issues":[],"pain_points":["未見獨立實驗室/研究場域介紹頁面，本學程依附既有資源但未具體呈現學生實際使用之研究設施照片","未見獨立歡迎頁或主任具名面向新生之歡迎文字(主任周兆龍僅見於成員頁聯絡資訊)","首頁meta description與og:image皆為空值","抽查照片以頒獎/慶祝合照為主，未見學生實際操作/上課之學習情境照片","缺乏具年份來源的畢業生就業率或升學率量化數據"],"quick_fixes":["補充研究場域/實驗室介紹頁面與照片","為歡迎詞補上主任周兆龍具名內容","補上首頁meta description與og:image","補充學生實際上課/實作情境照片"]},{"id":"civil","college":"建設學院","name":"土木工程學系","url":"https://civil.fcu.edu.tw/","overall":82,"priority_issues":["首頁及各子頁meta description、og:image全部空值[A6]"],"pain_points":["首頁meta description與og:image皆空值","「活動花絮」相簿雖真實存在，但全數外連至Google相簿或SharePoint，系網站本身頁面除師資照片外無任何嵌入式照片，與cocd學院網站相同模式","「亮點研究」頁面(5G/3D列印/建築醫學/GeoBIM/Chatbot等6項)僅有技術名稱標題卡，未見對應之學生專題成果或設備實拍照片","師資頁部分base64圖檔位元組數異常小(如謝一郎6517、黃隆茂10757)，疑似解析度過低或裁切異常，惟仍屬真實照片而非預設圖"],"quick_fixes":["補上首頁與各子頁meta description、og:image","「亮點研究」6大技術方向各補1張學生實作或設備照片","檢查並更新過小解析度的師資照片"]},{"id":"he","college":"建設學院","name":"水利工程與資源保育學系","url":"https://he.fcu.edu.tw/","overall":71,"priority_issues":["全站所有頁面footer「聯絡信箱」欄位皆為空白(僅顯示「聯絡信箱」四字，無實際email地址)，且首頁meta description/og:image亦全空值，對外聯繫管道與SEO資訊雙重缺漏[A6]"],"pain_points":["全站footer聯絡信箱欄位空白，系辦公室email實際上僅出現在系主任個人聯絡資訊中(clchang@o365.fcu.edu.tw)，訪客若只看footer聯絡方式會找不到系辦email","「環境」頁描述4間實驗室(流體力學/水土環境/水質環境/電腦實習教室)設備具體，卻無一張實驗室或設備照片","師資頁第2頁(兼任教師為主)12位中5位為teacher-default.jpg預設圖，覆蓋率明顯低於第1頁(12/12全真實)","「產研」頁列出6項研發方向(水土災害監測/淹水模擬/生態農業/綠色工法/海水淡化/低衝擊開發)僅文字說明，無對應研究設備或成果照片"],"quick_fixes":["補上footer聯絡信箱email地址","補上首頁meta description與og:image","為4間實驗室各補1張設備或使用情境照片","為5位兼任教師預設圖補真實照片"]},{"id":"up","college":"建設學院","name":"都市計畫與空間資訊學系","url":"https://up.fcu.edu.tw/","overall":80,"priority_issues":["首頁及各子頁meta description、og:image全部空值[A6]"],"pain_points":["師資26位教師中僅19位(73%)為真實照片，第2、3頁(兼任教師為主)覆蓋率明顯偏低(7/12、1/2)","首頁meta description與og:image皆空值","「研究中心」與「產學聯盟」頁面雖列出合作項目，但未見對應之實體空間或簽約儀式照片(僅news頁的個別報導才有照片佐證)"],"quick_fixes":["補上首頁與各子頁meta description、og:image","為兼任教師較多的師資頁2、3頁補真實照片"]},{"id":"tl","college":"建設學院","name":"運輸與物流學系","url":"https://tl.fcu.edu.tw/","overall":81,"priority_issues":["首頁及各子頁meta description、og:image全部空值[A6]"],"pain_points":["首頁meta description與og:image皆空值","師資頁第2頁2位(李宗益/黃文通)、第3頁1位(羅乙棋)仍為teacher-default.jpg預設圖","「特色課程」「研究中心」等頁面文字具體豐富，但除news個別報導外，頁面本身未嵌入對應之實驗室或深碗課程實作照片"],"quick_fixes":["補上首頁與各子頁meta description、og:image","為3位預設圖教師補真實照片"]},{"id":"lm","college":"建設學院","name":"土地管理學系","url":"https://lm.fcu.edu.tw/","overall":72,"priority_issues":["首頁下方連結「榮譽榜」(校內外競賽成果／高普考及證照上榜)實測為404死連結(\"We are sorry！請原諒我們的失誤\")，經browser與curl雙重確認非暫時性異常，導致訪客完全無法瀏覽本系競賽與考照成果頁面[A3,A6]"],"pain_points":["首頁「榮譽榜」連結404，本系「校內外競賽成果」與「高普考及證照上榜」資訊完全無法透過此入口瀏覽","師資頁第2-4頁(以兼任教師為主)真實照片覆蓋率明顯低於第1頁(12/12全真實)：第2頁7/12、第3頁6/12","「系所研究空間」等頁面除系徽外無實景照片佐證"],"quick_fixes":["修復或移除首頁「榮譽榜」404連結，改置正確頁面網址","為兼任教師較多的師資頁2-4頁補真實照片"]},{"id":"mppm","college":"建設學院","name":"專案管理碩士在職學位學程","url":"https://mppm.fcu.edu.tw/","overall":72,"priority_issues":["「校園新聞」單位新聞分頁雖確有真實內容，但最新一則為2025.06.20(逢甲全國專案管理標竿獎六連霸)，距健檢日已逾一年餘未再更新，即時性明顯落後於同院其他系所[A4]","首頁meta description與og:image皆空值[A6]"],"pain_points":["「校園新聞」預設逢甲精選relay內容與同院其他系所重複；單位新聞分頁確有內容但更新頻率明顯低於civil/he/up/tl等系所(近1年無新文)","首頁meta description與og:image皆空值","「環境」頁面描述之空間(智慧城市共享學習堂/人言教育創新中心)為全校共用設施而非本學程專屬空間，混淆讀者對本學程實際教學場域的認識"],"quick_fixes":["更新「單位新聞」補上近1年活動報導","補上首頁與各子頁meta description、og:image"]},{"id":"mcd","college":"建設學院","name":"建設碩士在職學位學程","url":"https://mcd.fcu.edu.tw/","overall":61,"priority_issues":["「校園新聞」單位新聞分頁最新一則為2024.11.26(金門縣校外教學參訪)，距健檢日已逾20個月未更新，是本次health check中即時性最差的單位之一[A4]","首頁meta description與og:image皆空值[A6]","師資7位教師中僅3位(43%)有真實照片，覆蓋率明顯低於同院其他系所[B5]"],"pain_points":["師資頁7位中4位(王靚琇/張鈺光/林宏澔/吳東凌)為teacher-default.jpg預設圖，覆蓋率43%為本次health check偏低者","「單位新聞」內容雖真實但更新已停滯近2年，同期同院civil/he/up/tl等系所仍有2026年最新報導，形成明顯落差","首頁meta description/og:image皆空值","「環境」頁未實際檢視(因與其他建設學院學程共用素材推測)，惟從其他頁面模式判斷可能同樣缺乏實景照片"],"quick_fixes":["更新「單位新聞」補上近2年活動報導","為4位無照片教師補真實照片","補上首頁與各子頁meta description、og:image"]},{"id":"msc","college":"建設學院","name":"智慧城市碩士學位學程","url":"https://imsc.fcu.edu.tw/","overall":45,"priority_issues":["「校園新聞」頁面實測只有「逢甲精選」單一分頁，完全沒有「單位新聞」分頁選項——本學程網站從未發布過一則自建新聞或活動報導，是本次建設學院10個單位中即時性最差者[A4]","「特約講座」頁面3位重量級講座(前行政院院長張善政、前財政部政務次長張璠、前台北市副市長林建元)全數無照片，僅純文字經歷列表，未能善用此高含金量陣容[B1,B4]","「招生」頁2個「最新招生資訊」連結皆導向全校通用的www.fcu.edu.tw/apply/首頁，而非本學程專屬招生簡章或報名頁面，與其他建設學院系所皆有專屬recurit_list連結的作法不同[A5]"],"pain_points":["全站無任何一則自建新聞、活動報導或系友分享頁面，難以驗證學程實際運作狀況與學生學習成果","師資僅3位規模極小，且陳家豪1位仍為預設圖","「環境」頁描述之空間(智慧城市共享學習堂/人言教育創新中心/圖書館)皆為全校共用設施而非本學程專屬場域","首頁meta description與og:image皆空值"],"quick_fixes":["為3位特約講座補上正式照片","建立單位新聞分頁並發布近期活動報導","招生頁補上本學程專屬招生簡章連結","補上首頁與各子頁meta description、og:image"]},{"id":"gche","college":"建設學院","name":"建設規劃與工程博士學位學程","url":"https://gche.fcu.edu.tw/","overall":51,"priority_issues":["單位新聞(/news/)最新一則為2025.12.10「114學年度金廈六日移地教學」，距健檢日已245天，超過180天無新聞判定為0分[A4]","「招生」專頁3個管道(博士班甄試入學/博士班考試入學/境外生)連結全部指向同一個www.fcu.edu.tw/apply/總覽頁，而非個別正式招生系統頁面；同一連結重複用於3個不同管道，明顯未逐一設定[A5-1]（注意：首頁另一「115博士班熱烈招生中」按鈕連至正確的recurit_list/dr_exam/，僅「招生」專頁本身3連結有誤）","出路資訊三項全數缺乏證據：綜覽頁「未來出路」僅列類別名稱(繼續深造/公職/學術界/產業界)，無年度量化數字、無具名企業或升學學校、無具名系友案例[A1-5]"],"pain_points":["師資頁僅列2位教師(林良泰、陳建元)，其中陳建元(現任主任)無真實照片，僅系統預設圖；歡迎頁提及「獲建設學院土木水利都資運物土管五系以及建築專業學院師資支援」，但這些支援教師未列於本學程師資頁","找不到任何具體核心課程之白話說明(課程名稱+內容+學生作品+應用方向)，「學習」選單下僅有課程實作/校外參訪/專題演講/海外移地教學等特色活動介紹，無正式課程清單頁","「校園新聞」「校園公告」「校園活動」三個列表頁預設分頁皆為全校性內容(逢甲精選/全校公告/創能學院活動等)，需切到「單位新聞」分頁才有本學程3則自建新聞，且最新已逾8個月","「學生愛分享」首頁區塊顯示的3則分享全部來自電子工程學系、材料科學與工程學系、經濟學系學生，無一為本學程學生，屬全站性「指定Tag留空」relay問題，非本學程刻意錯置"],"quick_fixes":["為主任陳建元及其他列名教師補齊真實照片","修正「招生」頁3個管道連結，改指向individual的正式招生系統頁面(如recurit_list/dr_exam等)而非共用總覽頁","新增或更新單位新聞，及補上具名系友出路案例與年度就業/升學量化數據","在「博士專業」頁補充具體課程清單與白話說明","首頁與主要頁面補上meta description與og:image"]},{"id":"smd","college":"經營管理學院","name":"經營管理學院","url":"https://smd.fcu.edu.tw/","overall":55,"priority_issues":["首頁輪播圖片中發現1張明顯錯置的舊圖：2019/11/25「隈研吾建築專業學院講座」海報與經營管理學院內容完全無關，疑似媒體庫誤用或輪播未更新[B1]","「學習場域」頁(/learnspace/)除麵包屑與標題外完全空白，無任何內文或圖片，與其他學院官網之學習場域介紹形成明顯落差[A1-4]"],"pain_points":["找不到院長或主任具名的「歡迎詞」內容，學院簡介下僅有關於EMBA/辦學宗旨/院辦公室/學習場域4頁，無任何一頁包含主管親自具名之當期歡迎文字[A2-3]","經營管理碩士在職學位學程「數位創新管理組」與「文化創意產業管理組」已公告116學年度起停招，但「組別簡介」「報考資格」等頁仍將其列為5組之一同等呈現，未標示即將停招[資訊矛盾，比照bmie案例處理]","首頁與網路報名頁meta description、og:image皆空值","下載驗證的3張首頁輪播圖中，僅1張(2026全球企業領袖班DM海報)為本學院當期自製內容，其餘為活動宣傳圖或設計海報，未見任何真實課堂/學生上課/師生互動的實景照片"],"quick_fixes":["移除或替換首頁輪播中與本學院無關的舊圖(2019建築專業學院隈研吾講座海報)","為「學習場域」頁補上實際內容與場地照片","在組別簡介/報考資格等頁為數創組、文創組加註116學年度起停招提醒","增補院長或執行長具名歡迎詞頁面","補上真實課堂/工作坊/海外研習的現場照片，減少對純圖文宣傳banner的依賴"]},{"id":"aita","college":"創能學院","name":"人工智慧技術與應用學士學位學程","url":"https://aita.fcu.edu.tw/","overall":61,"priority_issues":["「歡迎」頁完全沒有具名主任或系主任：僅有「歡迎加入AI學程！準備好用AI改變世界了嗎？」等口號式文字，全站找不到任何一位負責人具名歡迎訪客[A2-3]"],"pain_points":["課程配當表僅提供PDF下載連結(114/113學年度)，找不到任何一門核心課程的個別白話說明、學生作品或修畢應用方向[A1-3]","出路資訊雖有具名學生升學案例，但缺乏整體畢業生就業/升學量化數字(僅個案，非統計資料)","首頁meta description與og:image皆空值[A6-2]","受限時間僅下載驗證1張學生故事配圖(為ASU校園地標照，非本學程自製教學/實作照片)，B1-B4多數圖片真實性與教學情境呈現程度待後續人工複核","師資頁12位教師仍有5位(莊永忠/林佩蓉/林子煒/廖文如/郭崇韋，42%)缺乏真實照片，覆蓋率58%尚未達標[B6]"],"quick_fixes":["增補系主任或學程負責人具名歡迎詞","為剩餘5位缺照片教師(莊永忠/林佩蓉/林子煒/廖文如/郭崇韋)補齊真實照片","在課程配當表旁補充3門代表性核心課程的白話說明","首頁補上meta description","補充畢業生就業/升學整體量化數字(如民國114學年度就業率、升學率)"]},{"id":"aitm","college":"創能學院","name":"人工智慧科技與管理碩士學位學程","url":"https://aitm.fcu.edu.tw/","overall":56,"priority_issues":["找不到具名主任或負責人歡迎詞：選單「關於」下僅有「綜覽」一頁，無獨立「歡迎」頁面，全站無任何一位負責人具名歡迎訪客(僅研修頁的雙聯學位輔導老師欄位具名梁辰睿，非歡迎詞)[A2-3]","師資頁12位教師中僅6位(50%)有真實照片，其餘6位(佘日新/梁辰睿/莊永忠/何晉瑋/周永振/劉峰旗，含業界大師)為83字元微小佔位圖[B6]"],"pain_points":["本學程為115學年度起始招生之新學程，尚無畢業生，出路資訊(量化數字/具名系友案例)完全缺乏，「未來出路」頁僅列職稱類別(AI工程師/資料科學家/AI產品規劃師/數位策略顧問/智慧製造工程師)，無具名個案[A1-5]","課程地圖僅有4大類別架構說明，無個別課程之白話內容、學生作品或修畢應用方向[A1-3]","首頁meta description與og:image皆空值[A6-2]","「學生愛分享」首頁區塊3則中僅1則(人工智慧技術與應用學士學位學程王富貴)屬同創能學院姊妹學程，另2則(光電系/自控系)為其他學院relay，全站性後台Tag留空問題"],"quick_fixes":["增補學程負責人具名歡迎詞","為剩餘6位缺照片教師(佘日新/梁辰睿/莊永忠/何晉瑋/周永振/劉峰旗)補齊真實照片","首頁補上meta description","待第一屆學生畢業後補充具名系友案例與就業量化數據"]},{"id":"istm","college":"國際科技與管理學院","name":"國際科技與管理學院","url":"https://istm.fcu.edu.tw/","overall":63,"priority_issues":["招生頁「大學個人申請入學」(www.fcu.edu.tw/national_list/114college_apply/)與「大學繁星推薦」(.../114college-star/)2個本國生核心管道連結，實際開啟皆為404「We are sorry！請原諒我們的失誤」，判定為使用去年(114學年度)已下架的舊網址[A5-1,A6-1]"],"pain_points":["找不到本學院專屬學習場域或實驗室介紹頁[A1-4]","受限時間僅完成技術性師資照片檢測與連結狀態驗證，9個專班頁面與學院團隊頁之圖片真實性待後續人工複核"],"quick_fixes":["修正招生頁「大學個人申請入學」「大學繁星推薦」2個404連結，改用當年度有效的recurit_list網址","補充學院整體畢業生量化去向統計數字","增補學院專屬學習場域或設施介紹"]},{"id":"pmp","college":"通識教育中心","name":"全校國際生大一不分系學士班","url":"https://pmp.fcu.edu.tw/","overall":73,"priority_issues":["課程規劃頁僅以「通識課程(20學分)/專業課程(22學分)/華語加強課程」三大類別說明，無個別課程之白話內容+學生作品+應用方向組合[A1-3]","找不到本學程專屬學習場域或教學設施介紹頁[A1-4]"],"pain_points":["「招生訊息」連結指向www.fcu.edu.tw/apply/總覽頁而非特定channel，惟「線上申請」另連至service120-sds.fcu.edu.tw實際申請系統，屬全校國際生共用申請機制，與一般系所recurit_list格式不同，標示略有不一致[A5-1]","受限時間僅完成技術性師資照片檢測，其餘活動照片(結業典禮/華語演說比賽/文化體驗)真實性與教學情境呈現程度待後續人工複核"],"quick_fixes":["統一招生入口標示，於選單明確區分「招生資訊(說明)」與「線上申請(系統)」的差異","為謝銘峯老師補齊真實照片","在課程規劃頁補充2-3門代表性課程的個別白話說明"]}];
+const BUILD_INFO = {"built":"2026-10-02","source":"health-check.html","depts":68,"priority":87,"fixes":229};
+const ADM_FIX = {"aero":[{"t":"招生連結待修正：「申請入學」（74 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"wk","ch":"申請入學","q":74},{"t":"招生連結待修正：「繁星推薦」（16 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"wk","ch":"繁星推薦","q":16},{"t":"招生連結待修正：「分發入學」（11 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 aero.fcu.edu.tw/admission，應改連 https://www.fcu.edu.tw/recurit_list/college_exam/","s":"wk","ch":"分發入學","q":11},{"t":"招生連結缺漏：招生頁未提供「四技技優」（3 名）的連結，建議於 aero.fcu.edu.tw/admission 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/","s":"nil","ch":"四技技優","q":3},{"t":"招生連結缺漏：招生頁未提供「特殊選才」（3 名）的連結，建議於 aero.fcu.edu.tw/admission 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":3}],"psd":[{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 psd.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"mse":[{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 mse.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"photonics":[{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 photonics.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"acct":[{"t":"招生連結失效：「申請入學」（85 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":85},{"t":"招生連結失效：「繁星推薦」（33 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":33},{"t":"招生連結失效：「分發入學」（20 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_exam），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_exam/","s":"bad","ch":"分發入學","q":20},{"t":"招生連結失效：「四技甄選」（19 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_s42_interview），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"bad","ch":"四技甄選","q":19},{"t":"招生連結失效：「特殊選才」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_special），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"bad","ch":"特殊選才","q":2},{"t":"招生連結失效：「四技技優」（1 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_s42_skill），位於 acct.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/","s":"bad","ch":"四技技優","q":1}],"itra":[{"t":"招生連結缺漏：招生頁未提供「分發入學」（20 名）的連結，建議於 itra.fcu.edu.tw/recruit 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/","s":"nil","ch":"分發入學","q":20}],"stat":[{"t":"招生連結缺漏：招生頁未提供「特殊選才」（2 名）的連結，建議於 stat.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":2}],"econ":[{"t":"招生連結缺漏：招生頁未提供「四技甄選」（5 名）的連結，建議於 econ.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":5}],"ba":[{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（2 名）的連結，建議於 ba.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":2}],"istm":[{"t":"招生連結失效（澳洲墨爾本皇家理工大學商學與創新雙學士學位學程）：「申請入學」（15 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":15},{"t":"招生連結失效（澳洲墨爾本皇家理工大學商學與創新雙學士學位學程）：「繁星推薦」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":2},{"t":"招生連結失效（美國加州聖荷西州立大學商學大數據分析雙學士學位學程）：「申請入學」（12 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":12},{"t":"招生連結失效（美國加州聖荷西州立大學商學大數據分析雙學士學位學程）：「繁星推薦」（2 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":2},{"t":"招生連結失效（美國加州聖荷西州立大學電機工程雙學士學位學程）：「申請入學」（13 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":13},{"t":"招生連結失效（美國加州聖荷西州立大學電機工程雙學士學位學程）：「繁星推薦」（3 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":3},{"t":"招生連結失效（美國加州舊金山州立大學資訊工程雙學士學位學程）：「申請入學」（8 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":8},{"t":"招生連結失效（美國加州舊金山州立大學資訊工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":4},{"t":"招生連結失效（澳洲昆士蘭商學雙學士學位學程）：「申請入學」（11 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":11},{"t":"招生連結失效（澳洲昆士蘭商學雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":4},{"t":"招生連結失效（澳洲蒙納許大學資訊工程雙學士學位學程）：「申請入學」（13 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":13},{"t":"招生連結失效（澳洲蒙納許大學資訊工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":4},{"t":"招生連結失效（澳洲昆士蘭電機工程雙學士學位學程）：「申請入學」（10 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":10},{"t":"招生連結失效（澳洲昆士蘭電機工程雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":4},{"t":"招生連結失效（澳洲新南威爾斯大學設計雙學士學位學程）：「申請入學」（8 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college_apply），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"bad","ch":"申請入學","q":8},{"t":"招生連結失效（澳洲新南威爾斯大學設計雙學士學位學程）：「繁星推薦」（4 名）的連結實測為 404（www.fcu.edu.tw/national_list/114college-star），位於 istm.fcu.edu.tw/recruit，應改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"bad","ch":"繁星推薦","q":4}],"fina":[{"t":"招生連結待修正：「四技甄選」（5 名）連結與文字不符，實際連往「四技技優」管道頁（現連往 www.fcu.edu.tw/recurit_list/college_s42_skill），位於 fina.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"wk","ch":"四技甄選","q":5},{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 fina.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"cl":[{"t":"招生連結缺漏：招生頁未提供「特殊選才」（5 名）的連結，建議於 cl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":5},{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 cl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"fll":[{"t":"招生連結待修正：「申請入學」（50 名）僅連全校招生總覽頁（現連往 www.fcu.edu.tw/apply），位於 fll.fcu.edu.tw/apply，應改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"wk","ch":"申請入學","q":50},{"t":"招生連結缺漏：招生頁未提供「繁星推薦」（12 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"nil","ch":"繁星推薦","q":12},{"t":"招生連結缺漏：招生頁未提供「分發入學」（9 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/","s":"nil","ch":"分發入學","q":9},{"t":"招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":7},{"t":"招生連結缺漏：招生頁未提供「特殊選才」（5 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":5},{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 fll.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"iecs":[{"t":"招生連結缺漏：招生頁未提供「特殊選才」（9 名）的連結，建議於 www.iecs.fcu.edu.tw/enrollment 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":9},{"t":"招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 www.iecs.fcu.edu.tw/enrollment 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":7}],"auto":[{"t":"招生連結缺漏：招生頁未提供「四技技優」（6 名）的連結，建議於 auto.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/","s":"nil","ch":"四技技優","q":6}],"upiee":[{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（2 名）的連結，建議於 upiee.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":2}],"civil":[{"t":"招生連結缺漏：招生頁未提供「四技甄選」（7 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":7},{"t":"招生連結缺漏：招生頁未提供「四技技優」（1 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_skill/","s":"nil","ch":"四技技優","q":1},{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 civil.fcu.edu.tw/admissions 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"he":[{"t":"招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 he.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":4}],"tl":[{"t":"招生連結缺漏：招生頁未提供「特殊選才」（2 名）的連結，建議於 tl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":2},{"t":"招生連結缺漏：招生頁未提供「運動績優甄試」（1 名）的連結，建議於 tl.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_sport/","s":"nil","ch":"運動績優甄試","q":1}],"lm":[{"t":"招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 lm.fcu.edu.tw/share-detail/?id=52335 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":4}],"archschool":[{"t":"招生連結缺漏：招生頁未提供「特殊選才」（8 名）的連結，建議於 archschool.fcu.edu.tw/apply 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":8}],"id":[{"t":"招生連結缺漏：招生頁未提供「申請入學」（21 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_apply/","s":"nil","ch":"申請入學","q":21},{"t":"招生連結缺漏：招生頁未提供「分發入學」（4 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_exam/","s":"nil","ch":"分發入學","q":4},{"t":"招生連結缺漏：招生頁未提供「四技甄選」（4 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_s42_interview/","s":"nil","ch":"四技甄選","q":4},{"t":"招生連結缺漏：招生頁未提供「繁星推薦」（3 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_star/","s":"nil","ch":"繁星推薦","q":3},{"t":"招生連結缺漏：招生頁未提供「特殊選才」（3 名）的連結，建議於 招生頁（目前找不到招生入口，需先建立） 補上改連 https://www.fcu.edu.tw/recurit_list/college_special/","s":"nil","ch":"特殊選才","q":3}]};
+
+/* ═══ 選項定義 ═══ */
+const STATUS = [
+  {v:'',          t:'— 未處理 —'},
+  {v:'fixed',     t:'✅ 已完成修正'},
+  {v:'inprogress',t:'🔧 修改中'},
+  {v:'planned',   t:'📅 列入後續規劃'},
+  {v:'cannot',    t:'⛔ 無法修正'},
+  {v:'exists',    t:'🔍 網站已有此內容'},
+  {v:'misjudge',  t:'🤖 AI 誤判／建議有誤'},
+  {v:'na',        t:'➖ 不適用本系'},
+];
+const AGREE = [
+  {v:'',         t:'— 未表示 —'},
+  {v:'agree',    t:'👍 認同此建議'},
+  {v:'partial',  t:'🤔 部分認同'},
+  {v:'disagree', t:'👎 不認同此建議'},
+];
+/* 選這些狀態／意見時，請補充說明 */
+const NEED_NOTE = ['cannot','exists','misjudge','na'];
+const NEED_NOTE_AGREE = ['partial','disagree'];
+const STATUS_T = Object.fromEntries(STATUS.map(o=>[o.v,o.t]));
+const AGREE_T  = Object.fromEntries(AGREE.map(o=>[o.v,o.t]));
+
+/* ═══ 儲存 ═══ */
+const LS_KEY = 'fcu-healthcheck-feedback-v1';
+let DB = {items:{}, meta:{}};
+try{ const raw = localStorage.getItem(LS_KEY); if(raw){ const o=JSON.parse(raw); DB.items=o.items||{}; DB.meta=o.meta||{}; } }catch(e){ console.warn('讀取本機儲存失敗', e); }
+let saveTimer = null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(DB)); flashSaved(); }
+    catch(e){ alert('無法寫入瀏覽器儲存空間，請改用「備份全部填寫（JSON）」保存內容。\n' + e); }
+  }, 250);
+}
+function flashSaved(){
+  const el = document.getElementById('saved-hint');
+  if(!el) return;
+  el.textContent = '✓ 已自動儲存於本機 ' + new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  el.style.opacity = 1;
+  setTimeout(()=>{ el.style.opacity = .55; }, 1600);
+}
+
+/* ═══ 工具 ═══ */
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function hash(str){ let h=5381; for(let i=0;i<str.length;i++){ h=((h<<5)+h+str.charCodeAt(i))|0; } return (h>>>0).toString(36); }
+function grade(n){ return n>=81?'A':n>=61?'B':'C'; }
+function gradeCls(n){ return 'g'+grade(n); }
+function safeUrl(u){ return /^https?:\/\//i.test(u||'') ? u : '#'; }
+function today(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+
+/* 每個學系的可回饋事項：優先改善事項 + 具體改善建議 + 招生連結待修正 */
+function itemsOf(d){
+  const list = [];
+  (d.priority_issues||[]).forEach((t,i)=>list.push({type:'pr', typeLabel:'優先改善事項', no:'P'+(i+1), text:t, key:d.id+'|pr|'+hash(t)}));
+  (d.quick_fixes||[]).forEach((t,i)=>list.push({type:'fx', typeLabel:'具體改善建議', no:String(i+1), text:t, key:d.id+'|fx|'+hash(t)}));
+  (ADM_FIX[d.id]||[]).forEach((x,i)=>list.push({type:'ad', typeLabel:'招生連結待修正', no:'A'+(i+1), text:x.t, key:d.id+'|ad|'+hash(x.t)}));
+  return list;
+}
+function rec(key){ return DB.items[key] || {}; }
+function isFilled(r){ return !!(r.status || r.agree || (r.note&&r.note.trim())); }
+function deptStat(d){
+  const its = itemsOf(d);
+  const s = {total:its.length, filled:0, fixed:0, prog:0, cannot:0, mis:0, todo:0};
+  its.forEach(it=>{
+    const r = rec(it.key);
+    if(isFilled(r)) s.filled++;
+    if(r.status==='fixed') s.fixed++;
+    else if(r.status==='inprogress'||r.status==='planned') s.prog++;
+    else if(r.status==='cannot'||r.status==='na') s.cannot++;
+    else if(r.status==='misjudge'||r.status==='exists') s.mis++;
+    else s.todo++;
+  });
+  return s;
+}
+
+/* ═══ 側邊選單 ═══ */
+let curId = null, curView = 'dept';
+function renderSidebar(){
+  const q = (document.getElementById('q').value||'').trim().toLowerCase();
+  const colleges = [];
+  DEPTS.forEach(d=>{ if(!colleges.includes(d.college)) colleges.push(d.college); });
+  let html = '';
+  colleges.forEach(c=>{
+    const list = DEPTS.filter(d=>d.college===c && (!q || d.name.toLowerCase().includes(q) || (d.id||'').toLowerCase().includes(q)));
+    if(!list.length) return;
+    html += '<div class="col-h"><i class="ti ti-building-community"></i>'+esc(c)+'</div>';
+    list.forEach(d=>{
+      const s = deptStat(d);
+      const cls = s.total===0 ? '' : (s.filled>=s.total ? 'done' : (s.filled>0 ? 'part' : ''));
+      html += '<div class="di'+(d.id===curId&&curView==='dept'?' act':'')+'" data-id="'+esc(d.id)+'">'
+           +  '<span class="di-n">'+esc(d.name)+'</span>'
+           +  '<span class="di-prog '+cls+'">'+s.filled+'/'+s.total+'</span></div>';
+    });
+  });
+  document.getElementById('sb-body').innerHTML = html || '<div style="padding:1.2rem 1rem;font-size:12.5px;color:#B4B2A9;">查無符合的學系</div>';
+}
+
+/* ═══ 上方統計 ═══ */
+function renderTop(){
+  let total=0, done=0, fixed=0, mis=0, cannot=0;
+  DEPTS.forEach(d=>{ const s=deptStat(d); total+=s.total; done+=s.filled; fixed+=s.fixed; mis+=s.mis; cannot+=s.cannot; });
+  const pct = total? Math.round(done/total*100) : 0;
+  document.getElementById('tb-total').textContent = total;
+  document.getElementById('tb-done').textContent = done;
+  document.getElementById('tb-fixed').textContent = fixed;
+  document.getElementById('tb-mis').textContent = mis;
+  document.getElementById('tb-cannot').textContent = cannot;
+  document.getElementById('tb-bar-f').style.width = pct+'%';
+  document.getElementById('tb-pct').textContent = pct+'%';
+}
+
+/* ═══ 學系填寫頁 ═══ */
+function selOpts(opts, val, prefix){
+  return opts.map(o=>'<option value="'+esc(o.v)+'"'+(o.v===(val||'')?' selected':'')+'>'+esc(o.t)+'</option>').join('');
+}
+function noteLabel(need){ return need ? '（請說明理由）' : '（選填）'; }
+function itemCard(d, it){
+  const r = rec(it.key);
+  const needNote = NEED_NOTE.includes(r.status||'') || NEED_NOTE_AGREE.includes(r.agree||'');
+  const noteMissing = needNote && !(r.note && r.note.trim());
+  return '<div class="it '+it.type+'" data-key="'+esc(it.key)+'">'
+    + '<div class="it-hd"><span class="it-no">'+esc(it.no)+'</span><div class="it-tx">'+esc(it.text)+'</div></div>'
+    + '<div class="it-bd">'
+    +   '<div class="ctl"><label>處理狀況</label><select data-f="status" class="s-'+esc(r.status||'')+'">'+selOpts(STATUS, r.status)+'</select></div>'
+    +   '<div class="ctl"><label>專業判斷</label><select data-f="agree" class="a-'+esc(r.agree||'')+'">'+selOpts(AGREE, r.agree)+'</select></div>'
+    +   '<div class="ctl note"><label data-role="note-label">說明備註'+noteLabel(needNote)+'</label>'
+    +     '<textarea data-f="note" rows="1" class="'+(noteMissing?'need':'')+'" placeholder="可填修正後的網址、AI 誤判的實際情形、無法修正的原因…">'+esc(r.note||'')+'</textarea>'
+    +     '<span class="hint" data-role="note-hint" style="display:'+(noteMissing?'':'none')+'"><i class="ti ti-alert-circle"></i> 此狀況請補充說明</span>'
+    +   '</div>'
+    + '</div></div>';
+}
+function renderDept(id){
+  curId = id; curView = 'dept';
+  const d = DEPTS.find(x=>x.id===id);
+  if(!d){ document.getElementById('mn').innerHTML = '<div class="empty">找不到該學系</div>'; return; }
+  const its = itemsOf(d);
+  const s = deptStat(d);
+  const m = DB.meta[d.id] || {};
+  const prs = its.filter(i=>i.type==='pr'), fxs = its.filter(i=>i.type==='fx');
+  let html = '';
+  html += '<div class="card"><div class="dept-hd">'
+    + '<div class="score-circle '+gradeCls(d.overall)+'">'+grade(d.overall)+'<small>等級</small></div>'
+    + '<div class="dept-info" style="flex:1">'
+    +   '<div class="college-tag">'+esc(d.college)+'</div><h2>'+esc(d.name)+'</h2>'
+    +   '<a class="url-link" href="'+esc(safeUrl(d.url))+'" target="_blank" rel="noopener noreferrer">'+esc(d.url)+' ↗</a>'
+    +   '<div style="font-size:11.5px;color:#888780;margin-top:3px;">待回饋事項共 '+s.total+' 項（優先改善 '+prs.length+' 項／具體建議 '+fxs.length+' 項）</div>'
+    + '</div>'
+    + '<div class="hd-actions">'
+    +   '<a class="btn" href="health-check.html" target="_blank" rel="noopener"><i class="ti ti-stethoscope"></i> 查看完整健檢報告</a>'
+    +   '<button class="btn primary" data-act="export-dept"><i class="ti ti-file-export"></i> 匯出本系回覆（CSV）</button>'
+    +   '<button class="btn" data-act="backup-dept"><i class="ti ti-download"></i> 匯出本系回覆（JSON）</button>'
+    +   '<button class="btn ghost" data-act="print"><i class="ti ti-printer"></i> 列印／存PDF</button>'
+    + '</div></div></div>';
+
+  html += '<div class="notice"><i class="ti ti-info-circle"></i><span>'
+    + '本表所列建議由 AI 健檢產出，<strong>AI 評估偶有侷限，仍需借重專業判斷</strong>。若您認為建議與網站實況不符，請於「處理狀況」選擇「AI 誤判／建議有誤」或「網站已有此內容」，並在說明備註寫下實際情形，公共事務組會據此修正健檢資料。'
+    + '填寫內容即時存於本機瀏覽器（同一台電腦、同一瀏覽器才看得到），完成後請按<strong>「匯出本系回覆」</strong>並回傳給公共事務組。</span></div>';
+
+  html += '<div class="card"><div class="sec-lbl"><i class="ti ti-user-edit"></i> 填表資訊</div><div class="filler">'
+    + '<div class="fld"><label>填表人姓名</label><input type="text" data-m="filler" value="'+esc(m.filler||'')+'" placeholder="例：王小明"></div>'
+    + '<div class="fld"><label>單位／職稱</label><input type="text" data-m="unit" value="'+esc(m.unit||'')+'" placeholder="例：系辦行政助理"></div>'
+    + '<div class="fld"><label>聯絡 Email 或分機</label><input type="text" data-m="contact" value="'+esc(m.contact||'')+'" placeholder="例：abc@mail.fcu.edu.tw / 1234"></div>'
+    + '<div class="fld"><label>填表日期</label><input type="date" data-m="date" value="'+esc(m.date||today())+'"></div>'
+    + '<span class="saved-hint" id="saved-hint" style="opacity:.55">'+(m.updated?('✓ 上次儲存 '+esc(m.updated)):'尚未填寫')+'</span>'
+    + '</div></div>';
+
+  html += '<div class="card"><div class="sec-lbl"><i class="ti ti-chart-pie"></i> 本系回饋統計</div><div class="stat-row">'
+    + '<div class="stat st-fixed"><div class="stat-n">'+s.fixed+'</div><div class="stat-l">已完成修正</div></div>'
+    + '<div class="stat st-prog"><div class="stat-n">'+s.prog+'</div><div class="stat-l">修改中／列入規劃</div></div>'
+    + '<div class="stat st-mis"><div class="stat-n">'+s.mis+'</div><div class="stat-l">AI誤判／網站已有</div></div>'
+    + '<div class="stat st-cannot"><div class="stat-n">'+s.cannot+'</div><div class="stat-l">無法修正／不適用</div></div>'
+    + '<div class="stat st-todo"><div class="stat-n">'+s.todo+'</div><div class="stat-l">尚未處理</div></div>'
+    + '</div></div>';
+
+  if(prs.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-flag"></i> 🚩 優先改善事項（重要缺失，建議優先處理）</div>'
+      + prs.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  if(fxs.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-tools"></i> 具體改善建議</div>'
+      + fxs.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  const ads = its.filter(i=>i.type==='ad');
+  if(ads.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-link"></i> 🔗 招生連結待修正（依 115 學年度招生管道逐條查核）</div>'
+      + ads.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  if(!its.length){
+    html += '<div class="card"><div class="empty"><i class="ti ti-mood-smile"></i>本系於本次健檢未列改善建議</div></div>';
+  }
+  if((d.pain_points||[]).length){
+    html += '<div class="card"><button class="ref-toggle" data-act="toggle-ref"><i class="ti ti-chevron-right" id="ref-ico"></i> 參考：本次健檢記錄的主要問題（'+d.pain_points.length+' 項，僅供對照，不需逐項回覆）</button>'
+      + '<ul class="ref-list" id="ref-list" style="display:none">' + d.pain_points.map(t=>'<li>'+esc(t)+'</li>').join('') + '</ul></div>';
+  }
+  document.getElementById('mn').innerHTML = html;
+  document.getElementById('mn').scrollTop = 0;
+}
+
+/* 就地更新單一事項卡片的樣式與提示，不重畫整頁（避免捲動位置跳動與失去游標） */
+function refreshItem(itEl){
+  const r = rec(itEl.dataset.key);
+  const st = itEl.querySelector('[data-f="status"]'), ag = itEl.querySelector('[data-f="agree"]');
+  st.className = 's-' + (r.status||'');
+  ag.className = 'a-' + (r.agree||'');
+  const need = NEED_NOTE.includes(r.status||'') || NEED_NOTE_AGREE.includes(r.agree||'');
+  const missing = need && !(r.note && r.note.trim());
+  itEl.querySelector('[data-role="note-label"]').textContent = '說明備註' + noteLabel(need);
+  itEl.querySelector('[data-f="note"]').classList.toggle('need', missing);
+  itEl.querySelector('[data-role="note-hint"]').style.display = missing ? '' : 'none';
+}
+function refreshStats(){
+  const d = DEPTS.find(x=>x.id===curId); if(!d) return;
+  const s = deptStat(d);
+  const box = document.querySelectorAll('.stat-row .stat-n');
+  if(box.length===5){ const v=[s.fixed,s.prog,s.mis,s.cannot,s.todo]; box.forEach((el,i)=>el.textContent=v[i]); }
+}
+
+/* ═══ 總覽頁 ═══ */
+function renderOverview(){
+  curView = 'overview'; curId = null;
+  let rows = '';
+  DEPTS.forEach(d=>{
+    const s = deptStat(d);
+    const m = DB.meta[d.id]||{};
+    const pct = s.total? Math.round(s.filled/s.total*100):0;
+    rows += '<tr><td class="nm">'+esc(d.college)+'</td>'
+      + '<td class="nm"><a data-goto="'+esc(d.id)+'">'+esc(d.name)+'</a></td>'
+      + '<td>'+grade(d.overall)+'</td><td>'+s.total+'</td>'
+      + '<td><span class="mini-bar"><span style="width:'+pct+'%"></span></span> '+s.filled+'/'+s.total+'</td>'
+      + '<td>'+s.fixed+'</td><td>'+s.prog+'</td><td>'+s.mis+'</td><td>'+s.cannot+'</td><td>'+s.todo+'</td>'
+      + '<td class="nm">'+esc(m.filler||'—')+'</td><td>'+esc(m.date||'—')+'</td></tr>';
+  });
+  document.getElementById('mn').innerHTML =
+    '<div class="card"><div class="dept-hd"><div class="dept-info" style="flex:1">'
+    + '<div class="college-tag">秘書處公共事務組</div><h2>全校填寫進度總覽</h2>'
+    + '<div style="font-size:12px;color:#888780;margin-top:3px;">健檢資料版本：'+esc(BUILD_INFO.built)+'｜共 '+DEPTS.length+' 個學系／學程</div></div>'
+    + '<div class="hd-actions">'
+    + '<button class="btn primary" data-act="export-all"><i class="ti ti-file-spreadsheet"></i> 匯出全部回覆（CSV）</button>'
+    + '<button class="btn" data-act="import"><i class="ti ti-upload"></i> 匯入各系回覆檔</button>'
+    + '<button class="btn ghost" data-act="print"><i class="ti ti-printer"></i> 列印／存PDF</button>'
+    + '</div></div></div>'
+    + '<div class="card"><div class="ov-wrap"><table class="ov"><thead><tr>'
+    + '<th>學院</th><th>學系／學程</th><th>等級</th><th>事項數</th><th>已填寫</th>'
+    + '<th>已修正</th><th>修改中</th><th>AI誤判</th><th>無法修正</th><th>未處理</th><th>填表人</th><th>填表日</th>'
+    + '</tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+  document.getElementById('mn').scrollTop = 0;
+  renderSidebar();
+}
+
+/* ═══ 匯出／匯入 ═══ */
+function download(name, text, mime){
+  const blob = new Blob([text], {type:mime||'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+}
+function csvCell(v){ return '"' + String(v==null?'':v).replace(/"/g,'""') + '"'; }
+function buildCSV(list){
+  const head = ['學院','學系／學程','學系網址','健檢等級','類別','編號','建議內容','處理狀況','專業判斷','說明備註','填表人','單位／職稱','聯絡方式','填表日期'];
+  const lines = [head.map(csvCell).join(',')];
+  list.forEach(d=>{
+    const m = DB.meta[d.id]||{};
+    itemsOf(d).forEach(it=>{
+      const r = rec(it.key);
+      lines.push([d.college, d.name, d.url, grade(d.overall), it.typeLabel, it.no, it.text,
+        STATUS_T[r.status||'']||'', AGREE_T[r.agree||'']||'', r.note||'',
+        m.filler||'', m.unit||'', m.contact||'', m.date||''].map(csvCell).join(','));
+    });
+  });
+  return '﻿' + lines.join('\r\n');
+}
+function buildJSON(list){
+  const items = {};
+  list.forEach(d=>itemsOf(d).forEach(it=>{ const r=rec(it.key); if(isFilled(r)) items[it.key]={...r, dept:d.id, deptName:d.name, type:it.typeLabel, no:it.no, text:it.text}; }));
+  const meta = {};
+  list.forEach(d=>{ if(DB.meta[d.id]) meta[d.id]=DB.meta[d.id]; });
+  return JSON.stringify({format:'fcu-healthcheck-feedback-v1', exported:new Date().toISOString(), source:BUILD_INFO, depts:list.map(d=>d.id), meta, items}, null, 1);
+}
+function stamp(){ return today().replace(/-/g,''); }
+function exportDept(id, kind){
+  const d = DEPTS.find(x=>x.id===id); if(!d) return;
+  const base = '網站健檢改善回覆_'+d.name+'_'+stamp();
+  if(kind==='csv') download(base+'.csv', buildCSV([d]), 'text/csv;charset=utf-8');
+  else download(base+'.json', buildJSON([d]), 'application/json;charset=utf-8');
+}
+function importFiles(files){
+  let okFiles=0, added=0, metaAdded=0, skipped=0;
+  let pending = files.length;
+  Array.from(files).forEach(f=>{
+    const fr = new FileReader();
+    fr.onload = ()=>{
+      try{
+        const o = JSON.parse(fr.result);
+        if(!o || o.format!=='fcu-healthcheck-feedback-v1') throw new Error('檔案格式不符（需為本表匯出的 JSON）');
+        Object.entries(o.items||{}).forEach(([k,v])=>{
+          const known = DEPTS.some(d=>itemsOf(d).some(it=>it.key===k));
+          if(!known){ skipped++; return; }
+          DB.items[k] = {status:v.status||'', agree:v.agree||'', note:v.note||''};
+          added++;
+        });
+        Object.entries(o.meta||{}).forEach(([k,v])=>{ DB.meta[k]=v; metaAdded++; });
+        okFiles++;
+      }catch(e){ alert('「'+f.name+'」匯入失敗：'+e.message); }
+      if(--pending===0){
+        save(); renderSidebar(); renderTop();
+        if(curView==='overview') renderOverview(); else if(curId) renderDept(curId);
+        alert('匯入完成\n成功檔案：'+okFiles+' 個\n回覆事項：'+added+' 項\n填表資訊：'+metaAdded+' 系'+(skipped?('\n略過（比對不到對應建議，可能健檢資料已更新）：'+skipped+' 項'):''));
+      }
+    };
+    fr.onerror = ()=>{ alert('「'+f.name+'」讀取失敗'); if(--pending===0){ renderTop(); } };
+    fr.readAsText(f, 'utf-8');
+  });
+}
+
+/* ═══ 事件 ═══ */
+const mn = document.getElementById('mn');
+mn.addEventListener('change', e=>{
+  const t = e.target;
+  const itEl = t.closest('.it');
+  if(itEl && t.dataset.f){
+    const key = itEl.dataset.key;
+    const r = DB.items[key] || (DB.items[key] = {status:'',agree:'',note:''});
+    r[t.dataset.f] = t.value;
+    if(!isFilled(r)) delete DB.items[key];
+    touchMeta();
+    save();
+    refreshItem(itEl); refreshStats(); renderSidebar(); renderTop();
+    return;
+  }
+  if(t.dataset.m){
+    const m = DB.meta[curId] || (DB.meta[curId] = {});
+    m[t.dataset.m] = t.value;
+    touchMeta(); save();
+  }
+});
+mn.addEventListener('input', e=>{
+  const t = e.target;
+  const itEl = t.closest('.it');
+  if(itEl && t.dataset.f==='note'){
+    const key = itEl.dataset.key;
+    const r = DB.items[key] || (DB.items[key] = {status:'',agree:'',note:''});
+    r.note = t.value;
+    if(!isFilled(r)) delete DB.items[key];
+    refreshItem(itEl);
+    touchMeta(); save(); renderSidebar(); renderTop();
+  }
+});
+function touchMeta(){
+  if(!curId) return;
+  const m = DB.meta[curId] || (DB.meta[curId] = {});
+  if(!m.date) m.date = today();
+  m.updated = new Date().toLocaleString('zh-TW',{hour12:false});
+}
+mn.addEventListener('click', e=>{
+  const goto = e.target.closest('[data-goto]');
+  if(goto){ renderDept(goto.dataset.goto); renderSidebar(); return; }
+  const b = e.target.closest('[data-act]');
+  if(!b) return;
+  const act = b.dataset.act;
+  if(act==='export-dept') exportDept(curId,'csv');
+  else if(act==='backup-dept') exportDept(curId,'json');
+  else if(act==='print') window.print();
+  else if(act==='export-all') download('網站健檢改善回覆_全校彙整_'+stamp()+'.csv', buildCSV(DEPTS), 'text/csv;charset=utf-8');
+  else if(act==='import') document.getElementById('file-import').click();
+  else if(act==='toggle-ref'){
+    const l = document.getElementById('ref-list'), i = document.getElementById('ref-ico');
+    const open = l.style.display==='none';
+    l.style.display = open ? 'flex' : 'none';
+    i.className = 'ti ' + (open ? 'ti-chevron-down' : 'ti-chevron-right');
+  }
+});
+document.getElementById('sb-body').addEventListener('click', e=>{
+  const di = e.target.closest('.di');
+  if(!di) return;
+  renderDept(di.dataset.id);
+  renderSidebar();
+  closeSb();
+});
+document.getElementById('q').addEventListener('input', renderSidebar);
+document.getElementById('btn-overview').addEventListener('click', ()=>{ renderOverview(); closeSb(); });
+document.getElementById('btn-export-all').addEventListener('click', ()=> download('網站健檢改善回覆_全校彙整_'+stamp()+'.csv', buildCSV(DEPTS), 'text/csv;charset=utf-8'));
+document.getElementById('btn-backup').addEventListener('click', ()=> download('網站健檢改善回覆_備份_'+stamp()+'.json', buildJSON(DEPTS), 'application/json;charset=utf-8'));
+document.getElementById('btn-import').addEventListener('click', ()=> document.getElementById('file-import').click());
+document.getElementById('file-import').addEventListener('change', e=>{ if(e.target.files.length) importFiles(e.target.files); e.target.value=''; });
+
+/* 行動版側欄 */
+const sb = document.getElementById('sb'), ov = document.getElementById('sb-overlay');
+function openSb(){ sb.classList.add('open'); ov.classList.add('on'); }
+function closeSb(){ sb.classList.remove('open'); ov.classList.remove('on'); }
+document.getElementById('hb-btn').addEventListener('click', openSb);
+document.getElementById('sb-close-btn').addEventListener('click', closeSb);
+ov.addEventListener('click', closeSb);
+
+/* 離開前提醒尚未匯出 */
+let exported = false;
+window.addEventListener('beforeunload', e=>{
+  if(Object.keys(DB.items).length && !exported){ /* 已自動存於本機，不強制阻擋 */ }
+});
+
+/* 啟動 */
+renderSidebar();
+renderTop();
+const hashId = (location.hash||'').replace('#','');
+if(hashId && DEPTS.some(d=>d.id===hashId)) { renderDept(hashId); renderSidebar(); }
+else renderOverview();
+</script>
+</body>
+</html>

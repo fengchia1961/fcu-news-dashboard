@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://cdn.jsdelivr.net; font-src https://cdn.jsdelivr.net; img-src 'self' https: data:; connect-src blob:; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>逢甲大學 學系網站健檢｜改善建議回饋追蹤表</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" integrity="sha384-hs5SINUk7GPohxRis+rS7grpSWEbtOIJ3sRoseBKg3CDPIKpG55RfSenbvA6ALOt" crossorigin="anonymous">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','Microsoft JhengHei',sans-serif;background:#f0efe9;color:#1a1a18;font-size:15px;line-height:1.5;}
+.layout{display:flex;height:100vh;overflow:hidden;}
+
+/* ── Sidebar ── */
+.sb{width:262px;flex-shrink:0;overflow-y:auto;border-right:1px solid #dddcd4;background:#f7f6f1;display:flex;flex-direction:column;}
+.sb-hdr{padding:.85rem 1rem .7rem;border-bottom:1px solid #dddcd4;flex-shrink:0;}
+.sb-logo{display:flex;align-items:center;gap:8px;margin-bottom:.4rem;}
+.sb-logo i{font-size:20px;color:#C8102E;}
+.sb-t{font-size:14.5px;font-weight:700;color:#1a1a18;line-height:1.35;flex:1;}
+.sb-m{font-size:11.5px;color:#888780;margin-top:3px;line-height:1.6;}
+.sb-close{display:none;background:none;border:none;cursor:pointer;color:#888780;font-size:18px;}
+.sb-btns{display:flex;flex-direction:column;gap:5px;margin-top:8px;}
+.sb-btn{display:flex;align-items:center;gap:6px;width:100%;padding:6px 10px;font-size:12px;background:#fff;border:1px solid #d3d1c7;border-radius:7px;cursor:pointer;color:#534AB7;font-weight:600;text-decoration:none;transition:background .12s;text-align:left;}
+.sb-btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-btn.red{color:#C8102E;}
+.sb-btn.red:hover{background:#fff0f2;border-color:#f5a0a8;}
+.sb-btn.on{background:#EEEDFE;border-color:#AFA9EC;}
+.sb-body{flex:1;overflow-y:auto;padding-bottom:.75rem;}
+.sb-search{padding:.55rem .9rem;}
+.sb-search input{width:100%;padding:6px 9px;font-size:12.5px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;}
+.col-h{display:flex;align-items:center;gap:7px;margin-top:10px;padding:.45rem .9rem;font-size:12.5px;font-weight:800;color:#fff;background:linear-gradient(90deg,#C8102E 0%,#a00d26 100%);letter-spacing:.03em;}
+.di{display:flex;align-items:center;gap:8px;padding:.35rem 1rem;cursor:pointer;color:#5F5E5A;border-left:3px solid transparent;transition:background .12s;}
+.di:hover{background:rgba(0,0,0,.05);color:#1a1a18;}
+.di.act{background:#fff;color:#C8102E;border-left-color:#C8102E;font-weight:700;}
+.di-n{font-size:13px;line-height:1.35;flex:1;}
+.di-prog{font-size:10.5px;font-weight:800;padding:1px 6px;border-radius:10px;flex-shrink:0;background:#ebe9e0;color:#888780;white-space:nowrap;}
+.di-prog.part{background:#fef3c7;color:#92400e;}
+.di-prog.done{background:#dcfce7;color:#15803d;}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{display:flex;align-items:center;gap:8px;background:#fff;border-bottom:1px solid #dddcd4;padding:.6rem 1.4rem;flex-shrink:0;font-size:12.5px;color:#888780;flex-wrap:wrap;row-gap:4px;}
+.topbar strong{color:#1a1a18;}
+.tb-bar{width:120px;height:7px;background:#ebe9e0;border-radius:4px;overflow:hidden;flex-shrink:0;}
+.tb-bar-f{height:100%;background:linear-gradient(90deg,#16a34a,#15803d);border-radius:4px;transition:width .4s ease;display:block;}
+.mn{flex:1;overflow-y:auto;padding:1.1rem 1.4rem;background:#f0efe9;}
+.hb-btn{display:none;background:none;border:none;font-size:19px;color:#5F5E5A;cursor:pointer;}
+.sb-overlay{display:none;}
+
+/* ── Cards ── */
+.card{background:#fff;border-radius:12px;padding:1rem 1.2rem;margin-bottom:.8rem;border:1px solid #e5e4dc;}
+.sec-lbl{font-size:11px;font-weight:700;color:#888780;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+.dept-hd{display:flex;align-items:flex-start;gap:14px;}
+.score-circle{width:60px;height:60px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:24px;font-weight:800;color:#fff;flex-shrink:0;line-height:1.05;}
+.score-circle small{font-size:8.5px;font-weight:700;opacity:.9;}
+.dept-info h2{font-size:19px;font-weight:700;margin-bottom:3px;}
+.dept-info .college-tag{font-size:11px;color:#C8102E;font-weight:700;margin-bottom:4px;}
+.dept-info .url-link{font-size:12px;color:#185FA5;text-decoration:none;}
+.dept-info .url-link:hover{text-decoration:underline;}
+.hd-actions{display:flex;flex-direction:column;gap:5px;flex-shrink:0;}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;font-size:12px;font-weight:600;border-radius:7px;border:1px solid #d3d1c7;background:#fff;color:#534AB7;cursor:pointer;text-decoration:none;font-family:inherit;transition:background .12s;white-space:nowrap;}
+.btn:hover{background:#EEEDFE;border-color:#AFA9EC;}
+.btn.primary{background:#C8102E;border-color:#C8102E;color:#fff;}
+.btn.primary:hover{background:#a00d26;border-color:#a00d26;}
+.btn.ghost{color:#888780;}
+.btn.ghost:hover{background:#f0efe9;border-color:#c9c7bd;}
+
+/* ── Filler info ── */
+.filler{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.fld{display:flex;flex-direction:column;gap:3px;}
+.fld label{font-size:11px;font-weight:700;color:#888780;}
+.fld input{padding:6px 9px;font-size:13px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;min-width:160px;}
+.fld input:focus{outline:2px solid #AFA9EC;outline-offset:-1px;}
+.saved-hint{font-size:11.5px;color:#16a34a;display:flex;align-items:center;gap:4px;margin-left:auto;}
+
+/* ── Stats ── */
+.stat-row{display:flex;gap:8px;flex-wrap:wrap;}
+.stat{flex:1;min-width:104px;background:#f7f6f1;border:1px solid #e5e4dc;border-radius:9px;padding:8px 10px;}
+.stat-n{font-size:20px;font-weight:800;line-height:1.1;}
+.stat-l{font-size:11px;color:#888780;margin-top:2px;}
+.st-fixed .stat-n{color:#15803d;}
+.st-prog .stat-n{color:#b45309;}
+.st-cannot .stat-n{color:#991b1b;}
+.st-mis .stat-n{color:#534AB7;}
+.st-todo .stat-n{color:#888780;}
+
+/* ── Item cards ── */
+.it{border:1px solid #e5e4dc;border-radius:10px;margin-bottom:9px;overflow:hidden;background:#fff;}
+.it-hd{display:flex;gap:9px;padding:10px 12px;background:#fefce8;border-bottom:1px solid #f0ead2;}
+.it.pr .it-hd{background:#fef2f2;border-bottom-color:#fecaca;}
+.it-no{font-size:11px;font-weight:800;color:#d97706;background:#fff;border:1px solid #fcd9a8;border-radius:6px;min-width:26px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.it.pr .it-no{color:#b91c1c;border-color:#fecaca;}
+.it-tx{font-size:14px;line-height:1.7;color:#78350f;flex:1;}
+.it.pr .it-tx{color:#7f1d1d;}
+.it-bd{padding:9px 12px;display:grid;grid-template-columns:200px 165px minmax(0,1fr);gap:9px;align-items:start;}
+@media(max-width:1000px){.it-bd{grid-template-columns:1fr 1fr;}.ctl.note{grid-column:1/-1;}}
+@media(max-width:620px){.it-bd{grid-template-columns:1fr;}}
+.ctl{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.ctl label{font-size:11px;font-weight:700;color:#888780;}
+.ctl select,.ctl input,.ctl textarea{width:100%;padding:6px 8px;font-size:12.5px;border:1px solid #d3d1c7;border-radius:7px;background:#fff;font-family:inherit;color:#1a1a18;}
+.ctl select:focus,.ctl input:focus,.ctl textarea:focus{outline:2px solid #AFA9EC;outline-offset:-1px;}
+.ctl textarea{resize:vertical;height:33px;min-height:33px;line-height:1.5;}
+.ctl .need{border-color:#f59e0b;background:#fffbeb;}
+.hint{font-size:10.5px;color:#b45309;}
+select.s-fixed{background:#f0fdf4;border-color:#86efac;color:#15803d;font-weight:700;}
+select.s-inprogress,select.s-planned{background:#fffbeb;border-color:#fcd34d;color:#92400e;font-weight:700;}
+select.s-cannot,select.s-na{background:#fff1f2;border-color:#fda4af;color:#9f1239;font-weight:700;}
+select.s-misjudge,select.s-exists{background:#EEEDFE;border-color:#AFA9EC;color:#4338ca;font-weight:700;}
+select.a-agree{background:#f0fdf4;border-color:#86efac;color:#15803d;font-weight:700;}
+select.a-partial{background:#fffbeb;border-color:#fcd34d;color:#92400e;font-weight:700;}
+select.a-disagree{background:#fff1f2;border-color:#fda4af;color:#9f1239;font-weight:700;}
+
+.it.ad .it-hd{background:#EEEDFE;border-bottom-color:#d5d2f5;}
+.it.ad .it-no{color:#4338ca;border-color:#d5d2f5;}
+.it.ad .it-tx{color:#312e81;}
+/* ── Reference list ── */
+.ref-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;font-weight:700;color:#534AB7;background:none;border:none;font-family:inherit;padding:0;}
+.ref-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px;}
+.ref-list li{font-size:13.5px;padding:8px 11px 8px 30px;border-radius:8px;position:relative;line-height:1.65;background:#fff1f2;color:#991b1b;}
+.ref-list li::before{content:'⚠';position:absolute;left:9px;}
+
+/* ── Overview table ── */
+.ov-wrap{overflow-x:auto;}
+table.ov{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.ov th,table.ov td{border:1px solid #e5e4dc;padding:6px 8px;text-align:center;}
+table.ov th{background:#f7f6f1;font-size:11.5px;color:#5F5E5A;position:sticky;top:0;}
+table.ov td.nm{text-align:left;white-space:nowrap;}
+table.ov td.nm a{color:#185FA5;text-decoration:none;cursor:pointer;}
+table.ov td.nm a:hover{text-decoration:underline;}
+table.ov tr:hover td{background:#fcfcfa;}
+.mini-bar{width:70px;height:6px;background:#ebe9e0;border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;}
+.mini-bar span{display:block;height:100%;background:#16a34a;}
+
+/* ── Notice ── */
+.notice{background:#EEEDFE;border:1px solid #d5d2f5;border-radius:10px;padding:10px 13px;font-size:12.5px;color:#4338ca;line-height:1.8;display:flex;gap:8px;margin-bottom:.8rem;}
+.notice i{font-size:15px;flex-shrink:0;margin-top:2px;}
+.empty{text-align:center;padding:5rem 2rem;color:#B4B2A9;font-size:14px;}
+.empty i{font-size:28px;display:block;margin-bottom:.6rem;}
+
+.gA{background:#16a34a;}.gB{background:#2563eb;}.gC{background:#dc2626;}
+
+@media(max-width:860px){
+  .sb{position:fixed;left:0;top:0;bottom:0;z-index:40;transform:translateX(-100%);transition:transform .2s;}
+  .sb.open{transform:none;}
+  .sb-close{display:block;}
+  .hb-btn{display:block;}
+  .sb-overlay.on{display:block;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:30;}
+  .mn{padding:.9rem;}
+}
+@media print{
+  .sb,.topbar,.hd-actions,.btn,.sb-overlay{display:none !important;}
+  .layout{height:auto;overflow:visible;}
+  .mn{overflow:visible;padding:0;}
+  body{background:#fff;font-size:12px;}
+  .it{break-inside:avoid;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<div class="sb" id="sb">
+  <div class="sb-hdr">
+    <div class="sb-logo">
+      <i class="ti ti-checkup-list"></i>
+      <div class="sb-t">學系網站健檢<br>改善建議回饋追蹤表</div>
+      <button class="sb-close" id="sb-close-btn" aria-label="關閉選單"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="sb-m">秘書處公共事務組｜評分標準 v6.0<br>填寫內容儲存在本機瀏覽器，請記得匯出回傳</div>
+    <div class="sb-btns">
+      <a class="sb-btn red" href="health-check.html"><i class="ti ti-arrow-back-up"></i> 回健檢儀表板</a>
+      <button class="sb-btn" id="btn-overview"><i class="ti ti-table"></i> 全校填寫進度總覽</button>
+      <button class="sb-btn" id="btn-export-all"><i class="ti ti-file-spreadsheet"></i> 匯出全部回覆（CSV）</button>
+      <button class="sb-btn" id="btn-backup"><i class="ti ti-download"></i> 備份全部填寫（JSON）</button>
+      <button class="sb-btn" id="btn-import"><i class="ti ti-upload"></i> 匯入／彙整回覆檔</button>
+      <input type="file" id="file-import" accept=".json,application/json" style="display:none" multiple>
+    </div>
+  </div>
+  <div class="sb-search"><input type="search" id="q" placeholder="搜尋學系名稱…" autocomplete="off"></div>
+  <div class="sb-body" id="sb-body"></div>
+</div>
+<div class="sb-overlay" id="sb-overlay"></div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+  <div class="topbar">
+    <button class="hb-btn" id="hb-btn" aria-label="開啟選單"><i class="ti ti-menu-2"></i></button>
+    <i class="ti ti-tools" style="font-size:13px;color:#C8102E;"></i>
+    全校待回饋事項 <strong id="tb-total">0</strong> 項 ／ 已填 <strong id="tb-done">0</strong> 項
+    <span class="tb-bar"><span class="tb-bar-f" id="tb-bar-f" style="width:0%"></span></span>
+    <span id="tb-pct">0%</span>
+    <span style="margin:0 4px;">｜</span>
+    已修正 <strong id="tb-fixed">0</strong>
+    ／ AI誤判 <strong id="tb-mis">0</strong>
+    ／ 無法修正 <strong id="tb-cannot">0</strong>
+  </div>
+  <div class="mn" id="mn"></div>
+</div>
+
+</div><!-- /layout -->
+
+<script>
+/* ═══ 健檢資料（由 tools/build-tracker.js 從 health-check.html 自動抽出，請勿手改） ═══ */
+const DEPTS = __DEPT_DATA__;
+const BUILD_INFO = __BUILD_INFO__;
+const ADM_FIX = __ADM_FIX__;
+
+/* ═══ 選項定義 ═══ */
+const STATUS = [
+  {v:'',          t:'— 未處理 —'},
+  {v:'fixed',     t:'✅ 已完成修正'},
+  {v:'inprogress',t:'🔧 修改中'},
+  {v:'planned',   t:'📅 列入後續規劃'},
+  {v:'cannot',    t:'⛔ 無法修正'},
+  {v:'exists',    t:'🔍 網站已有此內容'},
+  {v:'misjudge',  t:'🤖 AI 誤判／建議有誤'},
+  {v:'na',        t:'➖ 不適用本系'},
+];
+const AGREE = [
+  {v:'',         t:'— 未表示 —'},
+  {v:'agree',    t:'👍 認同此建議'},
+  {v:'partial',  t:'🤔 部分認同'},
+  {v:'disagree', t:'👎 不認同此建議'},
+];
+/* 選這些狀態／意見時，請補充說明 */
+const NEED_NOTE = ['cannot','exists','misjudge','na'];
+const NEED_NOTE_AGREE = ['partial','disagree'];
+const STATUS_T = Object.fromEntries(STATUS.map(o=>[o.v,o.t]));
+const AGREE_T  = Object.fromEntries(AGREE.map(o=>[o.v,o.t]));
+
+/* ═══ 儲存 ═══ */
+const LS_KEY = 'fcu-healthcheck-feedback-v1';
+let DB = {items:{}, meta:{}};
+try{ const raw = localStorage.getItem(LS_KEY); if(raw){ const o=JSON.parse(raw); DB.items=o.items||{}; DB.meta=o.meta||{}; } }catch(e){ console.warn('讀取本機儲存失敗', e); }
+let saveTimer = null;
+function save(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{ localStorage.setItem(LS_KEY, JSON.stringify(DB)); flashSaved(); }
+    catch(e){ alert('無法寫入瀏覽器儲存空間，請改用「備份全部填寫（JSON）」保存內容。\n' + e); }
+  }, 250);
+}
+function flashSaved(){
+  const el = document.getElementById('saved-hint');
+  if(!el) return;
+  el.textContent = '✓ 已自動儲存於本機 ' + new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  el.style.opacity = 1;
+  setTimeout(()=>{ el.style.opacity = .55; }, 1600);
+}
+
+/* ═══ 工具 ═══ */
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function hash(str){ let h=5381; for(let i=0;i<str.length;i++){ h=((h<<5)+h+str.charCodeAt(i))|0; } return (h>>>0).toString(36); }
+function grade(n){ return n>=81?'A':n>=61?'B':'C'; }
+function gradeCls(n){ return 'g'+grade(n); }
+function safeUrl(u){ return /^https?:\/\//i.test(u||'') ? u : '#'; }
+function today(){ const d=new Date(); const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); }
+
+/* 每個學系的可回饋事項：優先改善事項 + 具體改善建議 + 招生連結待修正 */
+function itemsOf(d){
+  const list = [];
+  (d.priority_issues||[]).forEach((t,i)=>list.push({type:'pr', typeLabel:'優先改善事項', no:'P'+(i+1), text:t, key:d.id+'|pr|'+hash(t)}));
+  (d.quick_fixes||[]).forEach((t,i)=>list.push({type:'fx', typeLabel:'具體改善建議', no:String(i+1), text:t, key:d.id+'|fx|'+hash(t)}));
+  (ADM_FIX[d.id]||[]).forEach((x,i)=>list.push({type:'ad', typeLabel:'招生連結待修正', no:'A'+(i+1), text:x.t, key:d.id+'|ad|'+hash(x.t)}));
+  return list;
+}
+function rec(key){ return DB.items[key] || {}; }
+function isFilled(r){ return !!(r.status || r.agree || (r.note&&r.note.trim())); }
+function deptStat(d){
+  const its = itemsOf(d);
+  const s = {total:its.length, filled:0, fixed:0, prog:0, cannot:0, mis:0, todo:0};
+  its.forEach(it=>{
+    const r = rec(it.key);
+    if(isFilled(r)) s.filled++;
+    if(r.status==='fixed') s.fixed++;
+    else if(r.status==='inprogress'||r.status==='planned') s.prog++;
+    else if(r.status==='cannot'||r.status==='na') s.cannot++;
+    else if(r.status==='misjudge'||r.status==='exists') s.mis++;
+    else s.todo++;
+  });
+  return s;
+}
+
+/* ═══ 側邊選單 ═══ */
+let curId = null, curView = 'dept';
+function renderSidebar(){
+  const q = (document.getElementById('q').value||'').trim().toLowerCase();
+  const colleges = [];
+  DEPTS.forEach(d=>{ if(!colleges.includes(d.college)) colleges.push(d.college); });
+  let html = '';
+  colleges.forEach(c=>{
+    const list = DEPTS.filter(d=>d.college===c && (!q || d.name.toLowerCase().includes(q) || (d.id||'').toLowerCase().includes(q)));
+    if(!list.length) return;
+    html += '<div class="col-h"><i class="ti ti-building-community"></i>'+esc(c)+'</div>';
+    list.forEach(d=>{
+      const s = deptStat(d);
+      const cls = s.total===0 ? '' : (s.filled>=s.total ? 'done' : (s.filled>0 ? 'part' : ''));
+      html += '<div class="di'+(d.id===curId&&curView==='dept'?' act':'')+'" data-id="'+esc(d.id)+'">'
+           +  '<span class="di-n">'+esc(d.name)+'</span>'
+           +  '<span class="di-prog '+cls+'">'+s.filled+'/'+s.total+'</span></div>';
+    });
+  });
+  document.getElementById('sb-body').innerHTML = html || '<div style="padding:1.2rem 1rem;font-size:12.5px;color:#B4B2A9;">查無符合的學系</div>';
+}
+
+/* ═══ 上方統計 ═══ */
+function renderTop(){
+  let total=0, done=0, fixed=0, mis=0, cannot=0;
+  DEPTS.forEach(d=>{ const s=deptStat(d); total+=s.total; done+=s.filled; fixed+=s.fixed; mis+=s.mis; cannot+=s.cannot; });
+  const pct = total? Math.round(done/total*100) : 0;
+  document.getElementById('tb-total').textContent = total;
+  document.getElementById('tb-done').textContent = done;
+  document.getElementById('tb-fixed').textContent = fixed;
+  document.getElementById('tb-mis').textContent = mis;
+  document.getElementById('tb-cannot').textContent = cannot;
+  document.getElementById('tb-bar-f').style.width = pct+'%';
+  document.getElementById('tb-pct').textContent = pct+'%';
+}
+
+/* ═══ 學系填寫頁 ═══ */
+function selOpts(opts, val, prefix){
+  return opts.map(o=>'<option value="'+esc(o.v)+'"'+(o.v===(val||'')?' selected':'')+'>'+esc(o.t)+'</option>').join('');
+}
+function noteLabel(need){ return need ? '（請說明理由）' : '（選填）'; }
+function itemCard(d, it){
+  const r = rec(it.key);
+  const needNote = NEED_NOTE.includes(r.status||'') || NEED_NOTE_AGREE.includes(r.agree||'');
+  const noteMissing = needNote && !(r.note && r.note.trim());
+  return '<div class="it '+it.type+'" data-key="'+esc(it.key)+'">'
+    + '<div class="it-hd"><span class="it-no">'+esc(it.no)+'</span><div class="it-tx">'+esc(it.text)+'</div></div>'
+    + '<div class="it-bd">'
+    +   '<div class="ctl"><label>處理狀況</label><select data-f="status" class="s-'+esc(r.status||'')+'">'+selOpts(STATUS, r.status)+'</select></div>'
+    +   '<div class="ctl"><label>專業判斷</label><select data-f="agree" class="a-'+esc(r.agree||'')+'">'+selOpts(AGREE, r.agree)+'</select></div>'
+    +   '<div class="ctl note"><label data-role="note-label">說明備註'+noteLabel(needNote)+'</label>'
+    +     '<textarea data-f="note" rows="1" class="'+(noteMissing?'need':'')+'" placeholder="可填修正後的網址、AI 誤判的實際情形、無法修正的原因…">'+esc(r.note||'')+'</textarea>'
+    +     '<span class="hint" data-role="note-hint" style="display:'+(noteMissing?'':'none')+'"><i class="ti ti-alert-circle"></i> 此狀況請補充說明</span>'
+    +   '</div>'
+    + '</div></div>';
+}
+function renderDept(id){
+  curId = id; curView = 'dept';
+  const d = DEPTS.find(x=>x.id===id);
+  if(!d){ document.getElementById('mn').innerHTML = '<div class="empty">找不到該學系</div>'; return; }
+  const its = itemsOf(d);
+  const s = deptStat(d);
+  const m = DB.meta[d.id] || {};
+  const prs = its.filter(i=>i.type==='pr'), fxs = its.filter(i=>i.type==='fx');
+  let html = '';
+  html += '<div class="card"><div class="dept-hd">'
+    + '<div class="score-circle '+gradeCls(d.overall)+'">'+grade(d.overall)+'<small>等級</small></div>'
+    + '<div class="dept-info" style="flex:1">'
+    +   '<div class="college-tag">'+esc(d.college)+'</div><h2>'+esc(d.name)+'</h2>'
+    +   '<a class="url-link" href="'+esc(safeUrl(d.url))+'" target="_blank" rel="noopener noreferrer">'+esc(d.url)+' ↗</a>'
+    +   '<div style="font-size:11.5px;color:#888780;margin-top:3px;">待回饋事項共 '+s.total+' 項（優先改善 '+prs.length+' 項／具體建議 '+fxs.length+' 項）</div>'
+    + '</div>'
+    + '<div class="hd-actions">'
+    +   '<a class="btn" href="health-check.html" target="_blank" rel="noopener"><i class="ti ti-stethoscope"></i> 查看完整健檢報告</a>'
+    +   '<button class="btn primary" data-act="export-dept"><i class="ti ti-file-export"></i> 匯出本系回覆（CSV）</button>'
+    +   '<button class="btn" data-act="backup-dept"><i class="ti ti-download"></i> 匯出本系回覆（JSON）</button>'
+    +   '<button class="btn ghost" data-act="print"><i class="ti ti-printer"></i> 列印／存PDF</button>'
+    + '</div></div></div>';
+
+  html += '<div class="notice"><i class="ti ti-info-circle"></i><span>'
+    + '本表所列建議由 AI 健檢產出，<strong>AI 評估偶有侷限，仍需借重專業判斷</strong>。若您認為建議與網站實況不符，請於「處理狀況」選擇「AI 誤判／建議有誤」或「網站已有此內容」，並在說明備註寫下實際情形，公共事務組會據此修正健檢資料。'
+    + '填寫內容即時存於本機瀏覽器（同一台電腦、同一瀏覽器才看得到），完成後請按<strong>「匯出本系回覆」</strong>並回傳給公共事務組。</span></div>';
+
+  html += '<div class="card"><div class="sec-lbl"><i class="ti ti-user-edit"></i> 填表資訊</div><div class="filler">'
+    + '<div class="fld"><label>填表人姓名</label><input type="text" data-m="filler" value="'+esc(m.filler||'')+'" placeholder="例：王小明"></div>'
+    + '<div class="fld"><label>單位／職稱</label><input type="text" data-m="unit" value="'+esc(m.unit||'')+'" placeholder="例：系辦行政助理"></div>'
+    + '<div class="fld"><label>聯絡 Email 或分機</label><input type="text" data-m="contact" value="'+esc(m.contact||'')+'" placeholder="例：abc@mail.fcu.edu.tw / 1234"></div>'
+    + '<div class="fld"><label>填表日期</label><input type="date" data-m="date" value="'+esc(m.date||today())+'"></div>'
+    + '<span class="saved-hint" id="saved-hint" style="opacity:.55">'+(m.updated?('✓ 上次儲存 '+esc(m.updated)):'尚未填寫')+'</span>'
+    + '</div></div>';
+
+  html += '<div class="card"><div class="sec-lbl"><i class="ti ti-chart-pie"></i> 本系回饋統計</div><div class="stat-row">'
+    + '<div class="stat st-fixed"><div class="stat-n">'+s.fixed+'</div><div class="stat-l">已完成修正</div></div>'
+    + '<div class="stat st-prog"><div class="stat-n">'+s.prog+'</div><div class="stat-l">修改中／列入規劃</div></div>'
+    + '<div class="stat st-mis"><div class="stat-n">'+s.mis+'</div><div class="stat-l">AI誤判／網站已有</div></div>'
+    + '<div class="stat st-cannot"><div class="stat-n">'+s.cannot+'</div><div class="stat-l">無法修正／不適用</div></div>'
+    + '<div class="stat st-todo"><div class="stat-n">'+s.todo+'</div><div class="stat-l">尚未處理</div></div>'
+    + '</div></div>';
+
+  if(prs.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-flag"></i> 🚩 優先改善事項（重要缺失，建議優先處理）</div>'
+      + prs.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  if(fxs.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-tools"></i> 具體改善建議</div>'
+      + fxs.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  const ads = its.filter(i=>i.type==='ad');
+  if(ads.length){
+    html += '<div class="card"><div class="sec-lbl"><i class="ti ti-link"></i> 🔗 招生連結待修正（依 115 學年度招生管道逐條查核）</div>'
+      + ads.map(it=>itemCard(d,it)).join('') + '</div>';
+  }
+  if(!its.length){
+    html += '<div class="card"><div class="empty"><i class="ti ti-mood-smile"></i>本系於本次健檢未列改善建議</div></div>';
+  }
+  if((d.pain_points||[]).length){
+    html += '<div class="card"><button class="ref-toggle" data-act="toggle-ref"><i class="ti ti-chevron-right" id="ref-ico"></i> 參考：本次健檢記錄的主要問題（'+d.pain_points.length+' 項，僅供對照，不需逐項回覆）</button>'
+      + '<ul class="ref-list" id="ref-list" style="display:none">' + d.pain_points.map(t=>'<li>'+esc(t)+'</li>').join('') + '</ul></div>';
+  }
+  document.getElementById('mn').innerHTML = html;
+  document.getElementById('mn').scrollTop = 0;
+}
+
+/* 就地更新單一事項卡片的樣式與提示，不重畫整頁（避免捲動位置跳動與失去游標） */
+function refreshItem(itEl){
+  const r = rec(itEl.dataset.key);
+  const st = itEl.querySelector('[data-f="status"]'), ag = itEl.querySelector('[data-f="agree"]');
+  st.className = 's-' + (r.status||'');
+  ag.className = 'a-' + (r.agree||'');
+  const need = NEED_NOTE.includes(r.status||'') || NEED_NOTE_AGREE.includes(r.agree||'');
+  const missing = need && !(r.note && r.note.trim());
+  itEl.querySelector('[data-role="note-label"]').textContent = '說明備註' + noteLabel(need);
+  itEl.querySelector('[data-f="note"]').classList.toggle('need', missing);
+  itEl.querySelector('[data-role="note-hint"]').style.display = missing ? '' : 'none';
+}
+function refreshStats(){
+  const d = DEPTS.find(x=>x.id===curId); if(!d) return;
+  const s = deptStat(d);
+  const box = document.querySelectorAll('.stat-row .stat-n');
+  if(box.length===5){ const v=[s.fixed,s.prog,s.mis,s.cannot,s.todo]; box.forEach((el,i)=>el.textContent=v[i]); }
+}
+
+/* ═══ 總覽頁 ═══ */
+function renderOverview(){
+  curView = 'overview'; curId = null;
+  let rows = '';
+  DEPTS.forEach(d=>{
+    const s = deptStat(d);
+    const m = DB.meta[d.id]||{};
+    const pct = s.total? Math.round(s.filled/s.total*100):0;
+    rows += '<tr><td class="nm">'+esc(d.college)+'</td>'
+      + '<td class="nm"><a data-goto="'+esc(d.id)+'">'+esc(d.name)+'</a></td>'
+      + '<td>'+grade(d.overall)+'</td><td>'+s.total+'</td>'
+      + '<td><span class="mini-bar"><span style="width:'+pct+'%"></span></span> '+s.filled+'/'+s.total+'</td>'
+      + '<td>'+s.fixed+'</td><td>'+s.prog+'</td><td>'+s.mis+'</td><td>'+s.cannot+'</td><td>'+s.todo+'</td>'
+      + '<td class="nm">'+esc(m.filler||'—')+'</td><td>'+esc(m.date||'—')+'</td></tr>';
+  });
+  document.getElementById('mn').innerHTML =
+    '<div class="card"><div class="dept-hd"><div class="dept-info" style="flex:1">'
+    + '<div class="college-tag">秘書處公共事務組</div><h2>全校填寫進度總覽</h2>'
+    + '<div style="font-size:12px;color:#888780;margin-top:3px;">健檢資料版本：'+esc(BUILD_INFO.built)+'｜共 '+DEPTS.length+' 個學系／學程</div></div>'
+    + '<div class="hd-actions">'
+    + '<button class="btn primary" data-act="export-all"><i class="ti ti-file-spreadsheet"></i> 匯出全部回覆（CSV）</button>'
+    + '<button class="btn" data-act="import"><i class="ti ti-upload"></i> 匯入各系回覆檔</button>'
+    + '<button class="btn ghost" data-act="print"><i class="ti ti-printer"></i> 列印／存PDF</button>'
+    + '</div></div></div>'
+    + '<div class="card"><div class="ov-wrap"><table class="ov"><thead><tr>'
+    + '<th>學院</th><th>學系／學程</th><th>等級</th><th>事項數</th><th>已填寫</th>'
+    + '<th>已修正</th><th>修改中</th><th>AI誤判</th><th>無法修正</th><th>未處理</th><th>填表人</th><th>填表日</th>'
+    + '</tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+  document.getElementById('mn').scrollTop = 0;
+  renderSidebar();
+}
+
+/* ═══ 匯出／匯入 ═══ */
+function download(name, text, mime){
+  const blob = new Blob([text], {type:mime||'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+}
+function csvCell(v){ return '"' + String(v==null?'':v).replace(/"/g,'""') + '"'; }
+function buildCSV(list){
+  const head = ['學院','學系／學程','學系網址','健檢等級','類別','編號','建議內容','處理狀況','專業判斷','說明備註','填表人','單位／職稱','聯絡方式','填表日期'];
+  const lines = [head.map(csvCell).join(',')];
+  list.forEach(d=>{
+    const m = DB.meta[d.id]||{};
+    itemsOf(d).forEach(it=>{
+      const r = rec(it.key);
+      lines.push([d.college, d.name, d.url, grade(d.overall), it.typeLabel, it.no, it.text,
+        STATUS_T[r.status||'']||'', AGREE_T[r.agree||'']||'', r.note||'',
+        m.filler||'', m.unit||'', m.contact||'', m.date||''].map(csvCell).join(','));
+    });
+  });
+  return '﻿' + lines.join('\r\n');
+}
+function buildJSON(list){
+  const items = {};
+  list.forEach(d=>itemsOf(d).forEach(it=>{ const r=rec(it.key); if(isFilled(r)) items[it.key]={...r, dept:d.id, deptName:d.name, type:it.typeLabel, no:it.no, text:it.text}; }));
+  const meta = {};
+  list.forEach(d=>{ if(DB.meta[d.id]) meta[d.id]=DB.meta[d.id]; });
+  return JSON.stringify({format:'fcu-healthcheck-feedback-v1', exported:new Date().toISOString(), source:BUILD_INFO, depts:list.map(d=>d.id), meta, items}, null, 1);
+}
+function stamp(){ return today().replace(/-/g,''); }
+function exportDept(id, kind){
+  const d = DEPTS.find(x=>x.id===id); if(!d) return;
+  const base = '網站健檢改善回覆_'+d.name+'_'+stamp();
+  if(kind==='csv') download(base+'.csv', buildCSV([d]), 'text/csv;charset=utf-8');
+  else download(base+'.json', buildJSON([d]), 'application/json;charset=utf-8');
+}
+function importFiles(files){
+  let okFiles=0, added=0, metaAdded=0, skipped=0;
+  let pending = files.length;
+  Array.from(files).forEach(f=>{
+    const fr = new FileReader();
+    fr.onload = ()=>{
+      try{
+        const o = JSON.parse(fr.result);
+        if(!o || o.format!=='fcu-healthcheck-feedback-v1') throw new Error('檔案格式不符（需為本表匯出的 JSON）');
+        Object.entries(o.items||{}).forEach(([k,v])=>{
+          const known = DEPTS.some(d=>itemsOf(d).some(it=>it.key===k));
+          if(!known){ skipped++; return; }
+          DB.items[k] = {status:v.status||'', agree:v.agree||'', note:v.note||''};
+          added++;
+        });
+        Object.entries(o.meta||{}).forEach(([k,v])=>{ DB.meta[k]=v; metaAdded++; });
+        okFiles++;
+      }catch(e){ alert('「'+f.name+'」匯入失敗：'+e.message); }
+      if(--pending===0){
+        save(); renderSidebar(); renderTop();
+        if(curView==='overview') renderOverview(); else if(curId) renderDept(curId);
+        alert('匯入完成\n成功檔案：'+okFiles+' 個\n回覆事項：'+added+' 項\n填表資訊：'+metaAdded+' 系'+(skipped?('\n略過（比對不到對應建議，可能健檢資料已更新）：'+skipped+' 項'):''));
+      }
+    };
+    fr.onerror = ()=>{ alert('「'+f.name+'」讀取失敗'); if(--pending===0){ renderTop(); } };
+    fr.readAsText(f, 'utf-8');
+  });
+}
+
+/* ═══ 事件 ═══ */
+const mn = document.getElementById('mn');
+mn.addEventListener('change', e=>{
+  const t = e.target;
+  const itEl = t.closest('.it');
+  if(itEl && t.dataset.f){
+    const key = itEl.dataset.key;
+    const r = DB.items[key] || (DB.items[key] = {status:'',agree:'',note:''});
+    r[t.dataset.f] = t.value;
+    if(!isFilled(r)) delete DB.items[key];
+    touchMeta();
+    save();
+    refreshItem(itEl); refreshStats(); renderSidebar(); renderTop();
+    return;
+  }
+  if(t.dataset.m){
+    const m = DB.meta[curId] || (DB.meta[curId] = {});
+    m[t.dataset.m] = t.value;
+    touchMeta(); save();
+  }
+});
+mn.addEventListener('input', e=>{
+  const t = e.target;
+  const itEl = t.closest('.it');
+  if(itEl && t.dataset.f==='note'){
+    const key = itEl.dataset.key;
+    const r = DB.items[key] || (DB.items[key] = {status:'',agree:'',note:''});
+    r.note = t.value;
+    if(!isFilled(r)) delete DB.items[key];
+    refreshItem(itEl);
+    touchMeta(); save(); renderSidebar(); renderTop();
+  }
+});
+function touchMeta(){
+  if(!curId) return;
+  const m = DB.meta[curId] || (DB.meta[curId] = {});
+  if(!m.date) m.date = today();
+  m.updated = new Date().toLocaleString('zh-TW',{hour12:false});
+}
+mn.addEventListener('click', e=>{
+  const goto = e.target.closest('[data-goto]');
+  if(goto){ renderDept(goto.dataset.goto); renderSidebar(); return; }
+  const b = e.target.closest('[data-act]');
+  if(!b) return;
+  const act = b.dataset.act;
+  if(act==='export-dept') exportDept(curId,'csv');
+  else if(act==='backup-dept') exportDept(curId,'json');
+  else if(act==='print') window.print();
+  else if(act==='export-all') download('網站健檢改善回覆_全校彙整_'+stamp()+'.csv', buildCSV(DEPTS), 'text/csv;charset=utf-8');
+  else if(act==='import') document.getElementById('file-import').click();
+  else if(act==='toggle-ref'){
+    const l = document.getElementById('ref-list'), i = document.getElementById('ref-ico');
+    const open = l.style.display==='none';
+    l.style.display = open ? 'flex' : 'none';
+    i.className = 'ti ' + (open ? 'ti-chevron-down' : 'ti-chevron-right');
+  }
+});
+document.getElementById('sb-body').addEventListener('click', e=>{
+  const di = e.target.closest('.di');
+  if(!di) return;
+  renderDept(di.dataset.id);
+  renderSidebar();
+  closeSb();
+});
+document.getElementById('q').addEventListener('input', renderSidebar);
+document.getElementById('btn-overview').addEventListener('click', ()=>{ renderOverview(); closeSb(); });
+document.getElementById('btn-export-all').addEventListener('click', ()=> download('網站健檢改善回覆_全校彙整_'+stamp()+'.csv', buildCSV(DEPTS), 'text/csv;charset=utf-8'));
+document.getElementById('btn-backup').addEventListener('click', ()=> download('網站健檢改善回覆_備份_'+stamp()+'.json', buildJSON(DEPTS), 'application/json;charset=utf-8'));
+document.getElementById('btn-import').addEventListener('click', ()=> document.getElementById('file-import').click());
+document.getElementById('file-import').addEventListener('change', e=>{ if(e.target.files.length) importFiles(e.target.files); e.target.value=''; });
+
+/* 行動版側欄 */
+const sb = document.getElementById('sb'), ov = document.getElementById('sb-overlay');
+function openSb(){ sb.classList.add('open'); ov.classList.add('on'); }
+function closeSb(){ sb.classList.remove('open'); ov.classList.remove('on'); }
+document.getElementById('hb-btn').addEventListener('click', openSb);
+document.getElementById('sb-close-btn').addEventListener('click', closeSb);
+ov.addEventListener('click', closeSb);
+
+/* 離開前提醒尚未匯出 */
+let exported = false;
+window.addEventListener('beforeunload', e=>{
+  if(Object.keys(DB.items).length && !exported){ /* 已自動存於本機，不強制阻擋 */ }
+});
+
+/* 啟動 */
+renderSidebar();
+renderTop();
+const hashId = (location.hash||'').replace('#','');
+if(hashId && DEPTS.some(d=>d.id===hashId)) { renderDept(hashId); renderSidebar(); }
+else renderOverview();
+</script>
+</body>
+</html>

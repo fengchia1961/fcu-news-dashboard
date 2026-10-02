@@ -1,0 +1,10 @@
+# 登入帳密相關：含各單位分機，不要推上公開 repo
+tools/auth-map.json
+tools/auth-list.csv
+
+# 備份檔
+*.bak
+*.bak[0-9]
+*.bak-*
+
+__pycache__/
