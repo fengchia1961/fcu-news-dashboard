@@ -65,7 +65,7 @@ for did, rows in j['results'].items():
 html = HC.read_text(encoding='utf-8')
 CONST = 'const ADM_FIX = ' + json.dumps(fix, ensure_ascii=False, separators=(',', ':')) + ';\n'
 if 'const ADM_FIX = ' in html:
-    html = re.sub(r'const ADM_FIX = \{.*?\};\n', CONST, html, count=1, flags=re.S)
+    html = re.sub(r'const ADM_FIX = \{.*?\};\n', lambda _m: CONST, html, count=1, flags=re.S)
 else:
     html = html.replace('const FB_DEPTS = ', CONST + '\nconst FB_DEPTS = ', 1)
 

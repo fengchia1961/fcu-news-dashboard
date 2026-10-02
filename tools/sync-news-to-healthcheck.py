@@ -51,8 +51,8 @@ if '==NEWS_JS_START==' not in html:
 new_meta = 'const NW_META = ' + json.dumps(meta, ensure_ascii=False, separators=(',', ':')) + ';'
 new_data = 'const NW = ' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + ';'
 
-html2, n1 = re.subn(r'const NW_META = .*?;\n', new_meta + '\n', html, count=1, flags=re.S)
-html2, n2 = re.subn(r'const NW = \{.*?\};\n', new_data + '\n', html2, count=1, flags=re.S)
+html2, n1 = re.subn(r'const NW_META = .*?;\n', lambda _m: new_meta + '\n', html, count=1, flags=re.S)
+html2, n2 = re.subn(r'const NW = \{.*?\};\n', lambda _m: new_data + '\n', html2, count=1, flags=re.S)
 if not (n1 and n2):
     sys.exit(f'取代失敗（NW_META={n1}, NW={n2}），請檢查 health-check.html 是否被手改過')
 

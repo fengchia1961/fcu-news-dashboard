@@ -85,7 +85,7 @@ CSS = '''/* ==AUTH_CSS_START== */
 /* ==AUTH_CSS_END== */
 '''
 if '==AUTH_CSS_START==' in html:
-    html = re.sub(r'/\* ==AUTH_CSS_START==.*?/\* ==AUTH_CSS_END== \*/\n', CSS, html, count=1, flags=re.S)
+    html = re.sub(r'/\* ==AUTH_CSS_START==.*?/\* ==AUTH_CSS_END== \*/\n', lambda _m: CSS, html, count=1, flags=re.S)
 else:
     anchor = '/* ==FEEDBACK_CSS_START== */'
     assert anchor in html, '找不到 CSS 插入位置（==FEEDBACK_CSS_START==）'
@@ -354,7 +354,7 @@ function fbWhoHtml(d){
 
 if '==AUTH_JS_START==' in html:
     html, n = re.subn(r'/\* ═+\n   改善回饋填寫分頁：登入門檻  ==AUTH_JS_START==.*?/\* ==AUTH_JS_END== \*/\n',
-                      JS, html, count=1, flags=re.S)
+                      lambda _m: JS, html, count=1, flags=re.S)
     if not n:
         sys.exit('取代 AUTH_JS 區塊失敗，請檢查 health-check.html 是否被手改過')
 else:

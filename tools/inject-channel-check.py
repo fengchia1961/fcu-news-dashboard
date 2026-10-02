@@ -38,7 +38,7 @@ CONST = ('const CHK_DATE = ' + json.dumps(j['checked'], ensure_ascii=False) + ';
          + 'const CHK = ' + json.dumps(data, ensure_ascii=False, separators=(',', ':')) + ';\n')
 
 if 'const CHK = ' in html:
-    html = re.sub(r'const CHK_DATE = .*?;\nconst CHK = \{.*?\};\n', CONST, html, count=1, flags=re.S)
+    html = re.sub(r'const CHK_DATE = .*?;\nconst CHK = \{.*?\};\n', lambda _m: CONST, html, count=1, flags=re.S)
 else:
     html = html.replace('function renderAdmission(d){', CONST + '\nfunction renderAdmission(d){', 1)
 

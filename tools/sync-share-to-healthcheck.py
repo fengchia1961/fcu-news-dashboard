@@ -71,7 +71,7 @@ CSS = '''/* ==SHARE_CSS_START== */
 '''
 CSS_ANCHOR = '/* ==ADMISSION_CSS_START== */'
 if '==SHARE_CSS_START==' in html:
-    html = re.sub(r'/\* ==SHARE_CSS_START==.*?/\* ==SHARE_CSS_END== \*/\n', CSS, html,
+    html = re.sub(r'/\* ==SHARE_CSS_START==.*?/\* ==SHARE_CSS_END== \*/\n', lambda _m: CSS, html,
                   count=1, flags=re.S)
 else:
     assert CSS_ANCHOR in html, '找不到 CSS 插入位置（==ADMISSION_CSS_START==）'
@@ -205,7 +205,7 @@ JS_ANCHOR = ('/* ═════════════════════
              '   招生連結查核分頁  ==ADMISSION_JS_START==')
 if '==SHARE_JS_START==' in html:
     html, n = re.subn(r'/\* ═+\n   學生愛分享分頁  ==SHARE_JS_START==.*?/\* ==SHARE_JS_END== \*/\n',
-                      JS, html, count=1, flags=re.S)
+                      lambda _m: JS, html, count=1, flags=re.S)
     if not n:
         sys.exit('取代 SHARE_JS 區塊失敗，請檢查 health-check.html 是否被手改過')
 else:
